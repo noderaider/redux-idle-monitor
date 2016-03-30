@@ -1,0 +1,38 @@
+{
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true,
+    "blockBindings": true,
+    "defaultParams": true,
+    "forOf": true,
+    "generators": true,
+    "objectLiteralComputedProperties": true,
+    "objectLiteralDuplicateProperties": false,
+    "objectLiteralShorthandMethods": true,
+    "objectLiteralShorthandProperties": true,
+    "templateStrings": true
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "babel-eslint",
+  "rules": {
+    "quotes": [2, "single"],
+    "strict": [2, "never"],
+    "semi": [2, "never"],
+    "brace-style": [2, "1tbs", {
+      "allowSingleLine": true
+    }],
+    "comma-dangle": [2, "never"],
+    "no-dupe-keys": 2,
+    "no-ex-assign": 2,
+    "no-extra-semi": 2,
+    "valid-typeof": 2,
+    "generator-star-spacing": [2, {"before": false, "after": true}],
+    "react/jsx-uses-react": 2,
+    "react/jsx-uses-vars": 2,
+    "react/react-in-jsx-scope": 2
+  },
+  "plugins": ["react"]
+}

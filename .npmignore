@@ -1,0 +1,22 @@
+# Source files
+client/
+src/
+test/
+vagrant/
+
+.babelrc
+.eslintrc
+.gitattributes
+.gitignore
+
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.user
+
+*.7z
+*.zip
+*.rar
+*.psd
