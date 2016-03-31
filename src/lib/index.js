@@ -1,57 +1,29 @@
 
 import Immutable from 'immutable'
 import { assert } from 'chai'
-import { createAction } from 'redux-actions'
 
-
-/** Lib Constants */
-const LIB_NAME = 'redux-idle-monitor'
-const CURRENT_KEY = 'current'
-const LAST_ACTIVE_KEY = 'last-active'
-const LAST_EVENT_KEY = 'last-event'
-const CURRENT_EVENT_KEY = 'current-event'
-const IS_IDLE_KEY = 'is-idle'
-
-/** Redux Constants */
-const IDLE_STATE = 'IDLE_STATE'
-
-/** Redux Action Creators */
-const setIdleState = createAction(IDLE_STATE)
+import  { LIB_NAME
+        , CURRENT_KEY
+        , LAST_ACTIVE_KEY
+        , LAST_EVENT_KEY
+        , CURRENT_EVENT_KEY
+        , IS_IDLE_KEY
+        , IDLE_STATE
+        } from './constants'
 
 /** Select our slice of the state (supports immutable Map and non-immutable object root state) */
 const selectState = rootState => rootState.isMap && rootState.isMap() ? rootState.get('idle') : rootState.idle
 
-
-const validateOpts = ({ defs, listenEvents }) => {
-  assert.ok(defs, 'defs must exist')
-  assert(Array.isArray(defs), 'defs must be an array')
-  assert(defs.every(x => Array.isArray(x)), 'defs must be an array of an array')
-  assert(defs.every(x => x.length === 2), 'every def must have length 2')
-  assert(defs.every(x => typeof x[0] === 'string'), 'every def must have first ordinal type string event name')
-  assert(defs.every(x => typeof x[1] === 'object'), 'every def must have second ordinal type object')
-  assert(defs.every(x => typeof x[1].action !== 'undefined'), 'every def must have second ordinal action function defined')
-  assert(defs.every(x => typeof x[1].timeoutMS === 'number'), 'every def must have second ordinal timeoutMS number defined')
-  assert.ok(listenEvents, 'listen events must exist')
-}
-
-const defaults =  { defs: [ [ 'ACTIVE', { action: state => { console.warn('ReduxActivityMonitor: USER ACTIVE') }
+const defaults =  { defs: [ [ 'ACTIVE', { action: context => { context.debug('USER ACTIVE') }
                                         , timeoutMS: 0
                                         }
                             ]
-                          , [ 'IDLE', { action: () => { console.warn('ReduxActivityMonitor: USER IDLE') }
+                          , [ 'IDLE', { action: context => { context.debug('USER IDLE') }
                                       , timeoutMS: 1000 * 60 * 20
                                       }
                           ] ]
                   , listenEvents: [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]
                   }
-
-const _formatMessage = ({ message, obj }) => obj ? `message: '${message}', obj: ${obj.toJSON()}`  : `message: '${message}'`
-const _formatError = ({ message, err }) => err ? `error: '${message}', inner: ${err.toString()}`  : `error: '${message.toString()}'`
-
-const _formatLog = ({ message, obj, err }) =>`${LIB_NAME} | ${err ? _formatError({ message, err }) : _formatMessage({ message, obj })}`
-const getLog = () => ({ debug: (message, obj) => console.warn(_formatLog(message, obj))
-                      , error: (message, err) => console.error(_formatLog(message, err))
-                      })
 
 
 const transitionEvent = (prevState, nextState) => {
@@ -59,70 +31,14 @@ const transitionEvent = (prevState, nextState) => {
   return next === prevState.get(CURRENT_KEY) ? null : next
 }
 
-const configureMiddleware = opts => store => next => action => {
-  if(action.type !== IDLE_STATE)
-    return next(action)
-
-  /** IDLE STATE ACTION INITIATED */
-  const prevState = selectState(store.getState())
-  const result = next(action)
-  const nextState = selectState(store.getState())
-  const transEvent = transitionEvent(prevState, nextState)
-  if(transEvent)
-    selectAction(transEvent)(nextState)
-  return result
-}
 
 
-const getPrimitiveStateSelector = state => ({ get current() { return state.get(CURRENT_KEY) }
-                                            , get lastActive() { return state.get(LAST_ACTIVE_KEY) }
-                                            , get lastEvent() { return state.get(LAST_EVENT_KEY) }
-                                            , get currentEvent() { return state.get(CURRENT_EVENT_KEY) }
-                                            , get isIdle() { return state.get(IS_IDLE_KEY) }
-                                            })
 
-
-const wrapState = selector => state => {
-  const _state = getPrimitiveStateSelector(state)
-  const _event = selector.event
-
-  return  { ..._state
-          , get next() {
-              const eventNames = selector.events
-              const nextIndex = eventNames.indexOf(_state.current) + 1
-              return eventNames[nextIndex] /** MAY BE UNDEFINED */
-            }
-          , get action() { return _event(_state.current).action }
-          , get timeoutMS() { return _event(_state.current).timeoutMS }
-          , get timeoutID() { return _event(_state.current).timeoutID }
-          , get remainingMS() {
-              if(_state.isIdle)
-                return 0
-              const remainingMS = _event(_state.current).timeoutMS - (+new Date() - _state.lastActive)
-              return remainingMS > 0 ? remainingMS : 0
-            }
-          }
-}
-
-const getEventSelector = defMap => eventName => ( { action: defMap.getIn([eventName], 'action')
-                                                  , timeoutMS: defMap.getIn([eventName], 'timeoutMS')
-                                                  , timeoutID: defMap.getIn([eventName, 'timeoutID'])
-                                                  } )
-
-const getSelector = ({ defs, listenEvents }) => {
-  const defMap = Map(defs)
-  return  { get events() { return Array.from(defMap.keys()) }
-          , get listenEvents() { return listenEvents }
-          , get timeoutIDs() { return Array.from(defMap.values()).map(x => x.timeoutID) }
-          , event: getEventSelector(defMap)
-          }
-}
-
-const getContext = ({ log, selector, getState }) => ({ log, selector, getState })
+const getContext = ({ log, def, getState }) => ({ log, def, getState })
 
 const getListenEventHandler = context => e => {
-  const { log, selector, getState } = context
-  const state = stateSelector(getState())
+  const { log, def, getState } = context
+  const state = stateAccessor(getState())
   const { pageX, pageY } = state.lastEvent
   /*
   // Already idle, ignore events
@@ -162,21 +78,21 @@ const getListenEventHandler = context => e => {
 }
 
 const start = context => {
-  const { log, selector, getState } = context
+  const { log, def, getState } = context
   log.debug('start')
-  selector.listenEvents.forEach(x => document.addEventListener(x, e => _handleEvent(e, context)))
+  def.listenEvents.forEach(x => document.addEventListener(x, e => _handleEvent(e, context)))
 }
 
 const stop = context => {
-  const { log, selector, getState } = context
+  const { log, def, getState } = context
   log.debug('stop')
-  selector.timeoutIDs.forEach(x => clearTimeout(x))
-  selector.listenEvents.forEach(x => document.removeEventListener(x, e => _handleEvent(e, context)))
+  def.timeoutIDs.forEach(x => clearTimeout(x))
+  def.listenEvents.forEach(x => document.removeEventListener(x, e => _handleEvent(e, context)))
 }
 
 
 const reset = context => {
-  const { log, selector, getState } = context
+  const { log, def, getState } = context
   const state = getState()
   clearTimeout(state.timeoutID)
 
@@ -191,7 +107,7 @@ const reset = context => {
 
 
 const resume = context => {
-  const { log, selector, getState } = context
+  const { log, def, getState } = context
   // this isn't paused yet
   if (this.state.remaining === null)
     return
@@ -206,16 +122,16 @@ const resume = context => {
 //const getElapsedTime = () => (+new Date()) - this.state.oldDate
 
 
-const configure = (opts = { defs = defaults.defs
-                          , listenEvents = defaults.listenEvents
-                          } = defaults ) => {
+const configure = (config = { defs = defaults.defs
+                            , listenEvents = defaults.listenEvents
+                            } = defaults ) => {
 
   if(process.env.NODE_ENV !== 'production')
-    validateOpts(opts)
+    validateConfig(config)
 
   const log = getLog()
-  const selector = getSelector(opts)
-  const stateSelector = wrapState(selector)
+  const opts = getOptsAccessor(opts)
+  const stateSelector = getStateAccessor(opts)
 
   const _handleListenEvent = selector => getState => e => {
     const state = stateSelector(getState())
@@ -259,3 +175,208 @@ const configure = (opts = { defs = defaults.defs
 
   return { subscribe, reducer, start, stop, reset, resume, getRemainingTime, getElapsedTime, getLastActiveTime, isIdle }
 }
+
+/*
+const noop = () => {}
+const timeoutShape = PropTypes.shape( { name: PropTypes.string.isRequired
+                                      , timeout: PropTypes.number.isRequired
+                                      , timeoutID: PropTypes.number
+                                      })
+                                      */
+
+/**
+ * Redux Activity Monitor
+ * Thanks to the work done by Randy Lebeau on react-idle-timer which got this started.
+ */
+ /*
+class ReduxActivityMonitor extends Component {
+  static propTypes =  { timeouts: PropTypes.arrayOf(timeoutShape).isRequired   // Timeout events to bind
+                      , events: PropTypes.arrayOf(PropTypes.string).isRequired // Activity events to bind
+                      , element: PropTypes.oneOfType([PropTypes.object, PropTypes.string]).isRequired // Element ref to watch activity on
+                      , activityState: PropTypes.string.isRequired
+                      , nextActivityState: PropTypes.string
+                      // DEFINED IN THE SUBSCRIPTION ELEMENT
+                      //, idleAction: PropTypes.func // Action to call when user becomes inactive
+                      //, activeAction: PropTypes.func // Action to call when user becomes active
+                      };
+
+  // Default has a single timeout event occurring in 20 minutes of inactivity
+  static defaultProps = { timeouts: [{ name: 'idle', timeout: 1000 * 60 * 20 }] // 20 minutes
+                        , events: ['mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove']
+                        , element: document
+                        };
+
+  componentWillMount() {
+    const { timeouts, events, element } = this.props
+    // VALIDATE
+    var lastTimeout = 0
+    timeouts.forEach(x => {
+      assert(x.timeout >= lastTimeout, `timeout '${x.name}' timeout value of ${x.timeout} must be larger than the previous timeout value of ${lastTimeout}`)
+    })
+    events.forEach(x => element.addEventListener(x, this._handleEvent))
+  }
+
+  componentWillUnmount() {
+    const { timeouts, events, element } = this.props
+    // Clear timeout to prevent delayed state changes
+    timeouts.forEach(x => clearTimeout(x.timeoutID))
+    events.forEach(x => element.removeEventListener(x, this._handleEvent))
+  }
+
+  render() {
+    const { children } = this.props
+    return children ? children : <div className="no-redux-activity-monitor-children" />
+  }
+
+  _nextActivityState = () => {
+    const { nextActivityState } = this.props
+    if(nextActivityState)
+      dispatch(setActivityState)
+
+
+  }
+
+  _toggleIdleState = () => {
+    const { dispatch, isIdle, idleAction, activeAction } = this.props
+    let newIsIdle = !isIdle
+    // Set the state
+    dispatch(setIdleState(newIsIdle))
+
+    // Fire the appropriate action
+    // TODO: THIS NOW WILL BE HANDLED IN SUBSCRIPTION EVENT
+    if (newIsIdle)
+      idleAction()
+    else
+      activeAction()
+  };
+
+  _handleEvent = (e) => {
+    const { isIdle, remaining, pageX, pageY, oldDate, timeoutId } = this.props
+    // Already idle, ignore events
+    if (remaining)
+      return
+
+    // Mousemove event
+    if (e.type === 'mousemove') {
+      // if coord are same, it didn't move
+      if (e.pageX === pageX && e.pageY === pageY)
+        return
+        // if coord don't exist how could it move
+      if (typeof e.pageX === 'undefined' && typeof e.pageY === 'undefined')
+        return
+        // under 200 ms is hard to do, and you would have to stop, as continuous activity will bypass this
+      let elapsed = (+new Date()) - oldDate
+      if (elapsed < 200)
+        return
+    }
+
+    // clear any existing timeout
+    if(timeoutId)
+      clearTimeout(timeoutId)
+
+    // if the idle timer is enabled, flip
+    if (isIdle)
+      this._toggleIdleState()
+
+    this.setState({ lastActive: +new Date() // store when user was last active
+                  , pageX: e.pageX // update mouse coord
+                  , pageY: e.pageY
+                  , timeoutId: setTimeout(this._toggleIdleState, this.props.timeout) // set a new timeout
+                  })
+  };
+
+  reset = () => {
+    // reset timers
+    clearTimeout(this.props.timeoutId)
+
+    // reset settings
+    this.setState({ idle: false
+                  , oldDate: +new Date()
+                  , lastActive: this.state.oldDate
+                  , remaining: null
+                  , timeoutId: setTimeout(this._toggleIdleState, this.props.timeout)
+                  })
+  };
+
+  pause = () => {
+    // this is already paused
+    if (this.state.remaining !== null)
+      return
+
+    // clear any existing timeout
+    clearTimeout(this.state.timeoutId)
+
+    // define how much is left on the timer
+    this.setState({ remaining: this.props.timeout - ((+new Date()) - this.state.oldDate) })
+  };
+
+  resume = () => {
+    // this isn't paused yet
+    if (this.state.remaining === null)
+      return
+
+    // start timer and clear remaining
+    if (!this.state.idle)
+      this.setState({ timeoutId: setTimeout(this._toggleIdleState, this.state.remaining), remaining: null })
+  };
+
+  getRemainingTime = () => {
+    // If idle there is no time remaining
+    if (this.state.idle)
+      return 0
+
+    // If its paused just return that
+    if (this.state.remaining != null)
+      return this.state.remaining
+
+    // Determine remaining, if negative idle didn't finish flipping, just return 0
+    let remaining = this.props.timeout - ((+new Date()) - this.state.lastActive)
+    if (remaining < 0)
+      remaining = 0
+
+    // If this is paused return that number, else return current remaining
+    return remaining
+  };
+
+  getElapsedTime = () => (+new Date()) - this.state.oldDate;
+
+  getLastActiveTime = () => {
+    return this.props.lastActive
+  };
+
+  isIdle = () => this.props.isIdle;
+}
+*/
+
+function mapStateToProps(state) {
+  const { isIdle
+        , timeoutId
+        , oldDate = +new Date()
+        , lastActive = +new Date()
+        , remaining
+        , pageX
+        , pageY
+        } = state.activity
+
+  /*
+  const state = {
+    idle: false,
+    oldDate: +new Date(),
+    lastActive: +new Date(),
+    remaining: null,
+    tId: null,
+    pageX: null,
+    pageY: null
+  }
+  */
+  return  { isIdle
+          , timeoutId
+          , oldDate
+          , lastActive
+          , remaining
+          , pageX
+          , pageY
+          }
+}
+
+//export default connect(mapStateToProps)(ReduxIdleTimer)
