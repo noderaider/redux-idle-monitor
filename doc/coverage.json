@@ -1,0 +1,74 @@
+{
+  "coverage": "46.42%",
+  "expectCount": 28,
+  "actualCount": 13,
+  "files": {
+    "lib/constants.js": {
+      "expectCount": 4,
+      "actualCount": 3,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "lib/actions.js": {
+      "expectCount": 8,
+      "actualCount": 6,
+      "undocumentLines": [
+        52,
+        53
+      ]
+    },
+    "lib/index.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        9
+      ]
+    },
+    "lib/middleware.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "lib/reducer.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "lib/context.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        120
+      ]
+    },
+    "lib/dispatcher.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        41
+      ]
+    },
+    "lib/log.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        14
+      ]
+    },
+    "lib/defaults.js": {
+      "expectCount": 8,
+      "actualCount": 0,
+      "undocumentLines": [
+        12,
+        18,
+        27,
+        25,
+        20,
+        21,
+        22,
+        23
+      ]
+    }
+  }
+}

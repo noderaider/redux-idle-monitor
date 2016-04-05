@@ -1,0 +1,915 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 464,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 16,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 37,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 37
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "start": 7,
+          "end": 20,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 20
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 7,
+            "end": 20,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            "name": "createContext"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 26,
+        "end": 37,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 26
+          },
+          "end": {
+            "line": 1,
+            "column": 37
+          }
+        },
+        "value": "./context",
+        "rawValue": "./context",
+        "raw": "'./context'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 41,
+      "end": 82,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 41
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 50,
+          "end": 63,
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 9
+            },
+            "end": {
+              "line": 3,
+              "column": 22
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 50,
+            "end": 63,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 22
+              }
+            },
+            "name": "createReducer"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 50,
+            "end": 63,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 9
+              },
+              "end": {
+                "line": 3,
+                "column": 22
+              }
+            },
+            "name": "createReducer"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 71,
+        "end": 82,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 30
+          },
+          "end": {
+            "line": 3,
+            "column": 41
+          }
+        },
+        "value": "./reducer",
+        "rawValue": "./reducer",
+        "raw": "'./reducer'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 84,
+      "end": 139,
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 55
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 93,
+          "end": 106,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 9
+            },
+            "end": {
+              "line": 4,
+              "column": 22
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 93,
+            "end": 106,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 9
+              },
+              "end": {
+                "line": 4,
+                "column": 22
+              }
+            },
+            "name": "createActions"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 93,
+            "end": 106,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 9
+              },
+              "end": {
+                "line": 4,
+                "column": 22
+              }
+            },
+            "name": "createActions"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 108,
+          "end": 120,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 24
+            },
+            "end": {
+              "line": 4,
+              "column": 36
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 108,
+            "end": 120,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 24
+              },
+              "end": {
+                "line": 4,
+                "column": 36
+              }
+            },
+            "name": "defineAction"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 108,
+            "end": 120,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 24
+              },
+              "end": {
+                "line": 4,
+                "column": 36
+              }
+            },
+            "name": "defineAction"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 128,
+        "end": 139,
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 44
+          },
+          "end": {
+            "line": 4,
+            "column": 55
+          }
+        },
+        "value": "./actions",
+        "rawValue": "./actions",
+        "raw": "'./actions'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 141,
+      "end": 188,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 47
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 150,
+          "end": 166,
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 9
+            },
+            "end": {
+              "line": 5,
+              "column": 25
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 150,
+            "end": 166,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 25
+              }
+            },
+            "name": "createMiddleware"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 150,
+            "end": 166,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 25
+              }
+            },
+            "name": "createMiddleware"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 174,
+        "end": 188,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 33
+          },
+          "end": {
+            "line": 5,
+            "column": 47
+          }
+        },
+        "value": "./middleware",
+        "rawValue": "./middleware",
+        "raw": "'./middleware'"
+      }
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 192,
+      "end": 215,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 23
+        }
+      },
+      "declaration": null,
+      "specifiers": [
+        {
+          "type": "ExportSpecifier",
+          "start": 201,
+          "end": 213,
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 9
+            },
+            "end": {
+              "line": 7,
+              "column": 21
+            }
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 201,
+            "end": 213,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 9
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            },
+            "name": "defineAction"
+          },
+          "exported": {
+            "type": "Identifier",
+            "start": 201,
+            "end": 213,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 9
+              },
+              "end": {
+                "line": 7,
+                "column": 21
+              }
+            },
+            "name": "defineAction"
+          }
+        }
+      ],
+      "source": null
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "start": 219,
+      "end": 462,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 1
+        }
+      },
+      "declaration": {
+        "type": "FunctionDeclaration",
+        "start": 234,
+        "end": 462,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 15,
+            "column": 1
+          }
+        },
+        "id": {
+          "type": "Identifier",
+          "start": 243,
+          "end": 252,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 24
+            },
+            "end": {
+              "line": 9,
+              "column": 33
+            }
+          },
+          "name": "configure"
+        },
+        "generator": false,
+        "expression": false,
+        "async": false,
+        "params": [
+          {
+            "type": "Identifier",
+            "start": 253,
+            "end": 260,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 34
+              },
+              "end": {
+                "line": 9,
+                "column": 41
+              }
+            },
+            "name": "appOpts"
+          }
+        ],
+        "body": {
+          "type": "BlockStatement",
+          "start": 262,
+          "end": 462,
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 43
+            },
+            "end": {
+              "line": 15,
+              "column": 1
+            }
+          },
+          "body": [
+            {
+              "type": "VariableDeclaration",
+              "start": 267,
+              "end": 305,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 2
+                },
+                "end": {
+                  "line": 10,
+                  "column": 40
+                }
+              },
+              "declarations": [
+                {
+                  "type": "VariableDeclarator",
+                  "start": 273,
+                  "end": 305,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 40
+                    }
+                  },
+                  "id": {
+                    "type": "Identifier",
+                    "start": 273,
+                    "end": 280,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 15
+                      }
+                    },
+                    "name": "context"
+                  },
+                  "init": {
+                    "type": "CallExpression",
+                    "start": 283,
+                    "end": 305,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 40
+                      }
+                    },
+                    "callee": {
+                      "type": "Identifier",
+                      "start": 283,
+                      "end": 296,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 18
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 31
+                        }
+                      },
+                      "name": "createContext"
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "start": 297,
+                        "end": 304,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 32
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 39
+                          }
+                        },
+                        "name": "appOpts"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "kind": "const"
+            },
+            {
+              "type": "ReturnStatement",
+              "start": 309,
+              "end": 459,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 2
+                },
+                "end": {
+                  "line": 14,
+                  "column": 11
+                }
+              },
+              "argument": {
+                "type": "ObjectExpression",
+                "start": 317,
+                "end": 459,
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 11
+                  }
+                },
+                "properties": [
+                  {
+                    "type": "Property",
+                    "start": 319,
+                    "end": 350,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 43
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 319,
+                      "end": 326,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 12
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 19
+                        }
+                      },
+                      "name": "reducer"
+                    },
+                    "value": {
+                      "type": "CallExpression",
+                      "start": 328,
+                      "end": 350,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 43
+                        }
+                      },
+                      "callee": {
+                        "type": "Identifier",
+                        "start": 328,
+                        "end": 341,
+                        "loc": {
+                          "start": {
+                            "line": 11,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 11,
+                            "column": 34
+                          }
+                        },
+                        "name": "createReducer"
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "start": 342,
+                          "end": 349,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 35
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 42
+                            }
+                          },
+                          "name": "context"
+                        }
+                      ]
+                    },
+                    "kind": "init"
+                  },
+                  {
+                    "type": "Property",
+                    "start": 364,
+                    "end": 395,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 43
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 364,
+                      "end": 371,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 12
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 19
+                        }
+                      },
+                      "name": "actions"
+                    },
+                    "value": {
+                      "type": "CallExpression",
+                      "start": 373,
+                      "end": 395,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 21
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 43
+                        }
+                      },
+                      "callee": {
+                        "type": "Identifier",
+                        "start": 373,
+                        "end": 386,
+                        "loc": {
+                          "start": {
+                            "line": 12,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 12,
+                            "column": 34
+                          }
+                        },
+                        "name": "createActions"
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "start": 387,
+                          "end": 394,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 35
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 42
+                            }
+                          },
+                          "name": "context"
+                        }
+                      ]
+                    },
+                    "kind": "init"
+                  },
+                  {
+                    "type": "Property",
+                    "start": 409,
+                    "end": 446,
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 49
+                      }
+                    },
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 409,
+                      "end": 419,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 12
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 22
+                        }
+                      },
+                      "name": "middleware"
+                    },
+                    "value": {
+                      "type": "CallExpression",
+                      "start": 421,
+                      "end": 446,
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 24
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 49
+                        }
+                      },
+                      "callee": {
+                        "type": "Identifier",
+                        "start": 421,
+                        "end": 437,
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 24
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 40
+                          }
+                        },
+                        "name": "createMiddleware"
+                      },
+                      "arguments": [
+                        {
+                          "type": "Identifier",
+                          "start": 438,
+                          "end": 445,
+                          "loc": {
+                            "start": {
+                              "line": 13,
+                              "column": 41
+                            },
+                            "end": {
+                              "line": 13,
+                              "column": 48
+                            }
+                          },
+                          "name": "context"
+                        }
+                      ]
+                    },
+                    "kind": "init"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      }
+    }
+  ]
+}
