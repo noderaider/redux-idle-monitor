@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/actions.js | redux-idle-monitor API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/cchamberlain/redux-idle-monitor" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureActions">configureActions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createContext">createContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createDispatcher">createDispatcher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityAction">activityAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionAction">activityDetectionAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createActions">createActions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createResetDispatcher">createResetDispatcher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDispatcher">createStartDispatcher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStopDispatcher">createStopDispatcher</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-defineAction">defineAction</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY">ACTIVITY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION">ACTIVITY_DETECTION</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ROOT_STATE_KEY">ROOT_STATE_KEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getActions">getActions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getActiveEvents">getActiveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLevel">getLevel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getThresholds">getThresholds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseFastState">getUseFastState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseLocalState">getUseLocalState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebRTCState">getUseWebRTCState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebSocketsState">getUseWebSocketsState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createLogger">createLogger</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import createContext from &apos;./context&apos;
+import createDispatcher from &apos;./dispatcher&apos;
+import { configureAction, configureDispatcherAction, actionDefinition } from &apos;redux-addons/actions&apos;
+import { ACTIVITY, ACTIVITY_DETECTION } from &apos;./constants&apos;
+
+
+/** Creates an action that starts idle monitor when dispatched */
+//export const createStart = context =&gt; configureDispatcherAction((dispatcher, ctx) =&gt; {
+export const createStartDispatcher = context =&gt; dispatcher =&gt; configureDispatcherAction(context)(dispatcher)((dispatcher, context) =&gt; {
+  const { detection, action } = dispatcher
+  const { log, initialActionName } = context
+  //** MOVE DETECTION FURTHER IN, POSSIBLY MIDDLEWARE
+  console.warn(&apos;STARTING IDLE MONITOR&apos;)
+  log.info(&apos;idle monitor started&apos;)
+  detection.start()
+  return action.execute(initialActionName)
+//}, createDispatcher(context))
+})
+
+/** Creates an action that stops idle monitor when dispatched */
+//export const createStop = context =&gt; configureDispatcherAction((dispatcher, ctx) =&gt; {
+export const createStopDispatcher = context =&gt; dispatcher =&gt; configureDispatcherAction(context)(dispatcher)((dispatcher, context) =&gt; {
+  const { detection } = dispatcher
+  const { log, activeEvents } = context
+  log.info(&apos;idle monitor stopped&apos;)
+  //timeout.clear()
+  //detection.stop()
+//}, createDispatcher(context))
+})
+
+/** Creates an action that resets idle monitor when dispatched */
+//export const createReset = context =&gt; configureDispatcherAction((dispatcher, ctx) =&gt; {
+export const createResetDispatcher = context =&gt; dispatcher =&gt; configureDispatcherAction(context)(dispatcher)((dispatcher, context) =&gt; {
+  const { /*timeout,*/ detection, action } = dispatcher
+  const { log, initialActionName } = context
+  log.info(&apos;idle monitor resetting...&apos;)
+  //timeout.clear()
+  return action.execute(initialActionName)
+//}, createDispatcher(context))
+})
+//})
+
+/** Allows end user to define an idle state transition action */
+export const defineAction = (actionName, action, timeoutMS) =&gt; actionDefinition(actionName, { action, timeoutMS, isIdleTransition: true })
+
+/** Creates actions from a preconfigured context */
+export const createActions = context =&gt; {
+  const dispatcher = createDispatcher(context)
+  return { start: createStartDispatcher(context)(dispatcher), stop: createStopDispatcher(context)(dispatcher), reset: createResetDispatcher(context)(dispatcher) }
+}
+
+export const activityAction = actionDefinition(ACTIVITY, { })
+export const activityDetectionAction = actionDefinition(ACTIVITY_DETECTION, { })
+
+/** Creates context and actions from raw opts that are validated in development */
+export default function configureActions(opts) { return createActions(createContext(opts)) }
+
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

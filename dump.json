@@ -1,0 +1,2027 @@
+[
+  {
+    "__docId__": 0,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/actions.js",
+    "memberof": null,
+    "longname": "lib/actions.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import createContext from './context'\r\nimport createDispatcher from './dispatcher'\r\nimport { configureAction, configureDispatcherAction, actionDefinition } from 'redux-addons/actions'\r\nimport { ACTIVITY, ACTIVITY_DETECTION } from './constants'\r\n\r\n\r\n/** Creates an action that starts idle monitor when dispatched */\r\n//export const createStart = context => configureDispatcherAction((dispatcher, ctx) => {\r\nexport const createStartDispatcher = context => dispatcher => configureDispatcherAction(context)(dispatcher)((dispatcher, context) => {\r\n  const { detection, action } = dispatcher\r\n  const { log, initialActionName } = context\r\n  //** MOVE DETECTION FURTHER IN, POSSIBLY MIDDLEWARE\r\n  console.warn('STARTING IDLE MONITOR')\r\n  log.info('idle monitor started')\r\n  detection.start()\r\n  return action.execute(initialActionName)\r\n//}, createDispatcher(context))\r\n})\r\n\r\n/** Creates an action that stops idle monitor when dispatched */\r\n//export const createStop = context => configureDispatcherAction((dispatcher, ctx) => {\r\nexport const createStopDispatcher = context => dispatcher => configureDispatcherAction(context)(dispatcher)((dispatcher, context) => {\r\n  const { detection } = dispatcher\r\n  const { log, activeEvents } = context\r\n  log.info('idle monitor stopped')\r\n  //timeout.clear()\r\n  //detection.stop()\r\n//}, createDispatcher(context))\r\n})\r\n\r\n/** Creates an action that resets idle monitor when dispatched */\r\n//export const createReset = context => configureDispatcherAction((dispatcher, ctx) => {\r\nexport const createResetDispatcher = context => dispatcher => configureDispatcherAction(context)(dispatcher)((dispatcher, context) => {\r\n  const { /*timeout,*/ detection, action } = dispatcher\r\n  const { log, initialActionName } = context\r\n  log.info('idle monitor resetting...')\r\n  //timeout.clear()\r\n  return action.execute(initialActionName)\r\n//}, createDispatcher(context))\r\n})\r\n//})\r\n\r\n/** Allows end user to define an idle state transition action */\r\nexport const defineAction = (actionName, action, timeoutMS) => actionDefinition(actionName, { action, timeoutMS, isIdleTransition: true })\r\n\r\n/** Creates actions from a preconfigured context */\r\nexport const createActions = context => {\r\n  const dispatcher = createDispatcher(context)\r\n  return { start: createStartDispatcher(context)(dispatcher), stop: createStopDispatcher(context)(dispatcher), reset: createResetDispatcher(context)(dispatcher) }\r\n}\r\n\r\nexport const activityAction = actionDefinition(ACTIVITY, { })\r\nexport const activityDetectionAction = actionDefinition(ACTIVITY_DETECTION, { })\r\n\r\n/** Creates context and actions from raw opts that are validated in development */\r\nexport default function configureActions(opts) { return createActions(createContext(opts)) }\r\n\r\n"
+  },
+  {
+    "__docId__": 1,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createStartDispatcher",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~createStartDispatcher",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{createStartDispatcher}",
+    "description": "Creates an action that starts idle monitor when dispatched",
+    "lineNumber": 9,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 2,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createStopDispatcher",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~createStopDispatcher",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{createStopDispatcher}",
+    "description": "Creates an action that stops idle monitor when dispatched",
+    "lineNumber": 22,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 3,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createResetDispatcher",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~createResetDispatcher",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{createResetDispatcher}",
+    "description": "Creates an action that resets idle monitor when dispatched",
+    "lineNumber": 33,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 4,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defineAction",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~defineAction",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{defineAction}",
+    "description": "Allows end user to define an idle state transition action",
+    "lineNumber": 44,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 5,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createActions",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~createActions",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{createActions}",
+    "description": "Creates actions from a preconfigured context",
+    "lineNumber": 47,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 6,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "activityAction",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~activityAction",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{activityAction}",
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 7,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "activityDetectionAction",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~activityDetectionAction",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "{activityDetectionAction}",
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 8,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "configureActions",
+    "memberof": "lib/actions.js",
+    "longname": "lib/actions.js~configureActions",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/actions.js",
+    "importStyle": "configureActions",
+    "description": "Creates context and actions from raw opts that are validated in development",
+    "lineNumber": 56,
+    "params": [
+      {
+        "name": "opts",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 9,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/constants.js",
+    "memberof": null,
+    "longname": "lib/constants.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "/** Lib Constants */\r\nexport const LIB_NAME = 'redux-idle-monitor'\r\n\r\n/** Redux state root level key */\r\nexport const ROOT_STATE_KEY = 'idle'\r\n\r\n/** Redux Action Type Constants */\r\nexport const ACTIVITY = 'ACTIVITY'\r\nexport const ACTIVITY_DETECTION = 'ACTIVITY_DETECTION'\r\n"
+  },
+  {
+    "__docId__": 10,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "LIB_NAME",
+    "memberof": "lib/constants.js",
+    "longname": "lib/constants.js~LIB_NAME",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/constants.js",
+    "importStyle": "{LIB_NAME}",
+    "description": "Lib Constants",
+    "lineNumber": 2,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "ROOT_STATE_KEY",
+    "memberof": "lib/constants.js",
+    "longname": "lib/constants.js~ROOT_STATE_KEY",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/constants.js",
+    "importStyle": "{ROOT_STATE_KEY}",
+    "description": "Redux state root level key",
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 12,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "ACTIVITY",
+    "memberof": "lib/constants.js",
+    "longname": "lib/constants.js~ACTIVITY",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/constants.js",
+    "importStyle": "{ACTIVITY}",
+    "description": "Redux Action Type Constants",
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 13,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "ACTIVITY_DETECTION",
+    "memberof": "lib/constants.js",
+    "longname": "lib/constants.js~ACTIVITY_DETECTION",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/constants.js",
+    "importStyle": "{ACTIVITY_DETECTION}",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 14,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/context.js",
+    "memberof": null,
+    "longname": "lib/context.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { assert } from 'chai'\r\nimport  { ROOT_STATE_KEY, ACTION_PREFIX } from './constants'\r\nimport { getActions, getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'\r\n\r\nimport { configureActivityEvent, configureStart, configureStop, configureReset, createActions, activityAction, activityDetectionAction } from './actions'\r\n\r\nimport configureContext from 'redux-addons/context'\r\nimport  { createLogger } from './log'\r\n\r\nconst noop = () => {}\r\nconst sanitizeActions = actions => actions.map(x => [createActionName(x[0]), x[1]])\r\nconst createActionName = rawName => `${ACTION_PREFIX}_${rawName.toUpperCase().replace(/-+\\s+/, '_')}`\r\n\r\n\r\nconst validateContext = (libContext, appContext) => {\r\n  assert.ok(libContext, 'must pass opts to validate')\r\n  assert.ok(appContext, 'must pass opts to validate')\r\n\r\n  const { libName, appName, libActions, appActions } = libContext\r\n  const { activeEvents, useFastState, useLocalState, thresholds } = appContext\r\n\r\n  assert.ok(libName, 'libName must exist')\r\n  assert(typeof libName === 'string', 'libName opt must be a string')\r\n  assert(libName.length > 0, 'libName opt must not be empty')\r\n  assert.ok(appName, 'appName must exist')\r\n  assert(typeof appName === 'string', 'appName opt must be a string')\r\n  assert(appName.length > 0, 'appName opt must not be empty')\r\n\r\n\r\n  assert.ok(appActions, 'actions must exist')\r\n  assert(Array.isArray(appActions), 'actions must be an array')\r\n  assert(appActions.every(x => Array.isArray(x)), 'actions must be an array of an array')\r\n  assert(appActions.every(x => x.length === 2), 'every actions must have length 2')\r\n  assert(appActions.every(x => typeof x[0] === 'string'), 'every action must have first ordinal type string event name')\r\n  assert(appActions.every(x => typeof x[1] === 'object'), 'every action must have second ordinal type object')\r\n  assert(appActions.every(x => typeof x[1].action !== 'undefined'), 'every action must have second ordinal action function defined')\r\n  assert(appActions.every(x => {\r\n    const type = typeof x[1].timeoutMS\r\n    return type === 'number' || type === 'function'\r\n  }), 'every action must have second ordinal timeoutMS number or function defined')\r\n  assert.ok(activeEvents, 'active events must exist')\r\n}\r\n\r\nconst configureAppContext = libContext => {\r\n  const { appName\r\n        , libName\r\n        , libActions\r\n        , libActionMap\r\n        , libActionNames\r\n        , appActions\r\n        , appActionMap\r\n        , appActionNames\r\n        , actions\r\n        , actionMap\r\n        , createActionType\r\n        , typedLibActions\r\n        , typedAppActions\r\n        , libActionTypes\r\n        , appActionTypes\r\n        , typedActions\r\n        , typedActionMap\r\n        , getActionContextByName\r\n        , getActionContextByType\r\n        , getLibActionContextByOrdinal\r\n        , getAppActionContextByOrdinal\r\n        } = libContext\r\n  return appOpts => {\r\n    const { appActions, appActionMap, appActionNames, activeEvents, useFastState, useLocalState, thresholds } = appOpts\r\n\r\n    const initialActionName = appActions[0][0]\r\n    const initialAction = appActions[0][1].action\r\n    const initialTimeoutMS = appActions[0][1].timeoutMS\r\n    const initialLastEvent = { x: 0, y: 0 }\r\n    const actionNames = appActions.map(x => x[0])\r\n\r\n\r\n    const context = { getNextActionName: actionName => {\r\n                        let hitCurrent = false\r\n                        for(let current of appActionNames) {\r\n                          if(hitCurrent)\r\n                            return current\r\n                          if(current === actionName)\r\n                            hitCurrent = true\r\n                        }\r\n                      }\r\n                    , getNextActionType: actionType => {\r\n                        let hitCurrent = false\r\n                        for(let current of appActionTypes) {\r\n                          if(hitCurrent)\r\n                            return current\r\n                          if(current === actionType)\r\n                            hitCurrent = true\r\n                        }\r\n                      }\r\n                    , initialActionName\r\n                    , initialAction\r\n                    , initialTimeoutMS\r\n                    , initialLastEvent\r\n                    , getAction: actionName => appActionMap.get(actionName).action\r\n                    , getTimeoutMS: actionName => appActionMap.get(actionName).timeoutMS\r\n                    , activeEvents\r\n                    , useFastState\r\n                    , useLocalState\r\n                    , thresholds\r\n                    }\r\n    return { ...context, childActions: createActions(context) }\r\n  }\r\n}\r\n\r\nconst configureInitialState = libContext => appContext => {\r\n  return  { actionName: appContext.initialActionName\r\n          , isIdle: false\r\n          , isPaused: false\r\n          , lastActive: +new Date()\r\n          , lastEvent: appContext.initialLastEvent\r\n          //, timeoutID\r\n          }\r\n}\r\n\r\nexport default function createContext({ appName\r\n                                      , appActions = getActions()\r\n                                      , activeEvents = getActiveEvents()\r\n                                      , useFastState = getUseFastState()\r\n                                      , useLocalState = getUseLocalState()\r\n                                      , useWebRTCState = getUseWebRTCState()\r\n                                      , useWebSocketsState = getUseWebSocketsState()\r\n                                      , thresholds = getThresholds()\r\n                                      , level = getLevel()\r\n                                      } = {}) {\r\n\r\n\r\n  const libName = 'idlemonitor'\r\n  const libActions = [activityAction, activityDetectionAction]\r\n\r\n\r\n  const libOpts = { libName, libActions, validateContext, configureAppContext, configureInitialState }\r\n  const appOpts = { appName, appActions, activeEvents, useFastState, useLocalState, useWebRTCState, useWebSocketsState, thresholds, level }\r\n\r\n  return configureContext(libOpts)(appOpts)\r\n\r\n\r\n\r\n\r\n\r\n  /*\r\n  if(process.env.NODE_ENV !== 'production')\r\n    validate(opts)\r\n  const actions = sanitizeActions(opts.libActions)\r\n  const log = createLogger({ level })\r\n\r\n  const actionMap = new Map(actions)\r\n\r\n  const initialActionName = actions[0][0]\r\n  const initialAction = actions[0][1].action\r\n  const initialTimeoutMS = actions[0][1].timeoutMS\r\n  const initialLastEvent = { x: 0, y: 0 }\r\n  const actionNames = actions.map(x => x[0])\r\n\r\n  const createFullState = ( { actionName = initialActionName\r\n                            , isIdle = false\r\n                            , isPaused = false\r\n                            , lastActive = +new Date()\r\n                            , lastEvent = initialLastEvent\r\n                            , timeoutID\r\n                            } = {}) => {\r\n    return  { actionName, actionNames, isIdle, isPaused, lastActive, lastEvent, timeoutID }\r\n  }\r\n\r\n  const getNextActionName = actionName => {\r\n    let hitCurrent = false\r\n    for(let name of actions.map(x => x[0])) {\r\n      if(hitCurrent)\r\n        return name\r\n      if(name === actionName)\r\n        hitCurrent = true\r\n    }\r\n  }\r\n  const context = { log\r\n                  , get initialState() { return createFullState({ actionName: initialActionName }) }\r\n                  , getNextActionName\r\n                  , initialActionName\r\n                  , initialAction\r\n                  , initialTimeoutMS\r\n                  , initialLastEvent\r\n                  , activeEvents\r\n                  , get actionNames() { return actionNames }\r\n                  , getAction: actionName => actionMap.get(actionName).action\r\n                  , getTimeoutMS: actionName => actionMap.get(actionName).timeoutMS\r\n                  , get useFastState() { return useFastState }\r\n                  , get useLocalState() { return useLocalState }\r\n                  , get useWebRTCState() { return useWebRTCState }\r\n                  , get useWebSocketsState() { return useWebSocketsState }\r\n                  , get thresholds() { return thresholds }\r\n                  }\r\n  return { ...context, childActions: createActions(context) }\r\n  */\r\n\r\n}\r\n\r\n\r\n\r\n\r\n"
+  },
+  {
+    "__docId__": 15,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "noop",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~noop",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 16,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "sanitizeActions",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~sanitizeActions",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 17,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createActionName",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~createActionName",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 18,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "validateContext",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~validateContext",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 19,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureAppContext",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~configureAppContext",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 20,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureInitialState",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~configureInitialState",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 110,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 21,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "createContext",
+    "memberof": "lib/context.js",
+    "longname": "lib/context.js~createContext",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/context.js",
+    "importStyle": "createContext",
+    "description": null,
+    "lineNumber": 120,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "optional": true,
+        "types": [
+          "{\"appName\": *, \"appActions\": *, \"activeEvents\": *, \"useFastState\": *, \"useLocalState\": *, \"useWebRTCState\": *, \"useWebSocketsState\": *, \"thresholds\": *, \"level\": *}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 22,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/defaults.js",
+    "memberof": null,
+    "longname": "lib/defaults.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { defineAction } from './actions'\r\nconst getTimeStamp = () => {\r\n  return new Date().toTimeString()\r\n}\r\nconst defaultActiveAction = () => defineAction('ACTIVE', (dispatch, getState, { log }) => log.info(`USER ACTIVE AT ${getTimeStamp()}`), 0)\r\nconst defaultInactiveAction = () => defineAction('INACTIVE', (dispatch, getState, { log }) => log.info(`USER INACTIVE AT ${getTimeStamp()}`), 5000)\r\nconst defaultIdleAction = () => defineAction('IDLE', (dispatch, getState, { log }) => log.info(`USER IDLE AT ${getTimeStamp()}`), 5000)\r\nconst defaultExpiredAction = () => defineAction('EXPIRED', (dispatch, getState, { log }) => {\r\n  log.info(`USER EXPIRED AT ${getTimeStamp()}`)\r\n}, 15000)\r\n\r\nexport const getActions = () => [ defaultActiveAction()\r\n                                , defaultInactiveAction()\r\n                                , defaultIdleAction()\r\n                                , defaultExpiredAction()\r\n                                ]\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 10, elapsedMS = 1000 } = { mouse: 10, elapsedMS: 1000 }) => ({ mouse, elapsedMS })\r\n\r\nexport const getLevel = () => 'debug'\r\n"
+  },
+  {
+    "__docId__": 23,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getTimeStamp",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getTimeStamp",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 2,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 24,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defaultActiveAction",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~defaultActiveAction",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 25,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defaultInactiveAction",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~defaultInactiveAction",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 6,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 26,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defaultIdleAction",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~defaultIdleAction",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 27,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defaultExpiredAction",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~defaultExpiredAction",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 28,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getActions",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getActions",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getActions}",
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 29,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getActiveEvents",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getActiveEvents",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getActiveEvents}",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 30,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getUseFastState",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getUseFastState",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getUseFastState}",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 31,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getUseLocalState",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getUseLocalState",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getUseLocalState}",
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 32,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getUseWebRTCState",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getUseWebRTCState",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getUseWebRTCState}",
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 33,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getUseWebSocketsState",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getUseWebSocketsState",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getUseWebSocketsState}",
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 34,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getThresholds",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getThresholds",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getThresholds}",
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 35,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getLevel",
+    "memberof": "lib/defaults.js",
+    "longname": "lib/defaults.js~getLevel",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/defaults.js",
+    "importStyle": "{getLevel}",
+    "description": null,
+    "lineNumber": 27,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 36,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/dispatcher.js",
+    "memberof": null,
+    "longname": "lib/dispatcher.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { assert } from 'chai'\r\nimport { createAction } from 'redux-actions'\r\nimport  { ROOT_STATE_KEY\r\n        , ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        } from './constants'\r\nimport { createActions, createStart, createReset, createStop } from './actions'\r\n\r\n\r\nclass MemoryStore {\r\n  constructor(stateKeys, initialState) {\r\n    this._stateKeys = stateKeys\r\n    this._state = initialState\r\n    this._stateAccessor = this._stateKeys.reduce((stateAccessor, key) => {\r\n      Object.defineProperty(stateAccessor, key, { get: () => this._state[key] })\r\n      return stateAccessor\r\n    }, {})\r\n  }\r\n\r\n  _shouldSetState = newState => Object.keys(newState).some(x => this._stateKeys.includes(x) && typeof newState[x] !== 'undefined');\r\n\r\n  _filterState = newState => {\r\n    return Object.keys(newState).reduce((state, key) => {\r\n      if(this._stateKeys.includes(key))\r\n        state[key] = newState[key]\r\n      return state\r\n    }, {})\r\n  };\r\n\r\n  getState = () => {\r\n    return this._stateAccessor\r\n  };\r\n  setState = (newState) => {\r\n    if(!this._shouldSetState(newState))\r\n      return\r\n    console.warn(`SETTING FAST STATE => ${JSON.stringify(newState)}`)\r\n    Object.keys(this._filterState(newState)).forEach(stateKey => this._state[stateKey] = newState[stateKey])\r\n  };\r\n}\r\n\r\nexport default function createDispatcher(context) {\r\n  return (dispatch, getState) => {\r\n    const stores = createStoresDispatcher(context)(dispatch, getState)\r\n    //const timeout = createTimeoutDispatcher(context, { stores })(dispatch, getState)\r\n    const detection = createDetectionDispatcher(context, { stores /* timeout */ })(dispatch, getState)\r\n    const action = createActionDispatcher(context, { /* timeout, */ stores, detection })(dispatch, getState)\r\n    return { stores, /*timeout, */ detection, action }\r\n  }\r\n}\r\n\r\nconst createStoresDispatcher = context => (dispatch, getState) => {\r\n  const { log, getAction, getTimeoutMS, useFastState, useLocalState, initialLastEvent } = context\r\n\r\n  const fastStateKeys = ['lastActive', 'lastEvent', 'timeoutID', 'isDetectionRunning']\r\n  const localStateKeys = ['lastActive']\r\n  const reduxStateKeys = ['actionName', 'isIdle', 'isPaused', 'lastActive', 'lastEvent', 'timeoutID', 'isDetectionRunning']\r\n\r\n  const _shouldSetState = (newState, stateKeys) => Object.keys(newState).some(x => fastStateKeys.includes(x) && typeof newState[x] !== 'undefined')\r\n\r\n  const _shouldSetFastState = newState => useFastState && _shouldSetState(newState, fastStateKeys)\r\n  const _shouldSetLocalState = newState => useLocalState && _shouldSetState(newState, localStateKeys)\r\n  const _shouldSetReduxState = newState => _shouldSetState(newState, reduxStateKeys)\r\n\r\n\r\n  const _filterState = (newState, stateKeys) => {\r\n    return Object.keys(newState).reduce((state, key) => {\r\n      if(stateKeys.includes(key))\r\n        state[key] = newState[key]\r\n      return state\r\n    }, {})\r\n  }\r\n\r\n/*\r\n  const createFastState = ( { lastEvent = initialLastEvent\r\n                            , timeoutID } = {}) => ({ lastActive: +new Date()\r\n                                                    , lastEvent\r\n                                                    , timeoutID\r\n                                                    , isDetectionRunning: false\r\n                                                    })\r\n                                                    */\r\n  let fastState = useFastState ? new MemoryStore(fastStateKeys, { lastActive: +new Date(), lastEvent: { x: 0, y: 0}, isDetectionRunning: false }) : noop()\r\n  /*\r\n  const setFastState = newState => {\r\n    Object.keys(_filterState(newState, fastStateKeys)).forEach(stateKey => fastState[stateKey] = newState[stateKey])\r\n\r\n    //fastState = Object.assign({}, fastState, _filterState(newState, fastStateKeys), { lastActive: +new Date() })\r\n    if(process.env.NODE_ENV !== 'production')\r\n      log.debug({ fastState }, 'fastState set')\r\n  }\r\n  const _stateGetter = (stateStore, stateKeys) => {\r\n    return stateKeys.reduce((stateAccessor, key) => {\r\n      Object.defineProperty(stateAccessor, key, { get: () => stateStore[key] })\r\n      return stateAccessor\r\n    }, {})\r\n  }\r\n  */\r\n\r\n  //const fastStateGetter = _stateGetter(fastState, fastStateKeys)\r\n\r\n  const createLocalState = ({} = {}) => ({ lastActive: +new Date() })\r\n  /*\r\n  if(useLocalState)\r\n    localStorage[IDLEMONITOR_ACTIVITY] = createLocalState()\r\n  */\r\n  const getLocalState = () => {\r\n    /*\r\n    return localStateKeys.reduce((state, key) => {\r\n      state[key] = localStorage[`${IDLEMONITOR_ACTIVITY}_${key}`]\r\n      return state\r\n    }, {})\r\n    */\r\n  }\r\n  const setLocalState = (newState) => {\r\n    /*\r\n    localStorage[`${IDLEMONITOR_ACTIVITY}_lastActive`] = +new Date()\r\n    Object.keys(newState).filter(key => localStateKeys.includes(key)).forEach((key) => localStorage[`${IDLEMONITOR_ACTIVITY}_${key}`] = newState[key])\r\n    //localStorage[IDLEMONITOR_ACTIVITY] = Object.assign({}, localStorage[IDLEMONITOR_ACTIVITY], _filterState(newState, localStateKeys), { lastActive: +new Date() })\r\n    if(process.env.NODE_ENV !== 'production')\r\n      log.trace({ localState: getLocalState() }, 'localState set')\r\n    */\r\n  }\r\n\r\n  /** GETS THIS LIBS SLICE OF TOP LEVEL STATE FROM REDUX (supports immutable) */\r\n  const getLibState = () => {\r\n    const state = getState()\r\n    return state.isMap && state.isMap() ? state.get(ROOT_STATE_KEY) : state[ROOT_STATE_KEY]\r\n  }\r\n\r\n  /** ABSTRACTS ACCESS TO STATE VIA GETTERS */\r\n  const getLibStateAccessor = libState => {\r\n    const fast = useFastState ? fastState.getState() : null\r\n\r\n              /** The current state name */\r\n    return  { get actionName() { return libState.actionName }\r\n              /** Is in idle state (no more states to progress to) */\r\n            , get isIdle() { return libState.isIdle }\r\n              /** State can be paused manually or via action dispatch or returning null/undefined from timeoutMS function */\r\n            , get isPaused() { return libState.isPaused }\r\n              /** The epoch MS that the user was last active */\r\n            , get lastActive() { return useFastState ? fast.lastActive : libState.lastActive }\r\n              /** Event information captured on the last recorded user action */\r\n            , get lastEvent() { return useFastState ? fast.lastEvent : libState.lastEvent }\r\n              /** The timeoutID for the current scheduled next event if it exists */\r\n            , get timeoutID() { return useFastState ? fast.timeoutID : libState.timeoutID }\r\n              /** The timeoutID for the current scheduled next event if it exists */\r\n            , get isDetectionRunning() { return useFastState ? fast.isDetectionRunning : libState.isDetectionRunning }\r\n            }\r\n  }\r\n\r\n  const getReduxState = () => {\r\n    const state = getLibStateAccessor(getLibState())\r\n\r\n    return  { ...state\r\n            , get next() {\r\n                const events = context.actionNames\r\n                const nextIndex = events.indexOf(state.actionName) + 1\r\n                return events[nextIndex] /** MAY BE UNDEFINED */\r\n              }\r\n            , get action() { return getAction(state.actionName) }\r\n            , get timeoutMS() { return getTimeoutMS(state.actionName) }\r\n            , get remainingMS() {\r\n                if(state.isIdle)\r\n                  return 0\r\n                const remainingMS = getTimeoutMS(state.actionName) - (+new Date() - state.lastActive)\r\n                return remainingMS > 0 ? remainingMS : 0\r\n              }\r\n            }\r\n  }\r\n\r\n\r\n  return  { get redux() { return getReduxState() }\r\n            /** Without some way to track fast state (mousemove events), redux gets spammed with actions */\r\n          , get fast() { return useFastState ? fastState.getState() : getReduxState() }\r\n            /** Things that need to be synced across tabs (lastActive, lastEvent) */\r\n          , get local() { return {} }\r\n            /** All state update actions flow through this, has ability to bypass redux for fast state operations or dispatch to it */\r\n          , setState: (actionName, newState) => {\r\n              if(_shouldSetLocalState)\r\n                setLocalState(newState)\r\n              if(_shouldSetFastState(newState)) {\r\n                fastState.setState(newState)\r\n                //setFastState(newState)\r\n                //if(!_shouldSetReduxState(newState))\r\n                  //return log.debug('bypassing redux state update')\r\n              }\r\n              log.debug({ newState }, 'updating redux state')\r\n              return dispatch(createAction(actionName)(newState))\r\n            }\r\n          }\r\n}\r\n\r\nconst createTimeoutDispatcher = (context, { stores }) => (dispatch, getState) => {\r\n  /*\r\n  const { log, activeEvents, initialActionName, initialAction, thresholds, getActionType, getFastState, getTimeoutMS } = context\r\n  const { setState } = stores\r\n\r\n  const ACTIVITY_ACTION = getActionType(ACTIVITY)\r\n\r\n  const clear = () => {\r\n    //const timeoutID = stores.fast.timeoutID\r\n    console.warn(`CLEARING TIMEOUTID => ${window.lastTimeoutID}`)\r\n    clearTimeout(window.lastTimeoutID)\r\n  }\r\n  const schedule = (action, ms) => {\r\n    clear()\r\n    window.lastAction = action\r\n    window.lastMS = ms\r\n    window.lastTimeoutID = setTimeout(() => action(), ms)\r\n    console.warn('NEW TIMEOUT SCHEDULED')\r\n    //setState(ACTIVITY_ACTION, { timeoutID })\r\n  }\r\n  const reschedule = () => {\r\n    schedule(window.lastAction, window.lastMS)\r\n  }\r\n  return  { clear\r\n          , timeoutMS: actionName => {\r\n              let result = getTimeoutMS(actionName)\r\n              return typeof result === 'function' ? result(dispatch, getState, _getChildContext(context)) : result\r\n            }\r\n          , schedule\r\n          , reschedule\r\n          }\r\n          */\r\n}\r\n\r\nconst createDetectionDispatcher = (context, { stores }) => (dispatch, getState) => {\r\n  const { log, activeEvents, initialActionName, initialAction, thresholds, getActionType } = context\r\n  const { setState } = stores\r\n\r\n  const ACTIVITY_ACTION = getActionType(ACTIVITY)\r\n  const ACTIVITY_DETECTION_ACTION = getActionType(ACTIVITY_DETECTION)\r\n\r\n\r\n  /** Detects whether the activity should trigger a redux update */\r\n  const _shouldActivityUpdate = ({ type, pageX, pageY }) => {\r\n    if(type !== 'mousemove') return true\r\n\r\n    const { lastActive, lastEvent: { x, y } } = stores.fast\r\n    if (typeof pageX === 'undefined' || typeof pageY === 'undefined')\r\n      return false\r\n    if(Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)\r\n      return false\r\n\r\n    // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE\r\n    let elapsedMS = (+new Date()) - lastActive\r\n    if (elapsedMS < thresholds.elapsedMS)\r\n      return false\r\n    if(process.env.NODE_ENV !== 'production')\r\n      log.trace(`_shouldActivityUpdate: elapsed vs threshold => E[${elapsedMS}] >= T[${thresholds.elapsedMS}], lastActive => ${lastActive}`)\r\n    return true\r\n  }\r\n\r\n  const _shouldRestart = () => stores.redux.actionName !== initialActionName\r\n\r\n  /** One of the event listeners triggered an activity occurrence event. This gets spammed */\r\n  const onActivity = e => {\r\n    if (!_shouldActivityUpdate(e))\r\n      return\r\n    if(_shouldRestart()) {\r\n      console.warn('NO SKIP RESTART', stores.redux.actionName, initialActionName)\r\n      return dispatch(createReset(context))\r\n    }\r\n    console.warn('SKIP RESTART', stores.redux.actionName, initialActionName)\r\n    //timeout.reschedule()\r\n    /** THIS WILL BE ROUTED TO FAST OR LOCAL STATE IF ENABLED */\r\n    setState(ACTIVITY_ACTION, { lastActive: +new Date(), lastEvent: { x: e.pageX, y: e.pageY } })\r\n  }\r\n\r\n  const activityDetectionType = getActionType(ACTIVITY_DETECTION)\r\n\r\n  return  { get isRunning() { return stores.redux.isDetectionRunning }\r\n          , start: () => {\r\n              log.warn('activity detection starting...')\r\n              if(process.env.NODE_ENV !== 'production')\r\n                assert(stores.redux.isDetectionRunning === false, 'activity detection is already running')\r\n              activeEvents.forEach(x => document.addEventListener(x, onActivity))\r\n              setState(ACTIVITY_DETECTION_ACTION, { isDetectionRunning: true })\r\n            }\r\n          , stop: () => {\r\n              log.warn('activity detection terminating...')\r\n              if(process.env.NODE_ENV !== 'production')\r\n                assert(stores.redux.isDetectionRunning === true, 'activity detection is not running')\r\n              activeEvents.forEach(x => document.removeEventListener(x, onActivity))\r\n              setState(ACTIVITY_DETECTION_ACTION, { isDetectionRunning: false })\r\n            }\r\n          }\r\n\r\n}\r\n\r\n\r\nconst createActionDispatcher = (context, { stores, detection }) => (dispatch, getState) => {\r\n  const { log, getTimeoutMS, getAction, getActionType, getNextActionName, useFastState, setFastState } = context\r\n  const { setState } = stores\r\n  const _isPauseTriggered = timeoutMS => timeoutMS === null || timeoutMS === false || typeof timeoutMS === 'undefined'\r\n\r\n  /** Responsible for clearing old timeout and scheduling new one or immediately executing, returns new timeoutID or undefined */\r\n  /*\r\n  const scheduleObsolete = actionName => {\r\n    timeout.clear()\r\n    const delay = timeout.timeoutMS(actionName)\r\n    log.info({ actionName, timeoutMS }, 'schedule')\r\n    const meta = { delay: delay > 0 ? delay : noop() }\r\n    const args = { actionName, isPaused: _isPauseTriggered(timeoutMS), meta }\r\n\r\n    if(timeoutMS > 0) {\r\n\r\n      //timeout.schedule(() => execute(args), timeoutMS)\r\n      //return setTimeout(() => execute(args), timeoutMS)\r\n    }\r\n\r\n    execute(args)\r\n  }\r\n  */\r\n  const getDelay = actionName => {\r\n    let result = getTimeoutMS(actionName)\r\n    return typeof result === 'function' ? result(dispatch, getState, _getChildContext(context)) : result\r\n  }\r\n  const executeIn = createAction('EXECUTE_IN', (actionName, delay) => ({ actionName }), (actionName, delay) => ({ delay }))\r\n\r\n  /** Responsible for executing an action */\r\n  const execute = ( actionName /*isPaused, meta*/ ) => {\r\n    const ACTION_TYPE = getActionType(actionName)\r\n\r\n    const delay = getDelay(actionName)\r\n    const isPaused = _isPauseTriggered(delay)\r\n    const meta = { delay: delay > 0 ? delay : (() => {})() }\r\n    const nextActionName = getNextActionName(actionName)\r\n    const nextDelay = nextActionName ? getDelay(nextActionName) : null\r\n    const reduxStore = stores.redux\r\n    const wasPaused = reduxStore.isPaused\r\n    const isDetectionRunning = reduxStore.isDetectionRunning\r\n\r\n    /** SCHEDULE THE NEXT ACTION IF IT EXISTS */\r\n    const isLastAction = nextActionName === null || typeof nextActionName === 'undefined'\r\n\r\n    log.info({ actionName, ACTION_TYPE, isPaused, wasPaused, isDetectionRunning, nextActionName }, 'execute')\r\n    /** TODO: CHECK LOCAL STATE HERE AND IF ITS BEEN ACTIVE, POSTPONE THE ACTION ABOUT TO BE EXECUTED */\r\n\r\n    if((isLastAction || isPaused) && isDetectionRunning) {\r\n      detection.stop()\r\n    }\r\n    if(!(isLastAction || isPaused) && !isDetectionRunning) {\r\n      detection.start()\r\n    }\r\n\r\n\r\n\r\n\r\n        /** UPDATE THE STATE OF THE APP */\r\n        console.warn('DISPATCHING NEXT IN ', nextDelay)\r\n    let timeoutID = !isLastAction && !isPaused && nextDelay ? dispatch(executeIn(nextActionName, nextDelay)) : null\r\n    /*\r\n    return dispatch(createAction(ACTION_TYPE), { actionName: actionName\r\n                          , isIdle: typeof nextActionName === 'undefined'\r\n                          , isPaused\r\n                          , meta\r\n                          //, meta: { idle: true, delay: 4000 }\r\n                          //, timeoutID\r\n                          }())\r\n                          */\r\n    setState(ACTION_TYPE, { actionName: actionName\r\n                          , isIdle: typeof nextActionName === 'undefined'\r\n                          , isPaused\r\n                          //, meta: { idle: true, delay: 4000 }\r\n                          //, timeoutID\r\n                          })\r\n    /** EXECUTE THE USER DEFINED ACTION WITH REDUX THUNK ARGS + CONTEXT (LOG, START/STOP/RESET DISPATCHABLE ACTIONS) */\r\n    getAction(actionName)(dispatch, getState, _getChildContext(context))\r\n  }\r\n  return { execute }\r\n}\r\n\r\nconst _getChildContext = context => ({ ...context, actions: createActions(context) })\r\n"
+  },
+  {
+    "__docId__": 37,
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "MemoryStore",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~MemoryStore",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "__docId__": 38,
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "lib/dispatcher.js~MemoryStore",
+    "longname": "lib/dispatcher.js~MemoryStore#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [
+      {
+        "name": "stateKeys",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "initialState",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "__docId__": 39,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_stateKeys",
+    "memberof": "lib/dispatcher.js~MemoryStore",
+    "longname": "lib/dispatcher.js~MemoryStore#_stateKeys",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 40,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_state",
+    "memberof": "lib/dispatcher.js~MemoryStore",
+    "longname": "lib/dispatcher.js~MemoryStore#_state",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 41,
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_stateAccessor",
+    "memberof": "lib/dispatcher.js~MemoryStore",
+    "longname": "lib/dispatcher.js~MemoryStore#_stateAccessor",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 42,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "createDispatcher",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~createDispatcher",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": "createDispatcher",
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "params": [
+      {
+        "name": "context",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 43,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createStoresDispatcher",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~createStoresDispatcher",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 44,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createTimeoutDispatcher",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~createTimeoutDispatcher",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 192,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 45,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createDetectionDispatcher",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~createDetectionDispatcher",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 226,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 46,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createActionDispatcher",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~createActionDispatcher",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 291,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 47,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "_getChildContext",
+    "memberof": "lib/dispatcher.js",
+    "longname": "lib/dispatcher.js~_getChildContext",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 373,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 48,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/index.js",
+    "memberof": null,
+    "longname": "lib/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import createContext from './context'\r\n\r\nimport { createReducer } from './reducer'\r\nimport { createActions, defineAction } from './actions'\r\nimport { createMiddleware } from './middleware'\r\n\r\nexport { defineAction }\r\n\r\nexport default function configure(appOpts) {\r\n  const context = createContext(appOpts)\r\n  return  { reducer: createReducer(context)\r\n          , actions: createActions(context)\r\n          , middleware: createMiddleware(context)\r\n          }\r\n}\r\n"
+  },
+  {
+    "__docId__": 49,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "configure",
+    "memberof": "lib/index.js",
+    "longname": "lib/index.js~configure",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor",
+    "importStyle": "configure",
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [
+      {
+        "name": "appOpts",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 50,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/log.js",
+    "memberof": null,
+    "longname": "lib/log.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import { LIB_NAME } from './constants'\r\n\r\nconst _formatMessage = ({ level, message, obj }) => {\r\n  if(!message && typeof obj === 'string') {\r\n    message = obj\r\n    obj = noop()\r\n  }\r\n  return _formatLog(obj ? `${level}: '${message}' => ${JSON.stringify(obj)}`  : `${level}: '${message}'`)\r\n}\r\n\r\nconst _formatLog = message =>`${LIB_NAME} | ${message}`\r\nconst noop = () => {}\r\n\r\nexport const createLogger = ({ level = 'info' } = {}) => process.env.NODE_ENV !== 'production' ? (\r\n  { trace: (obj, message) => level === 'trace' ? console.trace(_formatMessage({ level: 'trace', message, obj })): noop()\r\n  , debug: (obj, message) => ['trace','debug'].includes(level) ? console.log(_formatMessage({ level: 'debug', message, obj })) : noop()\r\n  , info: (obj, message) => ['trace','debug','info'].includes(level) ? console.info(_formatMessage({ level: 'info', message, obj })) : noop()\r\n  , warn: (obj, message) => ['trace','debug','info','warn'].includes(level) ? console.warn(_formatMessage({ level: 'warn', message, obj })) : noop()\r\n  , error: (obj, message) => ['trace','debug','info','warn','error'].includes(level) ? console.error(_formatMessage({ level: 'error', message, obj })) : noop()\r\n  }\r\n) : ({ trace: noop, debug: noop, info: noop, warn: noop, error: noop })\r\n"
+  },
+  {
+    "__docId__": 51,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "_formatMessage",
+    "memberof": "lib/log.js",
+    "longname": "lib/log.js~_formatMessage",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/log.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 52,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "_formatLog",
+    "memberof": "lib/log.js",
+    "longname": "lib/log.js~_formatLog",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/log.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 53,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "noop",
+    "memberof": "lib/log.js",
+    "longname": "lib/log.js~noop",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/log.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createLogger",
+    "memberof": "lib/log.js",
+    "longname": "lib/log.js~createLogger",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/log.js",
+    "importStyle": "{createLogger}",
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/middleware.js",
+    "memberof": null,
+    "longname": "lib/middleware.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import createContext from './context'\r\nimport configureDispatcher from './dispatcher'\r\nimport { forgetTokens } from 'state/actions/identity'\r\n//import { createStart, createStop } from './actions'\r\nimport { PERSISTED_TOKENS, FORGOTTEN_TOKENS } from 'state/constants'\r\nimport swal from 'sweetalert'\r\nimport { actions as idleActions, middleware as idleMiddleware } from 'state/components/redux-idle-monitor'\r\nimport { createStartDispatcher, createStopDispatcher, createResetDispatcher } from './actions'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createMiddleware = context => {\r\n  const { getActionByName } = context\r\n  const dispatcher = configureDispatcher(context)\r\n  const dynamicActionMiddleware = createDynamicActionMiddleware(context)\r\n  const start = createStartDispatcher(context)(dispatcher)\r\n  const stop = createStopDispatcher(context)(dispatcher)\r\n  return store => next => action => {\r\n    console.warn('MIDDDDDLE')\r\n    switch(action.type) {\r\n      case PERSISTED_TOKENS:\r\n        console.warn('STARTING')\r\n        dispatch(start)\r\n        break\r\n      case FORGOTTEN_TOKENS:\r\n        console.warn('STOPPING')\r\n        dispatch(stop)\r\n        break\r\n      case 'EXECUTE_IN':\r\n        console.warn('RESPONDING TO EXECUTE_IN', action)\r\n        dispatcher.action.execute(action.payload.actionName)\r\n        break\r\n\r\n      default:\r\n        if(actionTypes.includes(action.type))\r\n          return dynamicActionMiddleware(store)(next)(action)\r\n    }\r\n    return next(action)\r\n  }\r\n}\r\n\r\nconst createDynamicActionMiddleware = context => {\r\n  const { actionTypes } = context\r\n  const createDispatcher = configureDispatcher(context)\r\n  const createDidStateChange = configureDidStateChange(context)\r\n  const createOnStateChange = configureOnStateChange(context)\r\n  return store => {\r\n    const { dispatch, getState } = store\r\n    const dispatcher = createDispatcher(dispatch, getState)\r\n    const didStateChange = createDidStateChange(dispatch, getState)\r\n    const onStateChange = createOnStateChange(dispatch, getState)\r\n    return next => action => {\r\n      const { type, payload } = action\r\n      switch(type) {\r\n        default:\r\n          const preState = getState()['idle']\r\n          const result = next(action)\r\n          const postState = getState()['idle']\r\n\r\n          if(didStateChange && onStateChange) {\r\n            if(didStateChange(preState, postState))\r\n              onStateChange(preState, postState)\r\n          }\r\n\r\n          return result\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\nconst configureDidStateChange = context => (dispatch, getState) => (preState, postState) => preState.actionName !== postState.actionName\r\n\r\nconst configureOnStateChange = context => (dispatch, getState) => (preState, postState) => {\r\n  const { log } = context\r\n  log.info(postState.actionName, 'onStateChange')\r\n  /*\r\n  let swalTimeout = null\r\n  if(postState.actionName === 'INACTIVE') {\r\n    log.info('SWAL ACTIVE => SHOW')\r\n    swal( { title: 'Still There?'\r\n          , text: 'You will be logged out due to inactivity shortly.'\r\n          , animation: 'slide-from-top'\r\n          , showConfirmButton: false\r\n          , html: true\r\n          , type: 'warning'\r\n          })\r\n  } else if(postState.actionName === 'EXPIRED') {\r\n    log.info('SWAL EXPIRED => HIDE IN 2 SECONDS')\r\n    dispatch(forgetTokens())\r\n    swalTimeout = setTimeout(() => swal.close(), 2000)\r\n  } else {\r\n    log.info('SWAL ELSE => HIDE NOW')\r\n    clearTimeout(swalTimeout)\r\n    swal.close()\r\n  }\r\n\r\n*/\r\n}\r\n\r\n/** Creates middleware from opts including validation in development */\r\nexport default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }\r\n"
+  },
+  {
+    "__docId__": 56,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createMiddleware",
+    "memberof": "lib/middleware.js",
+    "longname": "lib/middleware.js~createMiddleware",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/middleware.js",
+    "importStyle": "{createMiddleware}",
+    "description": "When context has already been created, it can be shared to middleware component.",
+    "lineNumber": 11,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 57,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createDynamicActionMiddleware",
+    "memberof": "lib/middleware.js",
+    "longname": "lib/middleware.js~createDynamicActionMiddleware",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/middleware.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 58,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureDidStateChange",
+    "memberof": "lib/middleware.js",
+    "longname": "lib/middleware.js~configureDidStateChange",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/middleware.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 70,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 59,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureOnStateChange",
+    "memberof": "lib/middleware.js",
+    "longname": "lib/middleware.js~configureOnStateChange",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/middleware.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 60,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "configureMiddleware",
+    "memberof": "lib/middleware.js",
+    "longname": "lib/middleware.js~configureMiddleware",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/middleware.js",
+    "importStyle": "configureMiddleware",
+    "description": "Creates middleware from opts including validation in development",
+    "lineNumber": 100,
+    "params": [
+      {
+        "name": "opts",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 61,
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "lib/reducer.js",
+    "memberof": null,
+    "longname": "lib/reducer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import createContext from './context'\r\nimport  { ACTIVITY, ACTIVITY_DETECTION } from './constants'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createReducer = context => {\r\n  const { log, initialState, actionNames, actionTypes, getActionType, useFastState, useLocalState, useWebRTCState, useWebSocketsState } = context\r\n  const  ACTIVITY_ACTION = getActionType(ACTIVITY)\r\n  const  ACTIVITY_DETECTION_ACTION = getActionType(ACTIVITY_DETECTION)\r\n  return (state = initialState, action = {}) => {\r\n    if(!actionTypes.includes(action.type)) {\r\n      return state\r\n    }\r\n    console.warn('REDUCING', action.type)\r\n    const { type, payload } = action\r\n    if(type === ACTIVITY_ACTION) {\r\n      /*\r\n      if(useFastState)\r\n        return state\r\n      */\r\n      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload\r\n      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })\r\n    }\r\n\r\n    if(type === ACTIVITY_DETECTION_ACTION) {\r\n      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload\r\n      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })\r\n    }\r\n\r\n\r\n    //const { actionName, isIdle, isPaused, lastActive, lastEvent, timeoutID, isDetectionRunning } = payload\r\n    return Object.assign({}, state, payload)\r\n  }\r\n}\r\n\r\n/** Creates reducer from opts including validation in development */\r\nexport default function configureReducer (opts) { return createReducer(createContext(opts)) }\r\n"
+  },
+  {
+    "__docId__": 62,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "createReducer",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~createReducer",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": "{createReducer}",
+    "description": "When context has already been created, it can be shared to middleware component.",
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 63,
+    "kind": "function",
+    "static": true,
+    "variation": null,
+    "name": "configureReducer",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~configureReducer",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": "configureReducer",
+    "description": "Creates reducer from opts including validation in development",
+    "lineNumber": 36,
+    "params": [
+      {
+        "name": "opts",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "__docId__": 65,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 66,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 67,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 68,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 69,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 70,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 71,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 72,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 73,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 74,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 75,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 76,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 77,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 78,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 79,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 80,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 81,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 82,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 83,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 84,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 85,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 86,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 87,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 88,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 89,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 90,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 91,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 92,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 93,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 94,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 95,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 96,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 97,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 98,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 99,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 100,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 101,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 102,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 103,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 104,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 105,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 106,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 107,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 108,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 109,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 110,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 111,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 113,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 114,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 115,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 116,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 117,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 118,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 119,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  },
+  {
+    "__docId__": 120,
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AudioContext",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/AudioContext",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~AudioContext",
+    "access": null,
+    "description": "",
+    "builtinExternal": true
+  }
+]
