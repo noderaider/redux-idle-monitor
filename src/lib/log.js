@@ -1,16 +1,21 @@
 import { LIB_NAME } from './constants'
 
-const _formatMessage = ({ message, obj }) => obj ? `message: '${message}', obj: ${obj.toJSON()}`  : `message: '${message}'`
-const _formatWarn = ({ message, err }) => err ? `warn: '${message}', inner: ${err.toString()}`  : `error: '${message.toString()}'`
-const _formatError = ({ message, err }) => err ? `error: '${message}', inner: ${err.toString()}`  : `error: '${message.toString()}'`
-const _formatLog = ({ message, obj, err }) =>`${LIB_NAME} | ${err ? _formatError({ message, err }) : _formatMessage({ message, obj })}`
+const _formatMessage = ({ level, message, obj }) => {
+  if(!message && typeof obj === 'string') {
+    message = obj
+    obj = noop()
+  }
+  return _formatLog(obj ? `${level}: '${message}' => ${JSON.stringify(obj)}`  : `${level}: '${message}'`)
+}
+
+const _formatLog = message =>`${LIB_NAME} | ${message}`
 const noop = () => {}
 
-export const createLogger = () => process.env.NODE_ENV !== 'production' ? (
-  { trace: (message, obj) => console.trace(_formatLog(message, obj))
-  , debug: (message, obj) => console.log(_formatLog(message, obj))
-  , info: (message, obj) => console.info(_formatLog(message, obj))
-  , warn: (message, err) => console.warn(_formatLog(message, err))
-  , error: (message, err) => console.error(_formatLog(message, err))
+export const createLogger = ({ level = 'info' } = {}) => process.env.NODE_ENV !== 'production' ? (
+  { trace: (obj, message) => level === 'trace' ? console.trace(_formatMessage({ level: 'trace', message, obj })): noop()
+  , debug: (obj, message) => ['trace','debug'].includes(level) ? console.log(_formatMessage({ level: 'debug', message, obj })) : noop()
+  , info: (obj, message) => ['trace','debug','info'].includes(level) ? console.info(_formatMessage({ level: 'info', message, obj })) : noop()
+  , warn: (obj, message) => ['trace','debug','info','warn'].includes(level) ? console.warn(_formatMessage({ level: 'warn', message, obj })) : noop()
+  , error: (obj, message) => ['trace','debug','info','warn','error'].includes(level) ? console.error(_formatMessage({ level: 'error', message, obj })) : noop()
   }
 ) : ({ trace: noop, debug: noop, info: noop, warn: noop, error: noop })

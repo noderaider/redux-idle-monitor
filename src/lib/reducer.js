@@ -1,0 +1,36 @@
+import createContext from './context'
+import  { ACTIVITY, ACTIVITY_DETECTION } from './constants'
+
+/** When context has already been created, it can be shared to middleware component. */
+export const createReducer = context => {
+  const { log, initialState, actionNames, actionTypes, getActionType, useFastState, useLocalState, useWebRTCState, useWebSocketsState } = context
+  const  ACTIVITY_ACTION = getActionType(ACTIVITY)
+  const  ACTIVITY_DETECTION_ACTION = getActionType(ACTIVITY_DETECTION)
+  return (state = initialState, action = {}) => {
+    if(!actionTypes.includes(action.type)) {
+      return state
+    }
+    console.warn('REDUCING', action.type)
+    const { type, payload } = action
+    if(type === ACTIVITY_ACTION) {
+      /*
+      if(useFastState)
+        return state
+      */
+      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
+      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })
+    }
+
+    if(type === ACTIVITY_DETECTION_ACTION) {
+      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
+      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })
+    }
+
+
+    //const { actionName, isIdle, isPaused, lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
+    return Object.assign({}, state, payload)
+  }
+}
+
+/** Creates reducer from opts including validation in development */
+export default function configureReducer (opts) { return createReducer(createContext(opts)) }
