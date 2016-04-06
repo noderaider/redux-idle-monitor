@@ -3,7 +3,7 @@ import  { ACTIVITY, ACTIVITY_DETECTION } from './constants'
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createReducer = context => {
-  const { log, initialState, actionNames, actionTypes, getActionType, useFastState, useLocalState, useWebRTCState, useWebSocketsState } = context
+  const { log, initialState, actionNames, actionTypes, getActionType, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState } = context
   const  ACTIVITY_ACTION = getActionType(ACTIVITY)
   const  ACTIVITY_DETECTION_ACTION = getActionType(ACTIVITY_DETECTION)
   return (state = initialState, action = {}) => {
@@ -14,7 +14,7 @@ export const createReducer = context => {
     const { type, payload } = action
     if(type === ACTIVITY_ACTION) {
       /*
-      if(useFastState)
+      if(useFastStore)
         return state
       */
       const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
@@ -28,7 +28,12 @@ export const createReducer = context => {
 
 
     //const { actionName, isIdle, isPaused, lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
-    return Object.assign({}, state, payload)
+    if(type === 'IDLEMONITOR_JS_ACTIVE')
+      return Object.assign({}, state, { actionName: 'ACTIVE', isIdle: false, isPaused: false })
+    if(type === 'IDLEMONITOR_JS_INACTIVE')
+      return Object.assign({}, state, { actionName: 'INACTIVE', isIdle: false, isPaused: false })
+    if(type === 'IDLEMONITOR_JS_EXPIRED')
+      return Object.assign({}, state, { actionName: 'EXPIRED', isIdle: true, isPaused: true })
   }
 }
 

@@ -2,9 +2,9 @@ import { assert } from 'chai'
 import  { ROOT_STATE_KEY, ACTION_PREFIX } from './constants'
 import { getActions, getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'
 
-import { configureActivityEvent, configureStart, configureStop, configureReset, createActions, activityAction, activityDetectionAction } from './actions'
+import { configureActivityEvent, configureStart, configureStop, configureReset, createActionDispatchers, activityAction, activityDetectionAction } from './actions'
 
-import configureContext from 'redux-addons/context'
+import configureContext from 'redux-addons/lib/context'
 import  { createLogger } from './log'
 
 const noop = () => {}
@@ -17,7 +17,7 @@ const validateContext = (libContext, appContext) => {
   assert.ok(appContext, 'must pass opts to validate')
 
   const { libName, appName, libActions, appActions } = libContext
-  const { activeEvents, useFastState, useLocalState, thresholds } = appContext
+  const { activeEvents, useFastStore, useLocalStore, thresholds } = appContext
 
   assert.ok(libName, 'libName must exist')
   assert(typeof libName === 'string', 'libName opt must be a string')
@@ -65,7 +65,7 @@ const configureAppContext = libContext => {
         , getAppActionContextByOrdinal
         } = libContext
   return appOpts => {
-    const { appActions, appActionMap, appActionNames, activeEvents, useFastState, useLocalState, thresholds } = appOpts
+    const { appActions, appActionMap, appActionNames, activeEvents, useFastStore, useLocalStore, thresholds } = appOpts
 
     const initialActionName = appActions[0][0]
     const initialAction = appActions[0][1].action
@@ -99,11 +99,11 @@ const configureAppContext = libContext => {
                     , getAction: actionName => appActionMap.get(actionName).action
                     , getTimeoutMS: actionName => appActionMap.get(actionName).timeoutMS
                     , activeEvents
-                    , useFastState
-                    , useLocalState
+                    , useFastStore
+                    , useLocalStore
                     , thresholds
                     }
-    return { ...context, childActions: createActions(context) }
+    return { ...context, childActions: createActionDispatchers(context) }
   }
 }
 
@@ -120,8 +120,8 @@ const configureInitialState = libContext => appContext => {
 export default function createContext({ appName
                                       , appActions = getActions()
                                       , activeEvents = getActiveEvents()
-                                      , useFastState = getUseFastState()
-                                      , useLocalState = getUseLocalState()
+                                      , useFastStore = getUseFastState()
+                                      , useLocalStore = getUseLocalState()
                                       , useWebRTCState = getUseWebRTCState()
                                       , useWebSocketsState = getUseWebSocketsState()
                                       , thresholds = getThresholds()
@@ -134,7 +134,7 @@ export default function createContext({ appName
 
 
   const libOpts = { libName, libActions, validateContext, configureAppContext, configureInitialState }
-  const appOpts = { appName, appActions, activeEvents, useFastState, useLocalState, useWebRTCState, useWebSocketsState, thresholds, level }
+  const appOpts = { appName, appActions, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
 
   return configureContext(libOpts)(appOpts)
 
@@ -186,8 +186,8 @@ export default function createContext({ appName
                   , get actionNames() { return actionNames }
                   , getAction: actionName => actionMap.get(actionName).action
                   , getTimeoutMS: actionName => actionMap.get(actionName).timeoutMS
-                  , get useFastState() { return useFastState }
-                  , get useLocalState() { return useLocalState }
+                  , get useFastStore() { return useFastStore }
+                  , get useLocalStore() { return useLocalStore }
                   , get useWebRTCState() { return useWebRTCState }
                   , get useWebSocketsState() { return useWebSocketsState }
                   , get thresholds() { return thresholds }

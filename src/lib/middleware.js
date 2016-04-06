@@ -5,23 +5,23 @@ import { forgetTokens } from 'state/actions/identity'
 import { PERSISTED_TOKENS, FORGOTTEN_TOKENS } from 'state/constants'
 import swal from 'sweetalert'
 import { actions as idleActions, middleware as idleMiddleware } from 'state/components/redux-idle-monitor'
-import { createStartDispatcher, createStopDispatcher, createResetDispatcher } from './actions'
+import { configureStartDispatcher, configureStopDispatcher, configureResetDispatcher } from './actions'
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
   const { getActionByName } = context
   const dispatcher = configureDispatcher(context)
   const dynamicActionMiddleware = createDynamicActionMiddleware(context)
-  const start = createStartDispatcher(context)(dispatcher)
-  const stop = createStopDispatcher(context)(dispatcher)
+  const start = configureStartDispatcher(context)(dispatcher)
+  const stop = configureStopDispatcher(context)(dispatcher)
   return store => next => action => {
-    console.warn('MIDDDDDLE')
     switch(action.type) {
       case PERSISTED_TOKENS:
         console.warn('STARTING')
         dispatch(start)
         break
       case FORGOTTEN_TOKENS:
+      case 'IDLEMONITOR_JS_EXPIRED':
         console.warn('STOPPING')
         dispatch(stop)
         break
