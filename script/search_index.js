@@ -42,9 +42,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~configureactions",
-    "function/index.html#static-function-configureActions",
-    "<span>configureActions</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/actions.js~configureactiondispatchers",
+    "function/index.html#static-function-configureActionDispatchers",
+    "<span>configureActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "function"
   ],
   [
@@ -60,9 +60,27 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~createactions",
-    "variable/index.html#static-variable-createActions",
-    "<span>createActions</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/actions.js~configureresetdispatcher",
+    "variable/index.html#static-variable-configureResetDispatcher",
+    "<span>configureResetDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~configurestartdispatcher",
+    "variable/index.html#static-variable-configureStartDispatcher",
+    "<span>configureStartDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~configurestopdispatcher",
+    "variable/index.html#static-variable-configureStopDispatcher",
+    "<span>configureStopDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~createactiondispatchers",
+    "variable/index.html#static-variable-createActionDispatchers",
+    "<span>createActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
@@ -73,9 +91,9 @@ window.esdocSearchIndex = [
   ],
   [
     "redux-idle-monitor/lib/dispatcher.js~createdispatcher",
-    "function/index.html#static-function-createDispatcher",
+    "variable/index.html#static-variable-createDispatcher",
     "<span>createDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/dispatcher.js</span>",
-    "function"
+    "variable"
   ],
   [
     "redux-idle-monitor/lib/log.js~createlogger",
@@ -93,24 +111,6 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/reducer.js~createreducer",
     "variable/index.html#static-variable-createReducer",
     "<span>createReducer</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/reducer.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~createresetdispatcher",
-    "variable/index.html#static-variable-createResetDispatcher",
-    "<span>createResetDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~createstartdispatcher",
-    "variable/index.html#static-variable-createStartDispatcher",
-    "<span>createStartDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~createstopdispatcher",
-    "variable/index.html#static-variable-createStopDispatcher",
-    "<span>createStopDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
@@ -165,6 +165,24 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/defaults.js~getusewebsocketsstate",
     "variable/index.html#static-variable-getUseWebSocketsState",
     "<span>getUseWebSocketsState</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/defaults.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~resethandler",
+    "variable/index.html#static-variable-resetHandler",
+    "<span>resetHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~starthandler",
+    "variable/index.html#static-variable-startHandler",
+    "<span>startHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.js~stophandler",
+    "variable/index.html#static-variable-stopHandler",
+    "<span>stopHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
