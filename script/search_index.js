@@ -1,5 +1,11 @@
 window.esdocSearchIndex = [
   [
+    "redux-idle-monitor/lib/constants.js~action_prefix",
+    "variable/index.html#static-variable-ACTION_PREFIX",
+    "<span>ACTION_PREFIX</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/constants.js~activity",
     "variable/index.html#static-variable-ACTIVITY",
     "<span>ACTIVITY</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
@@ -12,9 +18,21 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "redux-idle-monitor/lib/constants.js~is_dev",
+    "variable/index.html#static-variable-IS_DEV",
+    "<span>IS_DEV</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/constants.js~lib_name",
     "variable/index.html#static-variable-LIB_NAME",
     "<span>LIB_NAME</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/constants.js~reset",
+    "variable/index.html#static-variable-RESET",
+    "<span>RESET</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
     "variable"
   ],
   [
@@ -24,15 +42,33 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~activityaction",
-    "variable/index.html#static-variable-activityAction",
-    "<span>activityAction</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/constants.js~start",
+    "variable/index.html#static-variable-START",
+    "<span>START</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~activitydetectionaction",
-    "variable/index.html#static-variable-activityDetectionAction",
-    "<span>activityDetectionAction</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/constants.js~stop",
+    "variable/index.html#static-variable-STOP",
+    "<span>STOP</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/constants.js~user_active",
+    "variable/index.html#static-variable-USER_ACTIVE",
+    "<span>USER_ACTIVE</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actionblueprints.js~activityblueprint",
+    "variable/index.html#static-variable-activityBlueprint",
+    "<span>activityBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actionblueprints.js~activitydetectionblueprint",
+    "variable/index.html#static-variable-activityDetectionBlueprint",
+    "<span>activityDetectionBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
     "variable"
   ],
   [
@@ -42,9 +78,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~configureactiondispatchers",
+    "redux-idle-monitor/lib/actions.obsolete.js~configureactiondispatchers",
     "function/index.html#static-function-configureActionDispatchers",
-    "<span>configureActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "<span>configureActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.obsolete.js</span>",
     "function"
   ],
   [
@@ -60,27 +96,21 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~configureresetdispatcher",
-    "variable/index.html#static-variable-configureResetDispatcher",
-    "<span>configureResetDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/detection.js~configurestartdetection",
+    "variable/index.html#static-variable-configureStartDetection",
+    "<span>configureStartDetection</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~configurestartdispatcher",
-    "variable/index.html#static-variable-configureStartDispatcher",
-    "<span>configureStartDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "redux-idle-monitor/lib/multiplexer.js~configurestoremultiplexer",
+    "variable/index.html#static-variable-configureStoreMultiplexer",
+    "<span>configureStoreMultiplexer</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/multiplexer.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~configurestopdispatcher",
-    "variable/index.html#static-variable-configureStopDispatcher",
-    "<span>configureStopDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~createactiondispatchers",
+    "redux-idle-monitor/lib/actions.obsolete.js~createactiondispatchers",
     "variable/index.html#static-variable-createActionDispatchers",
-    "<span>createActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "<span>createActionDispatchers</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.obsolete.js</span>",
     "variable"
   ],
   [
@@ -90,15 +120,9 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/dispatcher.js~createdispatcher",
-    "variable/index.html#static-variable-createDispatcher",
-    "<span>createDispatcher</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/dispatcher.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/log.js~createlogger",
-    "variable/index.html#static-variable-createLogger",
-    "<span>createLogger</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/log.js</span>",
+    "redux-idle-monitor/lib/actionblueprints.js~createidleactionblueprint",
+    "variable/index.html#static-variable-createIdleActionBlueprint",
+    "<span>createIdleActionBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
     "variable"
   ],
   [
@@ -114,15 +138,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~defineaction",
-    "variable/index.html#static-variable-defineAction",
-    "<span>defineAction</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/defaults.js~getactions",
-    "variable/index.html#static-variable-getActions",
-    "<span>getActions</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/defaults.js</span>",
+    "redux-idle-monitor/lib/actions.js~createstartidlemonitor",
+    "variable/index.html#static-variable-createStartIdleMonitor",
+    "<span>createStartIdleMonitor</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
@@ -141,6 +159,12 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/defaults.js~getthresholds",
     "variable/index.html#static-variable-getThresholds",
     "<span>getThresholds</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/defaults.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/defaults.js~gettimestamp",
+    "variable/index.html#static-variable-getTimeStamp",
+    "<span>getTimeStamp</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/defaults.js</span>",
     "variable"
   ],
   [
@@ -168,21 +192,51 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~resethandler",
+    "redux-idle-monitor/lib/actionblueprints.js~publicblueprints",
+    "variable/index.html#static-variable-publicBlueprints",
+    "<span>publicBlueprints</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actionblueprints.js~resetblueprint",
+    "variable/index.html#static-variable-resetBlueprint",
+    "<span>resetBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.obsolete.js~resethandler",
     "variable/index.html#static-variable-resetHandler",
-    "<span>resetHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "<span>resetHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.obsolete.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~starthandler",
+    "redux-idle-monitor/lib/actionblueprints.js~startblueprint",
+    "variable/index.html#static-variable-startBlueprint",
+    "<span>startBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.obsolete.js~starthandler",
     "variable/index.html#static-variable-startHandler",
-    "<span>startHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "<span>startHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.obsolete.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~stophandler",
+    "redux-idle-monitor/lib/actionblueprints.js~stopblueprint",
+    "variable/index.html#static-variable-stopBlueprint",
+    "<span>stopBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actions.obsolete.js~stophandler",
     "variable/index.html#static-variable-stopHandler",
-    "<span>stopHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "<span>stopHandler</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.obsolete.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/actionblueprints.js~useractiveblueprint",
+    "variable/index.html#static-variable-userActiveBlueprint",
+    "<span>userActiveBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actionBlueprints.js</span>",
     "variable"
   ],
   [
@@ -516,9 +570,21 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "lib/actionblueprints.js",
+    "file/lib/actionBlueprints.js.html",
+    "lib/actionBlueprints.js",
+    "file"
+  ],
+  [
     "lib/actions.js",
     "file/lib/actions.js.html",
     "lib/actions.js",
+    "file"
+  ],
+  [
+    "lib/actions.obsolete.js",
+    "file/lib/actions.obsolete.js.html",
+    "lib/actions.obsolete.js",
     "file"
   ],
   [
@@ -540,9 +606,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "lib/dispatcher.js",
-    "file/lib/dispatcher.js.html",
-    "lib/dispatcher.js",
+    "lib/detection.js",
+    "file/lib/detection.js.html",
+    "lib/detection.js",
     "file"
   ],
   [
@@ -552,15 +618,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "lib/log.js",
-    "file/lib/log.js.html",
-    "lib/log.js",
-    "file"
-  ],
-  [
     "lib/middleware.js",
     "file/lib/middleware.js.html",
     "lib/middleware.js",
+    "file"
+  ],
+  [
+    "lib/multiplexer.js",
+    "file/lib/multiplexer.js.html",
+    "lib/multiplexer.js",
     "file"
   ],
   [

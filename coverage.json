@@ -1,32 +1,45 @@
 {
-  "coverage": "41.93%",
-  "expectCount": 31,
+  "coverage": "32.5%",
+  "expectCount": 40,
   "actualCount": 13,
   "files": {
     "lib/constants.js": {
-      "expectCount": 4,
+      "expectCount": 10,
       "actualCount": 3,
       "undocumentLines": [
-        9
+        7,
+        14,
+        15,
+        19,
+        12,
+        11,
+        17
       ]
     },
-    "lib/actions.js": {
-      "expectCount": 11,
-      "actualCount": 6,
+    "lib/actionBlueprints.js": {
+      "expectCount": 8,
+      "actualCount": 1,
       "undocumentLines": [
-        56,
-        57,
-        42,
-        19,
-        31
+        11,
+        12,
+        16,
+        9,
+        7,
+        8,
+        14
       ]
     },
     "lib/index.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        9
+        10
       ]
+    },
+    "lib/actions.obsolete.js": {
+      "expectCount": 5,
+      "actualCount": 5,
+      "undocumentLines": []
     },
     "lib/middleware.js": {
       "expectCount": 2,
@@ -38,39 +51,46 @@
       "actualCount": 2,
       "undocumentLines": []
     },
+    "lib/detection.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        30
+      ]
+    },
+    "lib/multiplexer.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        11
+      ]
+    },
     "lib/context.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        120
+        40
       ]
     },
-    "lib/dispatcher.js": {
+    "lib/actions.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        13
-      ]
-    },
-    "lib/log.js": {
-      "expectCount": 1,
-      "actualCount": 0,
-      "undocumentLines": [
-        14
+        5
       ]
     },
     "lib/defaults.js": {
       "expectCount": 8,
       "actualCount": 0,
       "undocumentLines": [
+        3,
         12,
-        18,
-        27,
-        25,
-        20,
-        21,
-        22,
-        23
+        10,
+        1,
+        5,
+        6,
+        7,
+        8
       ]
     }
   }
