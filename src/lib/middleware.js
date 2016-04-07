@@ -1,51 +1,56 @@
 import createContext from './context'
-import configureDispatcher from './dispatcher'
 import { forgetTokens } from 'state/actions/identity'
 //import { createStart, createStop } from './actions'
-import { PERSISTED_TOKENS, FORGOTTEN_TOKENS } from 'state/constants'
+import { IS_DEV, PERSISTED_TOKENS, FORGOTTEN_TOKENS } from 'state/constants'
 import swal from 'sweetalert'
 import { actions as idleActions, middleware as idleMiddleware } from 'state/components/redux-idle-monitor'
-import { configureStartDispatcher, configureStopDispatcher, configureResetDispatcher } from './actions'
+import { publicBlueprints } from './actionBlueprints'
+import { createStartIdleMonitor } from './actions'
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
-  const { getActionByName } = context
-  const dispatcher = configureDispatcher(context)
-  const dynamicActionMiddleware = createDynamicActionMiddleware(context)
-  const start = configureStartDispatcher(context)(dispatcher)
-  const stop = configureStopDispatcher(context)(dispatcher)
+  const { translateBlueprints, actionBlueprints } = context
+  //const blueprintMiddleware = createBlueprintMiddleware(context)
+  const { startAction, stopAction, resetAction } = translateBlueprints(publicBlueprints)
+  const userActions = translateBlueprints(actionBlueprints)
+  const startIdleMonitor = createStartIdleMonitor(context)
+  let endIdleMonitor = null
   return store => next => action => {
+    const { dispatch } = store
     switch(action.type) {
       case PERSISTED_TOKENS:
         console.warn('STARTING')
-        dispatch(start)
+        endIdleMonitor = dispatch(startIdleMonitor)
         break
       case FORGOTTEN_TOKENS:
+        endIdleMonitor = dispatch(endIdleMonitor)
       case 'IDLEMONITOR_JS_EXPIRED':
         console.warn('STOPPING')
-        dispatch(stop)
+        dispatch(stopAction())
         break
       case 'EXECUTE_IN':
         console.warn('RESPONDING TO EXECUTE_IN', action)
-        dispatcher.action.execute(action.payload.actionName)
+        dispatch(userActions[action.payload.actionName]())
         break
+
+        /*
 
       default:
         if(actionTypes.includes(action.type))
-          return dynamicActionMiddleware(store)(next)(action)
+          return blueprintMiddleware(store)(next)(action)
+        */
     }
     return next(action)
   }
 }
 
-const createDynamicActionMiddleware = context => {
+const createBlueprintMiddleware = context => {
   const { actionTypes } = context
-  const createDispatcher = configureDispatcher(context)
+
   const createDidStateChange = configureDidStateChange(context)
   const createOnStateChange = configureOnStateChange(context)
   return store => {
     const { dispatch, getState } = store
-    const dispatcher = createDispatcher(dispatch, getState)
     const didStateChange = createDidStateChange(dispatch, getState)
     const onStateChange = createOnStateChange(dispatch, getState)
     return next => action => {

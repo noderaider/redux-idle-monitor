@@ -1,41 +1,35 @@
 import createContext from './context'
-import  { ACTIVITY, ACTIVITY_DETECTION } from './constants'
+import  { IS_DEV, ACTIVITY, ACTIVITY_DETECTION } from './constants'
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createReducer = context => {
-  const { log, initialState, actionNames, actionTypes, getActionType, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState } = context
-  const  ACTIVITY_ACTION = getActionType(ACTIVITY)
-  const  ACTIVITY_DETECTION_ACTION = getActionType(ACTIVITY_DETECTION)
+  const { log, actionBlueprints, initialState, createActionType, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState } = context
+
+  const  ACTIVITY_ACTION = createActionType(ACTIVITY)
+  const  ACTIVITY_DETECTION_ACTION = createActionType(ACTIVITY_DETECTION)
   return (state = initialState, action = {}) => {
-    if(!actionTypes.includes(action.type)) {
-      return state
-    }
-    console.warn('REDUCING', action.type)
     const { type, payload } = action
-    if(type === ACTIVITY_ACTION) {
-      /*
-      if(useFastStore)
+    switch(type) {
+      case ACTIVITY_ACTION:
+        return Object.assign({}, state, getActivityPayload(payload))
+
+      case ACTIVITY_DETECTION_ACTION:
+        return Object.assign({}, state, getActivityDetectionPayload(payload))
+
+      case 'IDLEMONITOR_JS_USER_ACTIVE':
+        return Object.assign({}, state, { actionName: 'ACTIVE', isIdle: false, isPaused: false })
+      case 'IDLEMONITOR_JS_USER_INACTIVE':
+        return Object.assign({}, state, { actionName: 'INACTIVE', isIdle: false, isPaused: false })
+      case 'IDLEMONITOR_JS_USER_EXPIRED':
+        return Object.assign({}, state, { actionName: 'EXPIRED', isIdle: true, isPaused: true })
+      default:
         return state
-      */
-      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
-      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })
     }
-
-    if(type === ACTIVITY_DETECTION_ACTION) {
-      const { lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
-      return Object.assign({}, state, { lastActive, lastEvent, timeoutID, isDetectionRunning })
-    }
-
-
-    //const { actionName, isIdle, isPaused, lastActive, lastEvent, timeoutID, isDetectionRunning } = payload
-    if(type === 'IDLEMONITOR_JS_ACTIVE')
-      return Object.assign({}, state, { actionName: 'ACTIVE', isIdle: false, isPaused: false })
-    if(type === 'IDLEMONITOR_JS_INACTIVE')
-      return Object.assign({}, state, { actionName: 'INACTIVE', isIdle: false, isPaused: false })
-    if(type === 'IDLEMONITOR_JS_EXPIRED')
-      return Object.assign({}, state, { actionName: 'EXPIRED', isIdle: true, isPaused: true })
   }
 }
+
+const getActivityPayload = ({ lastActive, lastEvent, timeoutID }) => ({ lastActive, lastEvent, timeoutID })
+const getActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })
 
 /** Creates reducer from opts including validation in development */
 export default function configureReducer (opts) { return createReducer(createContext(opts)) }

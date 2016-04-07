@@ -1,61 +1,24 @@
-import createContext from './context'
-import createDispatcher from './dispatcher'
-import { configureAction, configureActionDispatcher, actionDefinition } from 'redux-addons/lib/actions'
-import { ACTIVITY, ACTIVITY_DETECTION } from './constants'
+import { startBlueprint, stopBlueprint } from './actionBlueprints'
+import { configureStartDetection } from './detection'
+import { configureStoreMultiplexer } from './multiplexer'
+
+export const createStartIdleMonitor = context => (dispatch, getState) => {
+  const { translateBlueprints, actionBlueprints, initialIdleActionName } = context
+  const { startAction, stopAction } = translateBlueprints({ startAction: startBlueprint, stopAction: stopBlueprint})
+  const userActions = translateBlueprints(actionBlueprints)
+
+  dispatch(startAction())
 
 
-/** Creates an action that starts idle monitor when dispatched */
-//export const createStart = context => configureDispatcherAction((dispatcher, ctx) => {
-//export const createStartDispatcher = actionDispatcher => actionDispatcher((dispatcher, context) => {
-export const startHandler = (dispatcher, context) => {
-  const { detection, action } = dispatcher
-  const { log, initialActionName } = context
-  //** MOVE DETECTION FURTHER IN, POSSIBLY MIDDLEWARE
-  console.warn('STARTING IDLE MONITOR')
-  log.info('idle monitor started')
-  detection.start()
-  return action.execute(initialActionName)
+
+  const stores = configureStoreMultiplexer(context)({ dispatch, getState })
+  const startDetection = configureStartDetection(context)(stores)
+  const endDetection = dispatch(startDetection)
+
+  dispatch(userActions[initialIdleActionName]())
+
+  return (dispatch, getState) => {
+    dispatch(endDetection)
+    dispatch(stopAction())
+  }
 }
-export const configureStartDispatcher = context => dispatcher => configureActionDispatcher(context)(dispatcher)(startHandler)
-
-/** Creates an action that stops idle monitor when dispatched */
-//export const createStop = context => configureDispatcherAction((dispatcher, ctx) => {
-//export const createStopDispatcher = actionDispatcher => actionDispatcher((dispatcher, context) => {
-export const stopHandler = (dispatcher, context) => {
-  const { detection } = dispatcher
-  const { log, activeEvents } = context
-  log.info('idle monitor stopped')
-  //timeout.clear()
-  //detection.stop()
-}
-export const configureStopDispatcher = context => dispatcher => configureActionDispatcher(context)(dispatcher)(stopHandler)
-
-/** Creates an action that resets idle monitor when dispatched */
-//export const createReset = context => configureDispatcherAction((dispatcher, ctx) => {
-export const resetHandler = (dispatcher, context) => {
-  const { /*timeout,*/ detection, action } = dispatcher
-  const { log, initialActionName } = context
-  log.info('idle monitor resetting...')
-  //timeout.clear()
-  return action.execute(initialActionName)
-}
-export const configureResetDispatcher = context => dispatcher => configureActionDispatcher(context)(dispatcher)(resetHandler)
-
-
-
-/** Allows end user to define an idle state transition action */
-export const defineAction = (actionName, action, timeoutMS) => actionDefinition(actionName, { action, timeoutMS, isIdleTransition: true })
-
-/** Creates actions from a preconfigured context */
-export const createActionDispatchers = context => {
-  const dispatcher = createDispatcher(context)
-  const actionDispatcher = configureActionDispatcher(context)(dispatcher)
-  return { start: actionDispatcher(startHandler), stop: actionDispatcher(startHandler), reset: actionDispatcher(resetHandler) }
-}
-
-export const activityAction = actionDefinition(ACTIVITY, { })
-export const activityDetectionAction = actionDefinition(ACTIVITY_DETECTION, { })
-
-/** Creates context and actions from raw opts that are validated in development */
-export default function configureActionDispatchers(opts) { return createActionDispatchers(createContext(opts)) }
-
