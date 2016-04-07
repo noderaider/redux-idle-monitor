@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 273,
+  "end": 520,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 10,
+      "line": 20,
       "column": 0
     }
   },
@@ -267,12 +267,9 @@
               },
               "value": "idle",
               "rawValue": "idle",
-              "raw": "'idle'",
-              "leadingComments": null,
-              "trailingComments": null
+              "raw": "'idle'"
             },
-            "leadingComments": null,
-            "trailingComments": null
+            "leadingComments": null
           }
         ],
         "kind": "const",
@@ -298,28 +295,7 @@
             ]
           }
         ],
-        "trailingComments": [
-          {
-            "type": "Block",
-            "value": "* Redux Action Type Constants ",
-            "start": 145,
-            "end": 179,
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 0
-              },
-              "end": {
-                "line": 7,
-                "column": 34
-              }
-            },
-            "range": [
-              145,
-              179
-            ]
-          }
-        ]
+        "trailingComments": []
       },
       "specifiers": [],
       "source": null,
@@ -344,107 +320,217 @@
             103
           ]
         }
-      ],
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 145,
+      "end": 187,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 42
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 152,
+        "end": 187,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 7
+          },
+          "end": {
+            "line": 7,
+            "column": 42
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 158,
+            "end": 187,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 13
+              },
+              "end": {
+                "line": 7,
+                "column": 42
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 158,
+              "end": 171,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 13
+                },
+                "end": {
+                  "line": 7,
+                  "column": 26
+                }
+              },
+              "name": "ACTION_PREFIX"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 174,
+              "end": 187,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 29
+                },
+                "end": {
+                  "line": 7,
+                  "column": 42
+                }
+              },
+              "value": "IDLEMONITOR",
+              "rawValue": "IDLEMONITOR",
+              "raw": "'IDLEMONITOR'",
+              "leadingComments": null,
+              "trailingComments": null
+            },
+            "trailingComments": null
+          }
+        ],
+        "kind": "const",
+        "trailingComments": [
+          {
+            "type": "Block",
+            "value": "* Action Blueprint Name Constants ",
+            "start": 191,
+            "end": 229,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 9,
+                "column": 38
+              }
+            },
+            "range": [
+              191,
+              229
+            ]
+          }
+        ],
+        "leadingComments": []
+      },
+      "specifiers": [],
+      "source": null,
       "trailingComments": [
         {
           "type": "Block",
-          "value": "* Redux Action Type Constants ",
-          "start": 145,
-          "end": 179,
+          "value": "* Action Blueprint Name Constants ",
+          "start": 191,
+          "end": 229,
           "loc": {
             "start": {
-              "line": 7,
+              "line": 9,
               "column": 0
             },
             "end": {
-              "line": 7,
-              "column": 34
+              "line": 9,
+              "column": 38
             }
           },
           "range": [
-            145,
-            179
+            191,
+            229
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 181,
-      "end": 215,
+      "start": 231,
+      "end": 259,
       "loc": {
         "start": {
-          "line": 8,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 8,
-          "column": 34
+          "line": 10,
+          "column": 28
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 188,
-        "end": 215,
+        "start": 238,
+        "end": 259,
         "loc": {
           "start": {
-            "line": 8,
+            "line": 10,
             "column": 7
           },
           "end": {
-            "line": 8,
-            "column": 34
+            "line": 10,
+            "column": 28
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 194,
-            "end": 215,
+            "start": 244,
+            "end": 259,
             "loc": {
               "start": {
-                "line": 8,
+                "line": 10,
                 "column": 13
               },
               "end": {
-                "line": 8,
-                "column": 34
+                "line": 10,
+                "column": 28
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 194,
-              "end": 202,
+              "start": 244,
+              "end": 249,
               "loc": {
                 "start": {
-                  "line": 8,
+                  "line": 10,
                   "column": 13
                 },
                 "end": {
-                  "line": 8,
-                  "column": 21
+                  "line": 10,
+                  "column": 18
                 }
               },
-              "name": "ACTIVITY",
+              "name": "START",
               "leadingComments": null
             },
             "init": {
               "type": "Literal",
-              "start": 205,
-              "end": 215,
+              "start": 252,
+              "end": 259,
               "loc": {
                 "start": {
-                  "line": 8,
-                  "column": 24
+                  "line": 10,
+                  "column": 21
                 },
                 "end": {
-                  "line": 8,
-                  "column": 34
+                  "line": 10,
+                  "column": 28
                 }
               },
-              "value": "ACTIVITY",
-              "rawValue": "ACTIVITY",
-              "raw": "'ACTIVITY'"
+              "value": "START",
+              "rawValue": "START",
+              "raw": "'START'"
             },
             "leadingComments": null
           }
@@ -453,22 +539,22 @@
         "leadingComments": [
           {
             "type": "Block",
-            "value": "* Redux Action Type Constants ",
-            "start": 145,
-            "end": 179,
+            "value": "* Action Blueprint Name Constants ",
+            "start": 191,
+            "end": 229,
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 0
               },
               "end": {
-                "line": 7,
-                "column": 34
+                "line": 9,
+                "column": 38
               }
             },
             "range": [
-              145,
-              179
+              191,
+              229
             ]
           }
         ],
@@ -479,80 +565,338 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "* Redux Action Type Constants ",
-          "start": 145,
-          "end": 179,
+          "value": "* Action Blueprint Name Constants ",
+          "start": 191,
+          "end": 229,
           "loc": {
             "start": {
-              "line": 7,
+              "line": 9,
               "column": 0
             },
             "end": {
-              "line": 7,
-              "column": 34
+              "line": 9,
+              "column": 38
             }
           },
           "range": [
-            145,
-            179
+            191,
+            229
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 217,
-      "end": 271,
+      "start": 261,
+      "end": 287,
       "loc": {
         "start": {
-          "line": 9,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 11,
+          "column": 26
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 268,
+        "end": 287,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 7
+          },
+          "end": {
+            "line": 11,
+            "column": 26
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 274,
+            "end": 287,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 13
+              },
+              "end": {
+                "line": 11,
+                "column": 26
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 274,
+              "end": 278,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 13
+                },
+                "end": {
+                  "line": 11,
+                  "column": 17
+                }
+              },
+              "name": "STOP"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 281,
+              "end": 287,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 20
+                },
+                "end": {
+                  "line": 11,
+                  "column": 26
+                }
+              },
+              "value": "STOP",
+              "rawValue": "STOP",
+              "raw": "'STOP'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 289,
+      "end": 317,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 28
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 296,
+        "end": 317,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 7
+          },
+          "end": {
+            "line": 12,
+            "column": 28
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 302,
+            "end": 317,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 12,
+                "column": 28
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 302,
+              "end": 307,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 18
+                }
+              },
+              "name": "RESET"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 310,
+              "end": 317,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 21
+                },
+                "end": {
+                  "line": 12,
+                  "column": 28
+                }
+              },
+              "value": "RESET",
+              "rawValue": "RESET",
+              "raw": "'RESET'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 321,
+      "end": 355,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 34
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 328,
+        "end": 355,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 7
+          },
+          "end": {
+            "line": 14,
+            "column": 34
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 334,
+            "end": 355,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 13
+              },
+              "end": {
+                "line": 14,
+                "column": 34
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 334,
+              "end": 342,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 13
+                },
+                "end": {
+                  "line": 14,
+                  "column": 21
+                }
+              },
+              "name": "ACTIVITY"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 345,
+              "end": 355,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 24
+                },
+                "end": {
+                  "line": 14,
+                  "column": 34
+                }
+              },
+              "value": "ACTIVITY",
+              "rawValue": "ACTIVITY",
+              "raw": "'ACTIVITY'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 357,
+      "end": 411,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
           "column": 54
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 224,
-        "end": 271,
+        "start": 364,
+        "end": 411,
         "loc": {
           "start": {
-            "line": 9,
+            "line": 15,
             "column": 7
           },
           "end": {
-            "line": 9,
+            "line": 15,
             "column": 54
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 230,
-            "end": 271,
+            "start": 370,
+            "end": 411,
             "loc": {
               "start": {
-                "line": 9,
+                "line": 15,
                 "column": 13
               },
               "end": {
-                "line": 9,
+                "line": 15,
                 "column": 54
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 230,
-              "end": 248,
+              "start": 370,
+              "end": 388,
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 15,
                   "column": 13
                 },
                 "end": {
-                  "line": 9,
+                  "line": 15,
                   "column": 31
                 }
               },
@@ -560,21 +904,289 @@
             },
             "init": {
               "type": "Literal",
-              "start": 251,
-              "end": 271,
+              "start": 391,
+              "end": 411,
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 15,
                   "column": 34
                 },
                 "end": {
-                  "line": 9,
+                  "line": 15,
                   "column": 54
                 }
               },
               "value": "ACTIVITY_DETECTION",
               "rawValue": "ACTIVITY_DETECTION",
               "raw": "'ACTIVITY_DETECTION'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 415,
+      "end": 455,
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 0
+        },
+        "end": {
+          "line": 17,
+          "column": 40
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 422,
+        "end": 455,
+        "loc": {
+          "start": {
+            "line": 17,
+            "column": 7
+          },
+          "end": {
+            "line": 17,
+            "column": 40
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 428,
+            "end": 455,
+            "loc": {
+              "start": {
+                "line": 17,
+                "column": 13
+              },
+              "end": {
+                "line": 17,
+                "column": 40
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 428,
+              "end": 439,
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 13
+                },
+                "end": {
+                  "line": 17,
+                  "column": 24
+                }
+              },
+              "name": "USER_ACTIVE"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 442,
+              "end": 455,
+              "loc": {
+                "start": {
+                  "line": 17,
+                  "column": 27
+                },
+                "end": {
+                  "line": 17,
+                  "column": 40
+                }
+              },
+              "value": "USER_ACTIVE",
+              "rawValue": "USER_ACTIVE",
+              "raw": "'USER_ACTIVE'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 459,
+      "end": 518,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 59
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 466,
+        "end": 518,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 7
+          },
+          "end": {
+            "line": 19,
+            "column": 59
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 472,
+            "end": 518,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 13
+              },
+              "end": {
+                "line": 19,
+                "column": 59
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 472,
+              "end": 478,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 13
+                },
+                "end": {
+                  "line": 19,
+                  "column": 19
+                }
+              },
+              "name": "IS_DEV"
+            },
+            "init": {
+              "type": "BinaryExpression",
+              "start": 481,
+              "end": 518,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 22
+                },
+                "end": {
+                  "line": 19,
+                  "column": 59
+                }
+              },
+              "left": {
+                "type": "MemberExpression",
+                "start": 481,
+                "end": 501,
+                "loc": {
+                  "start": {
+                    "line": 19,
+                    "column": 22
+                  },
+                  "end": {
+                    "line": 19,
+                    "column": 42
+                  }
+                },
+                "object": {
+                  "type": "MemberExpression",
+                  "start": 481,
+                  "end": 492,
+                  "loc": {
+                    "start": {
+                      "line": 19,
+                      "column": 22
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 33
+                    }
+                  },
+                  "object": {
+                    "type": "Identifier",
+                    "start": 481,
+                    "end": 488,
+                    "loc": {
+                      "start": {
+                        "line": 19,
+                        "column": 22
+                      },
+                      "end": {
+                        "line": 19,
+                        "column": 29
+                      }
+                    },
+                    "name": "process"
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 489,
+                    "end": 492,
+                    "loc": {
+                      "start": {
+                        "line": 19,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 19,
+                        "column": 33
+                      }
+                    },
+                    "name": "env"
+                  },
+                  "computed": false
+                },
+                "property": {
+                  "type": "Identifier",
+                  "start": 493,
+                  "end": 501,
+                  "loc": {
+                    "start": {
+                      "line": 19,
+                      "column": 34
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 42
+                    }
+                  },
+                  "name": "NODE_ENV"
+                },
+                "computed": false
+              },
+              "operator": "!==",
+              "right": {
+                "type": "Literal",
+                "start": 506,
+                "end": 518,
+                "loc": {
+                  "start": {
+                    "line": 19,
+                    "column": 47
+                  },
+                  "end": {
+                    "line": 19,
+                    "column": 59
+                  }
+                },
+                "value": "production",
+                "rawValue": "production",
+                "raw": "'production'"
+              }
             }
           }
         ],
