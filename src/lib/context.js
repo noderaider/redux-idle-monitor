@@ -3,8 +3,7 @@ import  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from './constants'
 import { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'
 
 import configureContext from 'redux-addons/lib/context'
-import  { createLogger } from './log'
-
+import  { createLogger } from 'redux-addons/lib/log'
 const noop = () => {}
 
 const validateContext = (libContext, appContext) => {
@@ -27,9 +26,9 @@ const configureInitialState = libContext => appContext => {
   return  { idleStatus: IDLESTATUS_ACTIVE
           , isIdle: false
           , isPaused: false
+          , isDetectionRunning: false
           , lastActive: +new Date()
           , lastEvent: { x: -1, y: -1 }
-          , isDetectionRunning: false
           }
 }
 
