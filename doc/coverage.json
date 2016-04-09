@@ -1,32 +1,32 @@
 {
-  "coverage": "32.5%",
-  "expectCount": 40,
-  "actualCount": 13,
+  "coverage": "22.22%",
+  "expectCount": 36,
+  "actualCount": 8,
   "files": {
     "lib/constants.js": {
-      "expectCount": 10,
-      "actualCount": 3,
+      "expectCount": 11,
+      "actualCount": 4,
       "undocumentLines": [
         7,
         14,
         15,
-        19,
+        22,
+        17,
         12,
-        11,
-        17
+        11
       ]
     },
-    "lib/actionBlueprints.js": {
-      "expectCount": 8,
-      "actualCount": 1,
+    "lib/blueprints.js": {
+      "expectCount": 7,
+      "actualCount": 0,
       "undocumentLines": [
-        11,
-        12,
-        16,
         9,
+        10,
+        15,
+        13,
         7,
-        8,
-        14
+        5,
+        6
       ]
     },
     "lib/index.js": {
@@ -35,11 +35,6 @@
       "undocumentLines": [
         10
       ]
-    },
-    "lib/actions.obsolete.js": {
-      "expectCount": 5,
-      "actualCount": 5,
-      "undocumentLines": []
     },
     "lib/middleware.js": {
       "expectCount": 2,
@@ -55,28 +50,28 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        30
+        31
       ]
     },
     "lib/multiplexer.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        11
+        12
       ]
     },
     "lib/context.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        40
+        36
       ]
     },
     "lib/actions.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        5
+        6
       ]
     },
     "lib/defaults.js": {
@@ -91,6 +86,13 @@
         6,
         7,
         8
+      ]
+    },
+    "lib/states.js": {
+      "expectCount": 1,
+      "actualCount": 0,
+      "undocumentLines": [
+        1
       ]
     }
   }

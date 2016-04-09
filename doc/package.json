@@ -1,6 +1,6 @@
 {
   "name": "redux-idle-monitor",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Tracks and triggers events when a user goes idle in a Redux application.",
   "main": "lib/index.js",
   "files": [
@@ -34,7 +34,9 @@
   ],
   "dependencies": {
     "redux-addons": "*",
-    "redux-middleware": "*"
+    "redux-middleware": "*",
+    "redux-mux": "*",
+    "redux-blueprint": "*"
   },
   "devDependencies": {
     "babel-cli": "^6.6.5",
