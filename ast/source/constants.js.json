@@ -1,7 +1,7 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 663,
+  "end": 641,
   "loc": {
     "start": {
       "line": 1,
@@ -16,8 +16,8 @@
   "body": [
     {
       "type": "ExportNamedDeclaration",
-      "start": 22,
-      "end": 66,
+      "start": 21,
+      "end": 65,
       "loc": {
         "start": {
           "line": 2,
@@ -30,8 +30,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 29,
-        "end": 66,
+        "start": 28,
+        "end": 65,
         "loc": {
           "start": {
             "line": 2,
@@ -45,8 +45,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 35,
-            "end": 66,
+            "start": 34,
+            "end": 65,
             "loc": {
               "start": {
                 "line": 2,
@@ -59,8 +59,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 35,
-              "end": 43,
+              "start": 34,
+              "end": 42,
               "loc": {
                 "start": {
                   "line": 2,
@@ -76,8 +76,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 46,
-              "end": 66,
+              "start": 45,
+              "end": 65,
               "loc": {
                 "start": {
                   "line": 2,
@@ -125,8 +125,8 @@
           {
             "type": "Block",
             "value": "* Redux state root level key ",
-            "start": 70,
-            "end": 103,
+            "start": 67,
+            "end": 100,
             "loc": {
               "start": {
                 "line": 4,
@@ -138,8 +138,8 @@
               }
             },
             "range": [
-              70,
-              103
+              67,
+              100
             ]
           }
         ]
@@ -172,8 +172,8 @@
         {
           "type": "Block",
           "value": "* Redux state root level key ",
-          "start": 70,
-          "end": 103,
+          "start": 67,
+          "end": 100,
           "loc": {
             "start": {
               "line": 4,
@@ -185,16 +185,16 @@
             }
           },
           "range": [
-            70,
-            103
+            67,
+            100
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 105,
-      "end": 141,
+      "start": 101,
+      "end": 137,
       "loc": {
         "start": {
           "line": 5,
@@ -207,8 +207,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 112,
-        "end": 141,
+        "start": 108,
+        "end": 137,
         "loc": {
           "start": {
             "line": 5,
@@ -222,8 +222,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 118,
-            "end": 141,
+            "start": 114,
+            "end": 137,
             "loc": {
               "start": {
                 "line": 5,
@@ -236,8 +236,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 118,
-              "end": 132,
+              "start": 114,
+              "end": 128,
               "loc": {
                 "start": {
                   "line": 5,
@@ -253,8 +253,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 135,
-              "end": 141,
+              "start": 131,
+              "end": 137,
               "loc": {
                 "start": {
                   "line": 5,
@@ -277,8 +277,8 @@
           {
             "type": "Block",
             "value": "* Redux state root level key ",
-            "start": 70,
-            "end": 103,
+            "start": 67,
+            "end": 100,
             "loc": {
               "start": {
                 "line": 4,
@@ -290,8 +290,8 @@
               }
             },
             "range": [
-              70,
-              103
+              67,
+              100
             ]
           }
         ],
@@ -303,8 +303,8 @@
         {
           "type": "Block",
           "value": "* Redux state root level key ",
-          "start": 70,
-          "end": 103,
+          "start": 67,
+          "end": 100,
           "loc": {
             "start": {
               "line": 4,
@@ -316,16 +316,16 @@
             }
           },
           "range": [
-            70,
-            103
+            67,
+            100
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 145,
-      "end": 187,
+      "start": 139,
+      "end": 181,
       "loc": {
         "start": {
           "line": 7,
@@ -338,8 +338,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 152,
-        "end": 187,
+        "start": 146,
+        "end": 181,
         "loc": {
           "start": {
             "line": 7,
@@ -353,8 +353,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 158,
-            "end": 187,
+            "start": 152,
+            "end": 181,
             "loc": {
               "start": {
                 "line": 7,
@@ -367,8 +367,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 158,
-              "end": 171,
+              "start": 152,
+              "end": 165,
               "loc": {
                 "start": {
                   "line": 7,
@@ -383,8 +383,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 174,
-              "end": 187,
+              "start": 168,
+              "end": 181,
               "loc": {
                 "start": {
                   "line": 7,
@@ -409,8 +409,8 @@
           {
             "type": "Block",
             "value": "* Action Blueprint Name Constants ",
-            "start": 191,
-            "end": 229,
+            "start": 183,
+            "end": 221,
             "loc": {
               "start": {
                 "line": 9,
@@ -422,8 +422,8 @@
               }
             },
             "range": [
-              191,
-              229
+              183,
+              221
             ]
           }
         ],
@@ -435,8 +435,8 @@
         {
           "type": "Block",
           "value": "* Action Blueprint Name Constants ",
-          "start": 191,
-          "end": 229,
+          "start": 183,
+          "end": 221,
           "loc": {
             "start": {
               "line": 9,
@@ -448,16 +448,16 @@
             }
           },
           "range": [
-            191,
-            229
+            183,
+            221
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 231,
-      "end": 269,
+      "start": 222,
+      "end": 260,
       "loc": {
         "start": {
           "line": 10,
@@ -470,8 +470,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 238,
-        "end": 269,
+        "start": 229,
+        "end": 260,
         "loc": {
           "start": {
             "line": 10,
@@ -485,8 +485,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 244,
-            "end": 269,
+            "start": 235,
+            "end": 260,
             "loc": {
               "start": {
                 "line": 10,
@@ -499,8 +499,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 244,
-              "end": 259,
+              "start": 235,
+              "end": 250,
               "loc": {
                 "start": {
                   "line": 10,
@@ -516,8 +516,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 262,
-              "end": 269,
+              "start": 253,
+              "end": 260,
               "loc": {
                 "start": {
                   "line": 10,
@@ -540,8 +540,8 @@
           {
             "type": "Block",
             "value": "* Action Blueprint Name Constants ",
-            "start": 191,
-            "end": 229,
+            "start": 183,
+            "end": 221,
             "loc": {
               "start": {
                 "line": 9,
@@ -553,8 +553,8 @@
               }
             },
             "range": [
-              191,
-              229
+              183,
+              221
             ]
           }
         ],
@@ -566,8 +566,8 @@
         {
           "type": "Block",
           "value": "* Action Blueprint Name Constants ",
-          "start": 191,
-          "end": 229,
+          "start": 183,
+          "end": 221,
           "loc": {
             "start": {
               "line": 9,
@@ -579,16 +579,16 @@
             }
           },
           "range": [
-            191,
-            229
+            183,
+            221
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 271,
-      "end": 307,
+      "start": 261,
+      "end": 297,
       "loc": {
         "start": {
           "line": 11,
@@ -601,8 +601,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 278,
-        "end": 307,
+        "start": 268,
+        "end": 297,
         "loc": {
           "start": {
             "line": 11,
@@ -616,8 +616,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 284,
-            "end": 307,
+            "start": 274,
+            "end": 297,
             "loc": {
               "start": {
                 "line": 11,
@@ -630,8 +630,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 284,
-              "end": 298,
+              "start": 274,
+              "end": 288,
               "loc": {
                 "start": {
                   "line": 11,
@@ -646,8 +646,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 301,
-              "end": 307,
+              "start": 291,
+              "end": 297,
               "loc": {
                 "start": {
                   "line": 11,
@@ -673,8 +673,8 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 309,
-      "end": 347,
+      "start": 298,
+      "end": 336,
       "loc": {
         "start": {
           "line": 12,
@@ -687,8 +687,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 316,
-        "end": 347,
+        "start": 305,
+        "end": 336,
         "loc": {
           "start": {
             "line": 12,
@@ -702,8 +702,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 322,
-            "end": 347,
+            "start": 311,
+            "end": 336,
             "loc": {
               "start": {
                 "line": 12,
@@ -716,8 +716,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 322,
-              "end": 337,
+              "start": 311,
+              "end": 326,
               "loc": {
                 "start": {
                   "line": 12,
@@ -732,8 +732,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 340,
-              "end": 347,
+              "start": 329,
+              "end": 336,
               "loc": {
                 "start": {
                   "line": 12,
@@ -759,8 +759,8 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 351,
-      "end": 395,
+      "start": 338,
+      "end": 382,
       "loc": {
         "start": {
           "line": 14,
@@ -773,8 +773,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 358,
-        "end": 395,
+        "start": 345,
+        "end": 382,
         "loc": {
           "start": {
             "line": 14,
@@ -788,8 +788,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 364,
-            "end": 395,
+            "start": 351,
+            "end": 382,
             "loc": {
               "start": {
                 "line": 14,
@@ -802,8 +802,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 364,
-              "end": 382,
+              "start": 351,
+              "end": 369,
               "loc": {
                 "start": {
                   "line": 14,
@@ -818,8 +818,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 385,
-              "end": 395,
+              "start": 372,
+              "end": 382,
               "loc": {
                 "start": {
                   "line": 14,
@@ -845,8 +845,8 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 397,
-      "end": 461,
+      "start": 383,
+      "end": 447,
       "loc": {
         "start": {
           "line": 15,
@@ -859,8 +859,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 404,
-        "end": 461,
+        "start": 390,
+        "end": 447,
         "loc": {
           "start": {
             "line": 15,
@@ -874,8 +874,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 410,
-            "end": 461,
+            "start": 396,
+            "end": 447,
             "loc": {
               "start": {
                 "line": 15,
@@ -888,8 +888,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 410,
-              "end": 438,
+              "start": 396,
+              "end": 424,
               "loc": {
                 "start": {
                   "line": 15,
@@ -904,8 +904,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 441,
-              "end": 461,
+              "start": 427,
+              "end": 447,
               "loc": {
                 "start": {
                   "line": 15,
@@ -931,8 +931,8 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 465,
-      "end": 525,
+      "start": 449,
+      "end": 509,
       "loc": {
         "start": {
           "line": 17,
@@ -945,8 +945,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 472,
-        "end": 525,
+        "start": 456,
+        "end": 509,
         "loc": {
           "start": {
             "line": 17,
@@ -960,8 +960,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 478,
-            "end": 525,
+            "start": 462,
+            "end": 509,
             "loc": {
               "start": {
                 "line": 17,
@@ -974,8 +974,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 478,
-              "end": 504,
+              "start": 462,
+              "end": 488,
               "loc": {
                 "start": {
                   "line": 17,
@@ -990,8 +990,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 507,
-              "end": 525,
+              "start": 491,
+              "end": 509,
               "loc": {
                 "start": {
                   "line": 17,
@@ -1016,8 +1016,8 @@
           {
             "type": "Block",
             "value": "* INITIAL IDLE STATUS ",
-            "start": 529,
-            "end": 555,
+            "start": 511,
+            "end": 537,
             "loc": {
               "start": {
                 "line": 19,
@@ -1029,8 +1029,8 @@
               }
             },
             "range": [
-              529,
-              555
+              511,
+              537
             ]
           }
         ],
@@ -1042,8 +1042,8 @@
         {
           "type": "Block",
           "value": "* INITIAL IDLE STATUS ",
-          "start": 529,
-          "end": 555,
+          "start": 511,
+          "end": 537,
           "loc": {
             "start": {
               "line": 19,
@@ -1055,16 +1055,16 @@
             }
           },
           "range": [
-            529,
-            555
+            511,
+            537
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 557,
-      "end": 598,
+      "start": 538,
+      "end": 579,
       "loc": {
         "start": {
           "line": 20,
@@ -1077,8 +1077,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 564,
-        "end": 598,
+        "start": 545,
+        "end": 579,
         "loc": {
           "start": {
             "line": 20,
@@ -1092,8 +1092,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 570,
-            "end": 598,
+            "start": 551,
+            "end": 579,
             "loc": {
               "start": {
                 "line": 20,
@@ -1106,8 +1106,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 570,
-              "end": 587,
+              "start": 551,
+              "end": 568,
               "loc": {
                 "start": {
                   "line": 20,
@@ -1123,8 +1123,8 @@
             },
             "init": {
               "type": "Literal",
-              "start": 590,
-              "end": 598,
+              "start": 571,
+              "end": 579,
               "loc": {
                 "start": {
                   "line": 20,
@@ -1147,8 +1147,8 @@
           {
             "type": "Block",
             "value": "* INITIAL IDLE STATUS ",
-            "start": 529,
-            "end": 555,
+            "start": 511,
+            "end": 537,
             "loc": {
               "start": {
                 "line": 19,
@@ -1160,8 +1160,8 @@
               }
             },
             "range": [
-              529,
-              555
+              511,
+              537
             ]
           }
         ],
@@ -1173,8 +1173,8 @@
         {
           "type": "Block",
           "value": "* INITIAL IDLE STATUS ",
-          "start": 529,
-          "end": 555,
+          "start": 511,
+          "end": 537,
           "loc": {
             "start": {
               "line": 19,
@@ -1186,16 +1186,16 @@
             }
           },
           "range": [
-            529,
-            555
+            511,
+            537
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 602,
-      "end": 661,
+      "start": 581,
+      "end": 640,
       "loc": {
         "start": {
           "line": 22,
@@ -1208,8 +1208,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 609,
-        "end": 661,
+        "start": 588,
+        "end": 640,
         "loc": {
           "start": {
             "line": 22,
@@ -1223,8 +1223,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 615,
-            "end": 661,
+            "start": 594,
+            "end": 640,
             "loc": {
               "start": {
                 "line": 22,
@@ -1237,8 +1237,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 615,
-              "end": 621,
+              "start": 594,
+              "end": 600,
               "loc": {
                 "start": {
                   "line": 22,
@@ -1253,8 +1253,8 @@
             },
             "init": {
               "type": "BinaryExpression",
-              "start": 624,
-              "end": 661,
+              "start": 603,
+              "end": 640,
               "loc": {
                 "start": {
                   "line": 22,
@@ -1267,8 +1267,8 @@
               },
               "left": {
                 "type": "MemberExpression",
-                "start": 624,
-                "end": 644,
+                "start": 603,
+                "end": 623,
                 "loc": {
                   "start": {
                     "line": 22,
@@ -1281,8 +1281,8 @@
                 },
                 "object": {
                   "type": "MemberExpression",
-                  "start": 624,
-                  "end": 635,
+                  "start": 603,
+                  "end": 614,
                   "loc": {
                     "start": {
                       "line": 22,
@@ -1295,8 +1295,8 @@
                   },
                   "object": {
                     "type": "Identifier",
-                    "start": 624,
-                    "end": 631,
+                    "start": 603,
+                    "end": 610,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -1311,8 +1311,8 @@
                   },
                   "property": {
                     "type": "Identifier",
-                    "start": 632,
-                    "end": 635,
+                    "start": 611,
+                    "end": 614,
                     "loc": {
                       "start": {
                         "line": 22,
@@ -1329,8 +1329,8 @@
                 },
                 "property": {
                   "type": "Identifier",
-                  "start": 636,
-                  "end": 644,
+                  "start": 615,
+                  "end": 623,
                   "loc": {
                     "start": {
                       "line": 22,
@@ -1348,8 +1348,8 @@
               "operator": "!==",
               "right": {
                 "type": "Literal",
-                "start": 649,
-                "end": 661,
+                "start": 628,
+                "end": 640,
                 "loc": {
                   "start": {
                     "line": 22,

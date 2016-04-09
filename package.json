@@ -1,6 +1,6 @@
 {
   "name": "redux-idle-monitor",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "Tracks and triggers events when a user goes idle in a Redux application.",
   "main": "lib/index.js",
   "files": [
