@@ -1517,9 +1517,9 @@
                     "column": 37
                   }
                 },
-                "value": "debug",
-                "rawValue": "debug",
-                "raw": "'debug'"
+                "value": "trace",
+                "rawValue": "trace",
+                "raw": "'trace'"
               }
             }
           }
