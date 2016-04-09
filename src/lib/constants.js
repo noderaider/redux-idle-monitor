@@ -7,13 +7,16 @@ export const ROOT_STATE_KEY = 'idle'
 export const ACTION_PREFIX = 'IDLEMONITOR'
 
 /** Action Blueprint Name Constants */
-export const START = 'START'
-export const STOP = 'STOP'
-export const RESET = 'RESET'
+export const START_BLUEPRINT = 'START'
+export const STOP_BLUEPRINT = 'STOP'
+export const RESET_BLUEPRINT = 'RESET'
 
-export const ACTIVITY = 'ACTIVITY'
-export const ACTIVITY_DETECTION = 'ACTIVITY_DETECTION'
+export const ACTIVITY_BLUEPRINT = 'ACTIVITY'
+export const ACTIVITY_DETECTION_BLUEPRINT = 'ACTIVITY_DETECTION'
 
-export const USER_ACTIVE = 'USER_ACTIVE'
+export const NEXT_IDLE_STATUS_BLUEPRINT = 'NEXT_IDLE_STATUS'
+
+/** INITIAL IDLE STATUS */
+export const IDLESTATUS_ACTIVE = 'ACTIVE'
 
 export const IS_DEV = process.env.NODE_ENV !== 'production'

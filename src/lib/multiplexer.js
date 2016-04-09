@@ -1,15 +1,16 @@
 import { assert } from 'chai'
+import { createStoreMultiplexer, bisectStore } from 'redux-mux'
 import { createStore } from 'redux'
 import  { IS_DEV
         , ROOT_STATE_KEY
         , ACTIVITY
         , ACTIVITY_DETECTION
         } from './constants'
-import { createNoopStore, createLocalStore, bisectStore, configureReducer, createMergingReducer, createStoreMultiplexer, createActionMultiplexer } from 'redux-addons/lib/store'
+import { createNoopStore, createLocalStore, configureReducer, createMergingReducer } from 'redux-addons/lib/store'
 
 
 export const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => store => {
-  const libStore = bisectStore(store, 'idle')
+  const libStore = bisectStore(store, ROOT_STATE_KEY)
   let storesMapping = [ [ 'lib', libStore ] ]
 
   const createInitialFastState = () => ({ lastActive: +new Date(), lastEvent: { x: -1, y: -1 } })
@@ -24,17 +25,3 @@ export const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => st
 
   return createStoreMultiplexer(storesMapping)
 }
-
-/*
-
-
-
-const configureActionMultiplexer = context => store => {
-  const actionMapping = [ [ACTIVITY, { type: createActionType(ACTIVITY), payloadCreator: getPayloadCreator(ACTIVITY) }]
-                        , [ACTIVITY_DETECTION, { type: createActionType(ACTIVITY_DETECTION),  payloadCreator: getPayloadCreator(ACTIVITY_DETECTION) }]
-                        , ...actionBlueprints.map(x => [x, { type: createActionType(x), payloadCreator: getPayloadCreator(x) }])
-                        ]
-
-  const actionMultiplexer = createActionMultiplexer(actionMapping)
-}
-*/

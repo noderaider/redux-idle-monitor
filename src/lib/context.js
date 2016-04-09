@@ -1,21 +1,18 @@
 import { assert } from 'chai'
-import  { ROOT_STATE_KEY, ACTION_PREFIX, USER_ACTIVE } from './constants'
+import  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from './constants'
 import { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'
 
 import configureContext from 'redux-addons/lib/context'
 import  { createLogger } from './log'
 
 const noop = () => {}
-const sanitizeActions = actions => actions.map(x => [createActionName(x[0]), x[1]])
-const createActionName = rawName => `${ACTION_PREFIX}_${rawName.toUpperCase().replace(/-+\s+/, '_')}`
-
 
 const validateContext = (libContext, appContext) => {
   assert.ok(libContext, 'must pass opts to validate')
   assert.ok(appContext, 'must pass opts to validate')
 
   const { libName, appName, libActions } = libContext
-  const { actionBlueprints, activeEvents, useFastStore, useLocalStore, thresholds } = appContext
+  const { activeEvents, useFastStore, useLocalStore, thresholds } = appContext
 
   assert.ok(libName, 'libName must exist')
   assert(typeof libName === 'string', 'libName opt must be a string')
@@ -27,21 +24,20 @@ const validateContext = (libContext, appContext) => {
 }
 
 const configureInitialState = libContext => appContext => {
-  return  { actionName: USER_ACTIVE
+  return  { idleStatus: IDLESTATUS_ACTIVE
           , isIdle: false
           , isPaused: false
           , lastActive: +new Date()
           , lastEvent: { x: -1, y: -1 }
           , isDetectionRunning: false
-          //, timeoutID
           }
 }
 
 export default function createContext({ appName
-                                      , actionBlueprints
-                                      , initialIdleActionName
-                                      , finalIdleActionName
-                                      , onFinalIdleAction
+                                      , IDLE_STATUSES
+                                      , idleStatusDelay
+                                      , activeStatusAction
+                                      , idleStatusAction
                                       , activeEvents = getActiveEvents()
                                       , useFastStore = getUseFastState()
                                       , useLocalStore = getUseLocalState()
@@ -52,6 +48,6 @@ export default function createContext({ appName
                                       } = {}) {
   const libName = 'idlemonitor'
   const libOpts = { libName, validateContext, configureAppContext: libContext => appOpts => appOpts, configureInitialState }
-  const appOpts = { appName, actionBlueprints, initialIdleActionName, finalIdleActionName, onFinalIdleAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
+  const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
   return configureContext(libOpts)(appOpts)
 }

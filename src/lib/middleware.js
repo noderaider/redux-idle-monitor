@@ -1,105 +1,113 @@
+import { assert } from 'chai'
 import createContext from './context'
 import { forgetTokens } from 'state/actions/identity'
-//import { createStart, createStop } from './actions'
-import { IS_DEV, PERSISTED_TOKENS, FORGOTTEN_TOKENS } from 'state/constants'
-import swal from 'sweetalert'
-import { actions as idleActions, middleware as idleMiddleware } from 'state/components/redux-idle-monitor'
-import { publicBlueprints } from './actionBlueprints'
-import { createStartIdleMonitor } from './actions'
+import { IS_DEV, IDLESTATUS_ACTIVE, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
+import { bisectStore } from 'redux-mux'
+import { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'
+import { createStartDetection } from './actions'
+import { getNextIdleStatusIn } from './states'
+
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
-  const { translateBlueprints, actionBlueprints } = context
+  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay } = context
   //const blueprintMiddleware = createBlueprintMiddleware(context)
-  const { startAction, stopAction, resetAction } = translateBlueprints(publicBlueprints)
-  const userActions = translateBlueprints(actionBlueprints)
-  const startIdleMonitor = createStartIdleMonitor(context)
-  let endIdleMonitor = null
-  return store => next => action => {
-    const { dispatch } = store
-    switch(action.type) {
-      case PERSISTED_TOKENS:
-        console.warn('STARTING')
-        endIdleMonitor = dispatch(startIdleMonitor)
-        break
-      case FORGOTTEN_TOKENS:
-        endIdleMonitor = dispatch(endIdleMonitor)
-      case 'IDLEMONITOR_JS_EXPIRED':
-        console.warn('STOPPING')
-        dispatch(stopAction())
-        break
-      case 'EXECUTE_IN':
-        console.warn('RESPONDING TO EXECUTE_IN', action)
-        dispatch(userActions[action.payload.actionName]())
-        break
+  const { start, stop, reset } = translateBlueprints(publicBlueprints)
+  const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })
+  const startDetection = createStartDetection(context)
 
-        /*
+  const { START
+        , RESET
+        , STOP
+        , NEXT_IDLE_STATUS
+        , ACTIVITY
+        } = translateBlueprintTypes({ START: START_BLUEPRINT
+                                    , RESET: RESET_BLUEPRINT
+                                    , STOP: STOP_BLUEPRINT
+                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT
+                                    , ACTIVITY: ACTIVITY_BLUEPRINT
+                                    })
 
-      default:
-        if(actionTypes.includes(action.type))
-          return blueprintMiddleware(store)(next)(action)
-        */
-    }
-    return next(action)
-  }
-}
+  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]
+  const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)
+  const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
 
-const createBlueprintMiddleware = context => {
-  const { actionTypes } = context
-
-  const createDidStateChange = configureDidStateChange(context)
-  const createOnStateChange = configureOnStateChange(context)
+  let stopDetection = null
+  let nextTimeoutID = null
   return store => {
-    const { dispatch, getState } = store
-    const didStateChange = createDidStateChange(dispatch, getState)
-    const onStateChange = createOnStateChange(dispatch, getState)
+    const idleStore = bisectStore(store, 'idle')
+
     return next => action => {
+      if(!action.type)
+        return next(action)
+      const { dispatch, getState } = store
       const { type, payload } = action
-      switch(type) {
-        default:
-          const preState = getState()['idle']
-          const result = next(action)
-          const postState = getState()['idle']
 
-          if(didStateChange && onStateChange) {
-            if(didStateChange(preState, postState))
-              onStateChange(preState, postState)
+      const scheduleTransition = (idleStatus) => {
+        clearTimeout(nextTimeoutID)
+        let delay = dispatch(idleStatusDelay(idleStatus))
+        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
+        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)
+
+        let lastActive = new Date().toTimeString()
+        let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
+        let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`
+        let nextIdleStatus = getNextIdleStatus(idleStatus)
+        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)
+        nextTimeoutID = setTimeout(() => {
+          log.trace(nextMessage)
+          next(action)
+          dispatch(idleStatusAction(idleStatus))
+          if(nextIdleStatus) {
+            dispatch(nextIdleStatusAction(nextIdleStatus))
+          } else {
+            log.info('No more actions to schedule')
+            // END OF THE LINE
           }
-
-          return result
+        }, delay)
+        return function cancel() {
+          clearTimeout(nextTimeoutID)
+          log.trace(nextCancelMessage(new Date().toTimeString()))
+        }
       }
+
+      if(type === START) {
+        stopDetection = dispatch(startDetection)
+        let result = next(action)
+        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
+        return result
+      }
+
+      if(type === RESET) {
+        clearTimeout(nextTimeoutID)
+        if(stopDetection)
+          stopDetection()
+        dispatch(start())
+      }
+
+      if(type === STOP && stopDetection) {
+        clearTimeout(nextTimeoutID)
+        dispatch(stopDetection)
+      }
+
+      if(type === NEXT_IDLE_STATUS) {
+        return scheduleTransition(payload.nextIdleStatus)
+      }
+
+      if(type === ACTIVITY) {
+        let result = next(action)
+        if(payload.isTransition) {
+          log.trace('Transition activity occurred, triggering user active action.')
+          dispatch(activeStatusAction)
+        }
+        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
+        return result
+      }
+      return next(action)
     }
   }
 }
 
-const configureDidStateChange = context => (dispatch, getState) => (preState, postState) => preState.actionName !== postState.actionName
-
-const configureOnStateChange = context => (dispatch, getState) => (preState, postState) => {
-  const { log } = context
-  log.info(postState.actionName, 'onStateChange')
-  /*
-  let swalTimeout = null
-  if(postState.actionName === 'INACTIVE') {
-    log.info('SWAL ACTIVE => SHOW')
-    swal( { title: 'Still There?'
-          , text: 'You will be logged out due to inactivity shortly.'
-          , animation: 'slide-from-top'
-          , showConfirmButton: false
-          , html: true
-          , type: 'warning'
-          })
-  } else if(postState.actionName === 'EXPIRED') {
-    log.info('SWAL EXPIRED => HIDE IN 2 SECONDS')
-    dispatch(forgetTokens())
-    swalTimeout = setTimeout(() => swal.close(), 2000)
-  } else {
-    log.info('SWAL ELSE => HIDE NOW')
-    clearTimeout(swalTimeout)
-    swal.close()
-  }
-
-*/
-}
 
 /** Creates middleware from opts including validation in development */
 export default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }

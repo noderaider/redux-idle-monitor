@@ -1,0 +1,2165 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 1032,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 17,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "start": 0,
+      "end": 72,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 72
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 9,
+          "end": 30,
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 9
+            },
+            "end": {
+              "line": 1,
+              "column": 30
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 30
+              }
+            },
+            "name": "createActionBlueprint"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 9,
+            "end": 30,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 30
+              }
+            },
+            "name": "createActionBlueprint"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 38,
+        "end": 72,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 38
+          },
+          "end": {
+            "line": 1,
+            "column": 72
+          }
+        },
+        "value": "redux-addons/lib/actionBlueprint",
+        "rawValue": "redux-addons/lib/actionBlueprint",
+        "raw": "'redux-addons/lib/actionBlueprint'"
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "start": 74,
+      "end": 165,
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 91
+        }
+      },
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "start": 83,
+          "end": 88,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 9
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 83,
+            "end": 88,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "START"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 83,
+            "end": 88,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            "name": "START"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 90,
+          "end": 94,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 16
+            },
+            "end": {
+              "line": 2,
+              "column": 20
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 90,
+            "end": 94,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 16
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "STOP"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 90,
+            "end": 94,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 16
+              },
+              "end": {
+                "line": 2,
+                "column": 20
+              }
+            },
+            "name": "STOP"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 96,
+          "end": 101,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 22
+            },
+            "end": {
+              "line": 2,
+              "column": 27
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 96,
+            "end": 101,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 22
+              },
+              "end": {
+                "line": 2,
+                "column": 27
+              }
+            },
+            "name": "RESET"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 96,
+            "end": 101,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 22
+              },
+              "end": {
+                "line": 2,
+                "column": 27
+              }
+            },
+            "name": "RESET"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 103,
+          "end": 111,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 29
+            },
+            "end": {
+              "line": 2,
+              "column": 37
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 103,
+            "end": 111,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 29
+              },
+              "end": {
+                "line": 2,
+                "column": 37
+              }
+            },
+            "name": "ACTIVITY"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 103,
+            "end": 111,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 29
+              },
+              "end": {
+                "line": 2,
+                "column": 37
+              }
+            },
+            "name": "ACTIVITY"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 113,
+          "end": 131,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 39
+            },
+            "end": {
+              "line": 2,
+              "column": 57
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 113,
+            "end": 131,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 39
+              },
+              "end": {
+                "line": 2,
+                "column": 57
+              }
+            },
+            "name": "ACTIVITY_DETECTION"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 113,
+            "end": 131,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 39
+              },
+              "end": {
+                "line": 2,
+                "column": 57
+              }
+            },
+            "name": "ACTIVITY_DETECTION"
+          }
+        },
+        {
+          "type": "ImportSpecifier",
+          "start": 133,
+          "end": 144,
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 59
+            },
+            "end": {
+              "line": 2,
+              "column": 70
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "start": 133,
+            "end": 144,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 59
+              },
+              "end": {
+                "line": 2,
+                "column": 70
+              }
+            },
+            "name": "USER_ACTIVE"
+          },
+          "local": {
+            "type": "Identifier",
+            "start": 133,
+            "end": 144,
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 59
+              },
+              "end": {
+                "line": 2,
+                "column": 70
+              }
+            },
+            "name": "USER_ACTIVE"
+          }
+        }
+      ],
+      "importKind": "value",
+      "source": {
+        "type": "Literal",
+        "start": 152,
+        "end": 165,
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 78
+          },
+          "end": {
+            "line": 2,
+            "column": 91
+          }
+        },
+        "value": "./constants",
+        "rawValue": "./constants",
+        "raw": "'./constants'",
+        "leadingComments": null,
+        "trailingComments": null
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "* Allows end user to define an idle state transition action ",
+          "start": 169,
+          "end": 233,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 64
+            }
+          },
+          "range": [
+            169,
+            233
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 235,
+      "end": 391,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 156
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 242,
+        "end": 391,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 7
+          },
+          "end": {
+            "line": 5,
+            "column": 156
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 248,
+            "end": 391,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 156
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 248,
+              "end": 273,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 13
+                },
+                "end": {
+                  "line": 5,
+                  "column": 38
+                }
+              },
+              "name": "createIdleActionBlueprint",
+              "leadingComments": null
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 276,
+              "end": 391,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 41
+                },
+                "end": {
+                  "line": 5,
+                  "column": 156
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [
+                {
+                  "type": "Identifier",
+                  "start": 277,
+                  "end": 287,
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 42
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 52
+                    }
+                  },
+                  "name": "actionName"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 289,
+                  "end": 303,
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 54
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 68
+                    }
+                  },
+                  "name": "nextActionName"
+                },
+                {
+                  "type": "Identifier",
+                  "start": 305,
+                  "end": 310,
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 70
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 75
+                    }
+                  },
+                  "name": "delay"
+                }
+              ],
+              "body": {
+                "type": "CallExpression",
+                "start": 315,
+                "end": 391,
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 80
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 156
+                  }
+                },
+                "callee": {
+                  "type": "Identifier",
+                  "start": 315,
+                  "end": 336,
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 80
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 101
+                    }
+                  },
+                  "name": "createActionBlueprint"
+                },
+                "arguments": [
+                  {
+                    "type": "Identifier",
+                    "start": 337,
+                    "end": 347,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 102
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 112
+                      }
+                    },
+                    "name": "actionName"
+                  },
+                  {
+                    "type": "ArrowFunctionExpression",
+                    "start": 349,
+                    "end": 373,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 114
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 138
+                      }
+                    },
+                    "id": null,
+                    "generator": false,
+                    "expression": false,
+                    "async": false,
+                    "params": [],
+                    "body": {
+                      "type": "BlockStatement",
+                      "start": 355,
+                      "end": 373,
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 120
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 138
+                        }
+                      },
+                      "body": [
+                        {
+                          "type": "ExpressionStatement",
+                          "start": 357,
+                          "end": 371,
+                          "loc": {
+                            "start": {
+                              "line": 5,
+                              "column": 122
+                            },
+                            "end": {
+                              "line": 5,
+                              "column": 136
+                            }
+                          },
+                          "expression": {
+                            "type": "Identifier",
+                            "start": 357,
+                            "end": 371,
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 122
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 136
+                              }
+                            },
+                            "name": "nextActionName"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "ArrowFunctionExpression",
+                    "start": 375,
+                    "end": 390,
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 140
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 155
+                      }
+                    },
+                    "id": null,
+                    "generator": false,
+                    "expression": false,
+                    "async": false,
+                    "params": [],
+                    "body": {
+                      "type": "BlockStatement",
+                      "start": 381,
+                      "end": 390,
+                      "loc": {
+                        "start": {
+                          "line": 5,
+                          "column": 146
+                        },
+                        "end": {
+                          "line": 5,
+                          "column": 155
+                        }
+                      },
+                      "body": [
+                        {
+                          "type": "ExpressionStatement",
+                          "start": 383,
+                          "end": 388,
+                          "loc": {
+                            "start": {
+                              "line": 5,
+                              "column": 148
+                            },
+                            "end": {
+                              "line": 5,
+                              "column": 153
+                            }
+                          },
+                          "expression": {
+                            "type": "Identifier",
+                            "start": 383,
+                            "end": 388,
+                            "loc": {
+                              "start": {
+                                "line": 5,
+                                "column": 148
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 153
+                              }
+                            },
+                            "name": "delay"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "leadingComments": null
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "* Allows end user to define an idle state transition action ",
+            "start": 169,
+            "end": 233,
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 4,
+                "column": 64
+              }
+            },
+            "range": [
+              169,
+              233
+            ]
+          }
+        ],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null,
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "* Allows end user to define an idle state transition action ",
+          "start": 169,
+          "end": 233,
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 4,
+              "column": 64
+            }
+          },
+          "range": [
+            169,
+            233
+          ]
+        }
+      ]
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 395,
+      "end": 453,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 58
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 402,
+        "end": 453,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 7
+          },
+          "end": {
+            "line": 7,
+            "column": 58
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 408,
+            "end": 453,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 13
+              },
+              "end": {
+                "line": 7,
+                "column": 58
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 408,
+              "end": 422,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 13
+                },
+                "end": {
+                  "line": 7,
+                  "column": 27
+                }
+              },
+              "name": "startBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 425,
+              "end": 453,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 30
+                },
+                "end": {
+                  "line": 7,
+                  "column": 58
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 425,
+                "end": 446,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 30
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 51
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 447,
+                  "end": 452,
+                  "loc": {
+                    "start": {
+                      "line": 7,
+                      "column": 52
+                    },
+                    "end": {
+                      "line": 7,
+                      "column": 57
+                    }
+                  },
+                  "name": "START"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 455,
+      "end": 511,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 56
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 462,
+        "end": 511,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 7
+          },
+          "end": {
+            "line": 8,
+            "column": 56
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 468,
+            "end": 511,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 13
+              },
+              "end": {
+                "line": 8,
+                "column": 56
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 468,
+              "end": 481,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 13
+                },
+                "end": {
+                  "line": 8,
+                  "column": 26
+                }
+              },
+              "name": "stopBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 484,
+              "end": 511,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 29
+                },
+                "end": {
+                  "line": 8,
+                  "column": 56
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 484,
+                "end": 505,
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 29
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 50
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 506,
+                  "end": 510,
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 51
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 55
+                    }
+                  },
+                  "name": "STOP"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 513,
+      "end": 571,
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 58
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 520,
+        "end": 571,
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 7
+          },
+          "end": {
+            "line": 9,
+            "column": 58
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 526,
+            "end": 571,
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 13
+              },
+              "end": {
+                "line": 9,
+                "column": 58
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 526,
+              "end": 540,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 13
+                },
+                "end": {
+                  "line": 9,
+                  "column": 27
+                }
+              },
+              "name": "resetBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 543,
+              "end": 571,
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 30
+                },
+                "end": {
+                  "line": 9,
+                  "column": 58
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 543,
+                "end": 564,
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 30
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 51
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 565,
+                  "end": 570,
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 52
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 57
+                    }
+                  },
+                  "name": "RESET"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 575,
+      "end": 701,
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 126
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 582,
+        "end": 701,
+        "loc": {
+          "start": {
+            "line": 11,
+            "column": 7
+          },
+          "end": {
+            "line": 11,
+            "column": 126
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 588,
+            "end": 701,
+            "loc": {
+              "start": {
+                "line": 11,
+                "column": 13
+              },
+              "end": {
+                "line": 11,
+                "column": 126
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 588,
+              "end": 605,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 13
+                },
+                "end": {
+                  "line": 11,
+                  "column": 30
+                }
+              },
+              "name": "activityBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 608,
+              "end": 701,
+              "loc": {
+                "start": {
+                  "line": 11,
+                  "column": 33
+                },
+                "end": {
+                  "line": 11,
+                  "column": 126
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 608,
+                "end": 629,
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 33
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 54
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 630,
+                  "end": 638,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 55
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 63
+                    }
+                  },
+                  "name": "ACTIVITY"
+                },
+                {
+                  "type": "ArrowFunctionExpression",
+                  "start": 640,
+                  "end": 700,
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 65
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 125
+                    }
+                  },
+                  "id": null,
+                  "generator": false,
+                  "expression": true,
+                  "async": false,
+                  "params": [
+                    {
+                      "type": "Identifier",
+                      "start": 641,
+                      "end": 642,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 66
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 67
+                        }
+                      },
+                      "name": "x"
+                    },
+                    {
+                      "type": "Identifier",
+                      "start": 644,
+                      "end": 645,
+                      "loc": {
+                        "start": {
+                          "line": 11,
+                          "column": 69
+                        },
+                        "end": {
+                          "line": 11,
+                          "column": 70
+                        }
+                      },
+                      "name": "y"
+                    }
+                  ],
+                  "body": {
+                    "type": "ObjectExpression",
+                    "start": 651,
+                    "end": 699,
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 76
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 124
+                      }
+                    },
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "start": 653,
+                        "end": 676,
+                        "loc": {
+                          "start": {
+                            "line": 11,
+                            "column": 78
+                          },
+                          "end": {
+                            "line": 11,
+                            "column": 101
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 653,
+                          "end": 663,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 78
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 88
+                            }
+                          },
+                          "name": "lastActive"
+                        },
+                        "value": {
+                          "type": "UnaryExpression",
+                          "start": 665,
+                          "end": 676,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 90
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 101
+                            }
+                          },
+                          "operator": "+",
+                          "prefix": true,
+                          "argument": {
+                            "type": "NewExpression",
+                            "start": 666,
+                            "end": 676,
+                            "loc": {
+                              "start": {
+                                "line": 11,
+                                "column": 91
+                              },
+                              "end": {
+                                "line": 11,
+                                "column": 101
+                              }
+                            },
+                            "callee": {
+                              "type": "Identifier",
+                              "start": 670,
+                              "end": 674,
+                              "loc": {
+                                "start": {
+                                  "line": 11,
+                                  "column": 95
+                                },
+                                "end": {
+                                  "line": 11,
+                                  "column": 99
+                                }
+                              },
+                              "name": "Date"
+                            },
+                            "arguments": []
+                          }
+                        },
+                        "kind": "init"
+                      },
+                      {
+                        "type": "Property",
+                        "start": 678,
+                        "end": 697,
+                        "loc": {
+                          "start": {
+                            "line": 11,
+                            "column": 103
+                          },
+                          "end": {
+                            "line": 11,
+                            "column": 122
+                          }
+                        },
+                        "method": false,
+                        "shorthand": false,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 678,
+                          "end": 687,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 103
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 112
+                            }
+                          },
+                          "name": "lastEvent"
+                        },
+                        "value": {
+                          "type": "ObjectExpression",
+                          "start": 689,
+                          "end": 697,
+                          "loc": {
+                            "start": {
+                              "line": 11,
+                              "column": 114
+                            },
+                            "end": {
+                              "line": 11,
+                              "column": 122
+                            }
+                          },
+                          "properties": [
+                            {
+                              "type": "Property",
+                              "start": 691,
+                              "end": 692,
+                              "loc": {
+                                "start": {
+                                  "line": 11,
+                                  "column": 116
+                                },
+                                "end": {
+                                  "line": 11,
+                                  "column": 117
+                                }
+                              },
+                              "method": false,
+                              "shorthand": true,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 691,
+                                "end": 692,
+                                "loc": {
+                                  "start": {
+                                    "line": 11,
+                                    "column": 116
+                                  },
+                                  "end": {
+                                    "line": 11,
+                                    "column": 117
+                                  }
+                                },
+                                "name": "x"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "Identifier",
+                                "start": 691,
+                                "end": 692,
+                                "loc": {
+                                  "start": {
+                                    "line": 11,
+                                    "column": 116
+                                  },
+                                  "end": {
+                                    "line": 11,
+                                    "column": 117
+                                  }
+                                },
+                                "name": "x"
+                              }
+                            },
+                            {
+                              "type": "Property",
+                              "start": 694,
+                              "end": 695,
+                              "loc": {
+                                "start": {
+                                  "line": 11,
+                                  "column": 119
+                                },
+                                "end": {
+                                  "line": 11,
+                                  "column": 120
+                                }
+                              },
+                              "method": false,
+                              "shorthand": true,
+                              "computed": false,
+                              "key": {
+                                "type": "Identifier",
+                                "start": 694,
+                                "end": 695,
+                                "loc": {
+                                  "start": {
+                                    "line": 11,
+                                    "column": 119
+                                  },
+                                  "end": {
+                                    "line": 11,
+                                    "column": 120
+                                  }
+                                },
+                                "name": "y"
+                              },
+                              "kind": "init",
+                              "value": {
+                                "type": "Identifier",
+                                "start": 694,
+                                "end": 695,
+                                "loc": {
+                                  "start": {
+                                    "line": 11,
+                                    "column": 119
+                                  },
+                                  "end": {
+                                    "line": 11,
+                                    "column": 120
+                                  }
+                                },
+                                "name": "y"
+                              }
+                            }
+                          ]
+                        },
+                        "kind": "init"
+                      }
+                    ],
+                    "parenthesizedExpression": true
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 703,
+      "end": 834,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 131
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 710,
+        "end": 834,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 7
+          },
+          "end": {
+            "line": 12,
+            "column": 131
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 716,
+            "end": 834,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 12,
+                "column": 131
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 716,
+              "end": 742,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 39
+                }
+              },
+              "name": "activityDetectionBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 745,
+              "end": 834,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 42
+                },
+                "end": {
+                  "line": 12,
+                  "column": 131
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 745,
+                "end": 766,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 42
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 63
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 767,
+                  "end": 785,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 64
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 82
+                    }
+                  },
+                  "name": "ACTIVITY_DETECTION"
+                },
+                {
+                  "type": "ArrowFunctionExpression",
+                  "start": 787,
+                  "end": 833,
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 84
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 130
+                    }
+                  },
+                  "id": null,
+                  "generator": false,
+                  "expression": true,
+                  "async": false,
+                  "params": [
+                    {
+                      "type": "Identifier",
+                      "start": 787,
+                      "end": 805,
+                      "loc": {
+                        "start": {
+                          "line": 12,
+                          "column": 84
+                        },
+                        "end": {
+                          "line": 12,
+                          "column": 102
+                        }
+                      },
+                      "name": "isDetectionRunning"
+                    }
+                  ],
+                  "body": {
+                    "type": "ObjectExpression",
+                    "start": 810,
+                    "end": 832,
+                    "loc": {
+                      "start": {
+                        "line": 12,
+                        "column": 107
+                      },
+                      "end": {
+                        "line": 12,
+                        "column": 129
+                      }
+                    },
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "start": 812,
+                        "end": 830,
+                        "loc": {
+                          "start": {
+                            "line": 12,
+                            "column": 109
+                          },
+                          "end": {
+                            "line": 12,
+                            "column": 127
+                          }
+                        },
+                        "method": false,
+                        "shorthand": true,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 812,
+                          "end": 830,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 109
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 127
+                            }
+                          },
+                          "name": "isDetectionRunning"
+                        },
+                        "kind": "init",
+                        "value": {
+                          "type": "Identifier",
+                          "start": 812,
+                          "end": 830,
+                          "loc": {
+                            "start": {
+                              "line": 12,
+                              "column": 109
+                            },
+                            "end": {
+                              "line": 12,
+                              "column": 127
+                            }
+                          },
+                          "name": "isDetectionRunning"
+                        }
+                      }
+                    ],
+                    "parenthesizedExpression": true
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 838,
+      "end": 907,
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 69
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 845,
+        "end": 907,
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 7
+          },
+          "end": {
+            "line": 14,
+            "column": 69
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 851,
+            "end": 907,
+            "loc": {
+              "start": {
+                "line": 14,
+                "column": 13
+              },
+              "end": {
+                "line": 14,
+                "column": 69
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 851,
+              "end": 870,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 13
+                },
+                "end": {
+                  "line": 14,
+                  "column": 32
+                }
+              },
+              "name": "userActiveBlueprint"
+            },
+            "init": {
+              "type": "CallExpression",
+              "start": 873,
+              "end": 907,
+              "loc": {
+                "start": {
+                  "line": 14,
+                  "column": 35
+                },
+                "end": {
+                  "line": 14,
+                  "column": 69
+                }
+              },
+              "callee": {
+                "type": "Identifier",
+                "start": 873,
+                "end": 894,
+                "loc": {
+                  "start": {
+                    "line": 14,
+                    "column": 35
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 56
+                  }
+                },
+                "name": "createActionBlueprint"
+              },
+              "arguments": [
+                {
+                  "type": "Identifier",
+                  "start": 895,
+                  "end": 906,
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 57
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 68
+                    }
+                  },
+                  "name": "USER_ACTIVE"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 911,
+      "end": 1030,
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 16,
+          "column": 119
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 918,
+        "end": 1030,
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 7
+          },
+          "end": {
+            "line": 16,
+            "column": 119
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 924,
+            "end": 1030,
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 13
+              },
+              "end": {
+                "line": 16,
+                "column": 119
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 924,
+              "end": 940,
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 13
+                },
+                "end": {
+                  "line": 16,
+                  "column": 29
+                }
+              },
+              "name": "publicBlueprints"
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "start": 943,
+              "end": 1030,
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 32
+                },
+                "end": {
+                  "line": 16,
+                  "column": 119
+                }
+              },
+              "properties": [
+                {
+                  "type": "Property",
+                  "start": 945,
+                  "end": 972,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 34
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 61
+                    }
+                  },
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 945,
+                    "end": 956,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 34
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 45
+                      }
+                    },
+                    "name": "startAction"
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "start": 958,
+                    "end": 972,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 47
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 61
+                      }
+                    },
+                    "name": "startBlueprint"
+                  },
+                  "kind": "init"
+                },
+                {
+                  "type": "Property",
+                  "start": 974,
+                  "end": 999,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 63
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 88
+                    }
+                  },
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 974,
+                    "end": 984,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 63
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 73
+                      }
+                    },
+                    "name": "stopAction"
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "start": 986,
+                    "end": 999,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 75
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 88
+                      }
+                    },
+                    "name": "stopBlueprint"
+                  },
+                  "kind": "init"
+                },
+                {
+                  "type": "Property",
+                  "start": 1001,
+                  "end": 1028,
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 90
+                    },
+                    "end": {
+                      "line": 16,
+                      "column": 117
+                    }
+                  },
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "key": {
+                    "type": "Identifier",
+                    "start": 1001,
+                    "end": 1012,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 90
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 101
+                      }
+                    },
+                    "name": "resetAction"
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "start": 1014,
+                    "end": 1028,
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 103
+                      },
+                      "end": {
+                        "line": 16,
+                        "column": 117
+                      }
+                    },
+                    "name": "resetBlueprint"
+                  },
+                  "kind": "init"
+                }
+              ]
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    }
+  ]
+}

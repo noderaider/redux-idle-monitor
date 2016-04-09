@@ -1,24 +1,16 @@
-import { startBlueprint, stopBlueprint } from './actionBlueprints'
+import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint } from './blueprints'
 import { configureStartDetection } from './detection'
 import { configureStoreMultiplexer } from './multiplexer'
+import { IS_DEV, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
 
-export const createStartIdleMonitor = context => (dispatch, getState) => {
-  const { translateBlueprints, actionBlueprints, initialIdleActionName } = context
-  const { startAction, stopAction } = translateBlueprints({ startAction: startBlueprint, stopAction: stopBlueprint})
-  const userActions = translateBlueprints(actionBlueprints)
-
-  dispatch(startAction())
-
-
-
+export const createStartDetection = context => (dispatch, getState) => {
+  const { log } = context
   const stores = configureStoreMultiplexer(context)({ dispatch, getState })
   const startDetection = configureStartDetection(context)(stores)
+
   const endDetection = dispatch(startDetection)
-
-  dispatch(userActions[initialIdleActionName]())
-
   return (dispatch, getState) => {
+    log.debug('STOP DETECTION SIGNALED')
     dispatch(endDetection)
-    dispatch(stopAction())
   }
 }

@@ -9,4 +9,4 @@ export const getUseWebSocketsState = () => true
 
 export const getThresholds = ({ mouse = 10, elapsedMS = 1000 } = { mouse: 10, elapsedMS: 1000 }) => ({ mouse, elapsedMS })
 
-export const getLevel = () => 'debug'
+export const getLevel = () => 'trace'
