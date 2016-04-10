@@ -100,6 +100,7 @@ const opts =  { appName: &apos;todo-app&apos;
 const { middleware, reducer, actions } = configure(opts)
 export { middleware, reducer, actions }</code>
 </code></pre>
+<h6 id="configurable-constants">Configurable Constants</h6>
 <p>As shown above this is importing an <code>IDLE_STATUSES</code> constant from constants.js. IDLE_STATUSES are a simple array of string constant statuses that are used for the idleStatus property of redux idle state. The initial value for idleStatus will always be <code>ACTIVE</code> and from there it will progress through your configured <code>IDLE_STATUSES</code> in order until it reaches the final one where it will progress no further. Here is an example of what the constants.js could look like:</p>
 <p><strong>src/state/components/react-idle-monitor/constants.js</strong></p>
 <pre><code class="lang-js"><code class="source-code prettyprint">export const IDLESTATUS_AWAY = &apos;AWAY&apos;
@@ -108,6 +109,7 @@ export const IDLESTATUS_EXPIRED = &apos;EXPIRED&apos;
 
 export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED]</code>
 </code></pre>
+<h6 id="configurable-actions">Configurable Actions</h6>
 <p>In addition, we are also importing <code>idleStatusDelay</code>, <code>activeStatusAction</code>, and <code>idleStatusAction</code> from actions.js within the same directory.</p>
 <p><strong>src/state/components/react-idle-monitor/actions.js</strong></p>
 <pre><code class="lang-js"><code class="source-code prettyprint">import { AWAY_STATUS, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED } from &apos;./constants&apos;
