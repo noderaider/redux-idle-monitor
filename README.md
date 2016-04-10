@@ -43,6 +43,9 @@ const { middleware, reducer, actions } = configure(opts)
 export { middleware, reducer, actions }
 ```
 
+
+###### Configurable Constants
+
 As shown above this is importing an `IDLE_STATUSES` constant from constants.js. IDLE_STATUSES are a simple array of string constant statuses that are used for the idleStatus property of redux idle state. The initial value for idleStatus will always be `ACTIVE` and from there it will progress through your configured `IDLE_STATUSES` in order until it reaches the final one where it will progress no further. Here is an example of what the constants.js could look like:
 
 **src/state/components/react-idle-monitor/constants.js**
@@ -54,6 +57,9 @@ export const IDLESTATUS_EXPIRED = 'EXPIRED'
 
 export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED]
 ```
+
+
+###### Configurable Actions
 
 In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and `idleStatusAction` from actions.js within the same directory.
 
