@@ -109,24 +109,6 @@ export const IDLESTATUS_EXPIRED = &apos;EXPIRED&apos;
 export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED]</code>
 </code></pre>
 <p>In addition, we are also importing <code>idleStatusDelay</code>, <code>activeStatusAction</code>, and <code>idleStatusAction</code> from actions.js within the same directory.</p>
-<p><code>idleStatusDelay: idleStatus =&gt; (dispatch, getState) =&gt; delay /* where */ typeof delay === &apos;number&apos;</code></p>
-<ul>
-<li>accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you&apos;ve configured.</li>
-<li>gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.</li>
-<li>if user activity is detected the user will transition back to the <code>ACTIVE</code> state.</li>
-<li>will throw if the thunk action does not return a number type for any idleStatus specified in the <code>IDLE_STATUSES</code> array.</li>
-</ul>
-<p><code>activeStatusAction: (dispatch, getState) =&gt; void</code></p>
-<ul>
-<li>returns logic to be executed in your app whenever the user enters the <code>ACTIVE</code> status.</li>
-<li>dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the <code>ACTIVE</code> status.</li>
-</ul>
-<p><code>idleStatusAction: idleStatus =&gt; (dispatch, getState) =&gt; void</code></p>
-<ul>
-<li>accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.</li>
-<li>should contain logic that handles every configured idle status that was passed in the <code>IDLE_STATUSES</code> array when configured.</li>
-<li>run logic to show the user alerts, screensavers, auto-logout etc. from here.</li>
-</ul>
 <p><strong>src/state/components/react-idle-monitor/actions.js</strong></p>
 <pre><code class="lang-js"><code class="source-code prettyprint">import { AWAY_STATUS, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED } from &apos;./constants&apos;
 
@@ -152,6 +134,24 @@ export const idleStatusAction = idleStatus =&gt; (dispatch, getState) =&gt; {
     dispatch(logout())
 }</code>
 </code></pre>
+<p><code>idleStatusDelay: idleStatus =&gt; (dispatch, getState) =&gt; delay /* where */ typeof delay === &apos;number&apos;</code></p>
+<ul>
+<li>accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you&apos;ve configured.</li>
+<li>gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.</li>
+<li>if user activity is detected the user will transition back to the <code>ACTIVE</code> state.</li>
+<li>will throw if the thunk action does not return a number type for any idleStatus specified in the <code>IDLE_STATUSES</code> array.</li>
+</ul>
+<p><code>activeStatusAction: (dispatch, getState) =&gt; void</code></p>
+<ul>
+<li>returns logic to be executed in your app whenever the user enters the <code>ACTIVE</code> status.</li>
+<li>dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the <code>ACTIVE</code> status.</li>
+</ul>
+<p><code>idleStatusAction: idleStatus =&gt; (dispatch, getState) =&gt; void</code></p>
+<ul>
+<li>accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.</li>
+<li>should contain logic that handles every configured idle status that was passed in the <code>IDLE_STATUSES</code> array when configured.</li>
+<li>run logic to show the user alerts, screensavers, auto-logout etc. from here.</li>
+</ul>
 <h4 id="integration">Integration</h4>
 <p>Now you must import import the configured reducer into your top level combineReducers as the &apos;idle&apos; node like so (api and errors are two of your other top level reducers in this example).</p>
 <p><strong>src/state/reducers/index.js</strong></p>
