@@ -83,6 +83,7 @@
 <p><strong>middleware</strong> - The middleware that gets returned from configure handles listening for and scheduling idle status events, and enabling and disabling the detection of user activity. It should be added to your redux middleware array in both development and production versions. redux-idle-monitor requires you to be using thunk-middleware at this time (I&apos;d like to add saga support soon). When process.env.NODE_ENV !== &apos;production&apos; additional assertions are made throughout redux-idle-monitor that will be removed in your production build if you use UglifyJS or similiar mangler.</p>
 <p><strong>reducer</strong> - The reducer that gets returned from configure should be imported into your reducer tree as a top level &apos;idle&apos; node (the same way that you would import redux-form or react-redux-router). At this time, the idle node cannot be changed, but if its a common request, it can be modified to support other arrangements easily.</p>
 <p><strong>actions</strong> - The actions object that is returned from configure contains start and stop actions that can be dispatched from anywhere in your app that has access to your stores dispatch function. redux-idle-monitor does not start monitoring user activity until you dispatch the start action. Good places to run these might be in the same area that your app authorizes users (start monitoring whether the user is idle when authorized and stop when the user is logged out).</p>
+<hr>
 <h4 id="configuration">Configuration</h4>
 <p>The best way to configure redux-idle-monitor and then use the configured middleware, reducer, and actions within your app are to create a redux-idle-monitor component directory in the same area of your app that you configure your redux store.  For this example, I&apos;ve put it in src/state/components/redux-idle-monitor.  Create an index.js file to house your configuration:</p>
 <p><strong>src/state/components/redux-idle-monitor/index.js</strong></p>
@@ -136,6 +137,7 @@ export const idleStatusAction = idleStatus =&gt; (dispatch, getState) =&gt; {
     dispatch(logout())
 }</code>
 </code></pre>
+<hr>
 <p><code>idleStatusDelay: idleStatus =&gt; (dispatch, getState) =&gt; delay /* where */ typeof delay === &apos;number&apos;</code></p>
 <ul>
 <li>accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you&apos;ve configured.</li>
