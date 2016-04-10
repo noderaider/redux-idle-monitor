@@ -21,7 +21,7 @@ redux-idle-monitor works similiar to other redux libraries (e.g. redux-form) exc
 
 **actions** - The actions object that is returned from configure contains start and stop actions that can be dispatched from anywhere in your app that has access to your stores dispatch function. redux-idle-monitor does not start monitoring user activity until you dispatch the start action. Good places to run these might be in the same area that your app authorizes users (start monitoring whether the user is idle when authorized and stop when the user is logged out).
 
-#### Usage
+#### Configuration
 
 The best way to configure redux-idle-monitor and then use the configured middleware, reducer, and actions within your app are to create a redux-idle-monitor component directory in the same area of your app that you configure your redux store.  For this example, I've put it in src/state/components/redux-idle-monitor.  Create an index.js file to house your configuration:
 
@@ -55,8 +55,32 @@ export const IDLESTATUS_EXPIRED = 'EXPIRED'
 export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED]
 ```
 
-In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and `idleStatusAction` from actions.js in the same directory. `idleStatusDelay` is a thunk that accepts an idle status string and expects a thunk with optional `(dispatch, getState)` args be returned. The thunk gets dispatched by idle middleware and should return a number in milliseconds that will be used as the delay that must occur before transitioning into that idle status.  If any user activity is detected, the user will transition back to `ACTIVE` idle status and the cycle will start over. The middleware will throw if a valid number is not returned from the `idleStatusDelay` thunk. The params `activeStatusAction` and `idleStatusAction` are `(dispatch, getState)` thunks that will be dispatched by the idle middleware. `activeStatusAction` will get dispatched every time a user becomes active after being in one of the idle status states. `idleStatusAction` gets dispatched every time the user transitions into one of your configured idle statuses.  These three actions are where all of your app logic should be configured (displaying a message when the user goes away, screensaver, etc.).
+In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and `idleStatusAction` from actions.js within the same directory.
 
+
+`idleStatusDelay: idleStatus => (dispatch, getState) => delay /* where */ typeof delay === 'number'`
+
+* accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
+* gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.
+* if user activity is detected the user will transition back to the `ACTIVE` state.
+* will throw if the thunk action does not return a number type for any idleStatus specified in the `IDLE_STATUSES` array.
+
+
+`activeStatusAction: (dispatch, getState) => void`
+
+* returns logic to be executed in your app whenever the user enters the `ACTIVE` status.
+* dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the `ACTIVE` status.
+
+
+`idleStatusAction: idleStatus => (dispatch, getState) => void`
+
+* accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.
+* should contain logic that handles every configured idle status that was passed in the `IDLE_STATUSES` array when configured.
+* run logic to show the user alerts, screensavers, auto-logout etc. from here.
+
+
+
+**src/state/components/react-idle-monitor/actions.js**
 
 ```js
 import { AWAY_STATUS, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED } from './constants'
@@ -84,3 +108,63 @@ export const idleStatusAction = idleStatus => (dispatch, getState) => {
 }
 
 ```
+
+
+#### Integration
+
+Now you must import import the configured reducer into your top level combineReducers as the 'idle' node like so (api and errors are two of your other top level reducers in this example).
+
+**src/state/reducers/index.js**
+
+```js
+import { combineReducers } from 'redux'
+import { api } from './api'
+import { errors } from './errors'
+import { reducer as form } from 'redux-form'
+import { reducer as idle } from '../components/redux-idle-monitor'
+
+const rootReducer = combineReducers({ api
+                                    , errors
+                                    , form
+                                    , idle
+                                    })
+export default rootReducer
+```
+
+
+The last step is to import the idle middleware into your store and dispatch the `start` action when you want to start monitoring user idleness.
+
+**src/state/store/configureStore.js**
+
+```js
+import { createStore, applyMiddleware, compose } from 'redux'
+import rootReducer from '../reducers'
+import DevTools from '../../containers/DevTools'
+import { middleware as idleMiddleware } from '../components/redux-idle-monitor'
+
+import { thunk, readyStatePromise, createLogger, crashReporter } from 'redux-middleware'
+
+const logger = createLogger()
+
+const composeStore = compose( applyMiddleware(thunk, idleMiddleware, readyStatePromise, logger, crashReporter)
+                            , DevTools.instrument()
+                            )(createStore)
+
+export default function configureStore() {
+  const store = composeStore(rootReducer)
+
+  // Will start the idle monitoring when the user logs in, and stop it if the user is signed out.
+  store.subscribe(() => {
+    let previousIsAuthorized = currentIsAuthorized
+    let state = store.getState()
+    // calls a function that selects whether the user is authorized from the current state
+    currentIsAuthorized = selectIsAuthorized(state)
+
+    if(currentIsAuthorized !== previousIsAuthorized)
+      store.dispatch((currentIsAuthorized ? idleActions.start : idleActions.stop)())
+  })
+  return store
+}
+```
+
+Your done. I'll be adding more functionality such as multi-tab monitoring in the near term. Please open an [issue](https://github.com/cchamberlain/redux-idle-monitor/issues) if there are any features that you would like to see added.
