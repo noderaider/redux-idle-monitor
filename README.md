@@ -68,7 +68,7 @@ In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and 
 **src/state/components/react-idle-monitor/actions.js**
 
 ```js
-import { AWAY_STATUS, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED } from './constants'
+import { IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_EXPIRED } from './constants'
 
 //...
 
