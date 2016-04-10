@@ -11,7 +11,7 @@ Redux middleware, reducer, and actions for idle state monitoring in the browser.
 
 Can be used standalone with redux or in tandem with [react-redux-idle-monitor](https://npmjs.com/packages/react-redux-idle-monitor) to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.
 
-#### How it works
+### How it works
 
 redux-idle-monitor works similiar to other redux libraries (e.g. redux-form) except that it exports a configure function that accepts options from the library consumer and returns an object with middleware, reducer, and actions keys.  The input options allow redux-idle-monitor to configure the idle statuses that will occur at varying times of idleness within your app as well as actions to dispatch when your users transition to an active status, or any one of your configured idle statuses.
 
@@ -23,7 +23,9 @@ redux-idle-monitor works similiar to other redux libraries (e.g. redux-form) exc
 
 ___
 
-#### Configuration
+
+### Configuration
+
 
 The best way to configure redux-idle-monitor and then use the configured middleware, reducer, and actions within your app are to create a redux-idle-monitor component directory in the same area of your app that you configure your redux store.  For this example, I've put it in src/state/components/redux-idle-monitor.  Create an index.js file to house your configuration:
 
@@ -46,7 +48,8 @@ export { middleware, reducer, actions }
 ```
 
 
-###### Configurable Constants
+##### Configurable Constants
+
 
 As shown above this is importing an `IDLE_STATUSES` constant from constants.js. IDLE_STATUSES are a simple array of string constant statuses that are used for the idleStatus property of redux idle state. The initial value for idleStatus will always be `ACTIVE` and from there it will progress through your configured `IDLE_STATUSES` in order until it reaches the final one where it will progress no further. Here is an example of what the constants.js could look like:
 
@@ -61,7 +64,8 @@ export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_E
 ```
 
 
-###### Configurable Actions
+##### Configurable Actions
+
 
 In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and `idleStatusAction` from actions.js within the same directory.
 
@@ -97,7 +101,12 @@ export const idleStatusAction = idleStatus => (dispatch, getState) => {
 ___
 
 
-`idleStatusDelay: idleStatus => (dispatch, getState) => delay /* where */ typeof delay === 'number'`
+
+`idleStatusDelay: (idleStatus) => (dispatch, getState) => delay`
+
+*where*
+
+`typeof delay === 'number'`
 
 * accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
 * gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.
@@ -111,14 +120,14 @@ ___
 * dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the `ACTIVE` status.
 
 
-`idleStatusAction: idleStatus => (dispatch, getState) => void`
+`idleStatusAction: (idleStatus) => (dispatch, getState) => void`
 
 * accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.
 * should contain logic that handles every configured idle status that was passed in the `IDLE_STATUSES` array when configured.
 * run logic to show the user alerts, screensavers, auto-logout etc. from here.
 
 
-#### Integration
+### Integration
 
 Now you must import import the configured reducer into your top level combineReducers as the 'idle' node like so (api and errors are two of your other top level reducers in this example).
 
@@ -174,5 +183,8 @@ export default function configureStore() {
   return store
 }
 ```
+
+___
+
 
 Your done. I'll be adding more functionality such as multi-tab monitoring in the near term. Please open an [issue](https://github.com/cchamberlain/redux-idle-monitor/issues) if there are any features that you would like to see added.
