@@ -57,29 +57,6 @@ export const IDLE_STATUSES = [IDLESTATUS_AWAY, IDLESTATUS_INACTIVE, IDLESTATUS_E
 
 In addition, we are also importing `idleStatusDelay`, `activeStatusAction`, and `idleStatusAction` from actions.js within the same directory.
 
-
-`idleStatusDelay: idleStatus => (dispatch, getState) => delay /* where */ typeof delay === 'number'`
-
-* accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
-* gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.
-* if user activity is detected the user will transition back to the `ACTIVE` state.
-* will throw if the thunk action does not return a number type for any idleStatus specified in the `IDLE_STATUSES` array.
-
-
-`activeStatusAction: (dispatch, getState) => void`
-
-* returns logic to be executed in your app whenever the user enters the `ACTIVE` status.
-* dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the `ACTIVE` status.
-
-
-`idleStatusAction: idleStatus => (dispatch, getState) => void`
-
-* accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.
-* should contain logic that handles every configured idle status that was passed in the `IDLE_STATUSES` array when configured.
-* run logic to show the user alerts, screensavers, auto-logout etc. from here.
-
-
-
 **src/state/components/react-idle-monitor/actions.js**
 
 ```js
@@ -108,6 +85,27 @@ export const idleStatusAction = idleStatus => (dispatch, getState) => {
 }
 
 ```
+
+`idleStatusDelay: idleStatus => (dispatch, getState) => delay /* where */ typeof delay === 'number'`
+
+* accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
+* gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.
+* if user activity is detected the user will transition back to the `ACTIVE` state.
+* will throw if the thunk action does not return a number type for any idleStatus specified in the `IDLE_STATUSES` array.
+
+
+`activeStatusAction: (dispatch, getState) => void`
+
+* returns logic to be executed in your app whenever the user enters the `ACTIVE` status.
+* dispatched by idle middleware only when the user has transitioned to one of your idle statuses and then back into the `ACTIVE` status.
+
+
+`idleStatusAction: idleStatus => (dispatch, getState) => void`
+
+* accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.
+* should contain logic that handles every configured idle status that was passed in the `IDLE_STATUSES` array when configured.
+* run logic to show the user alerts, screensavers, auto-logout etc. from here.
+
 
 
 #### Integration
