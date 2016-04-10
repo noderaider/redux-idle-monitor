@@ -21,6 +21,8 @@ redux-idle-monitor works similiar to other redux libraries (e.g. redux-form) exc
 
 **actions** - The actions object that is returned from configure contains start and stop actions that can be dispatched from anywhere in your app that has access to your stores dispatch function. redux-idle-monitor does not start monitoring user activity until you dispatch the start action. Good places to run these might be in the same area that your app authorizes users (start monitoring whether the user is idle when authorized and stop when the user is logged out).
 
+___
+
 #### Configuration
 
 The best way to configure redux-idle-monitor and then use the configured middleware, reducer, and actions within your app are to create a redux-idle-monitor component directory in the same area of your app that you configure your redux store.  For this example, I've put it in src/state/components/redux-idle-monitor.  Create an index.js file to house your configuration:
@@ -92,6 +94,9 @@ export const idleStatusAction = idleStatus => (dispatch, getState) => {
 
 ```
 
+___
+
+
 `idleStatusDelay: idleStatus => (dispatch, getState) => delay /* where */ typeof delay === 'number'`
 
 * accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
@@ -111,7 +116,6 @@ export const idleStatusAction = idleStatus => (dispatch, getState) => {
 * accepts idleStatus string argument and returns a thunk action to run app logic that should occur when user enters one of your configured idle statuses.
 * should contain logic that handles every configured idle status that was passed in the `IDLE_STATUSES` array when configured.
 * run logic to show the user alerts, screensavers, auto-logout etc. from here.
-
 
 
 #### Integration
