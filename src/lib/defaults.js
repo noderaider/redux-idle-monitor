@@ -7,6 +7,6 @@ export const getUseLocalState = () => true
 export const getUseWebRTCState = () => true
 export const getUseWebSocketsState = () => true
 
-export const getThresholds = ({ mouse = 10, elapsedMS = 1000 } = { mouse: 10, elapsedMS: 1000 }) => ({ mouse, elapsedMS })
+export const getThresholds = ({ mouse = 20, elapsedMS = 2000, phaseOnMS = 500, phaseOffMS = 500 } = {}) => ({ mouse, elapsedMS, phaseOnMS, phaseOffMS })
 
 export const getLevel = () => 'info'
