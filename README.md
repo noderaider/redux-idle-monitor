@@ -1,11 +1,6 @@
-# redux-idle-monitor
-
-A component that adds Redux functionality for invoking events at various times of idleness during a users session.
-
-
 # [redux-idle-monitor](https://npmjs.com/packages/redux-idle-monitor)
 
-Redux middleware, reducer, and actions for idle state monitoring in the browser.
+A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.
 
 `npm i -S redux-idle-monitor`
 

@@ -10,16 +10,21 @@ const validateContext = (libContext, appContext) => {
   assert.ok(libContext, 'must pass opts to validate')
   assert.ok(appContext, 'must pass opts to validate')
 
-  const { libName, appName, libActions } = libContext
-  const { activeEvents, useFastStore, useLocalStore, thresholds } = appContext
+  const { libName, appName } = libContext
+  const { activeEvents, thresholds } = appContext
 
   assert.ok(libName, 'libName must exist')
-  assert(typeof libName === 'string', 'libName opt must be a string')
-  assert(libName.length > 0, 'libName opt must not be empty')
+  assert(typeof libName === 'string', 'libName option must be a string')
+  assert(libName.length > 0, 'libName option must not be empty')
   assert.ok(appName, 'appName must exist')
-  assert(typeof appName === 'string', 'appName opt must be a string')
-  assert(appName.length > 0, 'appName opt must not be empty')
+  assert(typeof appName === 'string', 'appName option must be a string')
+  assert(appName.length > 0, 'appName option must not be empty')
   assert.ok(activeEvents, 'active events must exist')
+  assert.ok(thresholds, 'thresholds must exist')
+  assert.ok(thresholds.mouse, 'thresholds.mouse must exist')
+  assert(typeof thresholds.mouse === 'number', 'thresholds.mouse must be a number corresponding to pixels')
+  assert.ok(thresholds.elapsedMS, 'thresholds.elapsedMS must exist')
+  assert(typeof thresholds.elapsedMS === 'number', 'thresholds.elapsedMS must be a number corresponding to minimum milliseconds between updates to redux')
 }
 
 const configureInitialState = libContext => appContext => {
@@ -45,7 +50,7 @@ export default function createContext({ appName
                                       , thresholds = getThresholds()
                                       , level = getLevel()
                                       } = {}) {
-  const libName = 'idlemonitor'
+  const libName = ROOT_STATE_KEY
   const libOpts = { libName, validateContext, configureAppContext: libContext => appOpts => appOpts, configureInitialState }
   const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
   return configureContext(libOpts)(appOpts)
