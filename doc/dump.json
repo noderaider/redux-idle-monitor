@@ -553,7 +553,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export const getTimeStamp = () => new Date().toTimeString()\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 10, elapsedMS = 1000 } = { mouse: 10, elapsedMS: 1000 }) => ({ mouse, elapsedMS })\r\n\r\nexport const getLevel = () => 'info'\r\n"
+    "content": "export const getTimeStamp = () => new Date().toTimeString()\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 20, elapsedMS = 2000, phaseOnMS = 500, phaseOffMS = 500 } = {}) => ({ mouse, elapsedMS, phaseOnMS, phaseOffMS })\r\n\r\nexport const getLevel = () => 'info'\r\n"
   },
   {
     "__docId__": 28,
