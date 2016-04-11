@@ -85,16 +85,21 @@ const validateContext = (libContext, appContext) =&gt; {
   assert.ok(libContext, &apos;must pass opts to validate&apos;)
   assert.ok(appContext, &apos;must pass opts to validate&apos;)
 
-  const { libName, appName, libActions } = libContext
-  const { activeEvents, useFastStore, useLocalStore, thresholds } = appContext
+  const { libName, appName } = libContext
+  const { activeEvents, thresholds } = appContext
 
   assert.ok(libName, &apos;libName must exist&apos;)
-  assert(typeof libName === &apos;string&apos;, &apos;libName opt must be a string&apos;)
-  assert(libName.length &gt; 0, &apos;libName opt must not be empty&apos;)
+  assert(typeof libName === &apos;string&apos;, &apos;libName option must be a string&apos;)
+  assert(libName.length &gt; 0, &apos;libName option must not be empty&apos;)
   assert.ok(appName, &apos;appName must exist&apos;)
-  assert(typeof appName === &apos;string&apos;, &apos;appName opt must be a string&apos;)
-  assert(appName.length &gt; 0, &apos;appName opt must not be empty&apos;)
+  assert(typeof appName === &apos;string&apos;, &apos;appName option must be a string&apos;)
+  assert(appName.length &gt; 0, &apos;appName option must not be empty&apos;)
   assert.ok(activeEvents, &apos;active events must exist&apos;)
+  assert.ok(thresholds, &apos;thresholds must exist&apos;)
+  assert.ok(thresholds.mouse, &apos;thresholds.mouse must exist&apos;)
+  assert(typeof thresholds.mouse === &apos;number&apos;, &apos;thresholds.mouse must be a number corresponding to pixels&apos;)
+  assert.ok(thresholds.elapsedMS, &apos;thresholds.elapsedMS must exist&apos;)
+  assert(typeof thresholds.elapsedMS === &apos;number&apos;, &apos;thresholds.elapsedMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
 }
 
 const configureInitialState = libContext =&gt; appContext =&gt; {
@@ -120,7 +125,7 @@ export default function createContext({ appName
                                       , thresholds = getThresholds()
                                       , level = getLevel()
                                       } = {}) {
-  const libName = &apos;idlemonitor&apos;
+  const libName = ROOT_STATE_KEY
   const libOpts = { libName, validateContext, configureAppContext: libContext =&gt; appOpts =&gt; appOpts, configureInitialState }
   const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
   return configureContext(libOpts)(appOpts)
