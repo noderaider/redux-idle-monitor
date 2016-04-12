@@ -77,8 +77,8 @@
 import { IS_DEV, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
 
-const STOP_TYPES = [&apos;MSPointerMove&apos;]
-const FILTER_TYPES = [&apos;mousemove&apos;, &apos;pointermove&apos;]
+const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
+const FILTER_TYPES = [&apos;mousemove&apos;]
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) =&gt; stores =&gt; ({ type, pageX, pageY }) =&gt; {
