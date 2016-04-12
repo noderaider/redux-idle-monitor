@@ -23,15 +23,15 @@ const validateContext = (libContext, appContext) => {
   assert.ok(thresholds, 'thresholds must exist')
   assert.ok(thresholds.mouse, 'thresholds.mouse must exist')
   assert(typeof thresholds.mouse === 'number', 'thresholds.mouse must be a number corresponding to pixels')
-  assert.ok(thresholds.elapsedMS, 'thresholds.elapsedMS must exist')
-  assert(typeof thresholds.elapsedMS === 'number', 'thresholds.elapsedMS must be a number corresponding to minimum milliseconds between updates to redux')
+  assert(typeof thresholds.phaseOffMS === 'number', 'thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux')
+  assert(typeof thresholds.phaseOnMS === 'number', 'thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux')
 }
 
 const configureInitialState = libContext => appContext => {
   return  { idleStatus: IDLESTATUS_ACTIVE
-          , isIdle: false
-          , isPaused: false
+          , isRunning: false
           , isDetectionRunning: false
+          , isIdle: false
           , lastActive: +new Date()
           , lastEvent: { x: -1, y: -1, type: null }
           }
