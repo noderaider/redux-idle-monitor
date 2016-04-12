@@ -9,18 +9,15 @@ const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX,
   if(!FILTER_TYPES.includes(type))
     return true
   const { getState } = stores.selectFirst('lib')
-  const { lastActive } = getState()
-  if(lastEvent.type === type) {
-    const { x, y } = lastEvent
-    if(!x || !y)
-      return true
+  const { lastActive, lastEvent } = getState()
+  if(lastEvent.type !== type)
+    return true
 
+  const { x, y } = lastEvent
+  if(pageX && pageY && !x || !y)
+    return true
 
-  }
-
-  if (typeof pageX === 'undefined' || typeof pageY === 'undefined')
-    return false
-  if(Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)
+  if(pageX && pageY && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)
     return false
 
   // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE
