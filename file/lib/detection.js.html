@@ -79,7 +79,11 @@ import { activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) =&gt; stores =&gt; ({ type, pageX, pageY }) =&gt; {
-  if(type !== &apos;mousemove&apos;) return true
+  if(type !== &apos;mousemove&apos;) {
+    console.warn(&apos;type is actually =&gt; &apos;, type)
+    return true
+  }
+
 
   const { lastActive, lastEvent: { x, y } } = stores.selectFirst(&apos;lib&apos;).getState()
 
