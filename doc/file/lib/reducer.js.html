@@ -95,18 +95,14 @@ export const createReducer = context =&gt; {
     const { type, payload } = action
     switch(type) {
       case ACTIVITY:
-        console.info(`REDUCER: ${ACTIVITY} =&gt; CURRENT[${state.idleStatus}]`)
         return Object.assign({}, state, getActivityPayload(payload))
 
       case ACTIVITY_DETECTION:
-        console.info(`REDUCER: ${ACTIVITY_DETECTION} =&gt; CURRENT[${state.idleStatus}]`)
         return Object.assign({}, state, getActivityDetectionPayload(payload))
 
       case NEXT_IDLE_STATUS:
-        console.info(`REDUCER: ${NEXT_IDLE_STATUS} =&gt; CURRENT[${state.idleStatus}], NEXT[${payload.nextIdleStatus}]`)
         if(payload.nextIdleStatus)
           return Object.assign({}, state, { idleStatus: payload.nextIdleStatus, isIdle: true, isPaused: false })
-        console.info(&apos;REDUCER NO NEXT IDLE STATUS&apos;)
         return Object.assign({}, state, { isIdle: true, isPaused: true })
 
       default:
