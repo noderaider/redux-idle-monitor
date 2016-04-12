@@ -360,7 +360,7 @@
     {
       "type": "VariableDeclaration",
       "start": 168,
-      "end": 204,
+      "end": 219,
       "loc": {
         "start": {
           "line": 5,
@@ -368,14 +368,14 @@
         },
         "end": {
           "line": 5,
-          "column": 36
+          "column": 51
         }
       },
       "declarations": [
         {
           "type": "VariableDeclarator",
           "start": 174,
-          "end": 204,
+          "end": 219,
           "loc": {
             "start": {
               "line": 5,
@@ -383,7 +383,7 @@
             },
             "end": {
               "line": 5,
-              "column": 36
+              "column": 51
             }
           },
           "id": {
@@ -405,7 +405,7 @@
           "init": {
             "type": "ArrayExpression",
             "start": 187,
-            "end": 204,
+            "end": 219,
             "loc": {
               "start": {
                 "line": 5,
@@ -413,14 +413,14 @@
               },
               "end": {
                 "line": 5,
-                "column": 36
+                "column": 51
               }
             },
             "elements": [
               {
                 "type": "Literal",
                 "start": 188,
-                "end": 203,
+                "end": 201,
                 "loc": {
                   "start": {
                     "line": 5,
@@ -428,7 +428,25 @@
                   },
                   "end": {
                     "line": 5,
+                    "column": 33
+                  }
+                },
+                "value": "pointermove",
+                "rawValue": "pointermove",
+                "raw": "'pointermove'"
+              },
+              {
+                "type": "Literal",
+                "start": 203,
+                "end": 218,
+                "loc": {
+                  "start": {
+                    "line": 5,
                     "column": 35
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 50
                   }
                 },
                 "value": "MSPointerMove",
@@ -443,7 +461,7 @@
     },
     {
       "type": "VariableDeclaration",
-      "start": 206,
+      "start": 221,
       "end": 255,
       "loc": {
         "start": {
@@ -452,13 +470,13 @@
         },
         "end": {
           "line": 6,
-          "column": 49
+          "column": 34
         }
       },
       "declarations": [
         {
           "type": "VariableDeclarator",
-          "start": 212,
+          "start": 227,
           "end": 255,
           "loc": {
             "start": {
@@ -467,13 +485,13 @@
             },
             "end": {
               "line": 6,
-              "column": 49
+              "column": 34
             }
           },
           "id": {
             "type": "Identifier",
-            "start": 212,
-            "end": 224,
+            "start": 227,
+            "end": 239,
             "loc": {
               "start": {
                 "line": 6,
@@ -488,7 +506,7 @@
           },
           "init": {
             "type": "ArrayExpression",
-            "start": 227,
+            "start": 242,
             "end": 255,
             "loc": {
               "start": {
@@ -497,14 +515,14 @@
               },
               "end": {
                 "line": 6,
-                "column": 49
+                "column": 34
               }
             },
             "elements": [
               {
                 "type": "Literal",
-                "start": 228,
-                "end": 239,
+                "start": 243,
+                "end": 254,
                 "loc": {
                   "start": {
                     "line": 6,
@@ -518,24 +536,6 @@
                 "value": "mousemove",
                 "rawValue": "mousemove",
                 "raw": "'mousemove'"
-              },
-              {
-                "type": "Literal",
-                "start": 241,
-                "end": 254,
-                "loc": {
-                  "start": {
-                    "line": 6,
-                    "column": 35
-                  },
-                  "end": {
-                    "line": 6,
-                    "column": 48
-                  }
-                },
-                "value": "pointermove",
-                "rawValue": "pointermove",
-                "raw": "'pointermove'"
               }
             ],
             "trailingComments": null
