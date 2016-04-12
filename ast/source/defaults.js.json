@@ -1,7 +1,7 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 622,
+  "end": 592,
   "loc": {
     "start": {
       "line": 1,
@@ -894,7 +894,7 @@
     {
       "type": "ExportNamedDeclaration",
       "start": 428,
-      "end": 580,
+      "end": 550,
       "loc": {
         "start": {
           "line": 10,
@@ -902,13 +902,13 @@
         },
         "end": {
           "line": 10,
-          "column": 152
+          "column": 122
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
         "start": 435,
-        "end": 580,
+        "end": 550,
         "loc": {
           "start": {
             "line": 10,
@@ -916,14 +916,14 @@
           },
           "end": {
             "line": 10,
-            "column": 152
+            "column": 122
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
             "start": 441,
-            "end": 580,
+            "end": 550,
             "loc": {
               "start": {
                 "line": 10,
@@ -931,7 +931,7 @@
               },
               "end": {
                 "line": 10,
-                "column": 152
+                "column": 122
               }
             },
             "id": {
@@ -953,7 +953,7 @@
             "init": {
               "type": "ArrowFunctionExpression",
               "start": 457,
-              "end": 580,
+              "end": 550,
               "loc": {
                 "start": {
                   "line": 10,
@@ -961,7 +961,7 @@
                 },
                 "end": {
                   "line": 10,
-                  "column": 152
+                  "column": 122
                 }
               },
               "id": null,
@@ -972,7 +972,7 @@
                 {
                   "type": "AssignmentPattern",
                   "start": 458,
-                  "end": 530,
+                  "end": 511,
                   "loc": {
                     "start": {
                       "line": 10,
@@ -980,13 +980,13 @@
                     },
                     "end": {
                       "line": 10,
-                      "column": 102
+                      "column": 83
                     }
                   },
                   "left": {
                     "type": "ObjectPattern",
                     "start": 458,
-                    "end": 525,
+                    "end": 506,
                     "loc": {
                       "start": {
                         "line": 10,
@@ -994,7 +994,7 @@
                       },
                       "end": {
                         "line": 10,
-                        "column": 97
+                        "column": 78
                       }
                     },
                     "properties": [
@@ -1086,7 +1086,7 @@
                       {
                         "type": "Property",
                         "start": 472,
-                        "end": 488,
+                        "end": 489,
                         "loc": {
                           "start": {
                             "line": 10,
@@ -1094,7 +1094,7 @@
                           },
                           "end": {
                             "line": 10,
-                            "column": 60
+                            "column": 61
                           }
                         },
                         "method": false,
@@ -1103,7 +1103,7 @@
                         "key": {
                           "type": "Identifier",
                           "start": 472,
-                          "end": 481,
+                          "end": 482,
                           "loc": {
                             "start": {
                               "line": 10,
@@ -1111,16 +1111,16 @@
                             },
                             "end": {
                               "line": 10,
-                              "column": 53
+                              "column": 54
                             }
                           },
-                          "name": "elapsedMS"
+                          "name": "phaseOffMS"
                         },
                         "kind": "init",
                         "value": {
                           "type": "AssignmentPattern",
                           "start": 472,
-                          "end": 488,
+                          "end": 489,
                           "loc": {
                             "start": {
                               "line": 10,
@@ -1128,14 +1128,14 @@
                             },
                             "end": {
                               "line": 10,
-                              "column": 60
+                              "column": 61
                             }
                           },
                           "operator": "=",
                           "left": {
                             "type": "Identifier",
                             "start": 472,
-                            "end": 481,
+                            "end": 482,
                             "loc": {
                               "start": {
                                 "line": 10,
@@ -1143,23 +1143,23 @@
                               },
                               "end": {
                                 "line": 10,
-                                "column": 53
+                                "column": 54
                               }
                             },
-                            "name": "elapsedMS"
+                            "name": "phaseOffMS"
                           },
                           "right": {
                             "type": "Literal",
-                            "start": 484,
-                            "end": 488,
+                            "start": 485,
+                            "end": 489,
                             "loc": {
                               "start": {
                                 "line": 10,
-                                "column": 56
+                                "column": 57
                               },
                               "end": {
                                 "line": 10,
-                                "column": 60
+                                "column": 61
                               }
                             },
                             "value": 2000,
@@ -1170,16 +1170,16 @@
                       },
                       {
                         "type": "Property",
-                        "start": 490,
-                        "end": 505,
+                        "start": 491,
+                        "end": 504,
                         "loc": {
                           "start": {
                             "line": 10,
-                            "column": 62
+                            "column": 63
                           },
                           "end": {
                             "line": 10,
-                            "column": 77
+                            "column": 76
                           }
                         },
                         "method": false,
@@ -1187,16 +1187,16 @@
                         "computed": false,
                         "key": {
                           "type": "Identifier",
-                          "start": 490,
-                          "end": 499,
+                          "start": 491,
+                          "end": 500,
                           "loc": {
                             "start": {
                               "line": 10,
-                              "column": 62
+                              "column": 63
                             },
                             "end": {
                               "line": 10,
-                              "column": 71
+                              "column": 72
                             }
                           },
                           "name": "phaseOnMS"
@@ -1204,137 +1204,52 @@
                         "kind": "init",
                         "value": {
                           "type": "AssignmentPattern",
-                          "start": 490,
-                          "end": 505,
+                          "start": 491,
+                          "end": 504,
                           "loc": {
                             "start": {
                               "line": 10,
-                              "column": 62
+                              "column": 63
                             },
                             "end": {
                               "line": 10,
-                              "column": 77
+                              "column": 76
                             }
                           },
                           "operator": "=",
                           "left": {
                             "type": "Identifier",
-                            "start": 490,
-                            "end": 499,
+                            "start": 491,
+                            "end": 500,
                             "loc": {
                               "start": {
                                 "line": 10,
-                                "column": 62
+                                "column": 63
                               },
                               "end": {
                                 "line": 10,
-                                "column": 71
+                                "column": 72
                               }
                             },
                             "name": "phaseOnMS"
                           },
                           "right": {
                             "type": "Literal",
-                            "start": 502,
-                            "end": 505,
+                            "start": 503,
+                            "end": 504,
                             "loc": {
                               "start": {
                                 "line": 10,
-                                "column": 74
+                                "column": 75
                               },
                               "end": {
                                 "line": 10,
-                                "column": 77
+                                "column": 76
                               }
                             },
-                            "value": 500,
-                            "rawValue": 500,
-                            "raw": "500"
-                          }
-                        }
-                      },
-                      {
-                        "type": "Property",
-                        "start": 507,
-                        "end": 523,
-                        "loc": {
-                          "start": {
-                            "line": 10,
-                            "column": 79
-                          },
-                          "end": {
-                            "line": 10,
-                            "column": 95
-                          }
-                        },
-                        "method": false,
-                        "shorthand": true,
-                        "computed": false,
-                        "key": {
-                          "type": "Identifier",
-                          "start": 507,
-                          "end": 517,
-                          "loc": {
-                            "start": {
-                              "line": 10,
-                              "column": 79
-                            },
-                            "end": {
-                              "line": 10,
-                              "column": 89
-                            }
-                          },
-                          "name": "phaseOffMS"
-                        },
-                        "kind": "init",
-                        "value": {
-                          "type": "AssignmentPattern",
-                          "start": 507,
-                          "end": 523,
-                          "loc": {
-                            "start": {
-                              "line": 10,
-                              "column": 79
-                            },
-                            "end": {
-                              "line": 10,
-                              "column": 95
-                            }
-                          },
-                          "operator": "=",
-                          "left": {
-                            "type": "Identifier",
-                            "start": 507,
-                            "end": 517,
-                            "loc": {
-                              "start": {
-                                "line": 10,
-                                "column": 79
-                              },
-                              "end": {
-                                "line": 10,
-                                "column": 89
-                              }
-                            },
-                            "name": "phaseOffMS"
-                          },
-                          "right": {
-                            "type": "Literal",
-                            "start": 520,
-                            "end": 523,
-                            "loc": {
-                              "start": {
-                                "line": 10,
-                                "column": 92
-                              },
-                              "end": {
-                                "line": 10,
-                                "column": 95
-                              }
-                            },
-                            "value": 500,
-                            "rawValue": 500,
-                            "raw": "500"
+                            "value": 0,
+                            "rawValue": 0,
+                            "raw": "0"
                           }
                         }
                       }
@@ -1342,16 +1257,16 @@
                   },
                   "right": {
                     "type": "ObjectExpression",
-                    "start": 528,
-                    "end": 530,
+                    "start": 509,
+                    "end": 511,
                     "loc": {
                       "start": {
                         "line": 10,
-                        "column": 100
+                        "column": 81
                       },
                       "end": {
                         "line": 10,
-                        "column": 102
+                        "column": 83
                       }
                     },
                     "properties": []
@@ -1360,23 +1275,125 @@
               ],
               "body": {
                 "type": "ObjectExpression",
-                "start": 536,
-                "end": 579,
+                "start": 517,
+                "end": 549,
                 "loc": {
                   "start": {
                     "line": 10,
-                    "column": 108
+                    "column": 89
                   },
                   "end": {
                     "line": 10,
-                    "column": 151
+                    "column": 121
                   }
                 },
                 "properties": [
                   {
                     "type": "Property",
+                    "start": 519,
+                    "end": 524,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 91
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 96
+                      }
+                    },
+                    "method": false,
+                    "shorthand": true,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 519,
+                      "end": 524,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 91
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 96
+                        }
+                      },
+                      "name": "mouse"
+                    },
+                    "kind": "init",
+                    "value": {
+                      "type": "Identifier",
+                      "start": 519,
+                      "end": 524,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 91
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 96
+                        }
+                      },
+                      "name": "mouse"
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "start": 526,
+                    "end": 536,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 98
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 108
+                      }
+                    },
+                    "method": false,
+                    "shorthand": true,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 526,
+                      "end": 536,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 98
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 108
+                        }
+                      },
+                      "name": "phaseOffMS"
+                    },
+                    "kind": "init",
+                    "value": {
+                      "type": "Identifier",
+                      "start": 526,
+                      "end": 536,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 98
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 108
+                        }
+                      },
+                      "name": "phaseOffMS"
+                    }
+                  },
+                  {
+                    "type": "Property",
                     "start": 538,
-                    "end": 543,
+                    "end": 547,
                     "loc": {
                       "start": {
                         "line": 10,
@@ -1384,7 +1401,7 @@
                       },
                       "end": {
                         "line": 10,
-                        "column": 115
+                        "column": 119
                       }
                     },
                     "method": false,
@@ -1393,7 +1410,7 @@
                     "key": {
                       "type": "Identifier",
                       "start": 538,
-                      "end": 543,
+                      "end": 547,
                       "loc": {
                         "start": {
                           "line": 10,
@@ -1401,16 +1418,16 @@
                         },
                         "end": {
                           "line": 10,
-                          "column": 115
+                          "column": 119
                         }
                       },
-                      "name": "mouse"
+                      "name": "phaseOnMS"
                     },
                     "kind": "init",
                     "value": {
                       "type": "Identifier",
                       "start": 538,
-                      "end": 543,
+                      "end": 547,
                       "loc": {
                         "start": {
                           "line": 10,
@@ -1418,163 +1435,10 @@
                         },
                         "end": {
                           "line": 10,
-                          "column": 115
-                        }
-                      },
-                      "name": "mouse"
-                    }
-                  },
-                  {
-                    "type": "Property",
-                    "start": 545,
-                    "end": 554,
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 117
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 126
-                      }
-                    },
-                    "method": false,
-                    "shorthand": true,
-                    "computed": false,
-                    "key": {
-                      "type": "Identifier",
-                      "start": 545,
-                      "end": 554,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 117
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 126
-                        }
-                      },
-                      "name": "elapsedMS"
-                    },
-                    "kind": "init",
-                    "value": {
-                      "type": "Identifier",
-                      "start": 545,
-                      "end": 554,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 117
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 126
-                        }
-                      },
-                      "name": "elapsedMS"
-                    }
-                  },
-                  {
-                    "type": "Property",
-                    "start": 556,
-                    "end": 565,
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 128
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 137
-                      }
-                    },
-                    "method": false,
-                    "shorthand": true,
-                    "computed": false,
-                    "key": {
-                      "type": "Identifier",
-                      "start": 556,
-                      "end": 565,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 128
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 137
+                          "column": 119
                         }
                       },
                       "name": "phaseOnMS"
-                    },
-                    "kind": "init",
-                    "value": {
-                      "type": "Identifier",
-                      "start": 556,
-                      "end": 565,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 128
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 137
-                        }
-                      },
-                      "name": "phaseOnMS"
-                    }
-                  },
-                  {
-                    "type": "Property",
-                    "start": 567,
-                    "end": 577,
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 139
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 149
-                      }
-                    },
-                    "method": false,
-                    "shorthand": true,
-                    "computed": false,
-                    "key": {
-                      "type": "Identifier",
-                      "start": 567,
-                      "end": 577,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 139
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 149
-                        }
-                      },
-                      "name": "phaseOffMS"
-                    },
-                    "kind": "init",
-                    "value": {
-                      "type": "Identifier",
-                      "start": 567,
-                      "end": 577,
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 139
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 149
-                        }
-                      },
-                      "name": "phaseOffMS"
                     }
                   }
                 ],
@@ -1592,8 +1456,8 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 584,
-      "end": 620,
+      "start": 554,
+      "end": 590,
       "loc": {
         "start": {
           "line": 12,
@@ -1606,8 +1470,8 @@
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 591,
-        "end": 620,
+        "start": 561,
+        "end": 590,
         "loc": {
           "start": {
             "line": 12,
@@ -1621,8 +1485,8 @@
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 597,
-            "end": 620,
+            "start": 567,
+            "end": 590,
             "loc": {
               "start": {
                 "line": 12,
@@ -1635,8 +1499,8 @@
             },
             "id": {
               "type": "Identifier",
-              "start": 597,
-              "end": 605,
+              "start": 567,
+              "end": 575,
               "loc": {
                 "start": {
                   "line": 12,
@@ -1651,8 +1515,8 @@
             },
             "init": {
               "type": "ArrowFunctionExpression",
-              "start": 608,
-              "end": 620,
+              "start": 578,
+              "end": 590,
               "loc": {
                 "start": {
                   "line": 12,
@@ -1670,8 +1534,8 @@
               "params": [],
               "body": {
                 "type": "Literal",
-                "start": 614,
-                "end": 620,
+                "start": 584,
+                "end": 590,
                 "loc": {
                   "start": {
                     "line": 12,

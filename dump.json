@@ -444,7 +444,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from './constants'\r\nimport { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'\r\n\r\nimport configureContext from 'redux-addons/lib/context'\r\nimport  { createLogger } from 'redux-addons/lib/log'\r\nconst noop = () => {}\r\n\r\nconst validateContext = (libContext, appContext) => {\r\n  assert.ok(libContext, 'must pass opts to validate')\r\n  assert.ok(appContext, 'must pass opts to validate')\r\n\r\n  const { libName, appName } = libContext\r\n  const { activeEvents, thresholds } = appContext\r\n\r\n  assert.ok(libName, 'libName must exist')\r\n  assert(typeof libName === 'string', 'libName option must be a string')\r\n  assert(libName.length > 0, 'libName option must not be empty')\r\n  assert.ok(appName, 'appName must exist')\r\n  assert(typeof appName === 'string', 'appName option must be a string')\r\n  assert(appName.length > 0, 'appName option must not be empty')\r\n  assert.ok(activeEvents, 'active events must exist')\r\n  assert.ok(thresholds, 'thresholds must exist')\r\n  assert.ok(thresholds.mouse, 'thresholds.mouse must exist')\r\n  assert(typeof thresholds.mouse === 'number', 'thresholds.mouse must be a number corresponding to pixels')\r\n  assert.ok(thresholds.elapsedMS, 'thresholds.elapsedMS must exist')\r\n  assert(typeof thresholds.elapsedMS === 'number', 'thresholds.elapsedMS must be a number corresponding to minimum milliseconds between updates to redux')\r\n}\r\n\r\nconst configureInitialState = libContext => appContext => {\r\n  return  { idleStatus: IDLESTATUS_ACTIVE\r\n          , isIdle: false\r\n          , isPaused: false\r\n          , isDetectionRunning: false\r\n          , lastActive: +new Date()\r\n          , lastEvent: { x: -1, y: -1, type: null }\r\n          }\r\n}\r\n\r\nexport default function createContext({ appName\r\n                                      , IDLE_STATUSES\r\n                                      , idleStatusDelay\r\n                                      , activeStatusAction\r\n                                      , idleStatusAction\r\n                                      , activeEvents = getActiveEvents()\r\n                                      , useFastStore = getUseFastState()\r\n                                      , useLocalStore = getUseLocalState()\r\n                                      , useWebRTCState = getUseWebRTCState()\r\n                                      , useWebSocketsState = getUseWebSocketsState()\r\n                                      , thresholds = getThresholds()\r\n                                      , level = getLevel()\r\n                                      } = {}) {\r\n  const libName = ROOT_STATE_KEY\r\n  const libOpts = { libName, validateContext, configureAppContext: libContext => appOpts => appOpts, configureInitialState }\r\n  const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }\r\n  return configureContext(libOpts)(appOpts)\r\n}\r\n"
+    "content": "import { assert } from 'chai'\r\nimport  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from './constants'\r\nimport { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'\r\n\r\nimport configureContext from 'redux-addons/lib/context'\r\nimport  { createLogger } from 'redux-addons/lib/log'\r\nconst noop = () => {}\r\n\r\nconst validateContext = (libContext, appContext) => {\r\n  assert.ok(libContext, 'must pass opts to validate')\r\n  assert.ok(appContext, 'must pass opts to validate')\r\n\r\n  const { libName, appName } = libContext\r\n  const { activeEvents, thresholds } = appContext\r\n\r\n  assert.ok(libName, 'libName must exist')\r\n  assert(typeof libName === 'string', 'libName option must be a string')\r\n  assert(libName.length > 0, 'libName option must not be empty')\r\n  assert.ok(appName, 'appName must exist')\r\n  assert(typeof appName === 'string', 'appName option must be a string')\r\n  assert(appName.length > 0, 'appName option must not be empty')\r\n  assert.ok(activeEvents, 'active events must exist')\r\n  assert.ok(thresholds, 'thresholds must exist')\r\n  assert.ok(thresholds.mouse, 'thresholds.mouse must exist')\r\n  assert(typeof thresholds.mouse === 'number', 'thresholds.mouse must be a number corresponding to pixels')\r\n  assert(typeof thresholds.phaseOffMS === 'number', 'thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux')\r\n  assert(typeof thresholds.phaseOnMS === 'number', 'thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux')\r\n}\r\n\r\nconst configureInitialState = libContext => appContext => {\r\n  return  { idleStatus: IDLESTATUS_ACTIVE\r\n          , isRunning: false\r\n          , isDetectionRunning: false\r\n          , isIdle: false\r\n          , lastActive: +new Date()\r\n          , lastEvent: { x: -1, y: -1, type: null }\r\n          }\r\n}\r\n\r\nexport default function createContext({ appName\r\n                                      , IDLE_STATUSES\r\n                                      , idleStatusDelay\r\n                                      , activeStatusAction\r\n                                      , idleStatusAction\r\n                                      , activeEvents = getActiveEvents()\r\n                                      , useFastStore = getUseFastState()\r\n                                      , useLocalStore = getUseLocalState()\r\n                                      , useWebRTCState = getUseWebRTCState()\r\n                                      , useWebSocketsState = getUseWebSocketsState()\r\n                                      , thresholds = getThresholds()\r\n                                      , level = getLevel()\r\n                                      } = {}) {\r\n  const libName = ROOT_STATE_KEY\r\n  const libOpts = { libName, validateContext, configureAppContext: libContext => appOpts => appOpts, configureInitialState }\r\n  const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }\r\n  return configureContext(libOpts)(appOpts)\r\n}\r\n"
   },
   {
     "__docId__": 23,
@@ -553,7 +553,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export const getTimeStamp = () => new Date().toTimeString()\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 20, elapsedMS = 2000, phaseOnMS = 500, phaseOffMS = 500 } = {}) => ({ mouse, elapsedMS, phaseOnMS, phaseOffMS })\r\n\r\nexport const getLevel = () => 'info'\r\n"
+    "content": "export const getTimeStamp = () => new Date().toTimeString()\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 20, phaseOffMS = 2000, phaseOnMS = 0 } = {}) => ({ mouse, phaseOffMS, phaseOnMS })\r\n\r\nexport const getLevel = () => 'info'\r\n"
   },
   {
     "__docId__": 28,
@@ -734,7 +734,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE } from './constants'\r\nimport { activityBlueprint, activityDetectionBlueprint } from './blueprints'\r\n\r\nconst STOP_TYPES = ['pointermove', 'MSPointerMove']\r\nconst FILTER_TYPES = ['mousemove']\r\n\r\n/** Detects whether the activity should trigger a redux update */\r\nconst _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {\r\n  if(STOP_TYPES.includes(type))\r\n    return false\r\n  if(!FILTER_TYPES.includes(type))\r\n    return true\r\n  const { getState } = stores.selectFirst('lib')\r\n  const { lastActive, lastEvent } = getState()\r\n  if(lastEvent.type !== type)\r\n    return true\r\n\r\n  const { x, y } = lastEvent\r\n  if((pageX && pageY && x && y) && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)\r\n    return false\r\n\r\n  // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE\r\n  let elapsedMS = (+new Date()) - lastActive\r\n  if (elapsedMS < thresholds.elapsedMS)\r\n    return false\r\n  if(IS_DEV)\r\n    log.trace(`_shouldActivityUpdate: E[${elapsedMS}] >= T[${thresholds.elapsedMS}], lastActive => ${lastActive}`)\r\n  return true\r\n}\r\n\r\nconst isRunning = stores => {\r\n  const state = stores.lib.getState()\r\n  return state.isDetectionRunning\r\n}\r\n\r\nexport const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {\r\n  const { activity\r\n        , activityDetection\r\n        } = translateBlueprints({ activity: activityBlueprint\r\n                                , activityDetection: activityDetectionBlueprint\r\n                                })\r\n\r\n  /** One of the event listeners triggered an activity occurrence event. This gets spammed */\r\n  const onActivity = e => {\r\n    if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))\r\n      return\r\n    const { idleStatus } = stores.lib.getState()\r\n    const isTransition = idleStatus !== IDLESTATUS_ACTIVE\r\n    const { dispatch } = stores.selectFirst('lib')\r\n    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition }))\r\n  }\r\n\r\n\r\n  log.warn('activity detection starting...')\r\n  if(IS_DEV)\r\n    assert.ok(!isRunning(stores), 'activity detection is already running')\r\n  activeEvents.forEach(x => document.addEventListener(x, onActivity))\r\n  dispatch(activityDetection(true))\r\n\r\n  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */\r\n  return (dispatch, getState) => {\r\n    log.info('activity detection terminating...')\r\n    if(IS_DEV)\r\n      assert(isRunning(stores), 'activity detection is not running')\r\n    activeEvents.forEach(x => document.removeEventListener(x, onActivity))\r\n    dispatch(activityDetection(false))\r\n  }\r\n}\r\n"
+    "content": "import { assert } from 'chai'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE } from './constants'\r\nimport { activityBlueprint, activityDetectionBlueprint } from './blueprints'\r\n\r\nconst STOP_TYPES = ['pointermove', 'MSPointerMove']\r\nconst FILTER_TYPES = ['mousemove']\r\n\r\n/** Detects whether the activity should trigger a redux update */\r\nconst _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {\r\n  if(STOP_TYPES.includes(type))\r\n    return false\r\n  if(!FILTER_TYPES.includes(type))\r\n    return true\r\n  const { getState } = stores.selectFirst('lib')\r\n\r\n  /** If last event was not the same event type, trigger an update. */\r\n  const { lastActive, lastEvent } = getState()\r\n  if(lastEvent.type !== type)\r\n    return true\r\n\r\n  /** If last mouse events coordinates were not within mouse threshold, trigger an update. */\r\n  const { x, y } = lastEvent\r\n  if((pageX && pageY && x && y) && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)\r\n    return false\r\n  return true\r\n}\r\n\r\nconst isRunning = stores => {\r\n  const state = stores.lib.getState()\r\n  return state.isDetectionRunning\r\n}\r\n\r\nexport const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {\r\n  const { activity\r\n        , activityDetection\r\n        } = translateBlueprints({ activity: activityBlueprint\r\n                                , activityDetection: activityDetectionBlueprint\r\n                                })\r\n\r\n  /** One of the event listeners triggered an activity occurrence event. This gets spammed */\r\n  const onActivity = e => {\r\n    if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))\r\n      return\r\n    const { idleStatus } = stores.lib.getState()\r\n    const isTransition = idleStatus !== IDLESTATUS_ACTIVE\r\n    const { dispatch } = stores.selectFirst('lib')\r\n    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition }))\r\n  }\r\n\r\n\r\n  log.warn('activity detection starting...')\r\n  if(IS_DEV)\r\n    assert.ok(!isRunning(stores), 'activity detection is already running')\r\n  activeEvents.forEach(x => document.addEventListener(x, onActivity))\r\n  dispatch(activityDetection(true))\r\n\r\n  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */\r\n  return (dispatch, getState) => {\r\n    log.info('activity detection terminating...')\r\n    if(IS_DEV)\r\n      assert(isRunning(stores), 'activity detection is not running')\r\n    activeEvents.forEach(x => document.removeEventListener(x, onActivity))\r\n    dispatch(activityDetection(false))\r\n  }\r\n}\r\n"
   },
   {
     "__docId__": 37,
@@ -811,7 +811,7 @@
     "importPath": "redux-idle-monitor/lib/detection.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 28,
     "undocument": true,
     "type": {
       "types": [
@@ -832,7 +832,7 @@
     "importPath": "redux-idle-monitor/lib/detection.js",
     "importStyle": "{configureStartDetection}",
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -894,7 +894,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport createContext from './context'\r\nimport { forgetTokens } from 'state/actions/identity'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'\r\nimport { bisectStore } from 'redux-mux'\r\nimport { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'\r\nimport { createStartDetection } from './actions'\r\nimport { getNextIdleStatusIn } from './states'\r\n\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createMiddleware = context => {\r\n  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay } = context\r\n  const { start, stop, reset } = translateBlueprints(publicBlueprints)\r\n  const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })\r\n  const startDetection = createStartDetection(context)\r\n\r\n  const { START\r\n        , RESET\r\n        , STOP\r\n        , NEXT_IDLE_STATUS\r\n        , ACTIVITY\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , RESET: RESET_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    })\r\n\r\n  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]\r\n  const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)\r\n  const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)\r\n\r\n  let stopDetection = null\r\n  let nextTimeoutID = null\r\n  return store => {\r\n    const idleStore = bisectStore(ROOT_STATE_KEY)(store)\r\n\r\n    return next => action => {\r\n      if(!action.type)\r\n        return next(action)\r\n      const { dispatch, getState } = store\r\n      const { type, payload } = action\r\n\r\n      const scheduleTransition = (idleStatus) => {\r\n        clearTimeout(nextTimeoutID)\r\n        let delay = dispatch(idleStatusDelay(idleStatus))\r\n        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)\r\n        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)\r\n\r\n        let lastActive = new Date().toTimeString()\r\n        let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`\r\n        let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`\r\n        let nextIdleStatus = getNextIdleStatus(idleStatus)\r\n        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)\r\n        nextTimeoutID = setTimeout(() => {\r\n          log.trace(nextMessage)\r\n          next(action)\r\n          dispatch(idleStatusAction(idleStatus))\r\n          if(nextIdleStatus) {\r\n            dispatch(nextIdleStatusAction(nextIdleStatus))\r\n          } else {\r\n            log.info('No more actions to schedule')\r\n            // END OF THE LINE\r\n          }\r\n        }, delay)\r\n        return function cancel() {\r\n          clearTimeout(nextTimeoutID)\r\n          log.trace(nextCancelMessage(new Date().toTimeString()))\r\n        }\r\n      }\r\n\r\n      if(type === START) {\r\n        stopDetection = dispatch(startDetection)\r\n        let result = next(action)\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n\r\n      if(type === RESET) {\r\n        clearTimeout(nextTimeoutID)\r\n        if(stopDetection)\r\n          stopDetection()\r\n        dispatch(start())\r\n      }\r\n\r\n      if(type === STOP && stopDetection) {\r\n        clearTimeout(nextTimeoutID)\r\n        dispatch(stopDetection)\r\n      }\r\n\r\n      if(type === NEXT_IDLE_STATUS) {\r\n        return scheduleTransition(payload.nextIdleStatus)\r\n      }\r\n\r\n      if(type === ACTIVITY) {\r\n        let result = next(action)\r\n        if(payload.isTransition) {\r\n          log.trace('Transition activity occurred, triggering user active action.')\r\n          dispatch(activeStatusAction)\r\n        }\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n      return next(action)\r\n    }\r\n  }\r\n}\r\n\r\n/** Creates middleware from opts including validation in development */\r\nexport default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }\r\n"
+    "content": "import { assert } from 'chai'\r\nimport createContext from './context'\r\nimport { forgetTokens } from 'state/actions/identity'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'\r\nimport { bisectStore } from 'redux-mux'\r\nimport { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'\r\nimport { createStartDetection } from './actions'\r\nimport { getNextIdleStatusIn } from './states'\r\n\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createMiddleware = context => {\r\n  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context\r\n  const { start, stop, reset } = translateBlueprints(publicBlueprints)\r\n  const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })\r\n  const startDetection = createStartDetection(context)\r\n\r\n  const { START\r\n        , RESET\r\n        , STOP\r\n        , NEXT_IDLE_STATUS\r\n        , ACTIVITY\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , RESET: RESET_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    })\r\n\r\n  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]\r\n  const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)\r\n  const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)\r\n\r\n  let stopDetection = null\r\n  let nextTimeoutID = null\r\n  let startDetectionID = null\r\n  return store => {\r\n    const idleStore = bisectStore(ROOT_STATE_KEY)(store)\r\n\r\n    return next => action => {\r\n      if(!action.type)\r\n        return next(action)\r\n      const { dispatch, getState } = store\r\n      const { type, payload } = action\r\n\r\n      const scheduleTransition = (idleStatus) => {\r\n        clearTimeout(nextTimeoutID)\r\n        let delay = dispatch(idleStatusDelay(idleStatus))\r\n        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)\r\n        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)\r\n\r\n        let lastActive = new Date().toTimeString()\r\n        let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`\r\n        let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`\r\n        let nextIdleStatus = getNextIdleStatus(idleStatus)\r\n        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)\r\n        nextTimeoutID = setTimeout(() => {\r\n          log.trace(nextMessage)\r\n          next(action)\r\n          dispatch(idleStatusAction(idleStatus))\r\n          if(nextIdleStatus) {\r\n            dispatch(nextIdleStatusAction(nextIdleStatus))\r\n          } else {\r\n            log.info('No more actions to schedule')\r\n            // END OF THE LINE\r\n          }\r\n        }, delay)\r\n        return function cancel() {\r\n          clearTimeout(nextTimeoutID)\r\n          log.trace(nextCancelMessage(new Date().toTimeString()))\r\n        }\r\n      }\r\n\r\n      if(type === START) {\r\n        stopDetection = dispatch(startDetection)\r\n        let result = next(action)\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n\r\n      if(type === RESET) {\r\n        clearTimeout(nextTimeoutID)\r\n        if(stopDetection)\r\n          stopDetection()\r\n        dispatch(start())\r\n      }\r\n\r\n      if(type === STOP) {\r\n        clearTimeout(nextTimeoutID)\r\n        clearTimeout(startDetectionID)\r\n        if(stopDetection)\r\n          dispatch(stopDetection)\r\n      }\r\n\r\n      if(type === NEXT_IDLE_STATUS) {\r\n        return scheduleTransition(payload.nextIdleStatus)\r\n      }\r\n\r\n      if(type === ACTIVITY) {\r\n        if(stopDetection && thresholds.phaseOffMS) {\r\n          dispatch(stopDetection)\r\n          stopDetection = null\r\n          startDetectionID = setTimeout(() => {\r\n            stopDetection = dispatch(startDetection)\r\n          }, thresholds.phaseOffMS)\r\n        }\r\n\r\n        let result = next(action)\r\n        if(payload.isTransition) {\r\n          log.trace('Transition activity occurred, triggering user active action.')\r\n          dispatch(activeStatusAction)\r\n        }\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n      return next(action)\r\n    }\r\n  }\r\n}\r\n\r\n/** Creates middleware from opts including validation in development */\r\nexport default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }\r\n"
   },
   {
     "__docId__": 45,
@@ -929,7 +929,7 @@
     "importPath": "redux-idle-monitor/lib/middleware.js",
     "importStyle": "configureMiddleware",
     "description": "Creates middleware from opts including validation in development",
-    "lineNumber": 111,
+    "lineNumber": 122,
     "params": [
       {
         "name": "opts",
@@ -990,7 +990,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import createContext from './context'\r\nimport  { IS_DEV, IDLESTATUS_ACTIVE, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT } from './constants'\r\nimport { getNextIdleStatusIn } from './states'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createReducer = context => {\r\n  const { log, blueprints, IDLE_STATUSES, initialState, translateBlueprintTypes, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState } = context\r\n\r\n  const { ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        , NEXT_IDLE_STATUS\r\n        } = translateBlueprintTypes({ ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    , ACTIVITY_DETECTION: ACTIVITY_DETECTION_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    })\r\n\r\n  const getNextIdleStatus = getNextIdleStatusIn([IDLESTATUS_ACTIVE, ...IDLE_STATUSES])\r\n\r\n  return (state = initialState, action = {}) => {\r\n    const { type, payload } = action\r\n    switch(type) {\r\n      case ACTIVITY:\r\n        return Object.assign({}, state, getActivityPayload(payload))\r\n\r\n      case ACTIVITY_DETECTION:\r\n        return Object.assign({}, state, getActivityDetectionPayload(payload))\r\n\r\n      case NEXT_IDLE_STATUS:\r\n        if(payload.nextIdleStatus)\r\n          return Object.assign({}, state, { idleStatus: payload.nextIdleStatus, isIdle: true, isPaused: false })\r\n        return Object.assign({}, state, { isIdle: true, isPaused: true })\r\n\r\n      default:\r\n        return state\r\n    }\r\n  }\r\n}\r\n\r\nconst getActivityPayload = ({ activeStatus, lastActive, lastEvent, timeoutID }) => ({ idleStatus: activeStatus, lastActive, lastEvent, timeoutID, isIdle: false })\r\nconst getActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })\r\n\r\n/** Creates reducer from opts including validation in development */\r\nexport default function configureReducer (opts) { return createReducer(createContext(opts)) }\r\n"
+    "content": "import createContext from './context'\r\nimport  { IS_DEV, IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT } from './constants'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createReducer = context => {\r\n  const { initialState, translateBlueprintTypes } = context\r\n\r\n  const { START\r\n        , STOP\r\n        , ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        , NEXT_IDLE_STATUS\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    , ACTIVITY_DETECTION: ACTIVITY_DETECTION_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    })\r\n\r\n\r\n  return (state = initialState, action = {}) => {\r\n    const { type, payload } = action\r\n    switch(type) {\r\n      case START:\r\n        return Object.assign({}, state, selectStartPayload(payload))\r\n      case STOP:\r\n        return Object.assign({}, state, selectStopPayload(payload))\r\n      case ACTIVITY:\r\n        return Object.assign({}, state, selectActivityPayload(payload))\r\n      case ACTIVITY_DETECTION:\r\n        return Object.assign({}, state, selectActivityDetectionPayload(payload))\r\n      case NEXT_IDLE_STATUS:\r\n        return Object.assign({}, state, selectNextIdleStatusPayload(payload))\r\n      default:\r\n        return state\r\n    }\r\n  }\r\n}\r\n\r\nconst selectStartPayload = () => ({ isRunning: true })\r\nconst selectStopPayload = () => ({ isRunning: false })\r\nconst selectActivityPayload = ({ activeStatus, lastActive, lastEvent, timeoutID }) => ({ idleStatus: activeStatus, lastActive, lastEvent, timeoutID, isIdle: false })\r\nconst selectActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })\r\nconst selectNextIdleStatusPayload = ({ nextIdleStatus }) => ({ idleStatus: nextIdleStatus, isIdle: true })\r\n\r\n/** Creates reducer from opts including validation in development */\r\nexport default function configureReducer (opts) { return createReducer(createContext(opts)) }\r\n"
   },
   {
     "__docId__": 50,
@@ -1005,7 +1005,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": "{createReducer}",
     "description": "When context has already been created, it can be shared to middleware component.",
-    "lineNumber": 6,
+    "lineNumber": 5,
     "type": {
       "types": [
         "*"
@@ -1017,30 +1017,9 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "getActivityPayload",
+    "name": "selectStartPayload",
     "memberof": "lib/reducer.js",
-    "longname": "lib/reducer.js~getActivityPayload",
-    "access": null,
-    "export": false,
-    "importPath": "redux-idle-monitor/lib/reducer.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 39,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 52,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "getActivityDetectionPayload",
-    "memberof": "lib/reducer.js",
-    "longname": "lib/reducer.js~getActivityDetectionPayload",
+    "longname": "lib/reducer.js~selectStartPayload",
     "access": null,
     "export": false,
     "importPath": "redux-idle-monitor/lib/reducer.js",
@@ -1055,7 +1034,91 @@
     }
   },
   {
+    "__docId__": 52,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "selectStopPayload",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~selectStopPayload",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "__docId__": 53,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "selectActivityPayload",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~selectActivityPayload",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 54,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "selectActivityDetectionPayload",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~selectActivityDetectionPayload",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 55,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "selectNextIdleStatusPayload",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~selectNextIdleStatusPayload",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 56,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1067,7 +1130,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": "configureReducer",
     "description": "Creates reducer from opts including validation in development",
-    "lineNumber": 43,
+    "lineNumber": 47,
     "params": [
       {
         "name": "opts",
@@ -1084,7 +1147,7 @@
     "generator": false
   },
   {
-    "__docId__": 54,
+    "__docId__": 57,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1097,7 +1160,7 @@
     "content": "export const getNextIdleStatusIn = idleStatuses => idleStatus => {\r\n  let nextIdleStatusIndex = idleStatuses.indexOf(idleStatus) + 1\r\n  if(nextIdleStatusIndex < idleStatuses.length)\r\n    return idleStatuses[nextIdleStatusIndex]\r\n}\r\n"
   },
   {
-    "__docId__": 55,
+    "__docId__": 58,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1118,7 +1181,7 @@
     }
   },
   {
-    "__docId__": 57,
+    "__docId__": 60,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1131,7 +1194,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 58,
+    "__docId__": 61,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1144,7 +1207,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 59,
+    "__docId__": 62,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1157,7 +1220,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 60,
+    "__docId__": 63,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1170,7 +1233,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 61,
+    "__docId__": 64,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1183,7 +1246,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 62,
+    "__docId__": 65,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1196,7 +1259,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 63,
+    "__docId__": 66,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1209,7 +1272,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 64,
+    "__docId__": 67,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1222,7 +1285,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 65,
+    "__docId__": 68,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1235,7 +1298,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 69,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1248,7 +1311,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1261,7 +1324,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1274,7 +1337,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1287,7 +1350,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 73,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1300,7 +1363,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 74,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1313,7 +1376,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 75,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1326,7 +1389,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 76,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1339,7 +1402,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 77,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1352,7 +1415,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 78,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1365,7 +1428,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 79,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1378,7 +1441,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 80,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1391,7 +1454,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 81,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1404,7 +1467,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 82,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1417,7 +1480,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 83,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1430,7 +1493,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 84,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1443,7 +1506,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 85,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1456,7 +1519,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1469,7 +1532,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1482,7 +1545,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1495,7 +1558,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1508,7 +1571,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1521,7 +1584,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1534,7 +1597,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1547,7 +1610,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1560,7 +1623,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1573,7 +1636,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1586,7 +1649,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1599,7 +1662,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1612,7 +1675,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1625,7 +1688,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1638,7 +1701,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1651,7 +1714,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1664,7 +1727,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1677,7 +1740,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1690,7 +1753,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1703,7 +1766,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1716,7 +1779,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1729,7 +1792,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1742,7 +1805,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1755,7 +1818,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1768,7 +1831,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1781,7 +1844,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1794,7 +1857,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1807,7 +1870,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1820,7 +1883,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 112,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
