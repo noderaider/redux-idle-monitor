@@ -77,14 +77,12 @@
 import { IS_DEV, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
 
+const FILTER_TYPES = [&apos;mousemove&apos;, &apos;pointermove&apos;]
+
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) =&gt; stores =&gt; ({ type, pageX, pageY }) =&gt; {
-  if(type !== &apos;mousemove&apos;) {
-    console.warn(&apos;type is actually =&gt; &apos;, type)
+  if(!FILTER_TYPES.includes(type))
     return true
-  }
-
-
   const { lastActive, lastEvent: { x, y } } = stores.selectFirst(&apos;lib&apos;).getState()
 
   if (typeof pageX === &apos;undefined&apos; || typeof pageY === &apos;undefined&apos;)
@@ -106,9 +104,7 @@ const isRunning = stores =&gt; {
   return state.isDetectionRunning
 }
 
-
 export const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) =&gt; stores =&gt; (dispatch, getState) =&gt; {
-
   const { activity
         , activityDetection
         } = translateBlueprints({ activity: activityBlueprint

@@ -50,14 +50,14 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        35
+        32
       ]
     },
     "lib/multiplexer.js": {
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        12
+        11
       ]
     },
     "lib/context.js": {
