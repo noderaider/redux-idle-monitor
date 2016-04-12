@@ -4,7 +4,7 @@ import { activityBlueprint, activityDetectionBlueprint } from './blueprints'
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {
-  if(type !== 'mousemove'){
+  if(type !== 'mousemove') {
     console.warn('type is actually => ', type)
     return true
   }
