@@ -76,7 +76,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import createContext from &apos;./context&apos;
 import { forgetTokens } from &apos;state/actions/identity&apos;
-import { IS_DEV, IDLESTATUS_ACTIVE, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
+import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint } from &apos;./blueprints&apos;
 import { createStartDetection } from &apos;./actions&apos;
@@ -86,7 +86,6 @@ import { getNextIdleStatusIn } from &apos;./states&apos;
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context =&gt; {
   const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay } = context
-  //const blueprintMiddleware = createBlueprintMiddleware(context)
   const { start, stop, reset } = translateBlueprints(publicBlueprints)
   const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })
   const startDetection = createStartDetection(context)
@@ -110,7 +109,7 @@ export const createMiddleware = context =&gt; {
   let stopDetection = null
   let nextTimeoutID = null
   return store =&gt; {
-    const idleStore = bisectStore(store, &apos;idle&apos;)
+    const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
     return next =&gt; action =&gt; {
       if(!action.type)
@@ -182,7 +181,6 @@ export const createMiddleware = context =&gt; {
     }
   }
 }
-
 
 /** Creates middleware from opts including validation in development */
 export default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }
