@@ -87,20 +87,16 @@ const _shouldActivityUpdate = ({ log, thresholds }) =&gt; stores =&gt; ({ type, 
   if(!FILTER_TYPES.includes(type))
     return true
   const { getState } = stores.selectFirst(&apos;lib&apos;)
+
+  /** If last event was not the same event type, trigger an update. */
   const { lastActive, lastEvent } = getState()
   if(lastEvent.type !== type)
     return true
 
+  /** If last mouse events coordinates were not within mouse threshold, trigger an update. */
   const { x, y } = lastEvent
   if((pageX &amp;&amp; pageY &amp;&amp; x &amp;&amp; y) &amp;&amp; Math.abs(pageX - x) &lt; thresholds.mouse &amp;&amp; Math.abs(pageY - y) &lt; thresholds.mouse)
     return false
-
-  // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE
-  let elapsedMS = (+new Date()) - lastActive
-  if (elapsedMS &lt; thresholds.elapsedMS)
-    return false
-  if(IS_DEV)
-    log.trace(`_shouldActivityUpdate: E[${elapsedMS}] &gt;= T[${thresholds.elapsedMS}], lastActive =&gt; ${lastActive}`)
   return true
 }
 

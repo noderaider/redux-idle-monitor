@@ -85,7 +85,7 @@ import { getNextIdleStatusIn } from &apos;./states&apos;
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context =&gt; {
-  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay } = context
+  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context
   const { start, stop, reset } = translateBlueprints(publicBlueprints)
   const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })
   const startDetection = createStartDetection(context)
@@ -108,6 +108,7 @@ export const createMiddleware = context =&gt; {
 
   let stopDetection = null
   let nextTimeoutID = null
+  let startDetectionID = null
   return store =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
@@ -159,9 +160,11 @@ export const createMiddleware = context =&gt; {
         dispatch(start())
       }
 
-      if(type === STOP &amp;&amp; stopDetection) {
+      if(type === STOP) {
         clearTimeout(nextTimeoutID)
-        dispatch(stopDetection)
+        clearTimeout(startDetectionID)
+        if(stopDetection)
+          dispatch(stopDetection)
       }
 
       if(type === NEXT_IDLE_STATUS) {
@@ -169,6 +172,14 @@ export const createMiddleware = context =&gt; {
       }
 
       if(type === ACTIVITY) {
+        if(stopDetection &amp;&amp; thresholds.phaseOffMS) {
+          dispatch(stopDetection)
+          stopDetection = null
+          startDetectionID = setTimeout(() =&gt; {
+            stopDetection = dispatch(startDetection)
+          }, thresholds.phaseOffMS)
+        }
+
         let result = next(action)
         if(payload.isTransition) {
           log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
