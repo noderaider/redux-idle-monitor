@@ -33,7 +33,7 @@ const configureInitialState = libContext => appContext => {
           , isPaused: false
           , isDetectionRunning: false
           , lastActive: +new Date()
-          , lastEvent: { x: -1, y: -1 }
+          , lastEvent: { x: -1, y: -1, type: null }
           }
 }
 

@@ -8,7 +8,15 @@ const FILTER_TYPES = ['mousemove', 'pointermove']
 const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {
   if(!FILTER_TYPES.includes(type))
     return true
-  const { lastActive, lastEvent: { x, y } } = stores.selectFirst('lib').getState()
+  const { getState } = stores.selectFirst('lib')
+  const { lastActive } = getState()
+  if(lastEvent.type === type) {
+    const { x, y } = lastEvent
+    if(!x || !y)
+      return true
+
+
+  }
 
   if (typeof pageX === 'undefined' || typeof pageY === 'undefined')
     return false
@@ -42,7 +50,8 @@ export const configureStartDetection = ({ log, activeEvents, thresholds, transla
       return
     const { idleStatus } = stores.lib.getState()
     const isTransition = idleStatus !== IDLESTATUS_ACTIVE
-    stores.selectFirst('lib').dispatch(activity({ x: e.pageX, y: e.pageY, isTransition }))
+    const { dispatch } = stores.selectFirst('lib')
+    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition }))
   }
 
 
