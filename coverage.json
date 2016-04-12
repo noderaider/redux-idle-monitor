@@ -50,7 +50,7 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        37
+        47
       ]
     },
     "lib/multiplexer.js": {

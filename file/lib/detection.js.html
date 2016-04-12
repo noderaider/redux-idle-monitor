@@ -81,24 +81,34 @@ const FILTER_TYPES = [&apos;mousemove&apos;, &apos;pointermove&apos;]
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) =&gt; stores =&gt; ({ type, pageX, pageY }) =&gt; {
-  if(!FILTER_TYPES.includes(type))
+  if(!FILTER_TYPES.includes(type)) {
+    console.warn(&apos;_shouldActivityUpdate&apos;, 1, type)
     return true
+  }
   const { getState } = stores.selectFirst(&apos;lib&apos;)
   const { lastActive, lastEvent } = getState()
-  if(lastEvent.type !== type)
+  if(lastEvent.type !== type) {
+    console.warn(&apos;_shouldActivityUpdate&apos;, 2, type)
     return true
+  }
 
   const { x, y } = lastEvent
-  if(pageX &amp;&amp; pageY &amp;&amp; !x || !y)
+  if(!x || !y) {
+    console.warn(&apos;_shouldActivityUpdate&apos;, 3, type, pageX, pageY, x, y)
     return true
+  }
 
-  if(pageX &amp;&amp; pageY &amp;&amp; Math.abs(pageX - x) &lt; thresholds.mouse &amp;&amp; Math.abs(pageY - y) &lt; thresholds.mouse)
+  if(pageX &amp;&amp; pageY &amp;&amp; Math.abs(pageX - x) &lt; thresholds.mouse &amp;&amp; Math.abs(pageY - y) &lt; thresholds.mouse) {
+    console.warn(&apos;_shouldActivityUpdate&apos;, 4, type, pageX, pageY, x, y)
     return false
+  }
 
   // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE
   let elapsedMS = (+new Date()) - lastActive
-  if (elapsedMS &lt; thresholds.elapsedMS)
+  if (elapsedMS &lt; thresholds.elapsedMS) {
+    console.warn(&apos;_shouldActivityUpdate&apos;, 5, elapsedMS, thresholds.elapsedMS, lastActive)
     return false
+  }
   if(IS_DEV)
     log.trace(`_shouldActivityUpdate: E[${elapsedMS}] &gt;= T[${thresholds.elapsedMS}], lastActive =&gt; ${lastActive}`)
   return true
