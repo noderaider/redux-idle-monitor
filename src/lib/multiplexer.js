@@ -8,9 +8,8 @@ import  { IS_DEV
         } from './constants'
 import { createNoopStore, createLocalStore, configureReducer, createMergingReducer } from 'redux-addons/lib/store'
 
-
 export const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => store => {
-  const libStore = bisectStore(store, ROOT_STATE_KEY)
+  const libStore = bisectStore(ROOT_STATE_KEY)(store)
   let storesMapping = [ [ 'lib', libStore ] ]
 
   const createInitialFastState = () => ({ lastActive: +new Date(), lastEvent: { x: -1, y: -1 } })

@@ -2,14 +2,12 @@ import { assert } from 'chai'
 import { IS_DEV, IDLESTATUS_ACTIVE } from './constants'
 import { activityBlueprint, activityDetectionBlueprint } from './blueprints'
 
+const FILTER_TYPES = ['mousemove', 'pointermove']
+
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {
-  if(type !== 'mousemove') {
-    console.warn('type is actually => ', type)
+  if(!FILTER_TYPES.includes(type))
     return true
-  }
-
-
   const { lastActive, lastEvent: { x, y } } = stores.selectFirst('lib').getState()
 
   if (typeof pageX === 'undefined' || typeof pageY === 'undefined')
@@ -31,9 +29,7 @@ const isRunning = stores => {
   return state.isDetectionRunning
 }
 
-
 export const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {
-
   const { activity
         , activityDetection
         } = translateBlueprints({ activity: activityBlueprint

@@ -1,7 +1,7 @@
 import { assert } from 'chai'
 import createContext from './context'
 import { forgetTokens } from 'state/actions/identity'
-import { IS_DEV, IDLESTATUS_ACTIVE, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
+import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'
 import { createStartDetection } from './actions'
@@ -11,7 +11,6 @@ import { getNextIdleStatusIn } from './states'
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
   const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay } = context
-  //const blueprintMiddleware = createBlueprintMiddleware(context)
   const { start, stop, reset } = translateBlueprints(publicBlueprints)
   const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })
   const startDetection = createStartDetection(context)
@@ -35,7 +34,7 @@ export const createMiddleware = context => {
   let stopDetection = null
   let nextTimeoutID = null
   return store => {
-    const idleStore = bisectStore(store, 'idle')
+    const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
     return next => action => {
       if(!action.type)
@@ -107,7 +106,6 @@ export const createMiddleware = context => {
     }
   }
 }
-
 
 /** Creates middleware from opts including validation in development */
 export default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }
