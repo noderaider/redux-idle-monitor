@@ -81,7 +81,7 @@ export const startBlueprint = createBlueprint(START_BLUEPRINT)
 export const stopBlueprint = createBlueprint(STOP_BLUEPRINT)
 export const resetBlueprint = createBlueprint(RESET_BLUEPRINT)
 
-export const activityBlueprint = createBlueprint(ACTIVITY_BLUEPRINT, ({ x, y, isTransition }) =&gt; ({ activeStatus: IDLESTATUS_ACTIVE, lastActive: +new Date(), lastEvent: { x, y }, isTransition }))
+export const activityBlueprint = createBlueprint(ACTIVITY_BLUEPRINT, ({ x, y, type, isTransition }) =&gt; ({ activeStatus: IDLESTATUS_ACTIVE, lastActive: +new Date(), lastEvent: { x, y, type }, isTransition }))
 export const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLUEPRINT, isDetectionRunning =&gt; ({ isDetectionRunning }))
 
 
