@@ -2,38 +2,25 @@ import { assert } from 'chai'
 import { IS_DEV, IDLESTATUS_ACTIVE } from './constants'
 import { activityBlueprint, activityDetectionBlueprint } from './blueprints'
 
-const FILTER_TYPES = ['mousemove', 'pointermove']
+const FILTER_TYPES = ['mousemove', 'pointermove', 'MSPointerMove']
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {
-  if(!FILTER_TYPES.includes(type)) {
-    console.warn('_shouldActivityUpdate', 1, type)
+  if(!FILTER_TYPES.includes(type))
     return true
-  }
   const { getState } = stores.selectFirst('lib')
   const { lastActive, lastEvent } = getState()
-  if(lastEvent.type !== type) {
-    console.warn('_shouldActivityUpdate', 2, type)
+  if(lastEvent.type !== type)
     return true
-  }
 
   const { x, y } = lastEvent
-  if(!x || !y) {
-    console.warn('_shouldActivityUpdate', 3, type, pageX, pageY, x, y)
-    return true
-  }
-
-  if(pageX && pageY && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse) {
-    console.warn('_shouldActivityUpdate', 4, type, pageX, pageY, x, y)
+  if((pageX && pageY && x && y) && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)
     return false
-  }
 
   // SKIP UPDATE IF ITS UNDER THE THRESHOLD MS FROM THE LAST UPDATE
   let elapsedMS = (+new Date()) - lastActive
-  if (elapsedMS < thresholds.elapsedMS) {
-    console.warn('_shouldActivityUpdate', 5, elapsedMS, thresholds.elapsedMS, lastActive)
+  if (elapsedMS < thresholds.elapsedMS)
     return false
-  }
   if(IS_DEV)
     log.trace(`_shouldActivityUpdate: E[${elapsedMS}] >= T[${thresholds.elapsedMS}], lastActive => ${lastActive}`)
   return true
