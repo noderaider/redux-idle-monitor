@@ -2,8 +2,8 @@ import { assert } from 'chai'
 import { IS_DEV, IDLESTATUS_ACTIVE } from './constants'
 import { activityBlueprint, activityDetectionBlueprint } from './blueprints'
 
-const STOP_TYPES = ['MSPointerMove']
-const FILTER_TYPES = ['mousemove', 'pointermove']
+const STOP_TYPES = ['pointermove', 'MSPointerMove']
+const FILTER_TYPES = ['mousemove']
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {
