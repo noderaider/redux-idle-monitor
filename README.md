@@ -1,5 +1,9 @@
 # [redux-idle-monitor](https://npmjs.com/packages/redux-idle-monitor)
 
+[![NPM](https://nodei.co/npm/redux-idle-monitor.png?stars=true&downloadRank=true)](https://nodei.co/npm/redux-idle-monitor/)
+
+[![NPM](https://nodei.co/npm-dl/redux-idle-monitor.png?months=1)](https://nodei.co/npm/redux-idle-monitor/)
+
 A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.
 
 `npm i -S redux-idle-monitor`
