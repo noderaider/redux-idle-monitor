@@ -1,6 +1,5 @@
 import { assert } from 'chai'
 import createContext from './context'
-import { forgetTokens } from 'state/actions/identity'
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'
