@@ -34,6 +34,7 @@
   ],
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "chai": "^3.5.0",
     "redux-addons": "*",
     "redux-blueprint": "*",
     "redux-middleware": "*",
