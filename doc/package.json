@@ -1,6 +1,6 @@
 {
   "name": "redux-idle-monitor",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Tracks and triggers events when a user goes idle in a Redux application.",
   "main": "lib/index.js",
   "files": [
@@ -34,6 +34,9 @@
   ],
   "dependencies": {
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "chai": "^3.5.0",
+    "redux": "^3.5.2",
+    "redux-actions": "^0.9.1",
     "redux-addons": "*",
     "redux-blueprint": "*",
     "redux-middleware": "*",
