@@ -9,6 +9,7 @@
     "doc"
   ],
   "scripts": {
+    "link-dev": "npm link ../redux-addons ../redux-blueprint ../redux-middleware ../redux-mux",
     "prebuild": "rimraf build",
     "build": "babel src/lib -d lib",
     "watch": "npm run build -- --watch",
