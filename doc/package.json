@@ -1,6 +1,6 @@
 {
   "name": "redux-idle-monitor",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Tracks and triggers events when a user goes idle in a Redux application.",
   "main": "lib/index.js",
   "files": [
@@ -9,9 +9,10 @@
     "doc"
   ],
   "scripts": {
+    "link-dev": "npm link ../redux-addons ../redux-blueprint ../redux-middleware ../redux-mux",
+    "start": "babel src/lib -d lib --watch",
     "prebuild": "rimraf build",
     "build": "babel src/lib -d lib",
-    "watch": "npm run build -- --watch",
     "predoc": "rimraf doc",
     "doc": "esdoc -c ./esdoc.json",
     "prerelease": "npm run build",
@@ -20,6 +21,7 @@
     "prerelease-doc": "npm run doc",
     "release-doc": "git subtree push --prefix doc origin gh-pages",
     "postrelease-doc": "git commit -am \"doc-release\" && git push --follow-tags",
+    "upgrade": "ncu -a && npm update",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
