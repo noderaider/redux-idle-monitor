@@ -28,6 +28,7 @@ export const createReducer = context => {
       case ACTIVITY:
         return Object.assign({}, state, selectActivityPayload(payload))
       case ACTIVITY_DETECTION:
+        console.warn('SETTING IDLE DETECTION => ', payload)
         return Object.assign({}, state, selectActivityDetectionPayload(payload))
       case NEXT_IDLE_STATUS:
         return Object.assign({}, state, selectNextIdleStatusPayload(payload))

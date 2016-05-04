@@ -26,6 +26,7 @@ export const createMiddleware = context => {
                                     , ACTIVITY: ACTIVITY_BLUEPRINT
                                     })
 
+
   const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]
   const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
@@ -33,16 +34,42 @@ export const createMiddleware = context => {
   let stopDetection = null
   let nextTimeoutID = null
   let startDetectionID = null
+  let cancelLocalPolling = null
   return store => {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
+
+
     return next => action => {
+      const { dispatch, getState } = store
+      const LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'
+      const localPollingFrequency = 5000
+      const setLocalActive = () => {
+        let now = Date.now()
+        localStorage[LOCAL_STORAGE_KEY] = now
+        return now
+      }
+      const getLocalActive = () => localStorage[LOCAL_STORAGE_KEY]
+      const startLocalPolling = () => {
+        let firstLastActive = getLocalActive()
+        let activeIntervalID = setInterval(() => {
+          let currLastActive = getLocalActive()
+          if(currLastActive !== firstLastActive) {
+            log.info(`user active since last idle state, restarting first[${firstLastActive}], current[${currLastActive}]`)
+            dispatch(stop())
+            dispatch(start())
+          }
+          }, localPollingFrequency)
+        return () => clearInterval(activeIntervalID)
+      }
+
+
+
       if(!action.type)
         return next(action)
-      const { dispatch, getState } = store
       const { type, payload } = action
 
-      const scheduleTransition = (idleStatus) => {
+      const scheduleTransition = idleStatus => {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
         assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
@@ -54,6 +81,8 @@ export const createMiddleware = context => {
         let nextIdleStatus = getNextIdleStatus(idleStatus)
         log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)
         nextTimeoutID = setTimeout(() => {
+
+
           log.trace(nextMessage)
           next(action)
           dispatch(idleStatusAction(idleStatus))
@@ -61,6 +90,10 @@ export const createMiddleware = context => {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
             log.info('No more actions to schedule')
+            if(cancelLocalPolling) {
+              cancelLocalPolling()
+              cancelLocalPolling = null
+            }
             // END OF THE LINE
           }
         }, delay)
@@ -72,19 +105,24 @@ export const createMiddleware = context => {
 
       if(type === START) {
         stopDetection = dispatch(startDetection)
+        cancelLocalPolling = startLocalPolling()
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
         return result
       }
 
       if(type === RESET) {
+        if(cancelLocalPolling)
+          cancelLocalPolling()
         clearTimeout(nextTimeoutID)
         if(stopDetection)
-          stopDetection()
+          dispatch(stopDetection)
         dispatch(start())
       }
 
       if(type === STOP) {
+        if(cancelLocalPolling)
+          cancelLocalPolling()
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
         if(stopDetection)
@@ -96,6 +134,8 @@ export const createMiddleware = context => {
       }
 
       if(type === ACTIVITY) {
+        if(cancelLocalPolling)
+          setLocalActive()
         if(stopDetection && thresholds.phaseOffMS) {
           dispatch(stopDetection)
           stopDetection = null
