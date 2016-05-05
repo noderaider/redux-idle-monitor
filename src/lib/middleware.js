@@ -5,6 +5,7 @@ import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'
 import { createStartDetection } from './actions'
 import { getNextIdleStatusIn } from './states'
+import { setLocalActive } from './detection'
 
 
 /** When context has already been created, it can be shared to middleware component. */
@@ -34,7 +35,6 @@ export const createMiddleware = context => {
   let stopDetection = null
   let nextTimeoutID = null
   let startDetectionID = null
-  let cancelLocalPolling = null
   return store => {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
@@ -42,28 +42,6 @@ export const createMiddleware = context => {
 
     return next => action => {
       const { dispatch, getState } = store
-      const LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'
-      const localPollingFrequency = 5000
-      const setLocalActive = () => {
-        let now = Date.now()
-        localStorage[LOCAL_STORAGE_KEY] = now
-        return now
-      }
-      const getLocalActive = () => localStorage[LOCAL_STORAGE_KEY]
-      const startLocalPolling = () => {
-        let firstLastActive = getLocalActive()
-        let activeIntervalID = setInterval(() => {
-          let currLastActive = getLocalActive()
-          if(currLastActive !== firstLastActive) {
-            log.info(`user active since last idle state, restarting first[${firstLastActive}], current[${currLastActive}]`)
-            dispatch(stop())
-            dispatch(start())
-          }
-          }, localPollingFrequency)
-        return () => clearInterval(activeIntervalID)
-      }
-
-
 
       if(!action.type)
         return next(action)
@@ -90,10 +68,6 @@ export const createMiddleware = context => {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
             log.info('No more actions to schedule')
-            if(cancelLocalPolling) {
-              cancelLocalPolling()
-              cancelLocalPolling = null
-            }
             // END OF THE LINE
           }
         }, delay)
@@ -105,15 +79,12 @@ export const createMiddleware = context => {
 
       if(type === START) {
         stopDetection = dispatch(startDetection)
-        cancelLocalPolling = startLocalPolling()
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
         return result
       }
 
       if(type === RESET) {
-        if(cancelLocalPolling)
-          cancelLocalPolling()
         clearTimeout(nextTimeoutID)
         if(stopDetection)
           dispatch(stopDetection)
@@ -121,8 +92,6 @@ export const createMiddleware = context => {
       }
 
       if(type === STOP) {
-        if(cancelLocalPolling)
-          cancelLocalPolling()
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
         if(stopDetection)
@@ -134,8 +103,6 @@ export const createMiddleware = context => {
       }
 
       if(type === ACTIVITY) {
-        if(cancelLocalPolling)
-          setLocalActive()
         if(stopDetection && thresholds.phaseOffMS) {
           dispatch(stopDetection)
           stopDetection = null
@@ -145,6 +112,12 @@ export const createMiddleware = context => {
         }
 
         let result = next(action)
+        /*
+        if(payload.type !== 'local') {
+          log.info('Setting local tab to active')
+          setLocalActive()
+        }
+        */
         if(payload.isTransition) {
           log.trace('Transition activity occurred, triggering user active action.')
           dispatch(activeStatusAction)
