@@ -64,6 +64,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebRTCState">getUseWebRTCState</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebSocketsState">getUseWebSocketsState</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStartDetection">configureStartDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStoreMultiplexer">configureStoreMultiplexer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
@@ -105,6 +107,34 @@ const isRunning = stores =&gt; {
   return state.isDetectionRunning
 }
 
+const LOCAL_STORAGE_KEY = &apos;IDLEMONITOR_LAST_ACTIVE&apos;
+const localPollingFrequency = 5000
+
+export const setLocalActive = () =&gt; {
+  let now = Date.now()
+  localStorage[LOCAL_STORAGE_KEY] = now
+  return now
+}
+export const getLocalActive = () =&gt; localStorage[LOCAL_STORAGE_KEY]
+
+const configureStartLocalPolling = ({ log, thresholds, activity, getIsTransition }) =&gt; (dispatch, getState) =&gt; {
+  let prevLastActive = getLocalActive()
+  let localIntervalID = setInterval(() =&gt; {
+    let currLastActive = getLocalActive()
+    if(currLastActive !== prevLastActive) {
+      log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}]`)
+      prevLastActive = currLastActive
+      dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
+    }
+  }, localPollingFrequency)
+  log.info(&apos;local activity detection starting...&apos;)
+  return (dispatch, getState) =&gt; {
+    log.info(&apos;local activity detection terminating...&apos;)
+    clearInterval(localIntervalID)
+  }
+}
+
+
 export const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) =&gt; stores =&gt; (dispatch, getState) =&gt; {
   const { activity
         , activityDetection
@@ -112,28 +142,33 @@ export const configureStartDetection = ({ log, activeEvents, thresholds, transla
                                 , activityDetection: activityDetectionBlueprint
                                 })
 
+  const getIsTransition = () =&gt; stores.lib.getState().idleStatus !== IDLESTATUS_ACTIVE
+
+  const startLocalPolling = configureStartLocalPolling({ log, activity, getIsTransition })
+
+
   /** One of the event listeners triggered an activity occurrence event. This gets spammed */
   const onActivity = e =&gt; {
     if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))
       return
-    const { idleStatus } = stores.lib.getState()
-    const isTransition = idleStatus !== IDLESTATUS_ACTIVE
     const { dispatch } = stores.selectFirst(&apos;lib&apos;)
-    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition }))
+    setLocalActive()
+    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
   }
-
 
   log.warn(&apos;activity detection starting...&apos;)
   if(IS_DEV)
     assert.ok(!isRunning(stores), &apos;activity detection is already running&apos;)
   activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
+  const stopLocalPolling = dispatch(startLocalPolling)
 
   /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
   return (dispatch, getState) =&gt; {
     log.info(&apos;activity detection terminating...&apos;)
     if(IS_DEV)
       assert(isRunning(stores), &apos;activity detection is not running&apos;)
+    dispatch(stopLocalPolling)
     activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
