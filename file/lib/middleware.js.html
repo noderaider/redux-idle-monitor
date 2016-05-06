@@ -64,6 +64,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebRTCState">getUseWebRTCState</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebSocketsState">getUseWebSocketsState</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStartDetection">configureStartDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStoreMultiplexer">configureStoreMultiplexer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
@@ -80,6 +82,7 @@ import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint } from &apos;./blueprints&apos;
 import { createStartDetection } from &apos;./actions&apos;
 import { getNextIdleStatusIn } from &apos;./states&apos;
+import { setLocalActive } from &apos;./detection&apos;
 
 
 /** When context has already been created, it can be shared to middleware component. */
@@ -101,6 +104,7 @@ export const createMiddleware = context =&gt; {
                                     , ACTIVITY: ACTIVITY_BLUEPRINT
                                     })
 
+
   const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]
   const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
@@ -111,13 +115,16 @@ export const createMiddleware = context =&gt; {
   return store =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
 
+
+
     return next =&gt; action =&gt; {
+      const { dispatch, getState } = store
+
       if(!action.type)
         return next(action)
-      const { dispatch, getState } = store
       const { type, payload } = action
 
-      const scheduleTransition = (idleStatus) =&gt; {
+      const scheduleTransition = idleStatus =&gt; {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
         assert.ok(delay, `must return an idle status delay for idleStatus === &apos;${idleStatus}&apos;`)
@@ -129,6 +136,8 @@ export const createMiddleware = context =&gt; {
         let nextIdleStatus = getNextIdleStatus(idleStatus)
         log.trace(`Scheduling next idle status &apos;${idleStatus}&apos; in ${delay} MS, then &apos;${nextIdleStatus}&apos;`)
         nextTimeoutID = setTimeout(() =&gt; {
+
+
           log.trace(nextMessage)
           next(action)
           dispatch(idleStatusAction(idleStatus))
@@ -153,9 +162,7 @@ export const createMiddleware = context =&gt; {
       }
 
       if(type === RESET) {
-        clearTimeout(nextTimeoutID)
-        if(stopDetection)
-          stopDetection()
+        dispatch(stop())
         dispatch(start())
       }
 
@@ -180,6 +187,12 @@ export const createMiddleware = context =&gt; {
         }
 
         let result = next(action)
+        /*
+        if(payload.type !== &apos;local&apos;) {
+          log.info(&apos;Setting local tab to active&apos;)
+          setLocalActive()
+        }
+        */
         if(payload.isTransition) {
           log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
           dispatch(activeStatusAction)
