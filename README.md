@@ -5,6 +5,8 @@
 
 A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.
 
+:rocket: **Now supports active user synchronization across multiple tabs / windows.**
+
 `npm i -S redux-idle-monitor`
 
 Can be used standalone with redux or in tandem with [react-redux-idle-monitor](https://npmjs.com/packages/react-redux-idle-monitor) to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.

@@ -85,9 +85,7 @@ export const createMiddleware = context => {
       }
 
       if(type === RESET) {
-        clearTimeout(nextTimeoutID)
-        if(stopDetection)
-          dispatch(stopDetection)
+        dispatch(stop())
         dispatch(start())
       }
 
