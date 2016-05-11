@@ -39,6 +39,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-lastIdleStatusBlueprint">lastIdleStatusBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-nextIdleStatusBlueprint">nextIdleStatusBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-publicBlueprints">publicBlueprints</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resetBlueprint">resetBlueprint</a></span></span></li>
@@ -49,6 +50,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NEXT_IDLE_STATUS_BLUEPRINT">NEXT_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RESET_BLUEPRINT">RESET_BLUEPRINT</a></span></span></li>
@@ -66,6 +68,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStartDetection">configureStartDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalInit">setLocalInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStoreMultiplexer">configureStoreMultiplexer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
@@ -74,7 +78,7 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">8/38</span></h1>
+<div class="content" data-ice="content"><h1>Source <img data-ice="coverageBadge" src="./badge.svg"><span data-ice="totalCoverageCount" class="total-coverage-count">8/42</span></h1>
 
 <table class="files-summary" data-ice="files" data-use-coverage="true">
   <thead>
@@ -98,36 +102,38 @@
       <td style="display: none;" data-ice="updated">2016-04-07 00:35:15 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/lib/blueprints.js.html#errorLines=10,13,15,5,6,7,9">lib/blueprints.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/lib/blueprints.js.html#errorLines=10,13,15,20,5,6,7,9">lib/blueprints.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span>
 <span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span>
+<span><a href="variable/index.html#static-variable-lastIdleStatusBlueprint">lastIdleStatusBlueprint</a></span>
 <span><a href="variable/index.html#static-variable-nextIdleStatusBlueprint">nextIdleStatusBlueprint</a></span>
 <span><a href="variable/index.html#static-variable-publicBlueprints">publicBlueprints</a></span>
 <span><a href="variable/index.html#static-variable-resetBlueprint">resetBlueprint</a></span>
 <span><a href="variable/index.html#static-variable-startBlueprint">startBlueprint</a></span>
 <span><a href="variable/index.html#static-variable-stopBlueprint">stopBlueprint</a></span></td>
-      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/7</span></td>
-      <td style="display: none;" data-ice="size">1110 byte</td>
-      <td style="display: none;" data-ice="lines">19</td>
-      <td style="display: none;" data-ice="updated">2016-04-03 15:58:10 (UTC)</td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/8</span></td>
+      <td style="display: none;" data-ice="size">1356 byte</td>
+      <td style="display: none;" data-ice="lines">25</td>
+      <td style="display: none;" data-ice="updated">2016-05-04 00:10:32 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/lib/constants.js.html#errorLines=11,12,14,15,17,22,7">lib/constants.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/lib/constants.js.html#errorLines=11,12,14,15,17,18,23,7">lib/constants.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-ACTION_PREFIX">ACTION_PREFIX</a></span>
 <span><a href="variable/index.html#static-variable-ACTIVITY_BLUEPRINT">ACTIVITY_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span>
 <span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span>
+<span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span>
 <span><a href="variable/index.html#static-variable-NEXT_IDLE_STATUS_BLUEPRINT">NEXT_IDLE_STATUS_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-RESET_BLUEPRINT">RESET_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-ROOT_STATE_KEY">ROOT_STATE_KEY</a></span>
 <span><a href="variable/index.html#static-variable-START_BLUEPRINT">START_BLUEPRINT</a></span>
 <span><a href="variable/index.html#static-variable-STOP_BLUEPRINT">STOP_BLUEPRINT</a></span></td>
-      <td class="coverage"><span data-ice="coverage">36 %</span><span data-ice="coverageCount" class="coverage-count">4/11</span></td>
-      <td style="display: none;" data-ice="size">663 byte</td>
-      <td style="display: none;" data-ice="lines">22</td>
-      <td style="display: none;" data-ice="updated">2016-04-07 00:25:22 (UTC)</td>
+      <td class="coverage"><span data-ice="coverage">33 %</span><span data-ice="coverageCount" class="coverage-count">4/12</span></td>
+      <td style="display: none;" data-ice="size">725 byte</td>
+      <td style="display: none;" data-ice="lines">23</td>
+      <td style="display: none;" data-ice="updated">2016-05-03 23:19:08 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/lib/context.js.html#errorLines=40">lib/context.js</a></span></td>
@@ -153,14 +159,16 @@
       <td style="display: none;" data-ice="updated">2016-04-03 17:28:35 (UTC)</td>
     </tr>
 <tr data-ice="file">
-      <td data-ice="filePath"><span><a href="file/lib/detection.js.html#errorLines=36,41,61">lib/detection.js</a></span></td>
+      <td data-ice="filePath"><span><a href="file/lib/detection.js.html#errorLines=37,38,39,44,66">lib/detection.js</a></span></td>
       <td data-ice="identifier" class="identifiers"><span><a href="variable/index.html#static-variable-configureStartDetection">configureStartDetection</a></span>
 <span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span>
-<span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></td>
-      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/3</span></td>
-      <td style="display: none;" data-ice="size">3770 byte</td>
-      <td style="display: none;" data-ice="lines">98</td>
-      <td style="display: none;" data-ice="updated">2016-05-05 00:32:00 (UTC)</td>
+<span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span>
+<span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span>
+<span><a href="variable/index.html#static-variable-setLocalInit">setLocalInit</a></span></td>
+      <td class="coverage"><span data-ice="coverage">0 %</span><span data-ice="coverageCount" class="coverage-count">0/5</span></td>
+      <td style="display: none;" data-ice="size">4162 byte</td>
+      <td style="display: none;" data-ice="lines">104</td>
+      <td style="display: none;" data-ice="updated">2016-05-04 00:09:42 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/lib/index.js.html#errorLines=10">lib/index.js</a></span></td>
@@ -175,9 +183,9 @@
       <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span>
 <span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">5069 byte</td>
-      <td style="display: none;" data-ice="lines">132</td>
-      <td style="display: none;" data-ice="updated">2016-05-05 18:06:02 (UTC)</td>
+      <td style="display: none;" data-ice="size">5743 byte</td>
+      <td style="display: none;" data-ice="lines">143</td>
+      <td style="display: none;" data-ice="updated">2016-05-04 00:13:20 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/lib/multiplexer.js.html#errorLines=11">lib/multiplexer.js</a></span></td>
@@ -192,9 +200,9 @@
       <td data-ice="identifier" class="identifiers"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span>
 <span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></td>
       <td class="coverage"><span data-ice="coverage">100 %</span><span data-ice="coverageCount" class="coverage-count">2/2</span></td>
-      <td style="display: none;" data-ice="size">2288 byte</td>
-      <td style="display: none;" data-ice="lines">48</td>
-      <td style="display: none;" data-ice="updated">2016-05-04 00:17:09 (UTC)</td>
+      <td style="display: none;" data-ice="size">2683 byte</td>
+      <td style="display: none;" data-ice="lines">54</td>
+      <td style="display: none;" data-ice="updated">2016-05-04 00:13:06 (UTC)</td>
     </tr>
 <tr data-ice="file">
       <td data-ice="filePath"><span><a href="file/lib/states.js.html#errorLines=1">lib/states.js</a></span></td>
