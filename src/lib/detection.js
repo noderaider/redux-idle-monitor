@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { IS_DEV, IDLESTATUS_ACTIVE } from './constants'
-import { activityBlueprint, activityDetectionBlueprint } from './blueprints'
+import { activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from './blueprints'
 
 const STOP_TYPES = ['pointermove', 'MSPointerMove']
 const FILTER_TYPES = ['mousemove']
@@ -31,8 +31,11 @@ const isRunning = stores => {
 }
 
 const LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'
-const localPollingFrequency = 5000
+const localPollingFrequency = 1000
 
+
+export const setLocalInit = () => localStorage[LOCAL_STORAGE_KEY] = 'INIT'
+export const setLocalIdle = () => localStorage[LOCAL_STORAGE_KEY] = 'IDLE'
 export const setLocalActive = () => {
   let now = Date.now()
   localStorage[LOCAL_STORAGE_KEY] = now
@@ -40,12 +43,14 @@ export const setLocalActive = () => {
 }
 export const getLocalActive = () => localStorage[LOCAL_STORAGE_KEY]
 
-const configureStartLocalPolling = ({ log, thresholds, activity, getIsTransition }) => (dispatch, getState) => {
+const configureStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) => (dispatch, getState) => {
   let prevLastActive = getLocalActive()
   let localIntervalID = setInterval(() => {
     let currLastActive = getLocalActive()
-    if(currLastActive !== prevLastActive) {
-      log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}]`)
+    if(currLastActive == 'IDLE') {
+      dispatch(lastIdleStatus())
+    } else if(currLastActive != prevLastActive) {
+      log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}], ${typeof currLastActive}`)
       prevLastActive = currLastActive
       dispatch(activity({ type: 'local', isTransition: getIsTransition() }))
     }
@@ -61,13 +66,15 @@ const configureStartLocalPolling = ({ log, thresholds, activity, getIsTransition
 export const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {
   const { activity
         , activityDetection
+        , lastIdleStatus
         } = translateBlueprints({ activity: activityBlueprint
                                 , activityDetection: activityDetectionBlueprint
+                                , lastIdleStatus: lastIdleStatusBlueprint
                                 })
 
   const getIsTransition = () => stores.lib.getState().idleStatus !== IDLESTATUS_ACTIVE
 
-  const startLocalPolling = configureStartLocalPolling({ log, activity, getIsTransition })
+  const startLocalPolling = configureStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })
 
 
   /** One of the event listeners triggered an activity occurrence event. This gets spammed */
@@ -75,7 +82,6 @@ export const configureStartDetection = ({ log, activeEvents, thresholds, transla
     if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))
       return
     const { dispatch } = stores.selectFirst('lib')
-    setLocalActive()
     dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
   }
 

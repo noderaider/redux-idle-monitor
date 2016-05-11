@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { createBlueprint } from 'redux-blueprint'
-import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT } from './constants'
+import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
 
 export const startBlueprint = createBlueprint(START_BLUEPRINT)
 export const stopBlueprint = createBlueprint(STOP_BLUEPRINT)
@@ -17,3 +17,9 @@ export const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRIN
   return { nextIdleStatus }
 })
 
+export const lastIdleStatusBlueprint = createBlueprint(LAST_IDLE_STATUS_BLUEPRINT) //, lastIdleStatus => {
+  /*
+  assert.ok(lastIdleStatus, 'lastIdleStatus must be defined')
+  return { lastIdleStatus }
+  */
+//})
