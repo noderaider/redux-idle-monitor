@@ -39,6 +39,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-lastIdleStatusBlueprint">lastIdleStatusBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-nextIdleStatusBlueprint">nextIdleStatusBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-publicBlueprints">publicBlueprints</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-resetBlueprint">resetBlueprint</a></span></span></li>
@@ -49,6 +50,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NEXT_IDLE_STATUS_BLUEPRINT">NEXT_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-RESET_BLUEPRINT">RESET_BLUEPRINT</a></span></span></li>
@@ -66,6 +68,8 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStartDetection">configureStartDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalInit">setLocalInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-configureStoreMultiplexer">configureStoreMultiplexer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
@@ -77,30 +81,36 @@
 <div class="content" data-ice="content"><h1 data-ice="title">lib/middleware.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import createContext from &apos;./context&apos;
-import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
+import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
-import { publicBlueprints, nextIdleStatusBlueprint } from &apos;./blueprints&apos;
+import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
 import { createStartDetection } from &apos;./actions&apos;
 import { getNextIdleStatusIn } from &apos;./states&apos;
-import { setLocalActive } from &apos;./detection&apos;
+import { setLocalActive, setLocalInit, setLocalIdle } from &apos;./detection&apos;
 
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context =&gt; {
   const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context
   const { start, stop, reset } = translateBlueprints(publicBlueprints)
-  const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })
+  const { nextIdleStatusAction
+        , lastIdleStatusAction
+        } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint
+                                , lastIdleStatusAction: lastIdleStatusBlueprint
+                                })
   const startDetection = createStartDetection(context)
 
   const { START
         , RESET
         , STOP
         , NEXT_IDLE_STATUS
+        , LAST_IDLE_STATUS
         , ACTIVITY
         } = translateBlueprintTypes({ START: START_BLUEPRINT
                                     , RESET: RESET_BLUEPRINT
                                     , STOP: STOP_BLUEPRINT
                                     , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT
+                                    , LAST_IDLE_STATUS: LAST_IDLE_STATUS_BLUEPRINT
                                     , ACTIVITY: ACTIVITY_BLUEPRINT
                                     })
 
@@ -108,14 +118,13 @@ export const createMiddleware = context =&gt; {
   const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]
   const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
+  const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
 
   let stopDetection = null
   let nextTimeoutID = null
   let startDetectionID = null
   return store =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
-
-
 
     return next =&gt; action =&gt; {
       const { dispatch, getState } = store
@@ -144,8 +153,8 @@ export const createMiddleware = context =&gt; {
           if(nextIdleStatus) {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
-            log.info(&apos;No more actions to schedule&apos;)
-            // END OF THE LINE
+            log.info(&apos;No more actions to schedule, setting local state to idle&apos;)
+            setLocalIdle()
           }
         }, delay)
         return function cancel() {
@@ -155,6 +164,7 @@ export const createMiddleware = context =&gt; {
       }
 
       if(type === START) {
+        setLocalInit()
         stopDetection = dispatch(startDetection)
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
@@ -177,6 +187,13 @@ export const createMiddleware = context =&gt; {
         return scheduleTransition(payload.nextIdleStatus)
       }
 
+      if(type === LAST_IDLE_STATUS) {
+        console.warn(&apos;LAST IDLE STATUS TRIGGERED&apos;)
+        clearTimeout(nextTimeoutID)
+        //dispatch(lastIdleStatusAction(IDLESTATUS_LAST))
+        dispatch(idleStatusAction(IDLESTATUS_LAST))
+      }
+
       if(type === ACTIVITY) {
         if(stopDetection &amp;&amp; thresholds.phaseOffMS) {
           dispatch(stopDetection)
@@ -187,12 +204,10 @@ export const createMiddleware = context =&gt; {
         }
 
         let result = next(action)
-        /*
         if(payload.type !== &apos;local&apos;) {
           log.info(&apos;Setting local tab to active&apos;)
           setLocalActive()
         }
-        */
         if(payload.isTransition) {
           log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
           dispatch(activeStatusAction)

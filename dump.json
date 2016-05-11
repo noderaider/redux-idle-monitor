@@ -44,7 +44,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport { createBlueprint } from 'redux-blueprint'\r\nimport { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT } from './constants'\r\n\r\nexport const startBlueprint = createBlueprint(START_BLUEPRINT)\r\nexport const stopBlueprint = createBlueprint(STOP_BLUEPRINT)\r\nexport const resetBlueprint = createBlueprint(RESET_BLUEPRINT)\r\n\r\nexport const activityBlueprint = createBlueprint(ACTIVITY_BLUEPRINT, ({ x, y, type, isTransition }) => ({ activeStatus: IDLESTATUS_ACTIVE, lastActive: +new Date(), lastEvent: { x, y, type }, isTransition }))\r\nexport const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLUEPRINT, isDetectionRunning => ({ isDetectionRunning }))\r\n\r\n\r\nexport const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, reset: resetBlueprint }\r\n\r\nexport const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRINT, nextIdleStatus => {\r\n  assert.ok(nextIdleStatus, 'nextIdleStatus must be defined')\r\n  return { nextIdleStatus }\r\n})\r\n\r\n"
+    "content": "import { assert } from 'chai'\r\nimport { createBlueprint } from 'redux-blueprint'\r\nimport { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'\r\n\r\nexport const startBlueprint = createBlueprint(START_BLUEPRINT)\r\nexport const stopBlueprint = createBlueprint(STOP_BLUEPRINT)\r\nexport const resetBlueprint = createBlueprint(RESET_BLUEPRINT)\r\n\r\nexport const activityBlueprint = createBlueprint(ACTIVITY_BLUEPRINT, ({ x, y, type, isTransition }) => ({ activeStatus: IDLESTATUS_ACTIVE, lastActive: +new Date(), lastEvent: { x, y, type }, isTransition }))\r\nexport const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLUEPRINT, isDetectionRunning => ({ isDetectionRunning }))\r\n\r\n\r\nexport const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, reset: resetBlueprint }\r\n\r\nexport const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRINT, nextIdleStatus => {\r\n  assert.ok(nextIdleStatus, 'nextIdleStatus must be defined')\r\n  return { nextIdleStatus }\r\n})\r\n\r\nexport const lastIdleStatusBlueprint = createBlueprint(LAST_IDLE_STATUS_BLUEPRINT) //, lastIdleStatus => {\r\n  /*\r\n  assert.ok(lastIdleStatus, 'lastIdleStatus must be defined')\r\n  return { lastIdleStatus }\r\n  */\r\n//})\r\n"
   },
   {
     "__docId__": 3,
@@ -195,6 +195,27 @@
   },
   {
     "__docId__": 10,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "lastIdleStatusBlueprint",
+    "memberof": "lib/blueprints.js",
+    "longname": "lib/blueprints.js~lastIdleStatusBlueprint",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/blueprints.js",
+    "importStyle": "{lastIdleStatusBlueprint}",
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 11,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -204,10 +225,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "/** Lib Constants */\r\nexport const LIB_NAME = 'redux-idle-monitor'\r\n\r\n/** Redux state root level key */\r\nexport const ROOT_STATE_KEY = 'idle'\r\n\r\nexport const ACTION_PREFIX = 'IDLEMONITOR'\r\n\r\n/** Action Blueprint Name Constants */\r\nexport const START_BLUEPRINT = 'START'\r\nexport const STOP_BLUEPRINT = 'STOP'\r\nexport const RESET_BLUEPRINT = 'RESET'\r\n\r\nexport const ACTIVITY_BLUEPRINT = 'ACTIVITY'\r\nexport const ACTIVITY_DETECTION_BLUEPRINT = 'ACTIVITY_DETECTION'\r\n\r\nexport const NEXT_IDLE_STATUS_BLUEPRINT = 'NEXT_IDLE_STATUS'\r\n\r\n/** INITIAL IDLE STATUS */\r\nexport const IDLESTATUS_ACTIVE = 'ACTIVE'\r\n\r\nexport const IS_DEV = process.env.NODE_ENV !== 'production'\r\n"
+    "content": "/** Lib Constants */\r\nexport const LIB_NAME = 'redux-idle-monitor'\r\n\r\n/** Redux state root level key */\r\nexport const ROOT_STATE_KEY = 'idle'\r\n\r\nexport const ACTION_PREFIX = 'IDLEMONITOR'\r\n\r\n/** Action Blueprint Name Constants */\r\nexport const START_BLUEPRINT = 'START'\r\nexport const STOP_BLUEPRINT = 'STOP'\r\nexport const RESET_BLUEPRINT = 'RESET'\r\n\r\nexport const ACTIVITY_BLUEPRINT = 'ACTIVITY'\r\nexport const ACTIVITY_DETECTION_BLUEPRINT = 'ACTIVITY_DETECTION'\r\n\r\nexport const NEXT_IDLE_STATUS_BLUEPRINT = 'NEXT_IDLE_STATUS'\r\nexport const LAST_IDLE_STATUS_BLUEPRINT = 'LAST_IDLE_STATUS'\r\n\r\n/** INITIAL IDLE STATUS */\r\nexport const IDLESTATUS_ACTIVE = 'ACTIVE'\r\n\r\nexport const IS_DEV = process.env.NODE_ENV !== 'production'\r\n"
   },
   {
-    "__docId__": 11,
+    "__docId__": 12,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -227,7 +248,7 @@
     }
   },
   {
-    "__docId__": 12,
+    "__docId__": 13,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -247,7 +268,7 @@
     }
   },
   {
-    "__docId__": 13,
+    "__docId__": 14,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -268,7 +289,7 @@
     }
   },
   {
-    "__docId__": 14,
+    "__docId__": 15,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -288,7 +309,7 @@
     }
   },
   {
-    "__docId__": 15,
+    "__docId__": 16,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -309,7 +330,7 @@
     }
   },
   {
-    "__docId__": 16,
+    "__docId__": 17,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -330,7 +351,7 @@
     }
   },
   {
-    "__docId__": 17,
+    "__docId__": 18,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -351,7 +372,7 @@
     }
   },
   {
-    "__docId__": 18,
+    "__docId__": 19,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -372,7 +393,7 @@
     }
   },
   {
-    "__docId__": 19,
+    "__docId__": 20,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -393,7 +414,28 @@
     }
   },
   {
-    "__docId__": 20,
+    "__docId__": 21,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "LAST_IDLE_STATUS_BLUEPRINT",
+    "memberof": "lib/constants.js",
+    "longname": "lib/constants.js~LAST_IDLE_STATUS_BLUEPRINT",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/constants.js",
+    "importStyle": "{LAST_IDLE_STATUS_BLUEPRINT}",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "__docId__": 22,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -405,7 +447,7 @@
     "importPath": "redux-idle-monitor/lib/constants.js",
     "importStyle": "{IDLESTATUS_ACTIVE}",
     "description": "INITIAL IDLE STATUS",
-    "lineNumber": 20,
+    "lineNumber": 21,
     "type": {
       "types": [
         "string"
@@ -413,7 +455,7 @@
     }
   },
   {
-    "__docId__": 21,
+    "__docId__": 23,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -425,7 +467,7 @@
     "importPath": "redux-idle-monitor/lib/constants.js",
     "importStyle": "{IS_DEV}",
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 23,
     "undocument": true,
     "type": {
       "types": [
@@ -434,7 +476,7 @@
     }
   },
   {
-    "__docId__": 22,
+    "__docId__": 24,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -447,7 +489,7 @@
     "content": "import { assert } from 'chai'\r\nimport  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from './constants'\r\nimport { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from './defaults'\r\n\r\nimport configureContext from 'redux-addons/lib/context'\r\nimport  { createLogger } from 'redux-addons/lib/log'\r\nconst noop = () => {}\r\n\r\nconst validateContext = (libContext, appContext) => {\r\n  assert.ok(libContext, 'must pass opts to validate')\r\n  assert.ok(appContext, 'must pass opts to validate')\r\n\r\n  const { libName, appName } = libContext\r\n  const { activeEvents, thresholds } = appContext\r\n\r\n  assert.ok(libName, 'libName must exist')\r\n  assert(typeof libName === 'string', 'libName option must be a string')\r\n  assert(libName.length > 0, 'libName option must not be empty')\r\n  assert.ok(appName, 'appName must exist')\r\n  assert(typeof appName === 'string', 'appName option must be a string')\r\n  assert(appName.length > 0, 'appName option must not be empty')\r\n  assert.ok(activeEvents, 'active events must exist')\r\n  assert.ok(thresholds, 'thresholds must exist')\r\n  assert.ok(thresholds.mouse, 'thresholds.mouse must exist')\r\n  assert(typeof thresholds.mouse === 'number', 'thresholds.mouse must be a number corresponding to pixels')\r\n  assert(typeof thresholds.phaseOffMS === 'number', 'thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux')\r\n  assert(typeof thresholds.phaseOnMS === 'number', 'thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux')\r\n}\r\n\r\nconst configureInitialState = libContext => appContext => {\r\n  return  { idleStatus: IDLESTATUS_ACTIVE\r\n          , isRunning: false\r\n          , isDetectionRunning: false\r\n          , isIdle: false\r\n          , lastActive: +new Date()\r\n          , lastEvent: { x: -1, y: -1, type: null }\r\n          }\r\n}\r\n\r\nexport default function createContext({ appName\r\n                                      , IDLE_STATUSES\r\n                                      , idleStatusDelay\r\n                                      , activeStatusAction\r\n                                      , idleStatusAction\r\n                                      , activeEvents = getActiveEvents()\r\n                                      , useFastStore = getUseFastState()\r\n                                      , useLocalStore = getUseLocalState()\r\n                                      , useWebRTCState = getUseWebRTCState()\r\n                                      , useWebSocketsState = getUseWebSocketsState()\r\n                                      , thresholds = getThresholds()\r\n                                      , level = getLevel()\r\n                                      } = {}) {\r\n  const libName = ROOT_STATE_KEY\r\n  const libOpts = { libName, validateContext, configureAppContext: libContext => appOpts => appOpts, configureInitialState }\r\n  const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }\r\n  return configureContext(libOpts)(appOpts)\r\n}\r\n"
   },
   {
-    "__docId__": 23,
+    "__docId__": 25,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -468,7 +510,7 @@
     }
   },
   {
-    "__docId__": 24,
+    "__docId__": 26,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -489,7 +531,7 @@
     }
   },
   {
-    "__docId__": 25,
+    "__docId__": 27,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -510,7 +552,7 @@
     }
   },
   {
-    "__docId__": 26,
+    "__docId__": 28,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -543,7 +585,7 @@
     "generator": false
   },
   {
-    "__docId__": 27,
+    "__docId__": 29,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -556,7 +598,7 @@
     "content": "export const getTimeStamp = () => new Date().toTimeString()\r\n\r\nexport const getActiveEvents = () => [ 'mousemove', 'keydown', 'wheel', 'DOMMouseScroll', 'mouseWheel', 'mousedown', 'touchstart', 'touchmove', 'MSPointerDown', 'MSPointerMove' ]\r\n\r\nexport const getUseFastState = () => true\r\nexport const getUseLocalState = () => true\r\nexport const getUseWebRTCState = () => true\r\nexport const getUseWebSocketsState = () => true\r\n\r\nexport const getThresholds = ({ mouse = 20, phaseOffMS = 2000, phaseOnMS = 0 } = {}) => ({ mouse, phaseOffMS, phaseOnMS })\r\n\r\nexport const getLevel = () => 'info'\r\n"
   },
   {
-    "__docId__": 28,
+    "__docId__": 30,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -577,7 +619,7 @@
     }
   },
   {
-    "__docId__": 29,
+    "__docId__": 31,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -598,7 +640,7 @@
     }
   },
   {
-    "__docId__": 30,
+    "__docId__": 32,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -619,7 +661,7 @@
     }
   },
   {
-    "__docId__": 31,
+    "__docId__": 33,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -640,7 +682,7 @@
     }
   },
   {
-    "__docId__": 32,
+    "__docId__": 34,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -661,7 +703,7 @@
     }
   },
   {
-    "__docId__": 33,
+    "__docId__": 35,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -682,7 +724,7 @@
     }
   },
   {
-    "__docId__": 34,
+    "__docId__": 36,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -703,7 +745,7 @@
     }
   },
   {
-    "__docId__": 35,
+    "__docId__": 37,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -724,7 +766,7 @@
     }
   },
   {
-    "__docId__": 36,
+    "__docId__": 38,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -734,10 +776,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE } from './constants'\r\nimport { activityBlueprint, activityDetectionBlueprint } from './blueprints'\r\n\r\nconst STOP_TYPES = ['pointermove', 'MSPointerMove']\r\nconst FILTER_TYPES = ['mousemove']\r\n\r\n/** Detects whether the activity should trigger a redux update */\r\nconst _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {\r\n  if(STOP_TYPES.includes(type))\r\n    return false\r\n  if(!FILTER_TYPES.includes(type))\r\n    return true\r\n  const { getState } = stores.selectFirst('lib')\r\n\r\n  /** If last event was not the same event type, trigger an update. */\r\n  const { lastActive, lastEvent } = getState()\r\n  if(lastEvent.type !== type)\r\n    return true\r\n\r\n  /** If last mouse events coordinates were not within mouse threshold, trigger an update. */\r\n  const { x, y } = lastEvent\r\n  if((pageX && pageY && x && y) && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)\r\n    return false\r\n  return true\r\n}\r\n\r\nconst isRunning = stores => {\r\n  const state = stores.lib.getState()\r\n  return state.isDetectionRunning\r\n}\r\n\r\nconst LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'\r\nconst localPollingFrequency = 5000\r\n\r\nexport const setLocalActive = () => {\r\n  let now = Date.now()\r\n  localStorage[LOCAL_STORAGE_KEY] = now\r\n  return now\r\n}\r\nexport const getLocalActive = () => localStorage[LOCAL_STORAGE_KEY]\r\n\r\nconst configureStartLocalPolling = ({ log, thresholds, activity, getIsTransition }) => (dispatch, getState) => {\r\n  let prevLastActive = getLocalActive()\r\n  let localIntervalID = setInterval(() => {\r\n    let currLastActive = getLocalActive()\r\n    if(currLastActive !== prevLastActive) {\r\n      log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}]`)\r\n      prevLastActive = currLastActive\r\n      dispatch(activity({ type: 'local', isTransition: getIsTransition() }))\r\n    }\r\n  }, localPollingFrequency)\r\n  log.info('local activity detection starting...')\r\n  return (dispatch, getState) => {\r\n    log.info('local activity detection terminating...')\r\n    clearInterval(localIntervalID)\r\n  }\r\n}\r\n\r\n\r\nexport const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {\r\n  const { activity\r\n        , activityDetection\r\n        } = translateBlueprints({ activity: activityBlueprint\r\n                                , activityDetection: activityDetectionBlueprint\r\n                                })\r\n\r\n  const getIsTransition = () => stores.lib.getState().idleStatus !== IDLESTATUS_ACTIVE\r\n\r\n  const startLocalPolling = configureStartLocalPolling({ log, activity, getIsTransition })\r\n\r\n\r\n  /** One of the event listeners triggered an activity occurrence event. This gets spammed */\r\n  const onActivity = e => {\r\n    if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))\r\n      return\r\n    const { dispatch } = stores.selectFirst('lib')\r\n    setLocalActive()\r\n    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))\r\n  }\r\n\r\n  log.warn('activity detection starting...')\r\n  if(IS_DEV)\r\n    assert.ok(!isRunning(stores), 'activity detection is already running')\r\n  activeEvents.forEach(x => document.addEventListener(x, onActivity))\r\n  dispatch(activityDetection(true))\r\n  const stopLocalPolling = dispatch(startLocalPolling)\r\n\r\n  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */\r\n  return (dispatch, getState) => {\r\n    log.info('activity detection terminating...')\r\n    if(IS_DEV)\r\n      assert(isRunning(stores), 'activity detection is not running')\r\n    dispatch(stopLocalPolling)\r\n    activeEvents.forEach(x => document.removeEventListener(x, onActivity))\r\n    dispatch(activityDetection(false))\r\n  }\r\n}\r\n"
+    "content": "import { assert } from 'chai'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE } from './constants'\r\nimport { activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from './blueprints'\r\n\r\nconst STOP_TYPES = ['pointermove', 'MSPointerMove']\r\nconst FILTER_TYPES = ['mousemove']\r\n\r\n/** Detects whether the activity should trigger a redux update */\r\nconst _shouldActivityUpdate = ({ log, thresholds }) => stores => ({ type, pageX, pageY }) => {\r\n  if(STOP_TYPES.includes(type))\r\n    return false\r\n  if(!FILTER_TYPES.includes(type))\r\n    return true\r\n  const { getState } = stores.selectFirst('lib')\r\n\r\n  /** If last event was not the same event type, trigger an update. */\r\n  const { lastActive, lastEvent } = getState()\r\n  if(lastEvent.type !== type)\r\n    return true\r\n\r\n  /** If last mouse events coordinates were not within mouse threshold, trigger an update. */\r\n  const { x, y } = lastEvent\r\n  if((pageX && pageY && x && y) && Math.abs(pageX - x) < thresholds.mouse && Math.abs(pageY - y) < thresholds.mouse)\r\n    return false\r\n  return true\r\n}\r\n\r\nconst isRunning = stores => {\r\n  const state = stores.lib.getState()\r\n  return state.isDetectionRunning\r\n}\r\n\r\nconst LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'\r\nconst localPollingFrequency = 1000\r\n\r\n\r\nexport const setLocalInit = () => localStorage[LOCAL_STORAGE_KEY] = 'INIT'\r\nexport const setLocalIdle = () => localStorage[LOCAL_STORAGE_KEY] = 'IDLE'\r\nexport const setLocalActive = () => {\r\n  let now = Date.now()\r\n  localStorage[LOCAL_STORAGE_KEY] = now\r\n  return now\r\n}\r\nexport const getLocalActive = () => localStorage[LOCAL_STORAGE_KEY]\r\n\r\nconst configureStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) => (dispatch, getState) => {\r\n  let prevLastActive = getLocalActive()\r\n  let localIntervalID = setInterval(() => {\r\n    let currLastActive = getLocalActive()\r\n    if(currLastActive == 'IDLE') {\r\n      dispatch(lastIdleStatus())\r\n    } else if(currLastActive != prevLastActive) {\r\n      log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}], ${typeof currLastActive}`)\r\n      prevLastActive = currLastActive\r\n      dispatch(activity({ type: 'local', isTransition: getIsTransition() }))\r\n    }\r\n  }, localPollingFrequency)\r\n  log.info('local activity detection starting...')\r\n  return (dispatch, getState) => {\r\n    log.info('local activity detection terminating...')\r\n    clearInterval(localIntervalID)\r\n  }\r\n}\r\n\r\n\r\nexport const configureStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => stores => (dispatch, getState) => {\r\n  const { activity\r\n        , activityDetection\r\n        , lastIdleStatus\r\n        } = translateBlueprints({ activity: activityBlueprint\r\n                                , activityDetection: activityDetectionBlueprint\r\n                                , lastIdleStatus: lastIdleStatusBlueprint\r\n                                })\r\n\r\n  const getIsTransition = () => stores.lib.getState().idleStatus !== IDLESTATUS_ACTIVE\r\n\r\n  const startLocalPolling = configureStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })\r\n\r\n\r\n  /** One of the event listeners triggered an activity occurrence event. This gets spammed */\r\n  const onActivity = e => {\r\n    if (!_shouldActivityUpdate({ log, thresholds })(stores)(e))\r\n      return\r\n    const { dispatch } = stores.selectFirst('lib')\r\n    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))\r\n  }\r\n\r\n  log.warn('activity detection starting...')\r\n  if(IS_DEV)\r\n    assert.ok(!isRunning(stores), 'activity detection is already running')\r\n  activeEvents.forEach(x => document.addEventListener(x, onActivity))\r\n  dispatch(activityDetection(true))\r\n  const stopLocalPolling = dispatch(startLocalPolling)\r\n\r\n  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */\r\n  return (dispatch, getState) => {\r\n    log.info('activity detection terminating...')\r\n    if(IS_DEV)\r\n      assert(isRunning(stores), 'activity detection is not running')\r\n    dispatch(stopLocalPolling)\r\n    activeEvents.forEach(x => document.removeEventListener(x, onActivity))\r\n    dispatch(activityDetection(false))\r\n  }\r\n}\r\n"
   },
   {
-    "__docId__": 37,
+    "__docId__": 39,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -758,7 +800,7 @@
     }
   },
   {
-    "__docId__": 38,
+    "__docId__": 40,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -779,7 +821,7 @@
     }
   },
   {
-    "__docId__": 39,
+    "__docId__": 41,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -799,7 +841,7 @@
     }
   },
   {
-    "__docId__": 40,
+    "__docId__": 42,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -820,7 +862,7 @@
     }
   },
   {
-    "__docId__": 41,
+    "__docId__": 43,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -841,7 +883,7 @@
     }
   },
   {
-    "__docId__": 42,
+    "__docId__": 44,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -862,61 +904,19 @@
     }
   },
   {
-    "__docId__": 43,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "setLocalActive",
-    "memberof": "lib/detection.js",
-    "longname": "lib/detection.js~setLocalActive",
-    "access": null,
-    "export": true,
-    "importPath": "redux-idle-monitor/lib/detection.js",
-    "importStyle": "{setLocalActive}",
-    "description": null,
-    "lineNumber": 36,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "__docId__": 44,
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "getLocalActive",
-    "memberof": "lib/detection.js",
-    "longname": "lib/detection.js~getLocalActive",
-    "access": null,
-    "export": true,
-    "importPath": "redux-idle-monitor/lib/detection.js",
-    "importStyle": "{getLocalActive}",
-    "description": null,
-    "lineNumber": 41,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
     "__docId__": 45,
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "configureStartLocalPolling",
+    "name": "setLocalInit",
     "memberof": "lib/detection.js",
-    "longname": "lib/detection.js~configureStartLocalPolling",
+    "longname": "lib/detection.js~setLocalInit",
     "access": null,
-    "export": false,
+    "export": true,
     "importPath": "redux-idle-monitor/lib/detection.js",
-    "importStyle": null,
+    "importStyle": "{setLocalInit}",
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 37,
     "undocument": true,
     "type": {
       "types": [
@@ -929,15 +929,15 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "configureStartDetection",
+    "name": "setLocalIdle",
     "memberof": "lib/detection.js",
-    "longname": "lib/detection.js~configureStartDetection",
+    "longname": "lib/detection.js~setLocalIdle",
     "access": null,
     "export": true,
     "importPath": "redux-idle-monitor/lib/detection.js",
-    "importStyle": "{configureStartDetection}",
+    "importStyle": "{setLocalIdle}",
     "description": null,
-    "lineNumber": 61,
+    "lineNumber": 38,
     "undocument": true,
     "type": {
       "types": [
@@ -947,6 +947,90 @@
   },
   {
     "__docId__": 47,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "setLocalActive",
+    "memberof": "lib/detection.js",
+    "longname": "lib/detection.js~setLocalActive",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/detection.js",
+    "importStyle": "{setLocalActive}",
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 48,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "getLocalActive",
+    "memberof": "lib/detection.js",
+    "longname": "lib/detection.js~getLocalActive",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/detection.js",
+    "importStyle": "{getLocalActive}",
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 49,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureStartLocalPolling",
+    "memberof": "lib/detection.js",
+    "longname": "lib/detection.js~configureStartLocalPolling",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/detection.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 50,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "configureStartDetection",
+    "memberof": "lib/detection.js",
+    "longname": "lib/detection.js~configureStartDetection",
+    "access": null,
+    "export": true,
+    "importPath": "redux-idle-monitor/lib/detection.js",
+    "importStyle": "{configureStartDetection}",
+    "description": null,
+    "lineNumber": 66,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 51,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -959,7 +1043,7 @@
     "content": "import createContext from './context'\r\n\r\nimport { createReducer } from './reducer'\r\nimport { publicBlueprints } from './blueprints'\r\nimport { createMiddleware } from './middleware'\r\n\r\nimport { configureStoreMultiplexer } from './multiplexer'\r\nimport { configureStartDetection } from './detection'\r\n\r\nexport default function configure(appOpts) {\r\n  const context = createContext(appOpts)\r\n  const { translateBlueprints } = context\r\n  const actions = translateBlueprints(publicBlueprints)\r\n  return  { reducer: createReducer(context)\r\n          , middleware: createMiddleware(context)\r\n          , actions\r\n          }\r\n}\r\n"
   },
   {
-    "__docId__": 48,
+    "__docId__": 52,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -989,7 +1073,7 @@
     "generator": false
   },
   {
-    "__docId__": 49,
+    "__docId__": 53,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -999,10 +1083,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import { assert } from 'chai'\r\nimport createContext from './context'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'\r\nimport { bisectStore } from 'redux-mux'\r\nimport { publicBlueprints, nextIdleStatusBlueprint } from './blueprints'\r\nimport { createStartDetection } from './actions'\r\nimport { getNextIdleStatusIn } from './states'\r\nimport { setLocalActive } from './detection'\r\n\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createMiddleware = context => {\r\n  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context\r\n  const { start, stop, reset } = translateBlueprints(publicBlueprints)\r\n  const { nextIdleStatusAction } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint })\r\n  const startDetection = createStartDetection(context)\r\n\r\n  const { START\r\n        , RESET\r\n        , STOP\r\n        , NEXT_IDLE_STATUS\r\n        , ACTIVITY\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , RESET: RESET_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    })\r\n\r\n\r\n  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]\r\n  const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)\r\n  const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)\r\n\r\n  let stopDetection = null\r\n  let nextTimeoutID = null\r\n  let startDetectionID = null\r\n  return store => {\r\n    const idleStore = bisectStore(ROOT_STATE_KEY)(store)\r\n\r\n\r\n\r\n    return next => action => {\r\n      const { dispatch, getState } = store\r\n\r\n      if(!action.type)\r\n        return next(action)\r\n      const { type, payload } = action\r\n\r\n      const scheduleTransition = idleStatus => {\r\n        clearTimeout(nextTimeoutID)\r\n        let delay = dispatch(idleStatusDelay(idleStatus))\r\n        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)\r\n        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)\r\n\r\n        let lastActive = new Date().toTimeString()\r\n        let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`\r\n        let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`\r\n        let nextIdleStatus = getNextIdleStatus(idleStatus)\r\n        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)\r\n        nextTimeoutID = setTimeout(() => {\r\n\r\n\r\n          log.trace(nextMessage)\r\n          next(action)\r\n          dispatch(idleStatusAction(idleStatus))\r\n          if(nextIdleStatus) {\r\n            dispatch(nextIdleStatusAction(nextIdleStatus))\r\n          } else {\r\n            log.info('No more actions to schedule')\r\n            // END OF THE LINE\r\n          }\r\n        }, delay)\r\n        return function cancel() {\r\n          clearTimeout(nextTimeoutID)\r\n          log.trace(nextCancelMessage(new Date().toTimeString()))\r\n        }\r\n      }\r\n\r\n      if(type === START) {\r\n        stopDetection = dispatch(startDetection)\r\n        let result = next(action)\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n\r\n      if(type === RESET) {\r\n        dispatch(stop())\r\n        dispatch(start())\r\n      }\r\n\r\n      if(type === STOP) {\r\n        clearTimeout(nextTimeoutID)\r\n        clearTimeout(startDetectionID)\r\n        if(stopDetection)\r\n          dispatch(stopDetection)\r\n      }\r\n\r\n      if(type === NEXT_IDLE_STATUS) {\r\n        return scheduleTransition(payload.nextIdleStatus)\r\n      }\r\n\r\n      if(type === ACTIVITY) {\r\n        if(stopDetection && thresholds.phaseOffMS) {\r\n          dispatch(stopDetection)\r\n          stopDetection = null\r\n          startDetectionID = setTimeout(() => {\r\n            stopDetection = dispatch(startDetection)\r\n          }, thresholds.phaseOffMS)\r\n        }\r\n\r\n        let result = next(action)\r\n        /*\r\n        if(payload.type !== 'local') {\r\n          log.info('Setting local tab to active')\r\n          setLocalActive()\r\n        }\r\n        */\r\n        if(payload.isTransition) {\r\n          log.trace('Transition activity occurred, triggering user active action.')\r\n          dispatch(activeStatusAction)\r\n        }\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n      return next(action)\r\n    }\r\n  }\r\n}\r\n\r\n/** Creates middleware from opts including validation in development */\r\nexport default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }\r\n"
+    "content": "import { assert } from 'chai'\r\nimport createContext from './context'\r\nimport { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'\r\nimport { bisectStore } from 'redux-mux'\r\nimport { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'\r\nimport { createStartDetection } from './actions'\r\nimport { getNextIdleStatusIn } from './states'\r\nimport { setLocalActive, setLocalInit, setLocalIdle } from './detection'\r\n\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createMiddleware = context => {\r\n  const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context\r\n  const { start, stop, reset } = translateBlueprints(publicBlueprints)\r\n  const { nextIdleStatusAction\r\n        , lastIdleStatusAction\r\n        } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint\r\n                                , lastIdleStatusAction: lastIdleStatusBlueprint\r\n                                })\r\n  const startDetection = createStartDetection(context)\r\n\r\n  const { START\r\n        , RESET\r\n        , STOP\r\n        , NEXT_IDLE_STATUS\r\n        , LAST_IDLE_STATUS\r\n        , ACTIVITY\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , RESET: RESET_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    , LAST_IDLE_STATUS: LAST_IDLE_STATUS_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    })\r\n\r\n\r\n  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]\r\n  const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)\r\n  const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)\r\n  const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]\r\n\r\n  let stopDetection = null\r\n  let nextTimeoutID = null\r\n  let startDetectionID = null\r\n  return store => {\r\n    const idleStore = bisectStore(ROOT_STATE_KEY)(store)\r\n\r\n    return next => action => {\r\n      const { dispatch, getState } = store\r\n\r\n      if(!action.type)\r\n        return next(action)\r\n      const { type, payload } = action\r\n\r\n      const scheduleTransition = idleStatus => {\r\n        clearTimeout(nextTimeoutID)\r\n        let delay = dispatch(idleStatusDelay(idleStatus))\r\n        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)\r\n        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)\r\n\r\n        let lastActive = new Date().toTimeString()\r\n        let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`\r\n        let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`\r\n        let nextIdleStatus = getNextIdleStatus(idleStatus)\r\n        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)\r\n        nextTimeoutID = setTimeout(() => {\r\n\r\n\r\n          log.trace(nextMessage)\r\n          next(action)\r\n          dispatch(idleStatusAction(idleStatus))\r\n          if(nextIdleStatus) {\r\n            dispatch(nextIdleStatusAction(nextIdleStatus))\r\n          } else {\r\n            log.info('No more actions to schedule, setting local state to idle')\r\n            setLocalIdle()\r\n          }\r\n        }, delay)\r\n        return function cancel() {\r\n          clearTimeout(nextTimeoutID)\r\n          log.trace(nextCancelMessage(new Date().toTimeString()))\r\n        }\r\n      }\r\n\r\n      if(type === START) {\r\n        setLocalInit()\r\n        stopDetection = dispatch(startDetection)\r\n        let result = next(action)\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n\r\n      if(type === RESET) {\r\n        dispatch(stop())\r\n        dispatch(start())\r\n      }\r\n\r\n      if(type === STOP) {\r\n        clearTimeout(nextTimeoutID)\r\n        clearTimeout(startDetectionID)\r\n        if(stopDetection)\r\n          dispatch(stopDetection)\r\n      }\r\n\r\n      if(type === NEXT_IDLE_STATUS) {\r\n        return scheduleTransition(payload.nextIdleStatus)\r\n      }\r\n\r\n      if(type === LAST_IDLE_STATUS) {\r\n        console.warn('LAST IDLE STATUS TRIGGERED')\r\n        clearTimeout(nextTimeoutID)\r\n        //dispatch(lastIdleStatusAction(IDLESTATUS_LAST))\r\n        dispatch(idleStatusAction(IDLESTATUS_LAST))\r\n      }\r\n\r\n      if(type === ACTIVITY) {\r\n        if(stopDetection && thresholds.phaseOffMS) {\r\n          dispatch(stopDetection)\r\n          stopDetection = null\r\n          startDetectionID = setTimeout(() => {\r\n            stopDetection = dispatch(startDetection)\r\n          }, thresholds.phaseOffMS)\r\n        }\r\n\r\n        let result = next(action)\r\n        if(payload.type !== 'local') {\r\n          log.info('Setting local tab to active')\r\n          setLocalActive()\r\n        }\r\n        if(payload.isTransition) {\r\n          log.trace('Transition activity occurred, triggering user active action.')\r\n          dispatch(activeStatusAction)\r\n        }\r\n        dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))\r\n        return result\r\n      }\r\n      return next(action)\r\n    }\r\n  }\r\n}\r\n\r\n/** Creates middleware from opts including validation in development */\r\nexport default function configureMiddleware(opts) { return createMiddleware(createContext(opts)) }\r\n"
   },
   {
-    "__docId__": 50,
+    "__docId__": 54,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1022,7 +1106,7 @@
     }
   },
   {
-    "__docId__": 51,
+    "__docId__": 55,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1034,7 +1118,7 @@
     "importPath": "redux-idle-monitor/lib/middleware.js",
     "importStyle": "configureMiddleware",
     "description": "Creates middleware from opts including validation in development",
-    "lineNumber": 132,
+    "lineNumber": 143,
     "params": [
       {
         "name": "opts",
@@ -1051,7 +1135,7 @@
     "generator": false
   },
   {
-    "__docId__": 52,
+    "__docId__": 56,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1064,7 +1148,7 @@
     "content": "import { assert } from 'chai'\r\nimport { createStoreMultiplexer, bisectStore } from 'redux-mux'\r\nimport { createStore } from 'redux'\r\nimport  { IS_DEV\r\n        , ROOT_STATE_KEY\r\n        , ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        } from './constants'\r\nimport { createNoopStore, createLocalStore, configureReducer, createMergingReducer } from 'redux-addons/lib/store'\r\n\r\nexport const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => store => {\r\n  const libStore = bisectStore(ROOT_STATE_KEY)(store)\r\n  let storesMapping = [ [ 'lib', libStore ] ]\r\n\r\n  const createInitialFastState = () => ({ lastActive: +new Date(), lastEvent: { x: -1, y: -1 } })\r\n  const createFastReducer = () => createMergingReducer(ACTIVITY)\r\n  if(useFastStore)\r\n    storesMapping.push([ 'fast', createStore(createFastReducer(), createInitialFastState()) ])\r\n\r\n  const createInitialLocalState = () => ({ lastActive: +new Date() })\r\n  const createLocalReducer = () => configureReducer(action => { lastActive: action.payload.lastActive }, false)(ACTIVITY)\r\n  if(useLocalStore)\r\n    storesMapping.push([ 'local', createLocalStore(createLocalReducer(), createInitialLocalState()) ])\r\n\r\n  return createStoreMultiplexer(storesMapping)\r\n}\r\n"
   },
   {
-    "__docId__": 53,
+    "__docId__": 57,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1085,7 +1169,7 @@
     }
   },
   {
-    "__docId__": 54,
+    "__docId__": 58,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1095,10 +1179,10 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import createContext from './context'\r\nimport  { IS_DEV, IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT } from './constants'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createReducer = context => {\r\n  const { initialState, translateBlueprintTypes } = context\r\n\r\n  const { START\r\n        , STOP\r\n        , ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        , NEXT_IDLE_STATUS\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    , ACTIVITY_DETECTION: ACTIVITY_DETECTION_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    })\r\n\r\n\r\n  return (state = initialState, action = {}) => {\r\n    const { type, payload } = action\r\n    switch(type) {\r\n      case START:\r\n        return Object.assign({}, state, selectStartPayload(payload))\r\n      case STOP:\r\n        return Object.assign({}, state, selectStopPayload(payload))\r\n      case ACTIVITY:\r\n        return Object.assign({}, state, selectActivityPayload(payload))\r\n      case ACTIVITY_DETECTION:\r\n        console.warn('SETTING IDLE DETECTION => ', payload)\r\n        return Object.assign({}, state, selectActivityDetectionPayload(payload))\r\n      case NEXT_IDLE_STATUS:\r\n        return Object.assign({}, state, selectNextIdleStatusPayload(payload))\r\n      default:\r\n        return state\r\n    }\r\n  }\r\n}\r\n\r\nconst selectStartPayload = () => ({ isRunning: true })\r\nconst selectStopPayload = () => ({ isRunning: false })\r\nconst selectActivityPayload = ({ activeStatus, lastActive, lastEvent, timeoutID }) => ({ idleStatus: activeStatus, lastActive, lastEvent, timeoutID, isIdle: false })\r\nconst selectActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })\r\nconst selectNextIdleStatusPayload = ({ nextIdleStatus }) => ({ idleStatus: nextIdleStatus, isIdle: true })\r\n\r\n/** Creates reducer from opts including validation in development */\r\nexport default function configureReducer (opts) { return createReducer(createContext(opts)) }\r\n"
+    "content": "import createContext from './context'\r\nimport  { IS_DEV, IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'\r\n\r\n/** When context has already been created, it can be shared to middleware component. */\r\nexport const createReducer = context => {\r\n  const { initialState, translateBlueprintTypes, IDLE_STATUSES } = context\r\n\r\n  const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]\r\n\r\n  const { START\r\n        , STOP\r\n        , ACTIVITY\r\n        , ACTIVITY_DETECTION\r\n        , NEXT_IDLE_STATUS\r\n        , LAST_IDLE_STATUS\r\n        } = translateBlueprintTypes({ START: START_BLUEPRINT\r\n                                    , STOP: STOP_BLUEPRINT\r\n                                    , ACTIVITY: ACTIVITY_BLUEPRINT\r\n                                    , ACTIVITY_DETECTION: ACTIVITY_DETECTION_BLUEPRINT\r\n                                    , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT\r\n                                    , LAST_IDLE_STATUS: LAST_IDLE_STATUS_BLUEPRINT\r\n                                    })\r\n\r\n\r\n  return (state = initialState, action = {}) => {\r\n    const { type, payload } = action\r\n    switch(type) {\r\n      case START:\r\n        return Object.assign({}, state, selectStartPayload(payload))\r\n      case STOP:\r\n        return Object.assign({}, state, selectStopPayload(payload))\r\n      case ACTIVITY:\r\n        return Object.assign({}, state, selectActivityPayload(payload))\r\n      case ACTIVITY_DETECTION:\r\n        return Object.assign({}, state, selectActivityDetectionPayload(payload))\r\n      case NEXT_IDLE_STATUS:\r\n        return Object.assign({}, state, selectNextIdleStatusPayload(payload))\r\n      case LAST_IDLE_STATUS:\r\n        return Object.assign({}, state, selectLastIdleStatusPayload({ lastIdleStatus: IDLESTATUS_LAST }))\r\n      default:\r\n        return state\r\n    }\r\n  }\r\n}\r\n\r\nconst selectStartPayload = () => ({ isRunning: true })\r\nconst selectStopPayload = () => ({ isRunning: false })\r\nconst selectActivityPayload = ({ activeStatus, lastActive, lastEvent, timeoutID }) => ({ idleStatus: activeStatus, lastActive, lastEvent, timeoutID, isIdle: false })\r\nconst selectActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })\r\nconst selectNextIdleStatusPayload = ({ nextIdleStatus }) => ({ idleStatus: nextIdleStatus, isIdle: true })\r\nconst selectLastIdleStatusPayload = ({ lastIdleStatus }) => ({ idleStatus: lastIdleStatus, isIdle: true })\r\n\r\n/** Creates reducer from opts including validation in development */\r\nexport default function configureReducer (opts) { return createReducer(createContext(opts)) }\r\n"
   },
   {
-    "__docId__": 55,
+    "__docId__": 59,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1118,7 +1202,7 @@
     }
   },
   {
-    "__docId__": 56,
+    "__docId__": 60,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1130,7 +1214,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 46,
     "undocument": true,
     "type": {
       "types": [
@@ -1139,7 +1223,7 @@
     }
   },
   {
-    "__docId__": 57,
+    "__docId__": 61,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1151,7 +1235,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 42,
+    "lineNumber": 47,
     "undocument": true,
     "type": {
       "types": [
@@ -1160,7 +1244,7 @@
     }
   },
   {
-    "__docId__": 58,
+    "__docId__": 62,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1172,7 +1256,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 48,
     "undocument": true,
     "type": {
       "types": [
@@ -1181,7 +1265,7 @@
     }
   },
   {
-    "__docId__": 59,
+    "__docId__": 63,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1193,7 +1277,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 44,
+    "lineNumber": 49,
     "undocument": true,
     "type": {
       "types": [
@@ -1202,7 +1286,7 @@
     }
   },
   {
-    "__docId__": 60,
+    "__docId__": 64,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1214,7 +1298,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 45,
+    "lineNumber": 50,
     "undocument": true,
     "type": {
       "types": [
@@ -1223,7 +1307,28 @@
     }
   },
   {
-    "__docId__": 61,
+    "__docId__": 65,
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "selectLastIdleStatusPayload",
+    "memberof": "lib/reducer.js",
+    "longname": "lib/reducer.js~selectLastIdleStatusPayload",
+    "access": null,
+    "export": false,
+    "importPath": "redux-idle-monitor/lib/reducer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 51,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "__docId__": 66,
     "kind": "function",
     "static": true,
     "variation": null,
@@ -1235,7 +1340,7 @@
     "importPath": "redux-idle-monitor/lib/reducer.js",
     "importStyle": "configureReducer",
     "description": "Creates reducer from opts including validation in development",
-    "lineNumber": 48,
+    "lineNumber": 54,
     "params": [
       {
         "name": "opts",
@@ -1252,7 +1357,7 @@
     "generator": false
   },
   {
-    "__docId__": 62,
+    "__docId__": 67,
     "kind": "file",
     "static": true,
     "variation": null,
@@ -1265,7 +1370,7 @@
     "content": "export const getNextIdleStatusIn = idleStatuses => idleStatus => {\r\n  let nextIdleStatusIndex = idleStatuses.indexOf(idleStatus) + 1\r\n  if(nextIdleStatusIndex < idleStatuses.length)\r\n    return idleStatuses[nextIdleStatusIndex]\r\n}\r\n"
   },
   {
-    "__docId__": 63,
+    "__docId__": 68,
     "kind": "variable",
     "static": true,
     "variation": null,
@@ -1286,7 +1391,7 @@
     }
   },
   {
-    "__docId__": 65,
+    "__docId__": 70,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1299,7 +1404,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 66,
+    "__docId__": 71,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1312,7 +1417,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 67,
+    "__docId__": 72,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1325,7 +1430,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 68,
+    "__docId__": 73,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1338,7 +1443,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 69,
+    "__docId__": 74,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1351,7 +1456,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 70,
+    "__docId__": 75,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1364,7 +1469,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 71,
+    "__docId__": 76,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1377,7 +1482,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 72,
+    "__docId__": 77,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1390,7 +1495,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 73,
+    "__docId__": 78,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1403,7 +1508,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 74,
+    "__docId__": 79,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1416,7 +1521,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 75,
+    "__docId__": 80,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1429,7 +1534,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 76,
+    "__docId__": 81,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1442,7 +1547,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 77,
+    "__docId__": 82,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1455,7 +1560,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 78,
+    "__docId__": 83,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1468,7 +1573,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 79,
+    "__docId__": 84,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1481,7 +1586,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 80,
+    "__docId__": 85,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1494,7 +1599,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 81,
+    "__docId__": 86,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1507,7 +1612,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 82,
+    "__docId__": 87,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1520,7 +1625,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 83,
+    "__docId__": 88,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1533,7 +1638,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 84,
+    "__docId__": 89,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1546,7 +1651,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 85,
+    "__docId__": 90,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1559,7 +1664,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 86,
+    "__docId__": 91,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1572,7 +1677,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 87,
+    "__docId__": 92,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1585,7 +1690,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 88,
+    "__docId__": 93,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1598,7 +1703,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 89,
+    "__docId__": 94,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1611,7 +1716,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 90,
+    "__docId__": 95,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1624,7 +1729,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 91,
+    "__docId__": 96,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1637,7 +1742,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 92,
+    "__docId__": 97,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1650,7 +1755,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 93,
+    "__docId__": 98,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1663,7 +1768,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 94,
+    "__docId__": 99,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1676,7 +1781,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 95,
+    "__docId__": 100,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1689,7 +1794,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 96,
+    "__docId__": 101,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1702,7 +1807,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 97,
+    "__docId__": 102,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1715,7 +1820,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 98,
+    "__docId__": 103,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1728,7 +1833,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 99,
+    "__docId__": 104,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1741,7 +1846,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 100,
+    "__docId__": 105,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1754,7 +1859,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 101,
+    "__docId__": 106,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1767,7 +1872,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 102,
+    "__docId__": 107,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1780,7 +1885,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 103,
+    "__docId__": 108,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1793,7 +1898,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 104,
+    "__docId__": 109,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1806,7 +1911,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 105,
+    "__docId__": 110,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1819,7 +1924,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 106,
+    "__docId__": 111,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1832,7 +1937,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 107,
+    "__docId__": 112,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1845,7 +1950,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 108,
+    "__docId__": 113,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1858,7 +1963,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 109,
+    "__docId__": 114,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1871,7 +1976,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 110,
+    "__docId__": 115,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1884,7 +1989,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 111,
+    "__docId__": 116,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1897,7 +2002,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 113,
+    "__docId__": 118,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1910,7 +2015,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 114,
+    "__docId__": 119,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1923,7 +2028,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 115,
+    "__docId__": 120,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1936,7 +2041,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 116,
+    "__docId__": 121,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1949,7 +2054,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 117,
+    "__docId__": 122,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1962,7 +2067,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 118,
+    "__docId__": 123,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1975,7 +2080,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 119,
+    "__docId__": 124,
     "kind": "external",
     "static": true,
     "variation": null,
@@ -1988,7 +2093,7 @@
     "builtinExternal": true
   },
   {
-    "__docId__": 120,
+    "__docId__": 125,
     "kind": "external",
     "static": true,
     "variation": null,

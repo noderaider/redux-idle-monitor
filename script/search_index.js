@@ -30,6 +30,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "redux-idle-monitor/lib/constants.js~last_idle_status_blueprint",
+    "variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT",
+    "<span>LAST_IDLE_STATUS_BLUEPRINT</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/constants.js~lib_name",
     "variable/index.html#static-variable-LIB_NAME",
     "<span>LIB_NAME</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
@@ -192,6 +198,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "redux-idle-monitor/lib/blueprints.js~lastidlestatusblueprint",
+    "variable/index.html#static-variable-lastIdleStatusBlueprint",
+    "<span>lastIdleStatusBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/blueprints.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/blueprints.js~nextidlestatusblueprint",
     "variable/index.html#static-variable-nextIdleStatusBlueprint",
     "<span>nextIdleStatusBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/blueprints.js</span>",
@@ -213,6 +225,18 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/detection.js~setlocalactive",
     "variable/index.html#static-variable-setLocalActive",
     "<span>setLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/detection.js~setlocalidle",
+    "variable/index.html#static-variable-setLocalIdle",
+    "<span>setLocalIdle</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/detection.js~setlocalinit",
+    "variable/index.html#static-variable-setLocalInit",
+    "<span>setLocalInit</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
     "variable"
   ],
   [
