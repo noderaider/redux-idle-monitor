@@ -143,23 +143,21 @@ export const createMiddleware = context =&gt; {
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
         let nextCancelMessage = cancelledAt =&gt; `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`
         let nextIdleStatus = getNextIdleStatus(idleStatus)
-        log.trace(`Scheduling next idle status &apos;${idleStatus}&apos; in ${delay} MS, then &apos;${nextIdleStatus}&apos;`)
+        //log.trace(`Scheduling next idle status &apos;${idleStatus}&apos; in ${delay} MS, then &apos;${nextIdleStatus}&apos;`)
         nextTimeoutID = setTimeout(() =&gt; {
-
-
-          log.trace(nextMessage)
+          //log.trace(nextMessage)
           next(action)
           dispatch(idleStatusAction(idleStatus))
           if(nextIdleStatus) {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
-            log.info(&apos;No more actions to schedule, setting local state to idle&apos;)
+            //log.info(&apos;No more actions to schedule, setting local state to idle&apos;)
             setLocalIdle()
           }
         }, delay)
         return function cancel() {
           clearTimeout(nextTimeoutID)
-          log.trace(nextCancelMessage(new Date().toTimeString()))
+          //log.trace(nextCancelMessage(new Date().toTimeString()))
         }
       }
 
@@ -205,11 +203,11 @@ export const createMiddleware = context =&gt; {
 
         let result = next(action)
         if(payload.type !== &apos;local&apos;) {
-          log.info(&apos;Setting local tab to active&apos;)
+          //log.info(&apos;Setting local tab to active&apos;)
           setLocalActive()
         }
         if(payload.isTransition) {
-          log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
+          //log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
           dispatch(activeStatusAction)
         }
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
