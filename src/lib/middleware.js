@@ -62,23 +62,21 @@ export const createMiddleware = context => {
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
         let nextCancelMessage = cancelledAt => `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`
         let nextIdleStatus = getNextIdleStatus(idleStatus)
-        log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)
+        //log.trace(`Scheduling next idle status '${idleStatus}' in ${delay} MS, then '${nextIdleStatus}'`)
         nextTimeoutID = setTimeout(() => {
-
-
-          log.trace(nextMessage)
+          //log.trace(nextMessage)
           next(action)
           dispatch(idleStatusAction(idleStatus))
           if(nextIdleStatus) {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
-            log.info('No more actions to schedule, setting local state to idle')
+            //log.info('No more actions to schedule, setting local state to idle')
             setLocalIdle()
           }
         }, delay)
         return function cancel() {
           clearTimeout(nextTimeoutID)
-          log.trace(nextCancelMessage(new Date().toTimeString()))
+          //log.trace(nextCancelMessage(new Date().toTimeString()))
         }
       }
 
@@ -124,11 +122,11 @@ export const createMiddleware = context => {
 
         let result = next(action)
         if(payload.type !== 'local') {
-          log.info('Setting local tab to active')
+          //log.info('Setting local tab to active')
           setLocalActive()
         }
         if(payload.isTransition) {
-          log.trace('Transition activity occurred, triggering user active action.')
+          //log.trace('Transition activity occurred, triggering user active action.')
           dispatch(activeStatusAction)
         }
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
