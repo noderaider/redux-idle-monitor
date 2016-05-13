@@ -1,31 +1,33 @@
 {
-  "coverage": "19.04%",
-  "expectCount": 42,
+  "coverage": "18.18%",
+  "expectCount": 44,
   "actualCount": 8,
   "files": {
     "lib/constants.js": {
-      "expectCount": 12,
+      "expectCount": 13,
       "actualCount": 4,
       "undocumentLines": [
         7,
-        14,
         15,
-        23,
+        16,
+        13,
+        24,
+        19,
         18,
-        17,
         12,
         11
       ]
     },
     "lib/blueprints.js": {
-      "expectCount": 8,
+      "expectCount": 9,
       "actualCount": 0,
       "undocumentLines": [
-        9,
         10,
-        20,
-        15,
-        13,
+        11,
+        8,
+        21,
+        16,
+        14,
         7,
         5,
         6

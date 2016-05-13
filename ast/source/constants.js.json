@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 725,
+  "end": 787,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 24,
+      "line": 25,
       "column": 0
     }
   },
@@ -759,58 +759,144 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 351,
-      "end": 395,
+      "start": 349,
+      "end": 409,
       "loc": {
         "start": {
-          "line": 14,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 14,
+          "line": 13,
+          "column": 60
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 356,
+        "end": 409,
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 7
+          },
+          "end": {
+            "line": 13,
+            "column": 60
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 362,
+            "end": 409,
+            "loc": {
+              "start": {
+                "line": 13,
+                "column": 13
+              },
+              "end": {
+                "line": 13,
+                "column": 60
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 362,
+              "end": 388,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 13
+                },
+                "end": {
+                  "line": 13,
+                  "column": 39
+                }
+              },
+              "name": "GOTO_IDLE_STATUS_BLUEPRINT"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 391,
+              "end": 409,
+              "loc": {
+                "start": {
+                  "line": 13,
+                  "column": 42
+                },
+                "end": {
+                  "line": 13,
+                  "column": 60
+                }
+              },
+              "value": "GOTO_IDLE_STATUS",
+              "rawValue": "GOTO_IDLE_STATUS",
+              "raw": "'GOTO_IDLE_STATUS'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 413,
+      "end": 457,
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
           "column": 44
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 358,
-        "end": 395,
+        "start": 420,
+        "end": 457,
         "loc": {
           "start": {
-            "line": 14,
+            "line": 15,
             "column": 7
           },
           "end": {
-            "line": 14,
+            "line": 15,
             "column": 44
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 364,
-            "end": 395,
+            "start": 426,
+            "end": 457,
             "loc": {
               "start": {
-                "line": 14,
+                "line": 15,
                 "column": 13
               },
               "end": {
-                "line": 14,
+                "line": 15,
                 "column": 44
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 364,
-              "end": 382,
+              "start": 426,
+              "end": 444,
               "loc": {
                 "start": {
-                  "line": 14,
+                  "line": 15,
                   "column": 13
                 },
                 "end": {
-                  "line": 14,
+                  "line": 15,
                   "column": 31
                 }
               },
@@ -818,15 +904,15 @@
             },
             "init": {
               "type": "Literal",
-              "start": 385,
-              "end": 395,
+              "start": 447,
+              "end": 457,
               "loc": {
                 "start": {
-                  "line": 14,
+                  "line": 15,
                   "column": 34
                 },
                 "end": {
-                  "line": 14,
+                  "line": 15,
                   "column": 44
                 }
               },
@@ -845,58 +931,58 @@
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 397,
-      "end": 461,
+      "start": 459,
+      "end": 523,
       "loc": {
         "start": {
-          "line": 15,
+          "line": 16,
           "column": 0
         },
         "end": {
-          "line": 15,
+          "line": 16,
           "column": 64
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 404,
-        "end": 461,
+        "start": 466,
+        "end": 523,
         "loc": {
           "start": {
-            "line": 15,
+            "line": 16,
             "column": 7
           },
           "end": {
-            "line": 15,
+            "line": 16,
             "column": 64
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 410,
-            "end": 461,
+            "start": 472,
+            "end": 523,
             "loc": {
               "start": {
-                "line": 15,
+                "line": 16,
                 "column": 13
               },
               "end": {
-                "line": 15,
+                "line": 16,
                 "column": 64
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 410,
-              "end": 438,
+              "start": 472,
+              "end": 500,
               "loc": {
                 "start": {
-                  "line": 15,
+                  "line": 16,
                   "column": 13
                 },
                 "end": {
-                  "line": 15,
+                  "line": 16,
                   "column": 41
                 }
               },
@@ -904,107 +990,21 @@
             },
             "init": {
               "type": "Literal",
-              "start": 441,
-              "end": 461,
+              "start": 503,
+              "end": 523,
               "loc": {
                 "start": {
-                  "line": 15,
+                  "line": 16,
                   "column": 44
                 },
                 "end": {
-                  "line": 15,
+                  "line": 16,
                   "column": 64
                 }
               },
               "value": "ACTIVITY_DETECTION",
               "rawValue": "ACTIVITY_DETECTION",
               "raw": "'ACTIVITY_DETECTION'"
-            }
-          }
-        ],
-        "kind": "const",
-        "leadingComments": [],
-        "trailingComments": []
-      },
-      "specifiers": [],
-      "source": null
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 465,
-      "end": 525,
-      "loc": {
-        "start": {
-          "line": 17,
-          "column": 0
-        },
-        "end": {
-          "line": 17,
-          "column": 60
-        }
-      },
-      "declaration": {
-        "type": "VariableDeclaration",
-        "start": 472,
-        "end": 525,
-        "loc": {
-          "start": {
-            "line": 17,
-            "column": 7
-          },
-          "end": {
-            "line": 17,
-            "column": 60
-          }
-        },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 478,
-            "end": 525,
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 13
-              },
-              "end": {
-                "line": 17,
-                "column": 60
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 478,
-              "end": 504,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 13
-                },
-                "end": {
-                  "line": 17,
-                  "column": 39
-                }
-              },
-              "name": "NEXT_IDLE_STATUS_BLUEPRINT"
-            },
-            "init": {
-              "type": "Literal",
-              "start": 507,
-              "end": 525,
-              "loc": {
-                "start": {
-                  "line": 17,
-                  "column": 42
-                },
-                "end": {
-                  "line": 17,
-                  "column": 60
-                }
-              },
-              "value": "NEXT_IDLE_STATUS",
-              "rawValue": "NEXT_IDLE_STATUS",
-              "raw": "'NEXT_IDLE_STATUS'"
             }
           }
         ],
@@ -1072,7 +1072,7 @@
                   "column": 39
                 }
               },
-              "name": "LAST_IDLE_STATUS_BLUEPRINT"
+              "name": "NEXT_IDLE_STATUS_BLUEPRINT"
             },
             "init": {
               "type": "Literal",
@@ -1085,6 +1085,92 @@
                 },
                 "end": {
                   "line": 18,
+                  "column": 60
+                }
+              },
+              "value": "NEXT_IDLE_STATUS",
+              "rawValue": "NEXT_IDLE_STATUS",
+              "raw": "'NEXT_IDLE_STATUS'"
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 589,
+      "end": 649,
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 0
+        },
+        "end": {
+          "line": 19,
+          "column": 60
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 596,
+        "end": 649,
+        "loc": {
+          "start": {
+            "line": 19,
+            "column": 7
+          },
+          "end": {
+            "line": 19,
+            "column": 60
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 602,
+            "end": 649,
+            "loc": {
+              "start": {
+                "line": 19,
+                "column": 13
+              },
+              "end": {
+                "line": 19,
+                "column": 60
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 602,
+              "end": 628,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 13
+                },
+                "end": {
+                  "line": 19,
+                  "column": 39
+                }
+              },
+              "name": "LAST_IDLE_STATUS_BLUEPRINT"
+            },
+            "init": {
+              "type": "Literal",
+              "start": 631,
+              "end": 649,
+              "loc": {
+                "start": {
+                  "line": 19,
+                  "column": 42
+                },
+                "end": {
+                  "line": 19,
                   "column": 60
                 }
               },
@@ -1102,21 +1188,21 @@
           {
             "type": "Block",
             "value": "* INITIAL IDLE STATUS ",
-            "start": 591,
-            "end": 617,
+            "start": 653,
+            "end": 679,
             "loc": {
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 0
               },
               "end": {
-                "line": 20,
+                "line": 21,
                 "column": 26
               }
             },
             "range": [
-              591,
-              617
+              653,
+              679
             ]
           }
         ],
@@ -1128,79 +1214,79 @@
         {
           "type": "Block",
           "value": "* INITIAL IDLE STATUS ",
-          "start": 591,
-          "end": 617,
+          "start": 653,
+          "end": 679,
           "loc": {
             "start": {
-              "line": 20,
+              "line": 21,
               "column": 0
             },
             "end": {
-              "line": 20,
+              "line": 21,
               "column": 26
             }
           },
           "range": [
-            591,
-            617
+            653,
+            679
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 619,
-      "end": 660,
+      "start": 681,
+      "end": 722,
       "loc": {
         "start": {
-          "line": 21,
+          "line": 22,
           "column": 0
         },
         "end": {
-          "line": 21,
+          "line": 22,
           "column": 41
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 626,
-        "end": 660,
+        "start": 688,
+        "end": 722,
         "loc": {
           "start": {
-            "line": 21,
+            "line": 22,
             "column": 7
           },
           "end": {
-            "line": 21,
+            "line": 22,
             "column": 41
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 632,
-            "end": 660,
+            "start": 694,
+            "end": 722,
             "loc": {
               "start": {
-                "line": 21,
+                "line": 22,
                 "column": 13
               },
               "end": {
-                "line": 21,
+                "line": 22,
                 "column": 41
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 632,
-              "end": 649,
+              "start": 694,
+              "end": 711,
               "loc": {
                 "start": {
-                  "line": 21,
+                  "line": 22,
                   "column": 13
                 },
                 "end": {
-                  "line": 21,
+                  "line": 22,
                   "column": 30
                 }
               },
@@ -1209,15 +1295,15 @@
             },
             "init": {
               "type": "Literal",
-              "start": 652,
-              "end": 660,
+              "start": 714,
+              "end": 722,
               "loc": {
                 "start": {
-                  "line": 21,
+                  "line": 22,
                   "column": 33
                 },
                 "end": {
-                  "line": 21,
+                  "line": 22,
                   "column": 41
                 }
               },
@@ -1233,21 +1319,21 @@
           {
             "type": "Block",
             "value": "* INITIAL IDLE STATUS ",
-            "start": 591,
-            "end": 617,
+            "start": 653,
+            "end": 679,
             "loc": {
               "start": {
-                "line": 20,
+                "line": 21,
                 "column": 0
               },
               "end": {
-                "line": 20,
+                "line": 21,
                 "column": 26
               }
             },
             "range": [
-              591,
-              617
+              653,
+              679
             ]
           }
         ],
@@ -1259,79 +1345,79 @@
         {
           "type": "Block",
           "value": "* INITIAL IDLE STATUS ",
-          "start": 591,
-          "end": 617,
+          "start": 653,
+          "end": 679,
           "loc": {
             "start": {
-              "line": 20,
+              "line": 21,
               "column": 0
             },
             "end": {
-              "line": 20,
+              "line": 21,
               "column": 26
             }
           },
           "range": [
-            591,
-            617
+            653,
+            679
           ]
         }
       ]
     },
     {
       "type": "ExportNamedDeclaration",
-      "start": 664,
-      "end": 723,
+      "start": 726,
+      "end": 785,
       "loc": {
         "start": {
-          "line": 23,
+          "line": 24,
           "column": 0
         },
         "end": {
-          "line": 23,
+          "line": 24,
           "column": 59
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
-        "start": 671,
-        "end": 723,
+        "start": 733,
+        "end": 785,
         "loc": {
           "start": {
-            "line": 23,
+            "line": 24,
             "column": 7
           },
           "end": {
-            "line": 23,
+            "line": 24,
             "column": 59
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
-            "start": 677,
-            "end": 723,
+            "start": 739,
+            "end": 785,
             "loc": {
               "start": {
-                "line": 23,
+                "line": 24,
                 "column": 13
               },
               "end": {
-                "line": 23,
+                "line": 24,
                 "column": 59
               }
             },
             "id": {
               "type": "Identifier",
-              "start": 677,
-              "end": 683,
+              "start": 739,
+              "end": 745,
               "loc": {
                 "start": {
-                  "line": 23,
+                  "line": 24,
                   "column": 13
                 },
                 "end": {
-                  "line": 23,
+                  "line": 24,
                   "column": 19
                 }
               },
@@ -1339,57 +1425,57 @@
             },
             "init": {
               "type": "BinaryExpression",
-              "start": 686,
-              "end": 723,
+              "start": 748,
+              "end": 785,
               "loc": {
                 "start": {
-                  "line": 23,
+                  "line": 24,
                   "column": 22
                 },
                 "end": {
-                  "line": 23,
+                  "line": 24,
                   "column": 59
                 }
               },
               "left": {
                 "type": "MemberExpression",
-                "start": 686,
-                "end": 706,
+                "start": 748,
+                "end": 768,
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 24,
                     "column": 22
                   },
                   "end": {
-                    "line": 23,
+                    "line": 24,
                     "column": 42
                   }
                 },
                 "object": {
                   "type": "MemberExpression",
-                  "start": 686,
-                  "end": 697,
+                  "start": 748,
+                  "end": 759,
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 24,
                       "column": 22
                     },
                     "end": {
-                      "line": 23,
+                      "line": 24,
                       "column": 33
                     }
                   },
                   "object": {
                     "type": "Identifier",
-                    "start": 686,
-                    "end": 693,
+                    "start": 748,
+                    "end": 755,
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 24,
                         "column": 22
                       },
                       "end": {
-                        "line": 23,
+                        "line": 24,
                         "column": 29
                       }
                     },
@@ -1397,15 +1483,15 @@
                   },
                   "property": {
                     "type": "Identifier",
-                    "start": 694,
-                    "end": 697,
+                    "start": 756,
+                    "end": 759,
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 24,
                         "column": 30
                       },
                       "end": {
-                        "line": 23,
+                        "line": 24,
                         "column": 33
                       }
                     },
@@ -1415,15 +1501,15 @@
                 },
                 "property": {
                   "type": "Identifier",
-                  "start": 698,
-                  "end": 706,
+                  "start": 760,
+                  "end": 768,
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 24,
                       "column": 34
                     },
                     "end": {
-                      "line": 23,
+                      "line": 24,
                       "column": 42
                     }
                   },
@@ -1434,15 +1520,15 @@
               "operator": "!==",
               "right": {
                 "type": "Literal",
-                "start": 711,
-                "end": 723,
+                "start": 773,
+                "end": 785,
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 24,
                     "column": 47
                   },
                   "end": {
-                    "line": 23,
+                    "line": 24,
                     "column": 59
                   }
                 },
