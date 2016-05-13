@@ -1,5 +1,5 @@
 import createContext from './context'
-import  { IS_DEV, IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
+import  { IS_DEV, IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, GOTO_IDLE_STATUS_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createReducer = context => {
@@ -9,12 +9,14 @@ export const createReducer = context => {
 
   const { START
         , STOP
+        , GOTO_IDLE_STATUS
         , ACTIVITY
         , ACTIVITY_DETECTION
         , NEXT_IDLE_STATUS
         , LAST_IDLE_STATUS
         } = translateBlueprintTypes({ START: START_BLUEPRINT
                                     , STOP: STOP_BLUEPRINT
+                                    , GOTO_IDLE_STATUS: GOTO_IDLE_STATUS_BLUEPRINT
                                     , ACTIVITY: ACTIVITY_BLUEPRINT
                                     , ACTIVITY_DETECTION: ACTIVITY_DETECTION_BLUEPRINT
                                     , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT
@@ -29,6 +31,8 @@ export const createReducer = context => {
         return Object.assign({}, state, selectStartPayload(payload))
       case STOP:
         return Object.assign({}, state, selectStopPayload(payload))
+      case GOTO_IDLE_STATUS:
+        return Object.assign({}, state, selectGotoIdleStatusPayload(payload))
       case ACTIVITY:
         return Object.assign({}, state, selectActivityPayload(payload))
       case ACTIVITY_DETECTION:
@@ -45,6 +49,7 @@ export const createReducer = context => {
 
 const selectStartPayload = () => ({ isRunning: true })
 const selectStopPayload = () => ({ isRunning: false })
+const selectGotoIdleStatusPayload = ({ idleStatus }) => ({ idleStatus, isIdle: true })
 const selectActivityPayload = ({ activeStatus, lastActive, lastEvent, timeoutID }) => ({ idleStatus: activeStatus, lastActive, lastEvent, timeoutID, isIdle: false })
 const selectActivityDetectionPayload = ({ isDetectionRunning }) => ({ isDetectionRunning })
 const selectNextIdleStatusPayload = ({ nextIdleStatus }) => ({ idleStatus: nextIdleStatus, isIdle: true })
