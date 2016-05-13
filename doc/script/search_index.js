@@ -18,6 +18,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "redux-idle-monitor/lib/constants.js~goto_idle_status_blueprint",
+    "variable/index.html#static-variable-GOTO_IDLE_STATUS_BLUEPRINT",
+    "<span>GOTO_IDLE_STATUS_BLUEPRINT</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/constants.js~idlestatus_active",
     "variable/index.html#static-variable-IDLESTATUS_ACTIVE",
     "<span>IDLESTATUS_ACTIVE</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
@@ -195,6 +201,12 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/defaults.js~getusewebsocketsstate",
     "variable/index.html#static-variable-getUseWebSocketsState",
     "<span>getUseWebSocketsState</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/defaults.js</span>",
+    "variable"
+  ],
+  [
+    "redux-idle-monitor/lib/blueprints.js~gotoidlestatusblueprint",
+    "variable/index.html#static-variable-gotoIdleStatusBlueprint",
+    "<span>gotoIdleStatusBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/blueprints.js</span>",
     "variable"
   ],
   [
