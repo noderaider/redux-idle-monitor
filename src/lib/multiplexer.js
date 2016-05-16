@@ -12,6 +12,7 @@ export const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => st
   const libStore = bisectStore(ROOT_STATE_KEY)(store)
   let storesMapping = [ [ 'lib', libStore ] ]
 
+  /*
   const createInitialFastState = () => ({ lastActive: +new Date(), lastEvent: { x: -1, y: -1 } })
   const createFastReducer = () => createMergingReducer(ACTIVITY)
   if(useFastStore)
@@ -21,6 +22,7 @@ export const configureStoreMultiplexer = ({ useFastStore, useLocalStore }) => st
   const createLocalReducer = () => configureReducer(action => { lastActive: action.payload.lastActive }, false)(ACTIVITY)
   if(useLocalStore)
     storesMapping.push([ 'local', createLocalStore(createLocalReducer(), createInitialLocalState()) ])
+  */
 
   return createStoreMultiplexer(storesMapping)
 }
