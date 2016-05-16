@@ -54,11 +54,11 @@
       "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        66,
-        44,
-        39,
-        38,
-        37
+        74,
+        50,
+        45,
+        42,
+        39
       ]
     },
     "lib/multiplexer.js": {
