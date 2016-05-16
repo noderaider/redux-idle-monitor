@@ -92,10 +92,7 @@ export const createStartDetection = context =&gt; (dispatch, getState) =&gt; {
   const startDetection = configureStartDetection(context)(stores)
 
   const endDetection = dispatch(startDetection)
-  return (dispatch, getState) =&gt; {
-    log.debug(&apos;STOP DETECTION SIGNALED&apos;)
-    dispatch(endDetection)
-  }
+  return (dispatch, getState) =&gt; dispatch(endDetection)
 }
 </code></pre>
 

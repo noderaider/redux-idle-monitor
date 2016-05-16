@@ -85,6 +85,8 @@
 import { IS_DEV, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
 
+const IS_BROWSER = typeof window === &apos;object&apos;
+
 const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
 const FILTER_TYPES = [&apos;mousemove&apos;]
 
@@ -117,14 +119,20 @@ const LOCAL_STORAGE_KEY = &apos;IDLEMONITOR_LAST_ACTIVE&apos;
 const localPollingFrequency = 1000
 
 
-export const setLocalInit = () =&gt; localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
-export const setLocalIdle = () =&gt; localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
+export const setLocalInit = () =&gt; {
+  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
+}
+export const setLocalIdle = () =&gt; {
+  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
+}
 export const setLocalActive = () =&gt; {
   let now = Date.now()
-  localStorage[LOCAL_STORAGE_KEY] = now
+  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = now
   return now
 }
-export const getLocalActive = () =&gt; localStorage[LOCAL_STORAGE_KEY]
+export const getLocalActive = () =&gt; {
+  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY]
+}
 
 const configureStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) =&gt; (dispatch, getState) =&gt; {
   let prevLastActive = getLocalActive()
@@ -169,19 +177,17 @@ export const configureStartDetection = ({ log, activeEvents, thresholds, transla
   }
 
   //log.warn(&apos;activity detection starting...&apos;)
-  if(IS_DEV)
-    assert.ok(!isRunning(stores), &apos;activity detection is already running&apos;)
-  activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
+  //if(IS_DEV) assert.ok(!isRunning(stores), &apos;activity detection is already running&apos;)
+  if(IS_BROWSER) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
   const stopLocalPolling = dispatch(startLocalPolling)
 
   /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
   return (dispatch, getState) =&gt; {
     //log.info(&apos;activity detection terminating...&apos;)
-    if(IS_DEV)
-      assert(isRunning(stores), &apos;activity detection is not running&apos;)
+    //if(IS_DEV) assert(isRunning(stores), &apos;activity detection is not running&apos;)
     dispatch(stopLocalPolling)
-    activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
+    if(IS_BROWSER) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
 }
