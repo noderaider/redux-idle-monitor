@@ -1,17 +1,16 @@
 import { assert } from 'chai'
 import { createBlueprint } from 'redux-blueprint'
-import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, GOTO_IDLE_STATUS_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
+import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, GOTO_IDLE_STATUS_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
 
 export const startBlueprint = createBlueprint(START_BLUEPRINT)
 export const stopBlueprint = createBlueprint(STOP_BLUEPRINT)
-export const resetBlueprint = createBlueprint(RESET_BLUEPRINT)
 export const gotoIdleStatusBlueprint = createBlueprint(GOTO_IDLE_STATUS_BLUEPRINT, idleStatus => ({ idleStatus }))
 
 export const activityBlueprint = createBlueprint(ACTIVITY_BLUEPRINT, ({ x, y, type, isTransition }) => ({ activeStatus: IDLESTATUS_ACTIVE, lastActive: +new Date(), lastEvent: { x, y, type }, isTransition }))
 export const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLUEPRINT, isDetectionRunning => ({ isDetectionRunning }))
 
 
-export const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, reset: resetBlueprint, gotoIdleStatus: gotoIdleStatusBlueprint }
+export const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, gotoIdleStatus: gotoIdleStatusBlueprint }
 
 export const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRINT, nextIdleStatus => {
   assert.ok(nextIdleStatus, 'nextIdleStatus must be defined')

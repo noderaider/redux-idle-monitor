@@ -1,32 +1,33 @@
 import { assert } from 'chai'
 import createContext from './context'
-import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
+import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'
-import { createStartDetection } from './actions'
+import { createStartDetection, setLocalActive, setLocalInit, setLocalIdle  } from './actions'
 import { getNextIdleStatusIn } from './states'
-import { setLocalActive, setLocalInit, setLocalIdle } from './detection'
 
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
   const { log, activeStatusAction, idleStatusAction, translateBlueprintTypes, translateBlueprints, IDLE_STATUSES, idleStatusDelay, thresholds } = context
-  const { start, stop, reset } = translateBlueprints(publicBlueprints)
+  const { start, stop } = translateBlueprints(publicBlueprints)
   const { nextIdleStatusAction
         , lastIdleStatusAction
         } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint
                                 , lastIdleStatusAction: lastIdleStatusBlueprint
                                 })
   const startDetection = createStartDetection(context)
+  if(IS_DEV) {
+    assert.ok(startDetection)
+    assert.typeOf(startDetection, 'function')
+  }
 
   const { START
-        , RESET
         , STOP
         , NEXT_IDLE_STATUS
         , LAST_IDLE_STATUS
         , ACTIVITY
         } = translateBlueprintTypes({ START: START_BLUEPRINT
-                                    , RESET: RESET_BLUEPRINT
                                     , STOP: STOP_BLUEPRINT
                                     , NEXT_IDLE_STATUS: NEXT_IDLE_STATUS_BLUEPRINT
                                     , LAST_IDLE_STATUS: LAST_IDLE_STATUS_BLUEPRINT
@@ -82,23 +83,25 @@ export const createMiddleware = context => {
 
       if(type === START) {
         setLocalInit()
-        if(IS_BROWSER)
-          stopDetection = dispatch(startDetection)
-        else
-          log.debug('bypassing startDetection because not a browser environment.')
+        stopDetection = dispatch(startDetection)
+        if(IS_DEV) {
+          assert.ok(stopDetection)
+          assert.typeOf(stopDetection, 'function')
+        }
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
         return result
       }
 
-      if(type === RESET) {
-        dispatch(stop())
-        dispatch(start())
-      }
-
       if(type === STOP) {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
+
+        if(IS_DEV) {
+          assert.ok(stopDetection)
+          assert.typeOf(stopDetection, 'function')
+        }
+
         dispatch(stopDetection)
       }
 
@@ -116,10 +119,9 @@ export const createMiddleware = context => {
       if(type === ACTIVITY) {
         if(stopDetection && thresholds.phaseOffMS) {
           dispatch(stopDetection)
-          stopDetection = null
+          stopDetection = (dispatch, getState) => {}
           startDetectionID = setTimeout(() => {
-            if(IS_BROWSER)
-              stopDetection = dispatch(startDetection)
+            stopDetection = dispatch(startDetection)
           }, thresholds.phaseOffMS)
         }
 

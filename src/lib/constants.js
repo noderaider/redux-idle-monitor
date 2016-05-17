@@ -9,7 +9,6 @@ export const ACTION_PREFIX = 'IDLEMONITOR'
 /** Action Blueprint Name Constants */
 export const START_BLUEPRINT = 'START'
 export const STOP_BLUEPRINT = 'STOP'
-export const RESET_BLUEPRINT = 'RESET'
 export const GOTO_IDLE_STATUS_BLUEPRINT = 'GOTO_IDLE_STATUS'
 
 export const ACTIVITY_BLUEPRINT = 'ACTIVITY'
