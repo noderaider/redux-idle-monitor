@@ -51,6 +51,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GOTO_IDLE_STATUS_BLUEPRINT">GOTO_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_BROWSER">IS_BROWSER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
@@ -85,7 +86,6 @@
 import { IS_DEV, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
 
-const IS_BROWSER = typeof window === &apos;object&apos;
 
 const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
 const FILTER_TYPES = [&apos;mousemove&apos;]
@@ -120,19 +120,17 @@ const localPollingFrequency = 1000
 
 
 export const setLocalInit = () =&gt; {
-  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
+  localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
 }
 export const setLocalIdle = () =&gt; {
-  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
+  localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
 }
 export const setLocalActive = () =&gt; {
   let now = Date.now()
-  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY] = now
+  localStorage[LOCAL_STORAGE_KEY] = now
   return now
 }
-export const getLocalActive = () =&gt; {
-  if(IS_BROWSER) localStorage[LOCAL_STORAGE_KEY]
-}
+export const getLocalActive = () =&gt; localStorage[LOCAL_STORAGE_KEY]
 
 const configureStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) =&gt; (dispatch, getState) =&gt; {
   let prevLastActive = getLocalActive()
@@ -141,14 +139,12 @@ const configureStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus,
     if(currLastActive == &apos;IDLE&apos;) {
       dispatch(lastIdleStatus())
     } else if(currLastActive != prevLastActive) {
-      //log.info(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}], ${typeof currLastActive}`)
+      log.debug(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}], ${typeof currLastActive}`)
       prevLastActive = currLastActive
       dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
     }
   }, localPollingFrequency)
-  //log.info(&apos;local activity detection starting...&apos;)
   return (dispatch, getState) =&gt; {
-    //log.info(&apos;local activity detection terminating...&apos;)
     clearInterval(localIntervalID)
   }
 }
@@ -178,16 +174,16 @@ export const configureStartDetection = ({ log, activeEvents, thresholds, transla
 
   //log.warn(&apos;activity detection starting...&apos;)
   //if(IS_DEV) assert.ok(!isRunning(stores), &apos;activity detection is already running&apos;)
-  if(IS_BROWSER) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
+  activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
+
   const stopLocalPolling = dispatch(startLocalPolling)
 
   /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
   return (dispatch, getState) =&gt; {
-    //log.info(&apos;activity detection terminating...&apos;)
     //if(IS_DEV) assert(isRunning(stores), &apos;activity detection is not running&apos;)
     dispatch(stopLocalPolling)
-    if(IS_BROWSER) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
+    activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
 }

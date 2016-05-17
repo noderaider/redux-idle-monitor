@@ -30,6 +30,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "redux-idle-monitor/lib/constants.js~is_browser",
+    "variable/index.html#static-variable-IS_BROWSER",
+    "<span>IS_BROWSER</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/constants.js~is_dev",
     "variable/index.html#static-variable-IS_DEV",
     "<span>IS_DEV</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",

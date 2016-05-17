@@ -1,16 +1,17 @@
 {
-  "coverage": "18.18%",
-  "expectCount": 44,
+  "coverage": "17.77%",
+  "expectCount": 45,
   "actualCount": 8,
   "files": {
     "lib/constants.js": {
-      "expectCount": 13,
+      "expectCount": 14,
       "actualCount": 4,
       "undocumentLines": [
         7,
         15,
         16,
         13,
+        25,
         24,
         19,
         18,
@@ -54,11 +55,11 @@
       "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        74,
-        50,
-        45,
-        42,
-        39
+        69,
+        49,
+        44,
+        41,
+        38
       ]
     },
     "lib/multiplexer.js": {
