@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import createContext from './context'
-import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
+import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'
 import { createStartDetection } from './actions'
@@ -39,7 +39,7 @@ export const createMiddleware = context => {
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
   const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
 
-  let stopDetection = null
+  let stopDetection = (dispatch, getState) => {}
   let nextTimeoutID = null
   let startDetectionID = null
   return store => {
@@ -82,7 +82,10 @@ export const createMiddleware = context => {
 
       if(type === START) {
         setLocalInit()
-        stopDetection = dispatch(startDetection)
+        if(IS_BROWSER)
+          stopDetection = dispatch(startDetection)
+        else
+          log.debug('bypassing startDetection because not a browser environment.')
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
         return result
@@ -96,8 +99,7 @@ export const createMiddleware = context => {
       if(type === STOP) {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
-        if(stopDetection)
-          dispatch(stopDetection)
+        dispatch(stopDetection)
       }
 
       if(type === NEXT_IDLE_STATUS) {
@@ -116,13 +118,14 @@ export const createMiddleware = context => {
           dispatch(stopDetection)
           stopDetection = null
           startDetectionID = setTimeout(() => {
-            stopDetection = dispatch(startDetection)
+            if(IS_BROWSER)
+              stopDetection = dispatch(startDetection)
           }, thresholds.phaseOffMS)
         }
 
         let result = next(action)
         if(payload.type !== 'local') {
-          //log.info('Setting local tab to active')
+          log.info('Setting local tab to active')
           setLocalActive()
         }
         if(payload.isTransition) {
