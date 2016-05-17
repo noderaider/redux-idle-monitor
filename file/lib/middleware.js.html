@@ -51,6 +51,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GOTO_IDLE_STATUS_BLUEPRINT">GOTO_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_BROWSER">IS_BROWSER</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
@@ -83,7 +84,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">lib/middleware.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import createContext from &apos;./context&apos;
-import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
+import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, RESET_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
 import { createStartDetection } from &apos;./actions&apos;
@@ -122,7 +123,7 @@ export const createMiddleware = context =&gt; {
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
   const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
 
-  let stopDetection = null
+  let stopDetection = (dispatch, getState) =&gt; {}
   let nextTimeoutID = null
   let startDetectionID = null
   return store =&gt; {
@@ -165,7 +166,10 @@ export const createMiddleware = context =&gt; {
 
       if(type === START) {
         setLocalInit()
-        stopDetection = dispatch(startDetection)
+        if(IS_BROWSER)
+          stopDetection = dispatch(startDetection)
+        else
+          log.debug(&apos;bypassing startDetection because not a browser environment.&apos;)
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
         return result
@@ -179,8 +183,7 @@ export const createMiddleware = context =&gt; {
       if(type === STOP) {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
-        if(stopDetection)
-          dispatch(stopDetection)
+        dispatch(stopDetection)
       }
 
       if(type === NEXT_IDLE_STATUS) {
@@ -199,13 +202,14 @@ export const createMiddleware = context =&gt; {
           dispatch(stopDetection)
           stopDetection = null
           startDetectionID = setTimeout(() =&gt; {
-            stopDetection = dispatch(startDetection)
+            if(IS_BROWSER)
+              stopDetection = dispatch(startDetection)
           }, thresholds.phaseOffMS)
         }
 
         let result = next(action)
         if(payload.type !== &apos;local&apos;) {
-          //log.info(&apos;Setting local tab to active&apos;)
+          log.info(&apos;Setting local tab to active&apos;)
           setLocalActive()
         }
         if(payload.isTransition) {
