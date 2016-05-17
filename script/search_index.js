@@ -60,12 +60,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/constants.js~reset_blueprint",
-    "variable/index.html#static-variable-RESET_BLUEPRINT",
-    "<span>RESET_BLUEPRINT</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
-    "variable"
-  ],
-  [
     "redux-idle-monitor/lib/constants.js~root_state_key",
     "variable/index.html#static-variable-ROOT_STATE_KEY",
     "<span>ROOT_STATE_KEY</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/constants.js</span>",
@@ -114,18 +108,6 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
-    "redux-idle-monitor/lib/detection.js~configurestartdetection",
-    "variable/index.html#static-variable-configureStartDetection",
-    "<span>configureStartDetection</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/multiplexer.js~configurestoremultiplexer",
-    "variable/index.html#static-variable-configureStoreMultiplexer",
-    "<span>configureStoreMultiplexer</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/multiplexer.js</span>",
-    "variable"
-  ],
-  [
     "redux-idle-monitor/lib/context.js~createcontext",
     "function/index.html#static-function-createContext",
     "<span>createContext</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/context.js</span>",
@@ -162,9 +144,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/detection.js~getlocalactive",
+    "redux-idle-monitor/lib/actions.js~getlocalactive",
     "variable/index.html#static-variable-getLocalActive",
-    "<span>getLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "<span>getLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
@@ -234,27 +216,21 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/blueprints.js~resetblueprint",
-    "variable/index.html#static-variable-resetBlueprint",
-    "<span>resetBlueprint</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/blueprints.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/detection.js~setlocalactive",
+    "redux-idle-monitor/lib/actions.js~setlocalactive",
     "variable/index.html#static-variable-setLocalActive",
-    "<span>setLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "<span>setLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/detection.js~setlocalidle",
+    "redux-idle-monitor/lib/actions.js~setlocalidle",
     "variable/index.html#static-variable-setLocalIdle",
-    "<span>setLocalIdle</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "<span>setLocalIdle</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/detection.js~setlocalinit",
+    "redux-idle-monitor/lib/actions.js~setlocalinit",
     "variable/index.html#static-variable-setLocalInit",
-    "<span>setLocalInit</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/detection.js</span>",
+    "<span>setLocalInit</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
@@ -630,12 +606,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "lib/detection.js",
-    "file/lib/detection.js.html",
-    "lib/detection.js",
-    "file"
-  ],
-  [
     "lib/index.js",
     "file/lib/index.js.html",
     "lib/index.js",
@@ -645,12 +615,6 @@ window.esdocSearchIndex = [
     "lib/middleware.js",
     "file/lib/middleware.js.html",
     "lib/middleware.js",
-    "file"
-  ],
-  [
-    "lib/multiplexer.js",
-    "file/lib/multiplexer.js.html",
-    "lib/multiplexer.js",
     "file"
   ],
   [
