@@ -119,17 +119,20 @@ const localPollingFrequency = 1000
 
 
 export const setLocalInit = () =&gt; {
-  localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
+  if(IS_BROWSER)
+    localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
 }
 export const setLocalIdle = () =&gt; {
-  localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
+  if(IS_BROWSER)
+    localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
 }
 export const setLocalActive = () =&gt; {
   let now = Date.now()
-  localStorage[LOCAL_STORAGE_KEY] = now
+  if(IS_BROWSER)
+    localStorage[LOCAL_STORAGE_KEY] = now
   return now
 }
-export const getLocalActive = () =&gt; localStorage[LOCAL_STORAGE_KEY]
+export const getLocalActive = () =&gt; IS_BROWSER ? localStorage[LOCAL_STORAGE_KEY] : false
 
 const createStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) =&gt; (dispatch, getState) =&gt; {
   let prevLastActive = getLocalActive()
