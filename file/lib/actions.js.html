@@ -80,7 +80,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
-import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
+import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
 
 const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
 const FILTER_TYPES = [&apos;mousemove&apos;]
@@ -174,7 +174,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
 
   log.info(&apos;activity detection starting&apos;)
   if(IS_DEV) assert.ok(!dispatch(isRunning), &apos;activity detection is already running&apos;)
-  activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
+  if(IS_BROWSER) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
 
   const startLocalPolling = createStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })
@@ -185,7 +185,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
     log.info(&apos;activity detection terminating&apos;)
     if(IS_DEV) assert(dispatch(isRunning), &apos;activity detection is not running&apos;)
     dispatch(stopLocalPolling)
-    activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
+    if(IS_BROWSER) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
 }
