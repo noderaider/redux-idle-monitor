@@ -1,6 +1,6 @@
 import { assert } from 'chai'
 import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from './blueprints'
-import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
+import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
 
 const STOP_TYPES = ['pointermove', 'MSPointerMove']
 const FILTER_TYPES = ['mousemove']
@@ -94,7 +94,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
 
   log.info('activity detection starting')
   if(IS_DEV) assert.ok(!dispatch(isRunning), 'activity detection is already running')
-  activeEvents.forEach(x => document.addEventListener(x, onActivity))
+  if(IS_BROWSER) activeEvents.forEach(x => document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
 
   const startLocalPolling = createStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })
@@ -105,7 +105,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
     log.info('activity detection terminating')
     if(IS_DEV) assert(dispatch(isRunning), 'activity detection is not running')
     dispatch(stopLocalPolling)
-    activeEvents.forEach(x => document.removeEventListener(x, onActivity))
+    if(IS_BROWSER) activeEvents.forEach(x => document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
 }
