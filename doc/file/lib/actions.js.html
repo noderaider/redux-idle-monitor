@@ -173,7 +173,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
   }
 
   log.info(&apos;activity detection starting&apos;)
-  if(IS_DEV) assert.ok(!dispatch(isRunning), &apos;activity detection is already running&apos;)
+  //if(IS_DEV) assert.ok(!dispatch(isRunning), &apos;activity detection is already running&apos;)
   if(IS_BROWSER) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
 
@@ -183,7 +183,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
   /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
   return (dispatch, getState) =&gt; {
     log.info(&apos;activity detection terminating&apos;)
-    if(IS_DEV) assert(dispatch(isRunning), &apos;activity detection is not running&apos;)
+    //if(IS_DEV) assert(dispatch(isRunning), &apos;activity detection is not running&apos;)
     dispatch(stopLocalPolling)
     if(IS_BROWSER) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
