@@ -1,14 +1,14 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 801,
+  "end": 747,
   "loc": {
     "start": {
       "line": 1,
       "column": 0
     },
     "end": {
-      "line": 25,
+      "line": 24,
       "column": 0
     }
   },
@@ -1449,141 +1449,6 @@
                 "value": "production",
                 "rawValue": "production",
                 "raw": "'production'"
-              }
-            }
-          }
-        ],
-        "kind": "const",
-        "leadingComments": [],
-        "trailingComments": []
-      },
-      "specifiers": [],
-      "source": null
-    },
-    {
-      "type": "ExportNamedDeclaration",
-      "start": 747,
-      "end": 799,
-      "loc": {
-        "start": {
-          "line": 24,
-          "column": 0
-        },
-        "end": {
-          "line": 24,
-          "column": 52
-        }
-      },
-      "declaration": {
-        "type": "VariableDeclaration",
-        "start": 754,
-        "end": 799,
-        "loc": {
-          "start": {
-            "line": 24,
-            "column": 7
-          },
-          "end": {
-            "line": 24,
-            "column": 52
-          }
-        },
-        "declarations": [
-          {
-            "type": "VariableDeclarator",
-            "start": 760,
-            "end": 799,
-            "loc": {
-              "start": {
-                "line": 24,
-                "column": 13
-              },
-              "end": {
-                "line": 24,
-                "column": 52
-              }
-            },
-            "id": {
-              "type": "Identifier",
-              "start": 760,
-              "end": 770,
-              "loc": {
-                "start": {
-                  "line": 24,
-                  "column": 13
-                },
-                "end": {
-                  "line": 24,
-                  "column": 23
-                }
-              },
-              "name": "IS_BROWSER"
-            },
-            "init": {
-              "type": "BinaryExpression",
-              "start": 773,
-              "end": 799,
-              "loc": {
-                "start": {
-                  "line": 24,
-                  "column": 26
-                },
-                "end": {
-                  "line": 24,
-                  "column": 52
-                }
-              },
-              "left": {
-                "type": "UnaryExpression",
-                "start": 773,
-                "end": 786,
-                "loc": {
-                  "start": {
-                    "line": 24,
-                    "column": 26
-                  },
-                  "end": {
-                    "line": 24,
-                    "column": 39
-                  }
-                },
-                "operator": "typeof",
-                "prefix": true,
-                "argument": {
-                  "type": "Identifier",
-                  "start": 780,
-                  "end": 786,
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 33
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 39
-                    }
-                  },
-                  "name": "window"
-                }
-              },
-              "operator": "===",
-              "right": {
-                "type": "Literal",
-                "start": 791,
-                "end": 799,
-                "loc": {
-                  "start": {
-                    "line": 24,
-                    "column": 44
-                  },
-                  "end": {
-                    "line": 24,
-                    "column": 52
-                  }
-                },
-                "value": "object",
-                "rawValue": "object",
-                "raw": "'object'"
               }
             }
           }
