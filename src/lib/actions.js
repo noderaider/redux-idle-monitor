@@ -1,9 +1,11 @@
 import { assert } from 'chai'
 import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from './blueprints'
-import { IS_DEV, IS_BROWSER, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
+import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
 
 const STOP_TYPES = ['pointermove', 'MSPointerMove']
 const FILTER_TYPES = ['mousemove']
+
+const isBrowser = () => typeof window === 'object'
 
 /** Detects whether the activity should trigger a redux update */
 const _shouldActivityUpdate = ({ log, thresholds }) => ({ type, pageX, pageY }) => (dispatch, getState) => {
@@ -39,20 +41,20 @@ const localPollingFrequency = 1000
 
 
 export const setLocalInit = () => {
-  if(IS_BROWSER)
+  if(isBrowser())
     localStorage[LOCAL_STORAGE_KEY] = 'INIT'
 }
 export const setLocalIdle = () => {
-  if(IS_BROWSER)
+  if(isBrowser())
     localStorage[LOCAL_STORAGE_KEY] = 'IDLE'
 }
 export const setLocalActive = () => {
   let now = Date.now()
-  if(IS_BROWSER)
+  if(isBrowser())
     localStorage[LOCAL_STORAGE_KEY] = now
   return now
 }
-export const getLocalActive = () => IS_BROWSER ? localStorage[LOCAL_STORAGE_KEY] : false
+export const getLocalActive = () => isBrowser() ? localStorage[LOCAL_STORAGE_KEY] : false
 
 const createStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) => (dispatch, getState) => {
   let prevLastActive = getLocalActive()
@@ -94,7 +96,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
 
   log.info('activity detection starting')
   //if(IS_DEV) assert.ok(!dispatch(isRunning), 'activity detection is already running')
-  if(IS_BROWSER) activeEvents.forEach(x => document.addEventListener(x, onActivity))
+  if(isBrowser()) activeEvents.forEach(x => document.addEventListener(x, onActivity))
   dispatch(activityDetection(true))
 
   const startLocalPolling = createStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })
@@ -105,7 +107,7 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
     log.info('activity detection terminating')
     //if(IS_DEV) assert(dispatch(isRunning), 'activity detection is not running')
     dispatch(stopLocalPolling)
-    if(IS_BROWSER) activeEvents.forEach(x => document.removeEventListener(x, onActivity))
+    if(isBrowser()) activeEvents.forEach(x => document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
 }

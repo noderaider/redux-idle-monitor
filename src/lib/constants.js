@@ -21,4 +21,3 @@ export const LAST_IDLE_STATUS_BLUEPRINT = 'LAST_IDLE_STATUS'
 export const IDLESTATUS_ACTIVE = 'ACTIVE'
 
 export const IS_DEV = process.env.NODE_ENV !== 'production'
-export const IS_BROWSER = typeof window === 'object'
