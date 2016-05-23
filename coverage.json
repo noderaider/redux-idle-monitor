@@ -1,17 +1,16 @@
 {
-  "coverage": "19.51%",
-  "expectCount": 41,
+  "coverage": "20%",
+  "expectCount": 40,
   "actualCount": 8,
   "files": {
     "lib/constants.js": {
-      "expectCount": 13,
+      "expectCount": 12,
       "actualCount": 4,
       "undocumentLines": [
         7,
         14,
         15,
         12,
-        24,
         23,
         18,
         17,
@@ -60,11 +59,11 @@
       "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        75,
-        55,
-        49,
-        45,
-        41
+        77,
+        57,
+        51,
+        47,
+        43
       ]
     },
     "lib/defaults.js": {
