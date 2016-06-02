@@ -2,7 +2,7 @@ import createContext from './context'
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'
-import { createDetection, setLocalActive, setLocalInit, setLocalIdle  } from './actions'
+import { createDetection } from './actions'
 import { getNextIdleStatusIn } from './states'
 const should = require('chai').should()
 
@@ -41,12 +41,11 @@ export const createMiddleware = context => {
   let isStarted = false
   return store => {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
-    const { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync } = createDetection(context)(store)
+    const { startActivityDetection, stopActivityDetection, localSync } = createDetection(context)(store)
     if(IS_DEV) {
       should.exist(startActivityDetection, 'createDetection should return startActivityDetection')
       should.exist(stopActivityDetection, 'createDetection should return stopActivityDetection')
-      should.exist(startLocalSync, 'createDetection should return startLocalSync')
-      should.exist(stopLocalSync, 'createDetection should return stopLocalSync')
+      should.exist(localSync, 'localSync should exist')
     }
     return next => action => {
       const { dispatch, getState } = store
@@ -74,7 +73,7 @@ export const createMiddleware = context => {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
             //log.info('No more actions to schedule, setting local state to idle')
-            setLocalIdle()
+            localSync.trigger(false)
           }
         }, delay)
         return function cancel() {
@@ -85,9 +84,8 @@ export const createMiddleware = context => {
 
       if(type === START) {
         if(!isStarted) {
-          setLocalInit()
           startActivityDetection()
-          startLocalSync()
+          localSync.start()
           isStarted = true
         }
         let result = next(action)
@@ -99,7 +97,7 @@ export const createMiddleware = context => {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
         if(isStarted) {
-          stopLocalSync()
+          localSync.stop()
           stopActivityDetection()
           isStarted = false
         }
@@ -116,18 +114,18 @@ export const createMiddleware = context => {
 
       if(type === ACTIVITY) {
         if(thresholds.phaseOffMS) {
-          stopLocalSync()
+          localSync.stop()
           stopActivityDetection()
           startDetectionID = setTimeout(() => {
             startActivityDetection()
-            startLocalSync()
+            localSync.stop()
           }, thresholds.phaseOffMS)
         }
 
         let result = next(action)
         if(payload.type !== 'local') {
           log.info('Setting local tab to active')
-          setLocalActive()
+          localSync.trigger(true)
         }
         if(payload.isTransition) {
           //log.trace('Transition activity occurred, triggering user active action.')

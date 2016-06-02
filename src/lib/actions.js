@@ -1,6 +1,6 @@
 import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from './blueprints'
 import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
-import ls from 'local-storage'
+import localsync from 'localsync'
 const should = require('chai').should()
 
 const STOP_TYPES = ['pointermove', 'MSPointerMove']
@@ -45,31 +45,21 @@ const isRunning = (dispatch, getState) => {
   return isDetectionRunning
 }
 
-const LOCAL_STORAGE_KEY = 'IDLEMONITOR_LAST_ACTIVE'
-
-export const setLocalInit = () => ls(LOCAL_STORAGE_KEY, 'INIT')
-export const setLocalIdle = () => ls(LOCAL_STORAGE_KEY, 'IDLE')
-export const setLocalActive = () => {
-  let now = Date.now()
-  ls(LOCAL_STORAGE_KEY, now)
-  return now
-}
-export const getLocalActive = () => ls(LOCAL_STORAGE_KEY)
 
 const createLocalSync = ({ log, activity, getIsTransition }) => store => {
-  const handleSync = (value, old, url) => {
+  const action = isActive => {
+    if(isActive)
+      return { isActive, lastActive: Date.now() }
+    else
+      return { isActive }
+  }
+
+  const handler = (value, old, url) => {
     log.info({ value, old, url }, 'local sync')
-    store.dispatch(activity({ type: 'local', isTransition: getIsTransition() }))
+    if(value.isActive)
+      store.dispatch(activity({ type: 'local', isTransition: getIsTransition() }))
   }
-  const startLocalSync = () => {
-    log.info('starting local sync')
-    ls.on(LOCAL_STORAGE_KEY, handleSync)
-  }
-  const stopLocalSync = () => {
-    log.info('stopping local sync')
-    ls.off(LOCAL_STORAGE_KEY, handleSync)
-  }
-  return { startLocalSync, stopLocalSync }
+  return localsync('idlemonitor', action, handler)
 }
 
 
@@ -106,35 +96,17 @@ export const createDetection = ({ log, activeEvents, thresholds, translateBluepr
   const getIsTransition = () => selectIdleState(store.getState()).idleStatus !== IDLESTATUS_ACTIVE
 
   const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
-  const { startLocalSync, stopLocalSync } = createLocalSync({ log, activity, getIsTransition })(store)
+  const localSync = createLocalSync({ log, activity, getIsTransition })(store)
 
   should.exist(startActivityDetection, 'startActivityDetection should be a return property of createActivityDetection')
   should.exist(stopActivityDetection, 'stopActivityDetection should be a return property of createActivityDetection')
-  should.exist(startLocalSync, 'startLocalSync should be a return property of createLocalSync')
-  should.exist(stopLocalSync, 'stopLocalSync should be a return property of createLocalSync')
-
+  should.exist(localSync, 'localSync should exist')
+  should.exist(localSync.start, 'localSync.start should exist')
+  should.exist(localSync.stop, 'localSync.stop should exist')
+  should.exist(localSync.trigger, 'localSync.trigger should exist')
 
   log.info('activity detection starting')
 
-  return { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync }
+  return { startActivityDetection, stopActivityDetection, localSync }
 
-/*
-  startActivityDetection()
-  startLocalSync()
-
-  const startDetection = () => {
-    startActivityDetection()
-    startLocalSync()
-  }
-  const stopDetection = () => {
-    stopLocalSync()
-    stopActivityDetection()
-  }
-
-  return () => {
-    log.info('activity detection terminating')
-    stopLocalSync()
-    stopActivityDetection()
-  }
-  */
 }
