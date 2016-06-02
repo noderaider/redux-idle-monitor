@@ -1,6 +1,6 @@
 {
-  "coverage": "20%",
-  "expectCount": 40,
+  "coverage": "22.22%",
+  "expectCount": 36,
   "actualCount": 8,
   "files": {
     "lib/constants.js": {
@@ -56,14 +56,10 @@
       ]
     },
     "lib/actions.js": {
-      "expectCount": 5,
+      "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        98,
-        57,
-        52,
-        51,
-        50
+        88
       ]
     },
     "lib/defaults.js": {
