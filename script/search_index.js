@@ -138,12 +138,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "redux-idle-monitor/lib/actions.js~getlocalactive",
-    "variable/index.html#static-variable-getLocalActive",
-    "<span>getLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
     "redux-idle-monitor/lib/states.js~getnextidlestatusin",
     "variable/index.html#static-variable-getNextIdleStatusIn",
     "<span>getNextIdleStatusIn</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/states.js</span>",
@@ -207,24 +201,6 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/blueprints.js~publicblueprints",
     "variable/index.html#static-variable-publicBlueprints",
     "<span>publicBlueprints</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/blueprints.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~setlocalactive",
-    "variable/index.html#static-variable-setLocalActive",
-    "<span>setLocalActive</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~setlocalidle",
-    "variable/index.html#static-variable-setLocalIdle",
-    "<span>setLocalIdle</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~setlocalinit",
-    "variable/index.html#static-variable-setLocalInit",
-    "<span>setLocalInit</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [

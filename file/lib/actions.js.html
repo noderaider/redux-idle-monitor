@@ -37,10 +37,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalInit">setLocalInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-gotoIdleStatusBlueprint">gotoIdleStatusBlueprint</a></span></span></li>
@@ -79,7 +75,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
 import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
-import ls from &apos;local-storage&apos;
+import localsync from &apos;localsync&apos;
 const should = require(&apos;chai&apos;).should()
 
 const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
@@ -124,31 +120,21 @@ const isRunning = (dispatch, getState) =&gt; {
   return isDetectionRunning
 }
 
-const LOCAL_STORAGE_KEY = &apos;IDLEMONITOR_LAST_ACTIVE&apos;
-
-export const setLocalInit = () =&gt; ls(LOCAL_STORAGE_KEY, &apos;INIT&apos;)
-export const setLocalIdle = () =&gt; ls(LOCAL_STORAGE_KEY, &apos;IDLE&apos;)
-export const setLocalActive = () =&gt; {
-  let now = Date.now()
-  ls(LOCAL_STORAGE_KEY, now)
-  return now
-}
-export const getLocalActive = () =&gt; ls(LOCAL_STORAGE_KEY)
 
 const createLocalSync = ({ log, activity, getIsTransition }) =&gt; store =&gt; {
-  const handleSync = (value, old, url) =&gt; {
+  const action = isActive =&gt; {
+    if(isActive)
+      return { isActive, lastActive: Date.now() }
+    else
+      return { isActive }
+  }
+
+  const handler = (value, old, url) =&gt; {
     log.info({ value, old, url }, &apos;local sync&apos;)
-    store.dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
+    if(value.isActive)
+      store.dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
   }
-  const startLocalSync = () =&gt; {
-    log.info(&apos;starting local sync&apos;)
-    ls.on(LOCAL_STORAGE_KEY, handleSync)
-  }
-  const stopLocalSync = () =&gt; {
-    log.info(&apos;stopping local sync&apos;)
-    ls.off(LOCAL_STORAGE_KEY, handleSync)
-  }
-  return { startLocalSync, stopLocalSync }
+  return localsync(&apos;idlemonitor&apos;, action, handler)
 }
 
 
@@ -185,37 +171,19 @@ export const createDetection = ({ log, activeEvents, thresholds, translateBluepr
   const getIsTransition = () =&gt; selectIdleState(store.getState()).idleStatus !== IDLESTATUS_ACTIVE
 
   const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
-  const { startLocalSync, stopLocalSync } = createLocalSync({ log, activity, getIsTransition })(store)
+  const localSync = createLocalSync({ log, activity, getIsTransition })(store)
 
   should.exist(startActivityDetection, &apos;startActivityDetection should be a return property of createActivityDetection&apos;)
   should.exist(stopActivityDetection, &apos;stopActivityDetection should be a return property of createActivityDetection&apos;)
-  should.exist(startLocalSync, &apos;startLocalSync should be a return property of createLocalSync&apos;)
-  should.exist(stopLocalSync, &apos;stopLocalSync should be a return property of createLocalSync&apos;)
-
+  should.exist(localSync, &apos;localSync should exist&apos;)
+  should.exist(localSync.start, &apos;localSync.start should exist&apos;)
+  should.exist(localSync.stop, &apos;localSync.stop should exist&apos;)
+  should.exist(localSync.trigger, &apos;localSync.trigger should exist&apos;)
 
   log.info(&apos;activity detection starting&apos;)
 
-  return { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync }
+  return { startActivityDetection, stopActivityDetection, localSync }
 
-/*
-  startActivityDetection()
-  startLocalSync()
-
-  const startDetection = () =&gt; {
-    startActivityDetection()
-    startLocalSync()
-  }
-  const stopDetection = () =&gt; {
-    stopLocalSync()
-    stopActivityDetection()
-  }
-
-  return () =&gt; {
-    log.info(&apos;activity detection terminating&apos;)
-    stopLocalSync()
-    stopActivityDetection()
-  }
-  */
 }
 </code></pre>
 

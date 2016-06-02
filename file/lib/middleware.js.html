@@ -37,10 +37,6 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalInit">setLocalInit</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-gotoIdleStatusBlueprint">gotoIdleStatusBlueprint</a></span></span></li>
@@ -81,7 +77,7 @@
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
-import { createDetection, setLocalActive, setLocalInit, setLocalIdle  } from &apos;./actions&apos;
+import { createDetection } from &apos;./actions&apos;
 import { getNextIdleStatusIn } from &apos;./states&apos;
 const should = require(&apos;chai&apos;).should()
 
@@ -120,12 +116,11 @@ export const createMiddleware = context =&gt; {
   let isStarted = false
   return store =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
-    const { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync } = createDetection(context)(store)
+    const { startActivityDetection, stopActivityDetection, localSync } = createDetection(context)(store)
     if(IS_DEV) {
       should.exist(startActivityDetection, &apos;createDetection should return startActivityDetection&apos;)
       should.exist(stopActivityDetection, &apos;createDetection should return stopActivityDetection&apos;)
-      should.exist(startLocalSync, &apos;createDetection should return startLocalSync&apos;)
-      should.exist(stopLocalSync, &apos;createDetection should return stopLocalSync&apos;)
+      should.exist(localSync, &apos;localSync should exist&apos;)
     }
     return next =&gt; action =&gt; {
       const { dispatch, getState } = store
@@ -153,7 +148,7 @@ export const createMiddleware = context =&gt; {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
             //log.info(&apos;No more actions to schedule, setting local state to idle&apos;)
-            setLocalIdle()
+            localSync.trigger(false)
           }
         }, delay)
         return function cancel() {
@@ -164,9 +159,8 @@ export const createMiddleware = context =&gt; {
 
       if(type === START) {
         if(!isStarted) {
-          setLocalInit()
           startActivityDetection()
-          startLocalSync()
+          localSync.start()
           isStarted = true
         }
         let result = next(action)
@@ -178,7 +172,7 @@ export const createMiddleware = context =&gt; {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
         if(isStarted) {
-          stopLocalSync()
+          localSync.stop()
           stopActivityDetection()
           isStarted = false
         }
@@ -195,18 +189,18 @@ export const createMiddleware = context =&gt; {
 
       if(type === ACTIVITY) {
         if(thresholds.phaseOffMS) {
-          stopLocalSync()
+          localSync.stop()
           stopActivityDetection()
           startDetectionID = setTimeout(() =&gt; {
             startActivityDetection()
-            startLocalSync()
+            localSync.start()
           }, thresholds.phaseOffMS)
         }
 
         let result = next(action)
         if(payload.type !== &apos;local&apos;) {
           log.info(&apos;Setting local tab to active&apos;)
-          setLocalActive()
+          localSync.trigger(true)
         }
         if(payload.isTransition) {
           //log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
