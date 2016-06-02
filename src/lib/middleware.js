@@ -118,7 +118,7 @@ export const createMiddleware = context => {
           stopActivityDetection()
           startDetectionID = setTimeout(() => {
             startActivityDetection()
-            localSync.stop()
+            localSync.start()
           }, thresholds.phaseOffMS)
         }
 
