@@ -36,7 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
@@ -446,6 +446,31 @@
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
@@ -480,31 +505,6 @@
         
         <div data-ice="description"><p>When context has already been created, it can be shared to middleware component.</p>
 </div>
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span><span data-ice="signature">: <span>*</span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
       </div>
     </td>
     <td>
@@ -1557,6 +1557,46 @@
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="static-variable-createDetection">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">createDetection</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber98">source</a></span></span>
+    </span>
+  </h3>
+
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createDetection} from &apos;<span><a href="file/lib/actions.js.html#lineNumber98">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="static-variable-createMiddleware">
     <span class="access" data-ice="access">public</span>
     
@@ -1617,46 +1657,6 @@
   
   <div data-ice="description"><p>When context has already been created, it can be shared to middleware component.</p>
 </div>
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-createStartDetection">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">createStartDetection</span><span data-ice="signature">: <span>*</span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber77">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {createStartDetection} from &apos;<span><a href="file/lib/actions.js.html#lineNumber77">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
-  
-  
-  
 
   
 
@@ -2249,11 +2249,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber51">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber52">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalActive} from &apos;<span><a href="file/lib/actions.js.html#lineNumber51">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalActive} from &apos;<span><a href="file/lib/actions.js.html#lineNumber52">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -2289,11 +2289,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber47">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber51">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalIdle} from &apos;<span><a href="file/lib/actions.js.html#lineNumber47">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalIdle} from &apos;<span><a href="file/lib/actions.js.html#lineNumber51">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -2329,11 +2329,11 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber43">source</a></span></span>
+      <span data-ice="source"><span><a href="file/lib/actions.js.html#lineNumber50">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalInit} from &apos;<span><a href="file/lib/actions.js.html#lineNumber43">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import {setLocalInit} from &apos;<span><a href="file/lib/actions.js.html#lineNumber50">redux-idle-monitor/lib/actions.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -2442,7 +2442,7 @@
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

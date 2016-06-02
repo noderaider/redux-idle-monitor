@@ -59,11 +59,11 @@
       "expectCount": 5,
       "actualCount": 0,
       "undocumentLines": [
-        77,
+        98,
         57,
+        52,
         51,
-        47,
-        43
+        50
       ]
     },
     "lib/defaults.js": {

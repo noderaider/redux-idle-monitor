@@ -36,7 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
@@ -77,13 +77,13 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/middleware.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
-import createContext from &apos;./context&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import createContext from &apos;./context&apos;
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
-import { createStartDetection, setLocalActive, setLocalInit, setLocalIdle  } from &apos;./actions&apos;
+import { createDetection, setLocalActive, setLocalInit, setLocalIdle  } from &apos;./actions&apos;
 import { getNextIdleStatusIn } from &apos;./states&apos;
+const should = require(&apos;chai&apos;).should()
 
 
 /** When context has already been created, it can be shared to middleware component. */
@@ -95,11 +95,7 @@ export const createMiddleware = context =&gt; {
         } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint
                                 , lastIdleStatusAction: lastIdleStatusBlueprint
                                 })
-  const startDetection = createStartDetection(context)
-  if(IS_DEV) {
-    assert.ok(startDetection)
-    assert.typeOf(startDetection, &apos;function&apos;)
-  }
+
 
   const { START
         , STOP
@@ -119,12 +115,18 @@ export const createMiddleware = context =&gt; {
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
   const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
 
-  let stopDetection = (dispatch, getState) =&gt; {}
   let nextTimeoutID = null
   let startDetectionID = null
+  let isStarted = false
   return store =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
-
+    const { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync } = createDetection(context)(store)
+    if(IS_DEV) {
+      should.exist(startActivityDetection, &apos;createDetection should return startActivityDetection&apos;)
+      should.exist(stopActivityDetection, &apos;createDetection should return stopActivityDetection&apos;)
+      should.exist(startLocalSync, &apos;createDetection should return startLocalSync&apos;)
+      should.exist(stopLocalSync, &apos;createDetection should return stopLocalSync&apos;)
+    }
     return next =&gt; action =&gt; {
       const { dispatch, getState } = store
 
@@ -135,8 +137,8 @@ export const createMiddleware = context =&gt; {
       const scheduleTransition = idleStatus =&gt; {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
-        assert.ok(delay, `must return an idle status delay for idleStatus === &apos;${idleStatus}&apos;`)
-        assert.ok(typeof delay === &apos;number&apos;, `idle status delay must be a number type for idleStatus === &apos;${idleStatus}&apos;`)
+        should.exist(delay, `must return an idle status delay for idleStatus === &apos;${idleStatus}&apos;`)
+        delay.should.be.a(&apos;number&apos;, `idle status delay must be a number type for idleStatus === &apos;${idleStatus}&apos;`)
 
         let lastActive = new Date().toTimeString()
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
@@ -161,11 +163,11 @@ export const createMiddleware = context =&gt; {
       }
 
       if(type === START) {
-        setLocalInit()
-        stopDetection = dispatch(startDetection)
-        if(IS_DEV) {
-          assert.ok(stopDetection)
-          assert.typeOf(stopDetection, &apos;function&apos;)
+        if(!isStarted) {
+          setLocalInit()
+          startActivityDetection()
+          startLocalSync()
+          isStarted = true
         }
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
@@ -175,13 +177,11 @@ export const createMiddleware = context =&gt; {
       if(type === STOP) {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
-
-        if(IS_DEV) {
-          assert.ok(stopDetection)
-          assert.typeOf(stopDetection, &apos;function&apos;)
+        if(isStarted) {
+          stopLocalSync()
+          stopActivityDetection()
+          isStarted = false
         }
-
-        dispatch(stopDetection)
       }
 
       if(type === NEXT_IDLE_STATUS) {
@@ -189,18 +189,17 @@ export const createMiddleware = context =&gt; {
       }
 
       if(type === LAST_IDLE_STATUS) {
-        console.warn(&apos;LAST IDLE STATUS TRIGGERED&apos;)
         clearTimeout(nextTimeoutID)
-        //dispatch(lastIdleStatusAction(IDLESTATUS_LAST))
         dispatch(idleStatusAction(IDLESTATUS_LAST))
       }
 
       if(type === ACTIVITY) {
-        if(stopDetection &amp;&amp; thresholds.phaseOffMS) {
-          dispatch(stopDetection)
-          stopDetection = (dispatch, getState) =&gt; {}
+        if(thresholds.phaseOffMS) {
+          stopLocalSync()
+          stopActivityDetection()
           startDetectionID = setTimeout(() =&gt; {
-            stopDetection = dispatch(startDetection)
+            startActivityDetection()
+            startLocalSync()
           }, thresholds.phaseOffMS)
         }
 
@@ -228,7 +227,7 @@ export default function configureMiddleware(opts) { return createMiddleware(crea
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>

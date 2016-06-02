@@ -36,7 +36,7 @@
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
-<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createStartDetection">createStartDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLocalActive">getLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalActive">setLocalActive</a></span></span></li>
 <li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-setLocalIdle">setLocalIdle</a></span></span></li>
@@ -77,9 +77,10 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
-import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
 import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
+import ls from &apos;local-storage&apos;
+const should = require(&apos;chai&apos;).should()
 
 const STOP_TYPES = [&apos;pointermove&apos;, &apos;MSPointerMove&apos;]
 const FILTER_TYPES = [&apos;mousemove&apos;]
@@ -87,13 +88,14 @@ const FILTER_TYPES = [&apos;mousemove&apos;]
 const isBrowser = () =&gt; typeof window === &apos;object&apos;
 
 /** Detects whether the activity should trigger a redux update */
-const _shouldActivityUpdate = ({ log, thresholds }) =&gt; ({ type, pageX, pageY }) =&gt; (dispatch, getState) =&gt; {
+const createShouldActivityUpdate = ({ log, thresholds }) =&gt; store =&gt; ({ type, pageX, pageY }) =&gt; {
+
   if(STOP_TYPES.includes(type))
     return false
   if(!FILTER_TYPES.includes(type))
     return true
   /** If last event was not the same event type, trigger an update. */
-  const { lastActive, lastEvent } = selectIdleState(getState())
+  const { lastActive, lastEvent } = selectIdleState(store.getState())
   if(lastEvent.type !== type)
     return true
 
@@ -105,97 +107,122 @@ const _shouldActivityUpdate = ({ log, thresholds }) =&gt; ({ type, pageX, pageY 
 }
 
 const selectIdleState = state =&gt; {
-  if(IS_DEV) assert.typeOf(state.idle, &apos;object&apos;)
-  return state.idle
+  const { idle } = state
+  if(IS_DEV) {
+    should.exist(idle, &apos;idle monitor state should have idle value&apos;)
+    state.idle.should.be.an(&apos;object&apos;)
+  }
+  return idle
 }
 
 const isRunning = (dispatch, getState) =&gt; {
   const { isDetectionRunning } = selectIdleState(getState())
-  if(IS_DEV) assert.isBoolean(isDetectionRunning)
+  if(IS_DEV) {
+    should.exist(&apos;isDetectionRunning&apos;, &apos;idle monitor state should have idDetectionRunning defined&apos;)
+    isDetectionRunning.should.be.a(&apos;boolean&apos;)
+  }
   return isDetectionRunning
 }
 
 const LOCAL_STORAGE_KEY = &apos;IDLEMONITOR_LAST_ACTIVE&apos;
-const localPollingFrequency = 1000
 
-
-export const setLocalInit = () =&gt; {
-  if(isBrowser())
-    localStorage[LOCAL_STORAGE_KEY] = &apos;INIT&apos;
-}
-export const setLocalIdle = () =&gt; {
-  if(isBrowser())
-    localStorage[LOCAL_STORAGE_KEY] = &apos;IDLE&apos;
-}
+export const setLocalInit = () =&gt; ls(LOCAL_STORAGE_KEY, &apos;INIT&apos;)
+export const setLocalIdle = () =&gt; ls(LOCAL_STORAGE_KEY, &apos;IDLE&apos;)
 export const setLocalActive = () =&gt; {
   let now = Date.now()
-  if(isBrowser())
-    localStorage[LOCAL_STORAGE_KEY] = now
+  ls(LOCAL_STORAGE_KEY, now)
   return now
 }
-export const getLocalActive = () =&gt; isBrowser() ? localStorage[LOCAL_STORAGE_KEY] : false
+export const getLocalActive = () =&gt; ls(LOCAL_STORAGE_KEY)
 
-const createStartLocalPolling = ({ log, thresholds, activity, lastIdleStatus, getIsTransition }) =&gt; (dispatch, getState) =&gt; {
-  let prevLastActive = getLocalActive()
-  let localIntervalID = setInterval(() =&gt; {
-    let currLastActive = getLocalActive()
-    if(currLastActive == &apos;IDLE&apos;) {
-      dispatch(lastIdleStatus())
-    } else if(currLastActive != prevLastActive) {
-      log.debug(`local activity detected, prev=[${prevLastActive}], curr=[${currLastActive}], ${typeof currLastActive}`)
-      prevLastActive = currLastActive
-      dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
-    }
-  }, localPollingFrequency)
-  return (dispatch, getState) =&gt; {
-    clearInterval(localIntervalID)
+const createLocalSync = ({ log, activity, getIsTransition }) =&gt; store =&gt; {
+  const handleSync = (value, old, url) =&gt; {
+    log.info({ value, old, url }, &apos;local sync&apos;)
+    store.dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
   }
+  const startLocalSync = () =&gt; {
+    log.info(&apos;starting local sync&apos;)
+    ls.on(LOCAL_STORAGE_KEY, handleSync)
+  }
+  const stopLocalSync = () =&gt; {
+    log.info(&apos;stopping local sync&apos;)
+    ls.off(LOCAL_STORAGE_KEY, handleSync)
+  }
+  return { startLocalSync, stopLocalSync }
 }
 
 
-export const createStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) =&gt; (dispatch, getState) =&gt; {
-  const { activity
-        , activityDetection
-        , lastIdleStatus
-        } = translateBlueprints({ activity: activityBlueprint
-                                , activityDetection: activityDetectionBlueprint
-                                , lastIdleStatus: lastIdleStatusBlueprint
-                                })
-
-
-  const getIsTransition = () =&gt; selectIdleState(getState()).idleStatus !== IDLESTATUS_ACTIVE
-
-
+const createActivityDetection = ({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition }) =&gt; store =&gt; {
+  const { dispatch } = store
+  const shouldActivityUpdate = createShouldActivityUpdate({ log, thresholds })(store)
   /** One of the event listeners triggered an activity occurrence event. This gets spammed */
   const onActivity = e =&gt; {
-    if (!dispatch(_shouldActivityUpdate({ log, thresholds })(e)))
+    if (!shouldActivityUpdate(e))
       return
     dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
   }
 
-  log.info(&apos;activity detection starting&apos;)
-  //if(IS_DEV) assert.ok(!dispatch(isRunning), &apos;activity detection is already running&apos;)
-  if(isBrowser()) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
-  dispatch(activityDetection(true))
-
-  const startLocalPolling = createStartLocalPolling({ log, activity, lastIdleStatus, getIsTransition })
-  const stopLocalPolling = dispatch(startLocalPolling)
-
-  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
-  return (dispatch, getState) =&gt; {
-    log.info(&apos;activity detection terminating&apos;)
-    //if(IS_DEV) assert(dispatch(isRunning), &apos;activity detection is not running&apos;)
-    dispatch(stopLocalPolling)
+  const startActivityDetection = () =&gt; {
+    if(isBrowser()) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
+    dispatch(activityDetection(true))
+  }
+  const stopActivityDetection = () =&gt; {
     if(isBrowser()) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
     dispatch(activityDetection(false))
   }
+  return { startActivityDetection, stopActivityDetection }
+}
+
+
+export const createDetection = ({ log, activeEvents, thresholds, translateBlueprints }) =&gt; store =&gt; {
+  const { activity
+        , activityDetection
+        } = translateBlueprints({ activity: activityBlueprint
+                                , activityDetection: activityDetectionBlueprint
+                                })
+
+
+  const getIsTransition = () =&gt; selectIdleState(store.getState()).idleStatus !== IDLESTATUS_ACTIVE
+
+  const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
+  const { startLocalSync, stopLocalSync } = createLocalSync({ log, activity, getIsTransition })(store)
+
+  should.exist(startActivityDetection, &apos;startActivityDetection should be a return property of createActivityDetection&apos;)
+  should.exist(stopActivityDetection, &apos;stopActivityDetection should be a return property of createActivityDetection&apos;)
+  should.exist(startLocalSync, &apos;startLocalSync should be a return property of createLocalSync&apos;)
+  should.exist(stopLocalSync, &apos;stopLocalSync should be a return property of createLocalSync&apos;)
+
+
+  log.info(&apos;activity detection starting&apos;)
+
+  return { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync }
+
+/*
+  startActivityDetection()
+  startLocalSync()
+
+  const startDetection = () =&gt; {
+    startActivityDetection()
+    startLocalSync()
+  }
+  const stopDetection = () =&gt; {
+    stopLocalSync()
+    stopActivityDetection()
+  }
+
+  return () =&gt; {
+    log.info(&apos;activity detection terminating&apos;)
+    stopLocalSync()
+    stopActivityDetection()
+  }
+  */
 }
 </code></pre>
 
 </div>
 
 <footer class="footer">
-  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.6)</span></a>
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.7)</span></a>
 </footer>
 
 <script src="script/search_index.js"></script>
