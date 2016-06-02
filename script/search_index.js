@@ -108,6 +108,12 @@ window.esdocSearchIndex = [
     "function"
   ],
   [
+    "redux-idle-monitor/lib/actions.js~createdetection",
+    "variable/index.html#static-variable-createDetection",
+    "<span>createDetection</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
+    "variable"
+  ],
+  [
     "redux-idle-monitor/lib/middleware.js~createmiddleware",
     "variable/index.html#static-variable-createMiddleware",
     "<span>createMiddleware</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/middleware.js</span>",
@@ -117,12 +123,6 @@ window.esdocSearchIndex = [
     "redux-idle-monitor/lib/reducer.js~createreducer",
     "variable/index.html#static-variable-createReducer",
     "<span>createReducer</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/reducer.js</span>",
-    "variable"
-  ],
-  [
-    "redux-idle-monitor/lib/actions.js~createstartdetection",
-    "variable/index.html#static-variable-createStartDetection",
-    "<span>createStartDetection</span> <span class=\"search-result-import-path\">redux-idle-monitor/lib/actions.js</span>",
     "variable"
   ],
   [
