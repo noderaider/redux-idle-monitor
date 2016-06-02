@@ -1,10 +1,10 @@
-import { assert } from 'chai'
 import createContext from './context'
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'
-import { createStartDetection, setLocalActive, setLocalInit, setLocalIdle  } from './actions'
+import { createDetection, setLocalActive, setLocalInit, setLocalIdle  } from './actions'
 import { getNextIdleStatusIn } from './states'
+const should = require('chai').should()
 
 
 /** When context has already been created, it can be shared to middleware component. */
@@ -16,11 +16,7 @@ export const createMiddleware = context => {
         } = translateBlueprints({ nextIdleStatusAction: nextIdleStatusBlueprint
                                 , lastIdleStatusAction: lastIdleStatusBlueprint
                                 })
-  const startDetection = createStartDetection(context)
-  if(IS_DEV) {
-    assert.ok(startDetection)
-    assert.typeOf(startDetection, 'function')
-  }
+
 
   const { START
         , STOP
@@ -40,12 +36,18 @@ export const createMiddleware = context => {
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
   const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
 
-  let stopDetection = (dispatch, getState) => {}
   let nextTimeoutID = null
   let startDetectionID = null
+  let isStarted = false
   return store => {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
-
+    const { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync } = createDetection(context)(store)
+    if(IS_DEV) {
+      should.exist(startActivityDetection, 'createDetection should return startActivityDetection')
+      should.exist(stopActivityDetection, 'createDetection should return stopActivityDetection')
+      should.exist(startLocalSync, 'createDetection should return startLocalSync')
+      should.exist(stopLocalSync, 'createDetection should return stopLocalSync')
+    }
     return next => action => {
       const { dispatch, getState } = store
 
@@ -56,8 +58,8 @@ export const createMiddleware = context => {
       const scheduleTransition = idleStatus => {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
-        assert.ok(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
-        assert.ok(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)
+        should.exist(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
+        delay.should.be.a('number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)
 
         let lastActive = new Date().toTimeString()
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
@@ -82,11 +84,11 @@ export const createMiddleware = context => {
       }
 
       if(type === START) {
-        setLocalInit()
-        stopDetection = dispatch(startDetection)
-        if(IS_DEV) {
-          assert.ok(stopDetection)
-          assert.typeOf(stopDetection, 'function')
+        if(!isStarted) {
+          setLocalInit()
+          startActivityDetection()
+          startLocalSync()
+          isStarted = true
         }
         let result = next(action)
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
@@ -96,13 +98,11 @@ export const createMiddleware = context => {
       if(type === STOP) {
         clearTimeout(nextTimeoutID)
         clearTimeout(startDetectionID)
-
-        if(IS_DEV) {
-          assert.ok(stopDetection)
-          assert.typeOf(stopDetection, 'function')
+        if(isStarted) {
+          stopLocalSync()
+          stopActivityDetection()
+          isStarted = false
         }
-
-        dispatch(stopDetection)
       }
 
       if(type === NEXT_IDLE_STATUS) {
@@ -110,18 +110,17 @@ export const createMiddleware = context => {
       }
 
       if(type === LAST_IDLE_STATUS) {
-        console.warn('LAST IDLE STATUS TRIGGERED')
         clearTimeout(nextTimeoutID)
-        //dispatch(lastIdleStatusAction(IDLESTATUS_LAST))
         dispatch(idleStatusAction(IDLESTATUS_LAST))
       }
 
       if(type === ACTIVITY) {
-        if(stopDetection && thresholds.phaseOffMS) {
-          dispatch(stopDetection)
-          stopDetection = (dispatch, getState) => {}
+        if(thresholds.phaseOffMS) {
+          stopLocalSync()
+          stopActivityDetection()
           startDetectionID = setTimeout(() => {
-            stopDetection = dispatch(startDetection)
+            startActivityDetection()
+            startLocalSync()
           }, thresholds.phaseOffMS)
         }
 

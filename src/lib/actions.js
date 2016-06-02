@@ -9,13 +9,14 @@ const FILTER_TYPES = ['mousemove']
 const isBrowser = () => typeof window === 'object'
 
 /** Detects whether the activity should trigger a redux update */
-const _shouldActivityUpdate = ({ log, thresholds }) => ({ type, pageX, pageY }) => (dispatch, getState) => {
+const createShouldActivityUpdate = ({ log, thresholds }) => store => ({ type, pageX, pageY }) => {
+
   if(STOP_TYPES.includes(type))
     return false
   if(!FILTER_TYPES.includes(type))
     return true
   /** If last event was not the same event type, trigger an update. */
-  const { lastActive, lastEvent } = selectIdleState(getState())
+  const { lastActive, lastEvent } = selectIdleState(store.getState())
   if(lastEvent.type !== type)
     return true
 
@@ -55,19 +56,46 @@ export const setLocalActive = () => {
 }
 export const getLocalActive = () => ls(LOCAL_STORAGE_KEY)
 
-const createStartLocalSync = ({ log, thresholds, activity, getIsTransition }) => (dispatch, getState) => {
-  log.info('starting local sync')
-  const onStorage = (value, old, url) => {
+const createLocalSync = ({ log, activity, getIsTransition }) => store => {
+  const handleSync = (value, old, url) => {
     log.info({ value, old, url }, 'local sync')
-    dispatch(activity({ type: 'local', isTransition: getIsTransition() }))
+    store.dispatch(activity({ type: 'local', isTransition: getIsTransition() }))
   }
-  ls.on(LOCAL_STORAGE_KEY, onStorage)
-  log.info('stopping local sync')
-  return (dispatch, getState) => ls.off(LOCAL_STORAGE_KEY)
+  const startLocalSync = () => {
+    log.info('starting local sync')
+    ls.on(LOCAL_STORAGE_KEY, handleSync)
+  }
+  const stopLocalSync = () => {
+    log.info('stopping local sync')
+    ls.off(LOCAL_STORAGE_KEY, handleSync)
+  }
+  return { startLocalSync, stopLocalSync }
 }
 
 
-export const createStartDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => (dispatch, getState) => {
+const createActivityDetection = ({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition }) => store => {
+  const { dispatch } = store
+  const shouldActivityUpdate = createShouldActivityUpdate({ log, thresholds })(store)
+  /** One of the event listeners triggered an activity occurrence event. This gets spammed */
+  const onActivity = e => {
+    if (!shouldActivityUpdate(e))
+      return
+    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
+  }
+
+  const startActivityDetection = () => {
+    if(isBrowser()) activeEvents.forEach(x => document.addEventListener(x, onActivity))
+    dispatch(activityDetection(true))
+  }
+  const stopActivityDetection = () => {
+    if(isBrowser()) activeEvents.forEach(x => document.removeEventListener(x, onActivity))
+    dispatch(activityDetection(false))
+  }
+  return { startActivityDetection, stopActivityDetection }
+}
+
+
+export const createDetection = ({ log, activeEvents, thresholds, translateBlueprints }) => store => {
   const { activity
         , activityDetection
         } = translateBlueprints({ activity: activityBlueprint
@@ -75,31 +103,38 @@ export const createStartDetection = ({ log, activeEvents, thresholds, translateB
                                 })
 
 
-  const getIsTransition = () => selectIdleState(getState()).idleStatus !== IDLESTATUS_ACTIVE
+  const getIsTransition = () => selectIdleState(store.getState()).idleStatus !== IDLESTATUS_ACTIVE
 
+  const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
+  const { startLocalSync, stopLocalSync } = createLocalSync({ log, activity, getIsTransition })(store)
 
-  /** One of the event listeners triggered an activity occurrence event. This gets spammed */
-  const onActivity = e => {
-    if (!dispatch(_shouldActivityUpdate({ log, thresholds })(e)))
-      return
-    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
-  }
+  should.exist(startActivityDetection, 'startActivityDetection should be a return property of createActivityDetection')
+  should.exist(stopActivityDetection, 'stopActivityDetection should be a return property of createActivityDetection')
+  should.exist(startLocalSync, 'startLocalSync should be a return property of createLocalSync')
+  should.exist(stopLocalSync, 'stopLocalSync should be a return property of createLocalSync')
+
 
   log.info('activity detection starting')
-  if(IS_DEV) dispatch(isRunning).should.be(false, 'activity detection is already running')
-  if(isBrowser()) activeEvents.forEach(x => document.addEventListener(x, onActivity))
-  dispatch(activityDetection(true))
 
-  const stopLocalSync = dispatch(createStartLocalSync({ log, activity, getIsTransition }))
-  should.exist(stopLocalSync, 'dispatching start local sync should return a disposer action')
-  stopLocalSync.should.be.an('object')
+  return { startActivityDetection, stopActivityDetection, startLocalSync, stopLocalSync }
 
-  /** RETURNS DISPATCHABLE DETECTION TERMINATOR */
-  return (dispatch, getState) => {
-    log.info('activity detection terminating')
-    if(IS_DEV) dispatch(isRunning).should.be(true, 'activity detection is not running')
-    dispatch(stopLocalSync)
-    if(isBrowser()) activeEvents.forEach(x => document.removeEventListener(x, onActivity))
-    dispatch(activityDetection(false))
+/*
+  startActivityDetection()
+  startLocalSync()
+
+  const startDetection = () => {
+    startActivityDetection()
+    startLocalSync()
   }
+  const stopDetection = () => {
+    stopLocalSync()
+    stopActivityDetection()
+  }
+
+  return () => {
+    log.info('activity detection terminating')
+    stopLocalSync()
+    stopActivityDetection()
+  }
+  */
 }
