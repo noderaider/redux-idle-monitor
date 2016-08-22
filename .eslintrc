@@ -1,22 +1,28 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true,
-    "blockBindings": true,
-    "defaultParams": true,
-    "forOf": true,
-    "generators": true,
-    "objectLiteralComputedProperties": true,
-    "objectLiteralDuplicateProperties": false,
-    "objectLiteralShorthandMethods": true,
-    "objectLiteralShorthandProperties": true,
-    "templateStrings": true
-  },
   "env": {
-    "browser": true,
-    "node": true
+    "shared-node-browser": true,
+    "es6": true,
+    "mocha": true
   },
   "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "modules": true,
+      "blockBindings": true,
+      "defaultParams": true,
+      "forOf": true,
+      "generators": true,
+      "objectLiteralComputedProperties": true,
+      "objectLiteralDuplicateProperties": false,
+      "objectLiteralShorthandMethods": true,
+      "objectLiteralShorthandProperties": true,
+      "templateStrings": true,
+      "experimentalObjectRestSpead": true
+    }
+  },
   "rules": {
     "quotes": [2, "single"],
     "strict": [2, "never"],
@@ -24,7 +30,15 @@
     "brace-style": [2, "1tbs", {
       "allowSingleLine": true
     }],
+    "comma-style": ["error", "first"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
     "comma-dangle": [2, "never"],
+    "object-property-newline": ["error", { "allowMultiplePropertiesPerLine": true }],
+    "object-curly-spacing": ["error", "always"],
+    "key-spacing": ["error", { "beforeColon": false, "afterColon": true, "mode": "minimum" }],
+    "rest-spread-spacing": ["error", "never"],
+    "array-bracket-spacing": ["error", "always"],
+    "no-mixed-spaces-and-tabs": "error",
     "no-dupe-keys": 2,
     "no-ex-assign": 2,
     "no-extra-semi": 2,
