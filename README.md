@@ -189,4 +189,4 @@ export default function configureStore() {
 ___
 
 
-Your done. Please open an [issue](https://github.com/noderaider/redux-idle-monitor/issues) if there are any features that you would like to see added.
+You're done. Please open an [issue](https://github.com/noderaider/redux-idle-monitor/issues) if there are any features that you would like to see added.
