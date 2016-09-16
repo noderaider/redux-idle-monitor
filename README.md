@@ -115,7 +115,7 @@ ___
 `typeof delay === 'number'`
 
 * accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you've configured.
-* gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.
+* gets dispatched by idle middleware to get the number of milliseconds of user idleness that must occur before transitioning into the specified idle status.
 * if user activity is detected the user will transition back to the `ACTIVE` state.
 * will throw if the thunk action does not return a number type for any idleStatus specified in the `IDLE_STATUSES` array.
 
@@ -164,6 +164,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import rootReducer from '../reducers'
 import DevTools from '../../containers/DevTools'
 import { middleware as idleMiddleware } from '../components/redux-idle-monitor'
+import { actions as idleActions } from '../comonents/redux-idle-monitor'
 
 import { thunk, readyStatePromise, createLogger, crashReporter } from 'redux-middleware'
 
