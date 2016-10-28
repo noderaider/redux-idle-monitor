@@ -17,9 +17,4 @@ export const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRIN
   return { nextIdleStatus }
 })
 
-export const lastIdleStatusBlueprint = createBlueprint(LAST_IDLE_STATUS_BLUEPRINT) //, lastIdleStatus => {
-  /*
-  assert.ok(lastIdleStatus, 'lastIdleStatus must be defined')
-  return { lastIdleStatus }
-  */
-//})
+export const lastIdleStatusBlueprint = createBlueprint(LAST_IDLE_STATUS_BLUEPRINT)

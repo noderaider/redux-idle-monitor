@@ -3,8 +3,8 @@ import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_ST
 import localsync from 'localsync'
 const should = require('chai').should()
 
-const STOP_TYPES = ['pointermove', 'MSPointerMove']
-const FILTER_TYPES = ['mousemove']
+const STOP_TYPES = [ 'pointermove', 'MSPointerMove' ]
+const FILTER_TYPES = [ 'mousemove' ]
 
 const isBrowser = () => typeof window === 'object'
 
