@@ -52,7 +52,7 @@
       "expectCount": 1,
       "actualCount": 0,
       "undocumentLines": [
-        40
+        37
       ]
     },
     "lib/actions.js": {

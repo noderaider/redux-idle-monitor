@@ -76,10 +76,7 @@
 <pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
 import  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from &apos;./defaults&apos;
-
-import configureContext from &apos;redux-addons/lib/context&apos;
-import  { createLogger } from &apos;redux-addons/lib/log&apos;
-const noop = () =&gt; {}
+import { translateBlueprintsWith, translateBlueprintTypesWith } from &apos;redux-blueprint&apos;
 
 const validateContext = (libContext, appContext) =&gt; {
   assert.ok(libContext, &apos;must pass opts to validate&apos;)
@@ -129,6 +126,85 @@ export default function createContext({ appName
   const libOpts = { libName, validateContext, configureAppContext: libContext =&gt; appOpts =&gt; appOpts, configureInitialState }
   const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
   return configureContext(libOpts)(appOpts)
+}
+
+const cleanActionName = name =&gt; name.toUpperCase().replace(/-+\s+/, &apos;_&apos;)
+
+/** Validates library creators options */
+const validateLibOpts = libOptsRaw =&gt; {
+  assert.ok(libOptsRaw, &apos;libOpts definition is required&apos;)
+  const { libName, validateContext, configureAppContext, configureInitialState } = libOptsRaw
+  assert(typeof libName === &apos;string&apos;, &apos;libName must be a string&apos;)
+  assert(libName.length &gt; 0, &apos;libName must not be empty&apos;)
+
+  assert.ok(validateContext, &apos;validateContext must exist&apos;)
+  assert(typeof validateContext === &apos;function&apos;, &apos;validateContext must be a function&apos;)
+
+  assert.ok(configureAppContext, &apos;configureAppContext must exist&apos;)
+  assert(typeof configureAppContext === &apos;function&apos;, &apos;configureAppContext must be a function&apos;)
+
+  assert.ok(configureInitialState, &apos;configureInitialState must exist&apos;)
+  assert(typeof configureInitialState === &apos;function&apos;, &apos;configureInitialState must be a function&apos;)
+}
+
+/** Validates library consumers options */
+const validateAppOpts = appOptsRaw =&gt; {
+  assert.ok(appOptsRaw, &apos;appOpts are required&apos;)
+  const { appName } = appOptsRaw
+
+  assert(typeof appName === &apos;string&apos;, &apos;appName opt must be a string&apos;)
+  assert(appName.length &gt; 0, &apos;appName opt must not be empty&apos;)
+}
+
+function configureContext(libOpts) {
+  const isDev = process.env.NODE_ENV !== &apos;production&apos;
+  if(isDev) validateLibOpts(libOpts)
+  const { libName, validateContext, configureAppContext, configureInitialState } = libOpts
+  return appOpts =&gt; {
+    if(isDev) validateAppOpts(appOpts)
+    const { appName, level } = appOpts
+
+    const translateBlueprintType =  blueprintType =&gt; `${cleanActionName(libName)}_${cleanActionName(appName)}_${cleanActionName(blueprintType)}`
+    const translateBlueprintTypes = translateBlueprintTypesWith(translateBlueprintType)
+    const translateBlueprints = translateBlueprintsWith(translateBlueprintType)
+
+    const libContext =  { log: createLogger({ libName, level })
+                        , libName
+                        , appName
+                        , translateBlueprintTypes
+                        , translateBlueprints
+                        }
+
+    const appContext = configureAppContext(libContext)(appOpts)
+    if(isDev) validateContext(libContext, appContext)
+
+    return Object.assign( appContext, libContext, { get initialState() { return configureInitialState(libContext)(appContext) }
+                                                  })
+  }
+}
+
+
+const noop = () =&gt; {}
+
+function createLogger ({ libName, level }) {
+  const _formatMessage = ({ level, message, obj }) =&gt; {
+    if(!message &amp;&amp; typeof obj === &apos;string&apos;) {
+      message = obj
+      obj = noop()
+    }
+    return _formatLog(obj ? `${level}: &apos;${message}&apos; =&gt; ${JSON.stringify(obj)}`  : `${level}: &apos;${message}&apos;`)
+  }
+
+  const _formatLog = message =&gt;`${libName} | ${message}`
+
+  return process.env.NODE_ENV !== &apos;production&apos; ? (
+    { trace: (obj, message) =&gt; level === &apos;trace&apos; ? console.trace(_formatMessage({ level: &apos;trace&apos;, message, obj })): noop()
+    , debug: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos; ].includes(level) ? console.log(_formatMessage({ level: &apos;debug&apos;, message, obj })) : noop()
+    , info: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos; ].includes(level) ? console.info(_formatMessage({ level: &apos;info&apos;, message, obj })) : noop()
+    , warn: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos;, &apos;warn&apos; ].includes(level) ? console.warn(_formatMessage({ level: &apos;warn&apos;, message, obj })) : noop()
+    , error: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos;, &apos;warn&apos;, &apos;error&apos; ].includes(level) ? console.error(_formatMessage({ level: &apos;error&apos;, message, obj })) : noop()
+    }
+  ) : ({ trace: noop, debug: noop, info: noop, warn: noop, error: noop })
 }
 </code></pre>
 
