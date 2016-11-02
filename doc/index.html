@@ -92,11 +92,15 @@
 import { IDLE_STATUSES } from &apos;./constants&apos;
 import { idleStatusDelay, activeStatusAction, idleStatusAction } from &apos;./actions&apos;
 
+// These are the default events that will trigger user active status but can be customized if provided.
+const activeEvents =  [ &apos;mousemove&apos;, &apos;keydown&apos;, &apos;wheel&apos;, &apos;DOMMouseScroll&apos;, &apos;mouseWheel&apos;, &apos;mousedown&apos;, &apos;touchstart&apos;, &apos;touchmove&apos;, &apos;MSPointerDown&apos;, &apos;MSPointerMove&apos; ]
+
 const opts =  { appName: &apos;todo-app&apos;
               , IDLE_STATUSES
               , idleStatusDelay
               , activeStatusAction
               , idleStatusAction
+              , activeEvents
               }
 
 const { middleware, reducer, actions } = configure(opts)
@@ -144,7 +148,7 @@ export const idleStatusAction = idleStatus =&gt; (dispatch, getState) =&gt; {
 <p><code>typeof delay === &apos;number&apos;</code></p>
 <ul>
 <li>accepts idleStatus string argument and returns a thunk action that will return the delay for any idle status that you&apos;ve configured.</li>
-<li>gets dispatched by idle middleware to get the number of millisenconds of user idleness that must occur before transitioning into the specified idle status.</li>
+<li>gets dispatched by idle middleware to get the number of milliseconds of user idleness that must occur before transitioning into the specified idle status.</li>
 <li>if user activity is detected the user will transition back to the <code>ACTIVE</code> state.</li>
 <li>will throw if the thunk action does not return a number type for any idleStatus specified in the <code>IDLE_STATUSES</code> array.</li>
 </ul>
@@ -181,6 +185,7 @@ export default rootReducer</code>
 import rootReducer from &apos;../reducers&apos;
 import DevTools from &apos;../../containers/DevTools&apos;
 import { middleware as idleMiddleware } from &apos;../components/redux-idle-monitor&apos;
+import { actions as idleActions } from &apos;../comonents/redux-idle-monitor&apos;
 
 import { thunk, readyStatePromise, createLogger, crashReporter } from &apos;redux-middleware&apos;
 
@@ -207,7 +212,7 @@ export default function configureStore() {
 }</code>
 </code></pre>
 <hr>
-<p>Your done. Please open an <a href="https://github.com/noderaider/redux-idle-monitor/issues">issue</a> if there are any features that you would like to see added.</p>
+<p>You&apos;re done. Please open an <a href="https://github.com/noderaider/redux-idle-monitor/issues">issue</a> if there are any features that you would like to see added.</p>
 </div>
 </div>
 

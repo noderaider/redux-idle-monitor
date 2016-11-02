@@ -1,7 +1,7 @@
 {
   "type": "Program",
   "start": 0,
-  "end": 592,
+  "end": 593,
   "loc": {
     "start": {
       "line": 1,
@@ -1457,7 +1457,7 @@
     {
       "type": "ExportNamedDeclaration",
       "start": 554,
-      "end": 590,
+      "end": 591,
       "loc": {
         "start": {
           "line": 12,
@@ -1465,13 +1465,13 @@
         },
         "end": {
           "line": 12,
-          "column": 36
+          "column": 37
         }
       },
       "declaration": {
         "type": "VariableDeclaration",
         "start": 561,
-        "end": 590,
+        "end": 591,
         "loc": {
           "start": {
             "line": 12,
@@ -1479,14 +1479,14 @@
           },
           "end": {
             "line": 12,
-            "column": 36
+            "column": 37
           }
         },
         "declarations": [
           {
             "type": "VariableDeclarator",
             "start": 567,
-            "end": 590,
+            "end": 591,
             "loc": {
               "start": {
                 "line": 12,
@@ -1494,7 +1494,7 @@
               },
               "end": {
                 "line": 12,
-                "column": 36
+                "column": 37
               }
             },
             "id": {
@@ -1516,7 +1516,7 @@
             "init": {
               "type": "ArrowFunctionExpression",
               "start": 578,
-              "end": 590,
+              "end": 591,
               "loc": {
                 "start": {
                   "line": 12,
@@ -1524,7 +1524,7 @@
                 },
                 "end": {
                   "line": 12,
-                  "column": 36
+                  "column": 37
                 }
               },
               "id": null,
@@ -1535,7 +1535,7 @@
               "body": {
                 "type": "Literal",
                 "start": 584,
-                "end": 590,
+                "end": 591,
                 "loc": {
                   "start": {
                     "line": 12,
@@ -1543,12 +1543,12 @@
                   },
                   "end": {
                     "line": 12,
-                    "column": 36
+                    "column": 37
                   }
                 },
-                "value": "info",
-                "rawValue": "info",
-                "raw": "'info'"
+                "value": "error",
+                "rawValue": "error",
+                "raw": "'error'"
               }
             }
           }

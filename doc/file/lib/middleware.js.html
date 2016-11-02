@@ -106,7 +106,7 @@ export const createMiddleware = context =&gt; {
                                     })
 
 
-  const idleStatuses = [IDLESTATUS_ACTIVE, ...IDLE_STATUSES]
+  const idleStatuses = [ IDLESTATUS_ACTIVE, ...IDLE_STATUSES ]
   const getNextIdleStatus = getNextIdleStatusIn(idleStatuses)
   const IDLESTATUS_FIRST = getNextIdleStatus(IDLESTATUS_ACTIVE)
   const IDLESTATUS_LAST = IDLE_STATUSES.slice(-1)[0]
@@ -139,21 +139,17 @@ export const createMiddleware = context =&gt; {
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
         let nextCancelMessage = cancelledAt =&gt; `${NEXT_IDLE_STATUS} action cancelled before ${delay} MS delay by dispatcher, lastActive: ${new Date().toTimeString()}, cancelledAt: ${cancelledAt}`
         let nextIdleStatus = getNextIdleStatus(idleStatus)
-        //log.trace(`Scheduling next idle status &apos;${idleStatus}&apos; in ${delay} MS, then &apos;${nextIdleStatus}&apos;`)
         nextTimeoutID = setTimeout(() =&gt; {
-          //log.trace(nextMessage)
           next(action)
           dispatch(idleStatusAction(idleStatus))
           if(nextIdleStatus) {
             dispatch(nextIdleStatusAction(nextIdleStatus))
           } else {
-            //log.info(&apos;No more actions to schedule, setting local state to idle&apos;)
             localSync.trigger(false)
           }
         }, delay)
         return function cancel() {
           clearTimeout(nextTimeoutID)
-          //log.trace(nextCancelMessage(new Date().toTimeString()))
         }
       }
 
@@ -203,7 +199,6 @@ export const createMiddleware = context =&gt; {
           localSync.trigger(true)
         }
         if(payload.isTransition) {
-          //log.trace(&apos;Transition activity occurred, triggering user active action.&apos;)
           dispatch(activeStatusAction)
         }
         dispatch(nextIdleStatusAction(IDLESTATUS_FIRST))
