@@ -1,9 +1,8 @@
-# [redux-idle-monitor](https://npmjs.com/packages/redux-idle-monitor)
+[![NPM](https://raw.githubusercontent.com/noderaider/redux-idle-monitor/master/public/png/redux-idle-monitor.png)](https://npmjs.com/packages/redux-idle-monitor)
+
+**A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.**
 
 [![NPM](https://nodei.co/npm/redux-idle-monitor.png?stars=true&downloads=true)](https://nodei.co/npm/redux-idle-monitor/)
-
-
-A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.
 
 :zap: **Now supports realtime synchronization across tabs when user is active. Tested IE10+ / Edge, Chrome, FireFox**
 
@@ -12,6 +11,8 @@ A React component and Redux connector to add functionality to invoke events at v
 Can be used standalone with redux or in tandem with [react-redux-idle-monitor](https://npmjs.com/packages/react-redux-idle-monitor) to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.
 
 See a working demo in a real project at [redux-webpack-boilerplate](https://redux-webpack-boilerplate.js.org)
+
+___
 
 ### How it works
 
