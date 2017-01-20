@@ -1,4 +1,4 @@
-import { assert } from 'chai'
+import invariant from 'invariant'
 import { createBlueprint } from 'redux-blueprint'
 import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, GOTO_IDLE_STATUS_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from './constants'
 
@@ -13,7 +13,7 @@ export const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLU
 export const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, gotoIdleStatus: gotoIdleStatusBlueprint }
 
 export const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRINT, nextIdleStatus => {
-  assert.ok(nextIdleStatus, 'nextIdleStatus must be defined')
+  invariant(nextIdleStatus, 'nextIdleStatus must be defined')
   return { nextIdleStatus }
 })
 

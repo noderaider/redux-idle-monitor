@@ -1,11 +1,10 @@
+import invariant from 'invariant'
 import createContext from './context'
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from './constants'
 import { bisectStore } from 'redux-mux'
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from './blueprints'
 import { createDetection } from './actions'
 import { getNextIdleStatusIn } from './states'
-const should = require('chai').should()
-
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context => {
@@ -43,9 +42,9 @@ export const createMiddleware = context => {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
     const { startActivityDetection, stopActivityDetection, localSync } = createDetection(context)(store)
     if(IS_DEV) {
-      should.exist(startActivityDetection, 'createDetection should return startActivityDetection')
-      should.exist(stopActivityDetection, 'createDetection should return stopActivityDetection')
-      should.exist(localSync, 'localSync should exist')
+      invariant(startActivityDetection, 'createDetection should return startActivityDetection')
+      invariant(stopActivityDetection, 'createDetection should return stopActivityDetection')
+      invariant(localSync, 'localSync should exist')
     }
     return next => action => {
       const { dispatch, getState } = store
@@ -57,8 +56,8 @@ export const createMiddleware = context => {
       const scheduleTransition = idleStatus => {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
-        should.exist(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
-        delay.should.be.a('number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)
+        invariant(delay, `must return an idle status delay for idleStatus === '${idleStatus}'`)
+        invariant(typeof delay === 'number', `idle status delay must be a number type for idleStatus === '${idleStatus}'`)
 
         let lastActive = new Date().toTimeString()
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`

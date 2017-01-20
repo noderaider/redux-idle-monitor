@@ -1,7 +1,7 @@
+import invariant from 'invariant'
 import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from './blueprints'
 import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from './constants'
 import localsync from 'localsync'
-const should = require('chai').should()
 
 const STOP_TYPES = [ 'pointermove', 'MSPointerMove' ]
 const FILTER_TYPES = [ 'mousemove' ]
@@ -30,8 +30,8 @@ const createShouldActivityUpdate = ({ log, thresholds }) => store => ({ type, pa
 const selectIdleState = state => {
   const { idle } = state
   if(IS_DEV) {
-    should.exist(idle, 'idle monitor state should have idle value')
-    state.idle.should.be.an('object')
+    invariant(idle, 'idle monitor state should have idle value')
+    invariant(typeof state.idle === 'object')
   }
   return idle
 }
@@ -39,8 +39,8 @@ const selectIdleState = state => {
 const isRunning = (dispatch, getState) => {
   const { isDetectionRunning } = selectIdleState(getState())
   if(IS_DEV) {
-    should.exist('isDetectionRunning', 'idle monitor state should have idDetectionRunning defined')
-    isDetectionRunning.should.be.a('boolean')
+    invariant('isDetectionRunning', 'idle monitor state should have idDetectionRunning defined')
+    invariant(typeof isDetectionRunning === 'boolean')
   }
   return isDetectionRunning
 }
@@ -98,12 +98,12 @@ export const createDetection = ({ log, activeEvents, thresholds, translateBluepr
   const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
   const localSync = createLocalSync({ log, activity, getIsTransition })(store)
 
-  should.exist(startActivityDetection, 'startActivityDetection should be a return property of createActivityDetection')
-  should.exist(stopActivityDetection, 'stopActivityDetection should be a return property of createActivityDetection')
-  should.exist(localSync, 'localSync should exist')
-  should.exist(localSync.start, 'localSync.start should exist')
-  should.exist(localSync.stop, 'localSync.stop should exist')
-  should.exist(localSync.trigger, 'localSync.trigger should exist')
+  invariant(startActivityDetection, 'startActivityDetection should be a return property of createActivityDetection')
+  invariant(stopActivityDetection, 'stopActivityDetection should be a return property of createActivityDetection')
+  invariant(localSync, 'localSync should exist')
+  invariant(localSync.start, 'localSync.start should exist')
+  invariant(localSync.stop, 'localSync.stop should exist')
+  invariant(localSync.trigger, 'localSync.trigger should exist')
 
   log.info('activity detection starting')
 
