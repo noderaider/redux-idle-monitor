@@ -73,7 +73,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/blueprints.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
 import { createBlueprint } from &apos;redux-blueprint&apos;
 import { IDLESTATUS_ACTIVE, START_BLUEPRINT, STOP_BLUEPRINT, GOTO_IDLE_STATUS_BLUEPRINT, ACTIVITY_BLUEPRINT, ACTIVITY_DETECTION_BLUEPRINT, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT } from &apos;./constants&apos;
 
@@ -88,7 +88,7 @@ export const activityDetectionBlueprint = createBlueprint(ACTIVITY_DETECTION_BLU
 export const publicBlueprints = { start: startBlueprint, stop: stopBlueprint, gotoIdleStatus: gotoIdleStatusBlueprint }
 
 export const nextIdleStatusBlueprint = createBlueprint(NEXT_IDLE_STATUS_BLUEPRINT, nextIdleStatus =&gt; {
-  assert.ok(nextIdleStatus, &apos;nextIdleStatus must be defined&apos;)
+  invariant(nextIdleStatus, &apos;nextIdleStatus must be defined&apos;)
   return { nextIdleStatus }
 })
 

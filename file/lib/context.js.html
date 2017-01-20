@@ -73,30 +73,30 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/context.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { assert } from &apos;chai&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
 import  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
 import { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from &apos;./defaults&apos;
 import { translateBlueprintsWith, translateBlueprintTypesWith } from &apos;redux-blueprint&apos;
 
 const validateContext = (libContext, appContext) =&gt; {
-  assert.ok(libContext, &apos;must pass opts to validate&apos;)
-  assert.ok(appContext, &apos;must pass opts to validate&apos;)
+  invariant(libContext, &apos;must pass opts to validate&apos;)
+  invariant(appContext, &apos;must pass opts to validate&apos;)
 
   const { libName, appName } = libContext
   const { activeEvents, thresholds } = appContext
 
-  assert.ok(libName, &apos;libName must exist&apos;)
-  assert(typeof libName === &apos;string&apos;, &apos;libName option must be a string&apos;)
-  assert(libName.length &gt; 0, &apos;libName option must not be empty&apos;)
-  assert.ok(appName, &apos;appName must exist&apos;)
-  assert(typeof appName === &apos;string&apos;, &apos;appName option must be a string&apos;)
-  assert(appName.length &gt; 0, &apos;appName option must not be empty&apos;)
-  assert.ok(activeEvents, &apos;active events must exist&apos;)
-  assert.ok(thresholds, &apos;thresholds must exist&apos;)
-  assert.ok(thresholds.mouse, &apos;thresholds.mouse must exist&apos;)
-  assert(typeof thresholds.mouse === &apos;number&apos;, &apos;thresholds.mouse must be a number corresponding to pixels&apos;)
-  assert(typeof thresholds.phaseOffMS === &apos;number&apos;, &apos;thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
-  assert(typeof thresholds.phaseOnMS === &apos;number&apos;, &apos;thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
+  invariant(libName, &apos;libName must exist&apos;)
+  invariant(typeof libName === &apos;string&apos;, &apos;libName option must be a string&apos;)
+  invariant(libName.length &gt; 0, &apos;libName option must not be empty&apos;)
+  invariant(appName, &apos;appName must exist&apos;)
+  invariant(typeof appName === &apos;string&apos;, &apos;appName option must be a string&apos;)
+  invariant(appName.length &gt; 0, &apos;appName option must not be empty&apos;)
+  invariant(activeEvents, &apos;active events must exist&apos;)
+  invariant(thresholds, &apos;thresholds must exist&apos;)
+  invariant(thresholds.mouse, &apos;thresholds.mouse must exist&apos;)
+  invariant(typeof thresholds.mouse === &apos;number&apos;, &apos;thresholds.mouse must be a number corresponding to pixels&apos;)
+  invariant(typeof thresholds.phaseOffMS === &apos;number&apos;, &apos;thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
+  invariant(typeof thresholds.phaseOnMS === &apos;number&apos;, &apos;thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
 }
 
 const configureInitialState = libContext =&gt; appContext =&gt; {
@@ -132,28 +132,28 @@ const cleanActionName = name =&gt; name.toUpperCase().replace(/-+\s+/, &apos;_&a
 
 /** Validates library creators options */
 const validateLibOpts = libOptsRaw =&gt; {
-  assert.ok(libOptsRaw, &apos;libOpts definition is required&apos;)
+  invariant(libOptsRaw, &apos;libOpts definition is required&apos;)
   const { libName, validateContext, configureAppContext, configureInitialState } = libOptsRaw
-  assert(typeof libName === &apos;string&apos;, &apos;libName must be a string&apos;)
-  assert(libName.length &gt; 0, &apos;libName must not be empty&apos;)
+  invariant(typeof libName === &apos;string&apos;, &apos;libName must be a string&apos;)
+  invariant(libName.length &gt; 0, &apos;libName must not be empty&apos;)
 
-  assert.ok(validateContext, &apos;validateContext must exist&apos;)
-  assert(typeof validateContext === &apos;function&apos;, &apos;validateContext must be a function&apos;)
+  invariant(validateContext, &apos;validateContext must exist&apos;)
+  invariant(typeof validateContext === &apos;function&apos;, &apos;validateContext must be a function&apos;)
 
-  assert.ok(configureAppContext, &apos;configureAppContext must exist&apos;)
-  assert(typeof configureAppContext === &apos;function&apos;, &apos;configureAppContext must be a function&apos;)
+  invariant(configureAppContext, &apos;configureAppContext must exist&apos;)
+  invariant(typeof configureAppContext === &apos;function&apos;, &apos;configureAppContext must be a function&apos;)
 
-  assert.ok(configureInitialState, &apos;configureInitialState must exist&apos;)
-  assert(typeof configureInitialState === &apos;function&apos;, &apos;configureInitialState must be a function&apos;)
+  invariant(configureInitialState, &apos;configureInitialState must exist&apos;)
+  invariant(typeof configureInitialState === &apos;function&apos;, &apos;configureInitialState must be a function&apos;)
 }
 
 /** Validates library consumers options */
 const validateAppOpts = appOptsRaw =&gt; {
-  assert.ok(appOptsRaw, &apos;appOpts are required&apos;)
+  invariant(appOptsRaw, &apos;appOpts are required&apos;)
   const { appName } = appOptsRaw
 
-  assert(typeof appName === &apos;string&apos;, &apos;appName opt must be a string&apos;)
-  assert(appName.length &gt; 0, &apos;appName opt must not be empty&apos;)
+  invariant(typeof appName === &apos;string&apos;, &apos;appName opt must be a string&apos;)
+  invariant(appName.length &gt; 0, &apos;appName opt must not be empty&apos;)
 }
 
 function configureContext(libOpts) {

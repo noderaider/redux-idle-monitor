@@ -73,10 +73,10 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
+import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
 import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
 import localsync from &apos;localsync&apos;
-const should = require(&apos;chai&apos;).should()
 
 const STOP_TYPES = [ &apos;pointermove&apos;, &apos;MSPointerMove&apos; ]
 const FILTER_TYPES = [ &apos;mousemove&apos; ]
@@ -105,8 +105,8 @@ const createShouldActivityUpdate = ({ log, thresholds }) =&gt; store =&gt; ({ ty
 const selectIdleState = state =&gt; {
   const { idle } = state
   if(IS_DEV) {
-    should.exist(idle, &apos;idle monitor state should have idle value&apos;)
-    state.idle.should.be.an(&apos;object&apos;)
+    invariant(idle, &apos;idle monitor state should have idle value&apos;)
+    invariant(typeof state.idle === &apos;object&apos;)
   }
   return idle
 }
@@ -114,8 +114,8 @@ const selectIdleState = state =&gt; {
 const isRunning = (dispatch, getState) =&gt; {
   const { isDetectionRunning } = selectIdleState(getState())
   if(IS_DEV) {
-    should.exist(&apos;isDetectionRunning&apos;, &apos;idle monitor state should have idDetectionRunning defined&apos;)
-    isDetectionRunning.should.be.a(&apos;boolean&apos;)
+    invariant(&apos;isDetectionRunning&apos;, &apos;idle monitor state should have idDetectionRunning defined&apos;)
+    invariant(typeof isDetectionRunning === &apos;boolean&apos;)
   }
   return isDetectionRunning
 }
@@ -173,12 +173,12 @@ export const createDetection = ({ log, activeEvents, thresholds, translateBluepr
   const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
   const localSync = createLocalSync({ log, activity, getIsTransition })(store)
 
-  should.exist(startActivityDetection, &apos;startActivityDetection should be a return property of createActivityDetection&apos;)
-  should.exist(stopActivityDetection, &apos;stopActivityDetection should be a return property of createActivityDetection&apos;)
-  should.exist(localSync, &apos;localSync should exist&apos;)
-  should.exist(localSync.start, &apos;localSync.start should exist&apos;)
-  should.exist(localSync.stop, &apos;localSync.stop should exist&apos;)
-  should.exist(localSync.trigger, &apos;localSync.trigger should exist&apos;)
+  invariant(startActivityDetection, &apos;startActivityDetection should be a return property of createActivityDetection&apos;)
+  invariant(stopActivityDetection, &apos;stopActivityDetection should be a return property of createActivityDetection&apos;)
+  invariant(localSync, &apos;localSync should exist&apos;)
+  invariant(localSync.start, &apos;localSync.start should exist&apos;)
+  invariant(localSync.stop, &apos;localSync.stop should exist&apos;)
+  invariant(localSync.trigger, &apos;localSync.trigger should exist&apos;)
 
   log.info(&apos;activity detection starting&apos;)
 

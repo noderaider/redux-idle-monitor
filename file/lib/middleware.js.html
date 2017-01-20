@@ -73,14 +73,13 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">lib/middleware.js</h1>
-<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import createContext from &apos;./context&apos;
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
+import createContext from &apos;./context&apos;
 import { IS_DEV, IDLESTATUS_ACTIVE, ROOT_STATE_KEY, NEXT_IDLE_STATUS_BLUEPRINT, LAST_IDLE_STATUS_BLUEPRINT, START_BLUEPRINT, STOP_BLUEPRINT, ACTIVITY_BLUEPRINT } from &apos;./constants&apos;
 import { bisectStore } from &apos;redux-mux&apos;
 import { publicBlueprints, nextIdleStatusBlueprint, lastIdleStatusBlueprint } from &apos;./blueprints&apos;
 import { createDetection } from &apos;./actions&apos;
 import { getNextIdleStatusIn } from &apos;./states&apos;
-const should = require(&apos;chai&apos;).should()
-
 
 /** When context has already been created, it can be shared to middleware component. */
 export const createMiddleware = context =&gt; {
@@ -118,9 +117,9 @@ export const createMiddleware = context =&gt; {
     const idleStore = bisectStore(ROOT_STATE_KEY)(store)
     const { startActivityDetection, stopActivityDetection, localSync } = createDetection(context)(store)
     if(IS_DEV) {
-      should.exist(startActivityDetection, &apos;createDetection should return startActivityDetection&apos;)
-      should.exist(stopActivityDetection, &apos;createDetection should return stopActivityDetection&apos;)
-      should.exist(localSync, &apos;localSync should exist&apos;)
+      invariant(startActivityDetection, &apos;createDetection should return startActivityDetection&apos;)
+      invariant(stopActivityDetection, &apos;createDetection should return stopActivityDetection&apos;)
+      invariant(localSync, &apos;localSync should exist&apos;)
     }
     return next =&gt; action =&gt; {
       const { dispatch, getState } = store
@@ -132,8 +131,8 @@ export const createMiddleware = context =&gt; {
       const scheduleTransition = idleStatus =&gt; {
         clearTimeout(nextTimeoutID)
         let delay = dispatch(idleStatusDelay(idleStatus))
-        should.exist(delay, `must return an idle status delay for idleStatus === &apos;${idleStatus}&apos;`)
-        delay.should.be.a(&apos;number&apos;, `idle status delay must be a number type for idleStatus === &apos;${idleStatus}&apos;`)
+        invariant(delay, `must return an idle status delay for idleStatus === &apos;${idleStatus}&apos;`)
+        invariant(typeof delay === &apos;number&apos;, `idle status delay must be a number type for idleStatus === &apos;${idleStatus}&apos;`)
 
         let lastActive = new Date().toTimeString()
         let nextMessage = `${NEXT_IDLE_STATUS} action continuing after ${delay} MS delay, lastActive: ${new Date().toTimeString()}`
