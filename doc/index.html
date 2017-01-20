@@ -72,13 +72,14 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="-redux-idle-monitor-https-npmjs-com-packages-redux-idle-monitor-"><a href="https://npmjs.com/packages/redux-idle-monitor">redux-idle-monitor</a></h1>
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><p><a href="https://npmjs.com/packages/redux-idle-monitor"><img src="https://raw.githubusercontent.com/noderaider/redux-idle-monitor/master/public/png/redux-idle-monitor.png" alt="NPM"></a></p>
+<p><strong>A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.</strong></p>
 <p><a href="https://nodei.co/npm/redux-idle-monitor/"><img src="https://nodei.co/npm/redux-idle-monitor.png?stars=true&amp;downloads=true" alt="NPM"></a></p>
-<p>A React component and Redux connector to add functionality to invoke events at various stages of idleness during a users session.</p>
 <p>:zap: <strong>Now supports realtime synchronization across tabs when user is active. Tested IE10+ / Edge, Chrome, FireFox</strong></p>
 <p><code>npm i -S redux-idle-monitor</code></p>
 <p>Can be used standalone with redux or in tandem with <a href="https://npmjs.com/packages/react-redux-idle-monitor">react-redux-idle-monitor</a> to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.</p>
 <p>See a working demo in a real project at <a href="https://redux-webpack-boilerplate.js.org">redux-webpack-boilerplate</a></p>
+<hr>
 <h3 id="how-it-works">How it works</h3>
 <p>redux-idle-monitor works similiar to other redux libraries (e.g. redux-form) except that it exports a configure function that accepts options from the library consumer and returns an object with middleware, reducer, and actions keys.  The input options allow redux-idle-monitor to configure the idle statuses that will occur at varying times of idleness within your app as well as actions to dispatch when your users transition to an active status, or any one of your configured idle statuses.</p>
 <p><strong>middleware</strong> - The middleware that gets returned from configure handles listening for and scheduling idle status events, and enabling and disabling the detection of user activity. It should be added to your redux middleware array in both development and production versions. redux-idle-monitor requires you to be using thunk-middleware at this time (I&apos;d like to add saga support soon). When process.env.NODE_ENV !== &apos;production&apos; additional assertions are made throughout redux-idle-monitor that will be removed in your production build if you use UglifyJS or similiar mangler.</p>
