@@ -31,7 +31,7 @@ const selectIdleState = state => {
   const { idle } = state
   if(IS_DEV) {
     invariant(idle, 'idle monitor state should have idle value')
-    invariant(typeof state.idle === 'object')
+    invariant(typeof idle === 'object', 'idle monitor state should have type object')
   }
   return idle
 }
@@ -39,8 +39,8 @@ const selectIdleState = state => {
 const isRunning = (dispatch, getState) => {
   const { isDetectionRunning } = selectIdleState(getState())
   if(IS_DEV) {
-    invariant('isDetectionRunning', 'idle monitor state should have idDetectionRunning defined')
-    invariant(typeof isDetectionRunning === 'boolean')
+    invariant(isDetectionRunning, 'idle monitor state should have idDetectionRunning defined')
+    invariant(typeof isDetectionRunning === 'boolean', 'isDetectionRunning should be type boolean')
   }
   return isDetectionRunning
 }
