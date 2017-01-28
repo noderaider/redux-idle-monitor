@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/context.js | redux-idle-monitor API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/noderaider/redux-idle-monitor" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createContext">createContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-gotoIdleStatusBlueprint">gotoIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-lastIdleStatusBlueprint">lastIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-nextIdleStatusBlueprint">nextIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-publicBlueprints">publicBlueprints</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-startBlueprint">startBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stopBlueprint">stopBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTION_PREFIX">ACTION_PREFIX</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_BLUEPRINT">ACTIVITY_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GOTO_IDLE_STATUS_BLUEPRINT">GOTO_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NEXT_IDLE_STATUS_BLUEPRINT">NEXT_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ROOT_STATE_KEY">ROOT_STATE_KEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-START_BLUEPRINT">START_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STOP_BLUEPRINT">STOP_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getActiveEvents">getActiveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLevel">getLevel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getThresholds">getThresholds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTimeStamp">getTimeStamp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseFastState">getUseFastState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseLocalState">getUseLocalState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebRTCState">getUseWebRTCState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebSocketsState">getUseWebSocketsState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getNextIdleStatusIn">getNextIdleStatusIn</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/context.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
+import  { ROOT_STATE_KEY, ACTION_PREFIX, IDLESTATUS_ACTIVE } from &apos;./constants&apos;
+import { getActiveEvents, getUseFastState, getUseLocalState, getUseWebRTCState, getUseWebSocketsState, getThresholds, getLevel } from &apos;./defaults&apos;
+import { translateBlueprintsWith, translateBlueprintTypesWith } from &apos;redux-blueprint&apos;
+
+const validateContext = (libContext, appContext) =&gt; {
+  invariant(libContext, &apos;must pass opts to validate&apos;)
+  invariant(appContext, &apos;must pass opts to validate&apos;)
+
+  const { libName, appName } = libContext
+  const { activeEvents, thresholds } = appContext
+
+  invariant(libName, &apos;libName must exist&apos;)
+  invariant(typeof libName === &apos;string&apos;, &apos;libName option must be a string&apos;)
+  invariant(libName.length &gt; 0, &apos;libName option must not be empty&apos;)
+  invariant(appName, &apos;appName must exist&apos;)
+  invariant(typeof appName === &apos;string&apos;, &apos;appName option must be a string&apos;)
+  invariant(appName.length &gt; 0, &apos;appName option must not be empty&apos;)
+  invariant(activeEvents, &apos;active events must exist&apos;)
+  invariant(thresholds, &apos;thresholds must exist&apos;)
+  invariant(thresholds.mouse, &apos;thresholds.mouse must exist&apos;)
+  invariant(typeof thresholds.mouse === &apos;number&apos;, &apos;thresholds.mouse must be a number corresponding to pixels&apos;)
+  invariant(typeof thresholds.phaseOffMS === &apos;number&apos;, &apos;thresholds.phaseOffMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
+  invariant(typeof thresholds.phaseOnMS === &apos;number&apos;, &apos;thresholds.phaseOnMS must be a number corresponding to minimum milliseconds between updates to redux&apos;)
+}
+
+const configureInitialState = libContext =&gt; appContext =&gt; {
+  return  { idleStatus: IDLESTATUS_ACTIVE
+          , isRunning: false
+          , isDetectionRunning: false
+          , isIdle: false
+          , lastActive: +new Date()
+          , lastEvent: { x: -1, y: -1, type: null }
+          }
+}
+
+export default function createContext({ appName
+                                      , IDLE_STATUSES
+                                      , idleStatusDelay
+                                      , activeStatusAction
+                                      , idleStatusAction
+                                      , activeEvents = getActiveEvents()
+                                      , useFastStore = getUseFastState()
+                                      , useLocalStore = getUseLocalState()
+                                      , useWebRTCState = getUseWebRTCState()
+                                      , useWebSocketsState = getUseWebSocketsState()
+                                      , thresholds = getThresholds()
+                                      , level = getLevel()
+                                      } = {}) {
+  const libName = ROOT_STATE_KEY
+  const libOpts = { libName, validateContext, configureAppContext: libContext =&gt; appOpts =&gt; appOpts, configureInitialState }
+  const appOpts = { appName, IDLE_STATUSES, idleStatusDelay, activeStatusAction, idleStatusAction, activeEvents, useFastStore, useLocalStore, useWebRTCState, useWebSocketsState, thresholds, level }
+  return configureContext(libOpts)(appOpts)
+}
+
+const cleanActionName = name =&gt; name.toUpperCase().replace(/-+\s+/, &apos;_&apos;)
+
+/** Validates library creators options */
+const validateLibOpts = libOptsRaw =&gt; {
+  invariant(libOptsRaw, &apos;libOpts definition is required&apos;)
+  const { libName, validateContext, configureAppContext, configureInitialState } = libOptsRaw
+  invariant(typeof libName === &apos;string&apos;, &apos;libName must be a string&apos;)
+  invariant(libName.length &gt; 0, &apos;libName must not be empty&apos;)
+
+  invariant(validateContext, &apos;validateContext must exist&apos;)
+  invariant(typeof validateContext === &apos;function&apos;, &apos;validateContext must be a function&apos;)
+
+  invariant(configureAppContext, &apos;configureAppContext must exist&apos;)
+  invariant(typeof configureAppContext === &apos;function&apos;, &apos;configureAppContext must be a function&apos;)
+
+  invariant(configureInitialState, &apos;configureInitialState must exist&apos;)
+  invariant(typeof configureInitialState === &apos;function&apos;, &apos;configureInitialState must be a function&apos;)
+}
+
+/** Validates library consumers options */
+const validateAppOpts = appOptsRaw =&gt; {
+  invariant(appOptsRaw, &apos;appOpts are required&apos;)
+  const { appName } = appOptsRaw
+
+  invariant(typeof appName === &apos;string&apos;, &apos;appName opt must be a string&apos;)
+  invariant(appName.length &gt; 0, &apos;appName opt must not be empty&apos;)
+}
+
+function configureContext(libOpts) {
+  const isDev = process.env.NODE_ENV !== &apos;production&apos;
+  if(isDev) validateLibOpts(libOpts)
+  const { libName, validateContext, configureAppContext, configureInitialState } = libOpts
+  return appOpts =&gt; {
+    if(isDev) validateAppOpts(appOpts)
+    const { appName, level } = appOpts
+
+    const translateBlueprintType =  blueprintType =&gt; `${cleanActionName(libName)}_${cleanActionName(appName)}_${cleanActionName(blueprintType)}`
+    const translateBlueprintTypes = translateBlueprintTypesWith(translateBlueprintType)
+    const translateBlueprints = translateBlueprintsWith(translateBlueprintType)
+
+    const libContext =  { log: createLogger({ libName, level })
+                        , libName
+                        , appName
+                        , translateBlueprintTypes
+                        , translateBlueprints
+                        }
+
+    const appContext = configureAppContext(libContext)(appOpts)
+    if(isDev) validateContext(libContext, appContext)
+
+    return Object.assign( appContext, libContext, { get initialState() { return configureInitialState(libContext)(appContext) }
+                                                  })
+  }
+}
+
+
+const noop = () =&gt; {}
+
+function createLogger ({ libName, level }) {
+  const _formatMessage = ({ level, message, obj }) =&gt; {
+    if(!message &amp;&amp; typeof obj === &apos;string&apos;) {
+      message = obj
+      obj = noop()
+    }
+    return _formatLog(obj ? `${level}: &apos;${message}&apos; =&gt; ${JSON.stringify(obj)}`  : `${level}: &apos;${message}&apos;`)
+  }
+
+  const _formatLog = message =&gt;`${libName} | ${message}`
+
+  return process.env.NODE_ENV !== &apos;production&apos; ? (
+    { trace: (obj, message) =&gt; level === &apos;trace&apos; ? console.trace(_formatMessage({ level: &apos;trace&apos;, message, obj })): noop()
+    , debug: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos; ].includes(level) ? console.log(_formatMessage({ level: &apos;debug&apos;, message, obj })) : noop()
+    , info: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos; ].includes(level) ? console.info(_formatMessage({ level: &apos;info&apos;, message, obj })) : noop()
+    , warn: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos;, &apos;warn&apos; ].includes(level) ? console.warn(_formatMessage({ level: &apos;warn&apos;, message, obj })) : noop()
+    , error: (obj, message) =&gt; [ &apos;trace&apos;, &apos;debug&apos;, &apos;info&apos;, &apos;warn&apos;, &apos;error&apos; ].includes(level) ? console.error(_formatMessage({ level: &apos;error&apos;, message, obj })) : noop()
+    }
+  ) : ({ trace: noop, debug: noop, info: noop, warn: noop, error: noop })
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
