@@ -1,0 +1,1564 @@
+{
+  "type": "Program",
+  "start": 0,
+  "end": 593,
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 13,
+      "column": 0
+    }
+  },
+  "sourceType": "module",
+  "body": [
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 0,
+      "end": 59,
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 59
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 7,
+        "end": 59,
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 59
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 13,
+            "end": 59,
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 59
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 13,
+              "end": 25,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 13
+                },
+                "end": {
+                  "line": 1,
+                  "column": 25
+                }
+              },
+              "name": "getTimeStamp"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 28,
+              "end": 59,
+              "loc": {
+                "start": {
+                  "line": 1,
+                  "column": 28
+                },
+                "end": {
+                  "line": 1,
+                  "column": 59
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "CallExpression",
+                "start": 34,
+                "end": 59,
+                "loc": {
+                  "start": {
+                    "line": 1,
+                    "column": 34
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 59
+                  }
+                },
+                "callee": {
+                  "type": "MemberExpression",
+                  "start": 34,
+                  "end": 57,
+                  "loc": {
+                    "start": {
+                      "line": 1,
+                      "column": 34
+                    },
+                    "end": {
+                      "line": 1,
+                      "column": 57
+                    }
+                  },
+                  "object": {
+                    "type": "NewExpression",
+                    "start": 34,
+                    "end": 44,
+                    "loc": {
+                      "start": {
+                        "line": 1,
+                        "column": 34
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 44
+                      }
+                    },
+                    "callee": {
+                      "type": "Identifier",
+                      "start": 38,
+                      "end": 42,
+                      "loc": {
+                        "start": {
+                          "line": 1,
+                          "column": 38
+                        },
+                        "end": {
+                          "line": 1,
+                          "column": 42
+                        }
+                      },
+                      "name": "Date"
+                    },
+                    "arguments": []
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "start": 45,
+                    "end": 57,
+                    "loc": {
+                      "start": {
+                        "line": 1,
+                        "column": 45
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 57
+                      }
+                    },
+                    "name": "toTimeString"
+                  },
+                  "computed": false
+                },
+                "arguments": []
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 63,
+      "end": 241,
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 178
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 70,
+        "end": 241,
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 7
+          },
+          "end": {
+            "line": 3,
+            "column": 178
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 76,
+            "end": 241,
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 13
+              },
+              "end": {
+                "line": 3,
+                "column": 178
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 76,
+              "end": 91,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 13
+                },
+                "end": {
+                  "line": 3,
+                  "column": 28
+                }
+              },
+              "name": "getActiveEvents"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 94,
+              "end": 241,
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 31
+                },
+                "end": {
+                  "line": 3,
+                  "column": 178
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "ArrayExpression",
+                "start": 100,
+                "end": 241,
+                "loc": {
+                  "start": {
+                    "line": 3,
+                    "column": 37
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 178
+                  }
+                },
+                "elements": [
+                  {
+                    "type": "Literal",
+                    "start": 102,
+                    "end": 113,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 39
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 50
+                      }
+                    },
+                    "value": "mousemove",
+                    "rawValue": "mousemove",
+                    "raw": "'mousemove'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 115,
+                    "end": 124,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 52
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 61
+                      }
+                    },
+                    "value": "keydown",
+                    "rawValue": "keydown",
+                    "raw": "'keydown'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 126,
+                    "end": 133,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 63
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 70
+                      }
+                    },
+                    "value": "wheel",
+                    "rawValue": "wheel",
+                    "raw": "'wheel'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 135,
+                    "end": 151,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 72
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 88
+                      }
+                    },
+                    "value": "DOMMouseScroll",
+                    "rawValue": "DOMMouseScroll",
+                    "raw": "'DOMMouseScroll'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 153,
+                    "end": 165,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 90
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 102
+                      }
+                    },
+                    "value": "mouseWheel",
+                    "rawValue": "mouseWheel",
+                    "raw": "'mouseWheel'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 167,
+                    "end": 178,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 104
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 115
+                      }
+                    },
+                    "value": "mousedown",
+                    "rawValue": "mousedown",
+                    "raw": "'mousedown'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 180,
+                    "end": 192,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 117
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 129
+                      }
+                    },
+                    "value": "touchstart",
+                    "rawValue": "touchstart",
+                    "raw": "'touchstart'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 194,
+                    "end": 205,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 131
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 142
+                      }
+                    },
+                    "value": "touchmove",
+                    "rawValue": "touchmove",
+                    "raw": "'touchmove'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 207,
+                    "end": 222,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 144
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 159
+                      }
+                    },
+                    "value": "MSPointerDown",
+                    "rawValue": "MSPointerDown",
+                    "raw": "'MSPointerDown'"
+                  },
+                  {
+                    "type": "Literal",
+                    "start": 224,
+                    "end": 239,
+                    "loc": {
+                      "start": {
+                        "line": 3,
+                        "column": 161
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 176
+                      }
+                    },
+                    "value": "MSPointerMove",
+                    "rawValue": "MSPointerMove",
+                    "raw": "'MSPointerMove'"
+                  }
+                ]
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 245,
+      "end": 286,
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 41
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 252,
+        "end": 286,
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 7
+          },
+          "end": {
+            "line": 5,
+            "column": 41
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 258,
+            "end": 286,
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 13
+              },
+              "end": {
+                "line": 5,
+                "column": 41
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 258,
+              "end": 273,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 13
+                },
+                "end": {
+                  "line": 5,
+                  "column": 28
+                }
+              },
+              "name": "getUseFastState"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 276,
+              "end": 286,
+              "loc": {
+                "start": {
+                  "line": 5,
+                  "column": 31
+                },
+                "end": {
+                  "line": 5,
+                  "column": 41
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "Literal",
+                "start": 282,
+                "end": 286,
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 37
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 41
+                  }
+                },
+                "value": true,
+                "rawValue": true,
+                "raw": "true"
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 288,
+      "end": 330,
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 42
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 295,
+        "end": 330,
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 7
+          },
+          "end": {
+            "line": 6,
+            "column": 42
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 301,
+            "end": 330,
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 13
+              },
+              "end": {
+                "line": 6,
+                "column": 42
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 301,
+              "end": 317,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 13
+                },
+                "end": {
+                  "line": 6,
+                  "column": 29
+                }
+              },
+              "name": "getUseLocalState"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 320,
+              "end": 330,
+              "loc": {
+                "start": {
+                  "line": 6,
+                  "column": 32
+                },
+                "end": {
+                  "line": 6,
+                  "column": 42
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "Literal",
+                "start": 326,
+                "end": 330,
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 38
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 42
+                  }
+                },
+                "value": true,
+                "rawValue": true,
+                "raw": "true"
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 332,
+      "end": 375,
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 43
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 339,
+        "end": 375,
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 7
+          },
+          "end": {
+            "line": 7,
+            "column": 43
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 345,
+            "end": 375,
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 13
+              },
+              "end": {
+                "line": 7,
+                "column": 43
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 345,
+              "end": 362,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 13
+                },
+                "end": {
+                  "line": 7,
+                  "column": 30
+                }
+              },
+              "name": "getUseWebRTCState"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 365,
+              "end": 375,
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 33
+                },
+                "end": {
+                  "line": 7,
+                  "column": 43
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "Literal",
+                "start": 371,
+                "end": 375,
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 39
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 43
+                  }
+                },
+                "value": true,
+                "rawValue": true,
+                "raw": "true"
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 377,
+      "end": 424,
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 47
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 384,
+        "end": 424,
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 7
+          },
+          "end": {
+            "line": 8,
+            "column": 47
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 390,
+            "end": 424,
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 13
+              },
+              "end": {
+                "line": 8,
+                "column": 47
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 390,
+              "end": 411,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 13
+                },
+                "end": {
+                  "line": 8,
+                  "column": 34
+                }
+              },
+              "name": "getUseWebSocketsState"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 414,
+              "end": 424,
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 37
+                },
+                "end": {
+                  "line": 8,
+                  "column": 47
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "Literal",
+                "start": 420,
+                "end": 424,
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 43
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 47
+                  }
+                },
+                "value": true,
+                "rawValue": true,
+                "raw": "true"
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 428,
+      "end": 550,
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 122
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 435,
+        "end": 550,
+        "loc": {
+          "start": {
+            "line": 10,
+            "column": 7
+          },
+          "end": {
+            "line": 10,
+            "column": 122
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 441,
+            "end": 550,
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 13
+              },
+              "end": {
+                "line": 10,
+                "column": 122
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 441,
+              "end": 454,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 13
+                },
+                "end": {
+                  "line": 10,
+                  "column": 26
+                }
+              },
+              "name": "getThresholds"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 457,
+              "end": 550,
+              "loc": {
+                "start": {
+                  "line": 10,
+                  "column": 29
+                },
+                "end": {
+                  "line": 10,
+                  "column": 122
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [
+                {
+                  "type": "AssignmentPattern",
+                  "start": 458,
+                  "end": 511,
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 30
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 83
+                    }
+                  },
+                  "left": {
+                    "type": "ObjectPattern",
+                    "start": 458,
+                    "end": 506,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 78
+                      }
+                    },
+                    "properties": [
+                      {
+                        "type": "Property",
+                        "start": 460,
+                        "end": 470,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 32
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 42
+                          }
+                        },
+                        "method": false,
+                        "shorthand": true,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 460,
+                          "end": 465,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 32
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 37
+                            }
+                          },
+                          "name": "mouse"
+                        },
+                        "kind": "init",
+                        "value": {
+                          "type": "AssignmentPattern",
+                          "start": 460,
+                          "end": 470,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 32
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 42
+                            }
+                          },
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "start": 460,
+                            "end": 465,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 32
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 37
+                              }
+                            },
+                            "name": "mouse"
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "start": 468,
+                            "end": 470,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 40
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 42
+                              }
+                            },
+                            "value": 20,
+                            "rawValue": 20,
+                            "raw": "20"
+                          }
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "start": 472,
+                        "end": 489,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 44
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 61
+                          }
+                        },
+                        "method": false,
+                        "shorthand": true,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 472,
+                          "end": 482,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 44
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 54
+                            }
+                          },
+                          "name": "phaseOffMS"
+                        },
+                        "kind": "init",
+                        "value": {
+                          "type": "AssignmentPattern",
+                          "start": 472,
+                          "end": 489,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 44
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 61
+                            }
+                          },
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "start": 472,
+                            "end": 482,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 44
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 54
+                              }
+                            },
+                            "name": "phaseOffMS"
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "start": 485,
+                            "end": 489,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 57
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 61
+                              }
+                            },
+                            "value": 2000,
+                            "rawValue": 2000,
+                            "raw": "2000"
+                          }
+                        }
+                      },
+                      {
+                        "type": "Property",
+                        "start": 491,
+                        "end": 504,
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 63
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 76
+                          }
+                        },
+                        "method": false,
+                        "shorthand": true,
+                        "computed": false,
+                        "key": {
+                          "type": "Identifier",
+                          "start": 491,
+                          "end": 500,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 63
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 72
+                            }
+                          },
+                          "name": "phaseOnMS"
+                        },
+                        "kind": "init",
+                        "value": {
+                          "type": "AssignmentPattern",
+                          "start": 491,
+                          "end": 504,
+                          "loc": {
+                            "start": {
+                              "line": 10,
+                              "column": 63
+                            },
+                            "end": {
+                              "line": 10,
+                              "column": 76
+                            }
+                          },
+                          "operator": "=",
+                          "left": {
+                            "type": "Identifier",
+                            "start": 491,
+                            "end": 500,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 63
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 72
+                              }
+                            },
+                            "name": "phaseOnMS"
+                          },
+                          "right": {
+                            "type": "Literal",
+                            "start": 503,
+                            "end": 504,
+                            "loc": {
+                              "start": {
+                                "line": 10,
+                                "column": 75
+                              },
+                              "end": {
+                                "line": 10,
+                                "column": 76
+                              }
+                            },
+                            "value": 0,
+                            "rawValue": 0,
+                            "raw": "0"
+                          }
+                        }
+                      }
+                    ]
+                  },
+                  "right": {
+                    "type": "ObjectExpression",
+                    "start": 509,
+                    "end": 511,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 81
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 83
+                      }
+                    },
+                    "properties": []
+                  }
+                }
+              ],
+              "body": {
+                "type": "ObjectExpression",
+                "start": 517,
+                "end": 549,
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 89
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 121
+                  }
+                },
+                "properties": [
+                  {
+                    "type": "Property",
+                    "start": 519,
+                    "end": 524,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 91
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 96
+                      }
+                    },
+                    "method": false,
+                    "shorthand": true,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 519,
+                      "end": 524,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 91
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 96
+                        }
+                      },
+                      "name": "mouse"
+                    },
+                    "kind": "init",
+                    "value": {
+                      "type": "Identifier",
+                      "start": 519,
+                      "end": 524,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 91
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 96
+                        }
+                      },
+                      "name": "mouse"
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "start": 526,
+                    "end": 536,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 98
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 108
+                      }
+                    },
+                    "method": false,
+                    "shorthand": true,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 526,
+                      "end": 536,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 98
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 108
+                        }
+                      },
+                      "name": "phaseOffMS"
+                    },
+                    "kind": "init",
+                    "value": {
+                      "type": "Identifier",
+                      "start": 526,
+                      "end": 536,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 98
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 108
+                        }
+                      },
+                      "name": "phaseOffMS"
+                    }
+                  },
+                  {
+                    "type": "Property",
+                    "start": 538,
+                    "end": 547,
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 110
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 119
+                      }
+                    },
+                    "method": false,
+                    "shorthand": true,
+                    "computed": false,
+                    "key": {
+                      "type": "Identifier",
+                      "start": 538,
+                      "end": 547,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 110
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 119
+                        }
+                      },
+                      "name": "phaseOnMS"
+                    },
+                    "kind": "init",
+                    "value": {
+                      "type": "Identifier",
+                      "start": 538,
+                      "end": 547,
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 110
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 119
+                        }
+                      },
+                      "name": "phaseOnMS"
+                    }
+                  }
+                ],
+                "parenthesizedExpression": true
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    },
+    {
+      "type": "ExportNamedDeclaration",
+      "start": 554,
+      "end": 591,
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 37
+        }
+      },
+      "declaration": {
+        "type": "VariableDeclaration",
+        "start": 561,
+        "end": 591,
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 7
+          },
+          "end": {
+            "line": 12,
+            "column": 37
+          }
+        },
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "start": 567,
+            "end": 591,
+            "loc": {
+              "start": {
+                "line": 12,
+                "column": 13
+              },
+              "end": {
+                "line": 12,
+                "column": 37
+              }
+            },
+            "id": {
+              "type": "Identifier",
+              "start": 567,
+              "end": 575,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 13
+                },
+                "end": {
+                  "line": 12,
+                  "column": 21
+                }
+              },
+              "name": "getLevel"
+            },
+            "init": {
+              "type": "ArrowFunctionExpression",
+              "start": 578,
+              "end": 591,
+              "loc": {
+                "start": {
+                  "line": 12,
+                  "column": 24
+                },
+                "end": {
+                  "line": 12,
+                  "column": 37
+                }
+              },
+              "id": null,
+              "generator": false,
+              "expression": true,
+              "async": false,
+              "params": [],
+              "body": {
+                "type": "Literal",
+                "start": 584,
+                "end": 591,
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 30
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 37
+                  }
+                },
+                "value": "error",
+                "rawValue": "error",
+                "raw": "'error'"
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "specifiers": [],
+      "source": null
+    }
+  ]
+}

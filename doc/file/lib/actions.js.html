@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">lib/actions.js | redux-idle-monitor API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+  <script src="script/manual.js"></script>
+</head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/noderaider/redux-idle-monitor" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-createContext">createContext</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configure">configure</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureMiddleware">configureMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-configureReducer">configureReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createDetection">createDetection</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityBlueprint">activityBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-activityDetectionBlueprint">activityDetectionBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-gotoIdleStatusBlueprint">gotoIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-lastIdleStatusBlueprint">lastIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-nextIdleStatusBlueprint">nextIdleStatusBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-publicBlueprints">publicBlueprints</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-startBlueprint">startBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-stopBlueprint">stopBlueprint</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTION_PREFIX">ACTION_PREFIX</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_BLUEPRINT">ACTIVITY_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ACTIVITY_DETECTION_BLUEPRINT">ACTIVITY_DETECTION_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-GOTO_IDLE_STATUS_BLUEPRINT">GOTO_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IDLESTATUS_ACTIVE">IDLESTATUS_ACTIVE</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-IS_DEV">IS_DEV</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LAST_IDLE_STATUS_BLUEPRINT">LAST_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-LIB_NAME">LIB_NAME</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-NEXT_IDLE_STATUS_BLUEPRINT">NEXT_IDLE_STATUS_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-ROOT_STATE_KEY">ROOT_STATE_KEY</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-START_BLUEPRINT">START_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-STOP_BLUEPRINT">STOP_BLUEPRINT</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getActiveEvents">getActiveEvents</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getLevel">getLevel</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getThresholds">getThresholds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getTimeStamp">getTimeStamp</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseFastState">getUseFastState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseLocalState">getUseLocalState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebRTCState">getUseWebRTCState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getUseWebSocketsState">getUseWebSocketsState</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createMiddleware">createMiddleware</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-createReducer">createReducer</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-getNextIdleStatusIn">getNextIdleStatusIn</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">lib/actions.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import invariant from &apos;invariant&apos;
+import { startBlueprint, stopBlueprint, resetIdleStatusBlueprint, activityBlueprint, activityDetectionBlueprint } from &apos;./blueprints&apos;
+import { IS_DEV, IDLESTATUS_ACTIVE, USER_ACTIVE, NEXT_IDLE_STATUS, RESET_IDLE_STATUS } from &apos;./constants&apos;
+import localsync from &apos;localsync&apos;
+
+const STOP_TYPES = [ &apos;pointermove&apos;, &apos;MSPointerMove&apos; ]
+const FILTER_TYPES = [ &apos;mousemove&apos; ]
+
+const isBrowser = () =&gt; typeof window === &apos;object&apos;
+
+/** Detects whether the activity should trigger a redux update */
+const createShouldActivityUpdate = ({ log, thresholds }) =&gt; store =&gt; ({ type, pageX, pageY }) =&gt; {
+
+  if(STOP_TYPES.includes(type))
+    return false
+  if(!FILTER_TYPES.includes(type))
+    return true
+  /** If last event was not the same event type, trigger an update. */
+  const { lastActive, lastEvent } = selectIdleState(store.getState())
+  if(lastEvent.type !== type)
+    return true
+
+  /** If last mouse events coordinates were not within mouse threshold, trigger an update. */
+  const { x, y } = lastEvent
+  if((pageX &amp;&amp; pageY &amp;&amp; x &amp;&amp; y) &amp;&amp; Math.abs(pageX - x) &lt; thresholds.mouse &amp;&amp; Math.abs(pageY - y) &lt; thresholds.mouse)
+    return false
+  return true
+}
+
+const selectIdleState = state =&gt; {
+  const { idle } = state
+  if(IS_DEV) {
+    invariant(idle, &apos;idle monitor state should have idle value&apos;)
+    invariant(typeof idle === &apos;object&apos;, &apos;idle monitor state should have type object&apos;)
+  }
+  return idle
+}
+
+const isRunning = (dispatch, getState) =&gt; {
+  const { isDetectionRunning } = selectIdleState(getState())
+  if(IS_DEV) {
+    invariant(isDetectionRunning, &apos;idle monitor state should have idDetectionRunning defined&apos;)
+    invariant(typeof isDetectionRunning === &apos;boolean&apos;, &apos;isDetectionRunning should be type boolean&apos;)
+  }
+  return isDetectionRunning
+}
+
+
+const createLocalSync = ({ log, activity, getIsTransition }) =&gt; store =&gt; {
+  const action = isActive =&gt; {
+    if(isActive)
+      return { isActive, lastActive: Date.now() }
+    else
+      return { isActive }
+  }
+
+  const handler = (value, old, url) =&gt; {
+    log.info({ value, old, url }, &apos;local sync&apos;)
+    if(value.isActive)
+      store.dispatch(activity({ type: &apos;local&apos;, isTransition: getIsTransition() }))
+  }
+  return localsync(&apos;idlemonitor&apos;, action, handler)
+}
+
+
+const createActivityDetection = ({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition }) =&gt; store =&gt; {
+  const { dispatch } = store
+  const shouldActivityUpdate = createShouldActivityUpdate({ log, thresholds })(store)
+  /** One of the event listeners triggered an activity occurrence event. This gets spammed */
+  const onActivity = e =&gt; {
+    if (!shouldActivityUpdate(e))
+      return
+    dispatch(activity({ x: e.pageX, y: e.pageY, type: e.type, isTransition: getIsTransition() }))
+  }
+
+  const startActivityDetection = () =&gt; {
+    if(isBrowser()) activeEvents.forEach(x =&gt; document.addEventListener(x, onActivity))
+    dispatch(activityDetection(true))
+  }
+  const stopActivityDetection = () =&gt; {
+    if(isBrowser()) activeEvents.forEach(x =&gt; document.removeEventListener(x, onActivity))
+    dispatch(activityDetection(false))
+  }
+  return { startActivityDetection, stopActivityDetection }
+}
+
+
+export const createDetection = ({ log, activeEvents, thresholds, translateBlueprints }) =&gt; store =&gt; {
+  const { activity
+        , activityDetection
+        } = translateBlueprints({ activity: activityBlueprint
+                                , activityDetection: activityDetectionBlueprint
+                                })
+
+
+  const getIsTransition = () =&gt; selectIdleState(store.getState()).idleStatus !== IDLESTATUS_ACTIVE
+
+  const { startActivityDetection, stopActivityDetection } = createActivityDetection({ log, thresholds, activeEvents, activity, activityDetection, getIsTransition })(store)
+  const localSync = createLocalSync({ log, activity, getIsTransition })(store)
+
+  invariant(startActivityDetection, &apos;startActivityDetection should be a return property of createActivityDetection&apos;)
+  invariant(stopActivityDetection, &apos;stopActivityDetection should be a return property of createActivityDetection&apos;)
+  invariant(localSync, &apos;localSync should exist&apos;)
+  invariant(localSync.start, &apos;localSync.start should exist&apos;)
+  invariant(localSync.stop, &apos;localSync.stop should exist&apos;)
+  invariant(localSync.trigger, &apos;localSync.trigger should exist&apos;)
+
+  log.info(&apos;activity detection starting&apos;)
+
+  return { startActivityDetection, stopActivityDetection, localSync }
+
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.4.8)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
