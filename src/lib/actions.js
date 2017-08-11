@@ -11,9 +11,9 @@ const isBrowser = () => typeof window === 'object'
 /** Detects whether the activity should trigger a redux update */
 const createShouldActivityUpdate = ({ log, thresholds }) => store => ({ type, pageX, pageY }) => {
 
-  if(STOP_TYPES.includes(type))
+  if(STOP_TYPES.indexOf(type) !== -1)
     return false
-  if(!FILTER_TYPES.includes(type))
+  if(!FILTER_TYPES.indexOf(type) !== -1)
     return true
   /** If last event was not the same event type, trigger an update. */
   const { lastActive, lastEvent } = selectIdleState(store.getState())

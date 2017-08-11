@@ -124,10 +124,10 @@ function createLogger ({ libName, level }) {
 
   return process.env.NODE_ENV !== 'production' ? (
     { trace: (obj, message) => level === 'trace' ? console.trace(_formatMessage({ level: 'trace', message, obj })): noop()
-    , debug: (obj, message) => [ 'trace', 'debug' ].includes(level) ? console.log(_formatMessage({ level: 'debug', message, obj })) : noop()
-    , info: (obj, message) => [ 'trace', 'debug', 'info' ].includes(level) ? console.info(_formatMessage({ level: 'info', message, obj })) : noop()
-    , warn: (obj, message) => [ 'trace', 'debug', 'info', 'warn' ].includes(level) ? console.warn(_formatMessage({ level: 'warn', message, obj })) : noop()
-    , error: (obj, message) => [ 'trace', 'debug', 'info', 'warn', 'error' ].includes(level) ? console.error(_formatMessage({ level: 'error', message, obj })) : noop()
+    , debug: (obj, message) => [ 'trace', 'debug' ].indexOf(level) !== -1 ? console.log(_formatMessage({ level: 'debug', message, obj })) : noop()
+    , info: (obj, message) => [ 'trace', 'debug', 'info' ].indexOf(level) !== -1 ? console.info(_formatMessage({ level: 'info', message, obj })) : noop()
+    , warn: (obj, message) => [ 'trace', 'debug', 'info', 'warn' ].indexOf(level) !== -1 ? console.warn(_formatMessage({ level: 'warn', message, obj })) : noop()
+    , error: (obj, message) => [ 'trace', 'debug', 'info', 'warn', 'error' ].indexOf(level) !== -1 ? console.error(_formatMessage({ level: 'error', message, obj })) : noop()
     }
   ) : ({ trace: noop, debug: noop, info: noop, warn: noop, error: noop })
 }
