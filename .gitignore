@@ -1,5 +1,6 @@
 # Built-files
 /index.js
+package-lock.json
 
 /app/
 /lib/

@@ -3,56 +3,73 @@
   "version": "0.7.0",
   "description": "Tracks and triggers events when a user goes idle in a Redux application.",
   "main": "lib/index.js",
-  "files": [
-    "lib",
-    "src",
-    "doc"
-  ],
+  "types": "index.d.ts",
   "scripts": {
-    "start": "babel src/lib -d lib --watch",
+    "start": "npm run build -- --watch",
     "prebuild": "rimraf lib",
-    "build": "babel src/lib -d lib --ignore __tests__,__mocks__",
-    "predoc": "rimraf doc",
-    "doc": "esdoc -c ./esdoc.json",
-    "prerelease": "npm run build",
-    "release": "npm version patch && npm publish",
-    "postrelease": "npm run release-doc",
-    "prerelease-doc": "npm run doc",
-    "release-doc": "git subtree push --prefix doc origin gh-pages",
-    "postrelease-doc": "git commit -am \"doc-release\" && git push --follow-tags",
-    "test": "jest"
+    "build": "tsc --project tsconfig.build.json --rootDir src --outDir lib",
+    "test": "jest",
+    "preversion": "npm test"
+  },
+  "dependencies": {
+    "invariant": "^2.2.2",
+    "localsync": "^1.5.6",
+    "redux": "^3.7.2",
+    "redux-blueprint": "^0.3.3",
+    "redux-mux": "^0.2.2"
+  },
+  "devDependencies": {
+    "@types/invariant": "^2.2.29",
+    "@types/jest": "^21.1.6",
+    "@types/node": "^8.0.52",
+    "@types/sinon": "^4.0.0",
+    "babel-core": "^6.26.0",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.1",
+    "cross-env": "^5.1.1",
+    "jest": "^21.2.1",
+    "react": "^16.0.0",
+    "rimraf": "^2.6.2",
+    "sinon": "^4.1.2",
+    "ts-jest": "^21.2.2",
+    "tslib": "^1.8.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  },
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "json"
+    ],
+    "testRegex": "/__tests__/.*\\.test\\.(ts|tsx)$",
+    "globals": {
+      "__JEST__": true,
+      "ts-jest": {
+        "useBabelrc": true
+      }
+    }
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/noderaider/redux-idle-monitor.git"
   },
   "keywords": [
+    "synchronization",
+    "tabs",
+    "typescript",
     "redux",
     "react",
     "idle",
     "monitor"
   ],
-  "dependencies": {
-    "babel-runtime": "^6.18.0",
-    "invariant": "^2.2.2",
-    "localsync": "^1.4.0",
-    "redux": "^3.5.2",
-    "redux-actions": "^0.9.1",
-    "redux-blueprint": "*",
-    "redux-middleware": "*",
-    "redux-mux": "*"
-  },
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-plugin-transform-runtime": "^6.15.0",
-    "babel-preset-latest": "^6.16.0",
-    "babel-preset-stage-2": "^6.18.0",
-    "esdoc": "^0.4.6",
-    "esdoc-es7-plugin": "0.0.3",
-    "jest": "^16.0.2",
-    "rimraf": "^2.5.4",
-    "lerna": "2.0.0-beta.37"
-  },
   "author": "Cole Chamberlain <cole.chamberlain@gmail.com> (https://github.com/cchamberlain)",
   "license": "MIT",
   "bugs": {
