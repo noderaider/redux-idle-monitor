@@ -3,7 +3,6 @@
 package-lock.json
 
 /app/
-/lib/
 /bin/
 /etc/
 /webpack/

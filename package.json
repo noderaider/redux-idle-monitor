@@ -13,10 +13,10 @@
   },
   "dependencies": {
     "invariant": "^2.2.2",
-    "localsync": "^1.5.6",
+    "localsync": "^1.6.0",
     "redux": "^3.7.2",
-    "redux-blueprint": "^0.3.3",
-    "redux-mux": "^0.2.2"
+    "redux-blueprint": "^0.4.0",
+    "redux-mux": "^0.3.0"
   },
   "devDependencies": {
     "@types/invariant": "^2.2.29",

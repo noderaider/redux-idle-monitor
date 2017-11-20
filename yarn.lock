@@ -2059,9 +2059,9 @@ local-storage@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/local-storage/-/local-storage-1.4.2.tgz#7ec2d3fb7f1ea91a85b160d3a785058f87bfbfa5"
 
-localsync@^1.5.6:
-  version "1.5.6"
-  resolved "https://registry.yarnpkg.com/localsync/-/localsync-1.5.6.tgz#23124995612c008437465d872a09beb7d21a088e"
+localsync@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/localsync/-/localsync-1.6.0.tgz#f88fb3cf19b98950cc8aba06c3250b43a968a7f6"
   dependencies:
     invariant "^2.2.2"
     local-storage "^1.4.2"
@@ -2613,17 +2613,17 @@ redux-actions@^2.2.1:
     lodash-es "^4.17.4"
     reduce-reducers "^0.1.0"
 
-redux-blueprint@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/redux-blueprint/-/redux-blueprint-0.3.3.tgz#c1a6ae0bfb4cdba522c031c7f49e8cccce932556"
+redux-blueprint@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/redux-blueprint/-/redux-blueprint-0.4.0.tgz#93fd3565d3541eb2ce61c786da6e9360222731e9"
   dependencies:
     "@types/redux-actions" "^2.2.2"
     invariant "^2.2.2"
     redux-actions "^2.2.1"
 
-redux-mux@^0.2.2:
-  version "0.2.2"
-  resolved "https://registry.yarnpkg.com/redux-mux/-/redux-mux-0.2.2.tgz#e6cc215505f359a33fd0e6cd91c382422e2db845"
+redux-mux@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/redux-mux/-/redux-mux-0.3.0.tgz#e1bfaafa633f49779b933e24c3d77a873f0b1941"
   dependencies:
     invariant "^2.2.2"
 
