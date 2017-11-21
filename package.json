@@ -13,10 +13,11 @@
   },
   "dependencies": {
     "invariant": "^2.2.2",
-    "localsync": "^1.6.0",
+    "localsync": "^1.6.2",
     "redux": "^3.7.2",
-    "redux-blueprint": "^0.4.0",
-    "redux-mux": "^0.3.0"
+    "redux-blueprint": "^0.4.3",
+    "redux-mux": "^0.3.2",
+    "tslib": "^1.8.0"
   },
   "devDependencies": {
     "@types/invariant": "^2.2.29",
@@ -32,7 +33,6 @@
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
     "ts-jest": "^21.2.2",
-    "tslib": "^1.8.0",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
   },

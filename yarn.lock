@@ -7,8 +7,8 @@
   resolved "https://registry.yarnpkg.com/@types/invariant/-/invariant-2.2.29.tgz#aa845204cd0a289f65d47e0de63a6a815e30cc66"
 
 "@types/jest@^21.1.6":
-  version "21.1.6"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.6.tgz#9467945ce33261e4fdd14276576951aa130515aa"
+  version "21.1.7"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.7.tgz#af148f4fd2cb54e3fceba7b9f2162122ca2bfb28"
 
 "@types/node@^8.0.52":
   version "8.0.53"
@@ -48,8 +48,8 @@ ajv@^4.9.1:
     json-stable-stringify "^1.0.1"
 
 ajv@^5.1.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.3.0.tgz#4414ff74a50879c208ee5fdc826e32c303549eda"
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.4.0.tgz#32d1cf08dbc80c432f426f12e10b2511f6b46474"
   dependencies:
     co "^4.6.0"
     fast-deep-equal "^1.0.0"
@@ -703,8 +703,8 @@ bcrypt-pbkdf@^1.0.0:
     tweetnacl "^0.14.3"
 
 binary-extensions@^1.0.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.10.0.tgz#9aeb9a6c5e88638aad171e167f5900abe24835d0"
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
 
 block-stream@*:
   version "0.0.9"
@@ -781,8 +781,8 @@ camelcase@^4.1.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
 
 caniuse-lite@^1.0.30000760:
-  version "1.0.30000766"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000766.tgz#8a095cc5eb9923c27008ce4d0db23e65a3e28843"
+  version "1.0.30000769"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000769.tgz#d68c5aa0772ea3eac6c97d42e239c9b4d3261b93"
 
 caseless@~0.12.0:
   version "0.12.0"
@@ -829,8 +829,8 @@ chokidar@^1.6.0:
     fsevents "^1.0.0"
 
 ci-info@^1.0.0:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.1.1.tgz#47b44df118c48d2597b56d342e7e25791060171a"
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.1.2.tgz#03561259db48d0474c8bdc90f5b47b068b6bbfb4"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -2059,13 +2059,14 @@ local-storage@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/local-storage/-/local-storage-1.4.2.tgz#7ec2d3fb7f1ea91a85b160d3a785058f87bfbfa5"
 
-localsync@^1.6.0:
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/localsync/-/localsync-1.6.0.tgz#f88fb3cf19b98950cc8aba06c3250b43a968a7f6"
+localsync@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/localsync/-/localsync-1.6.2.tgz#d7cf1573228b8e600658db7d189a61c6554bc37c"
   dependencies:
     invariant "^2.2.2"
     local-storage "^1.4.2"
     react-cookie "^2.1.1"
+    tslib "^1.8.0"
 
 locate-path@^2.0.0:
   version "2.0.0"
@@ -2613,19 +2614,21 @@ redux-actions@^2.2.1:
     lodash-es "^4.17.4"
     reduce-reducers "^0.1.0"
 
-redux-blueprint@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/redux-blueprint/-/redux-blueprint-0.4.0.tgz#93fd3565d3541eb2ce61c786da6e9360222731e9"
+redux-blueprint@^0.4.3:
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/redux-blueprint/-/redux-blueprint-0.4.3.tgz#13295c6a33d6a976f3b13d0449349a942cd735a5"
   dependencies:
     "@types/redux-actions" "^2.2.2"
     invariant "^2.2.2"
     redux-actions "^2.2.1"
+    tslib "^1.8.0"
 
-redux-mux@^0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/redux-mux/-/redux-mux-0.3.0.tgz#e1bfaafa633f49779b933e24c3d77a873f0b1941"
+redux-mux@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/redux-mux/-/redux-mux-0.3.2.tgz#568ac560bce0afb53e0a3501998da2cd76469552"
   dependencies:
     invariant "^2.2.2"
+    tslib "^1.8.0"
 
 redux@^3.7.2:
   version "3.7.2"
