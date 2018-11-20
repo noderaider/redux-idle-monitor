@@ -8,7 +8,7 @@
 
 `npm i -S redux-idle-monitor`
 
-Can be used standalone with redux or in tandem with [react-redux-idle-monitor](https://npmjs.com/packages/react-redux-idle-monitor) to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.
+Can be used standalone with redux or in tandem with [react-redux-idle-monitor](https://npmjs.com/package/react-redux-idle-monitor) to track whether a user is idle and progress them through a set of idle status actions with varying timeouts.
 
 See a working demo in a real project at [redux-webpack-boilerplate](https://redux-webpack-boilerplate.js.org)
 
